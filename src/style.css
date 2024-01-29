@@ -28,20 +28,24 @@ html, body {
     background: var(--sidebar);
     width: 100%;
     height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
 }
 
-.userProfile {
-    border: 1px solid red;
+.userProfile, .userInfo {
+    /* border: 1px solid red; */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    margin: 15px 0 30px 30px;
     align-items: center;
+    color: white;
 }
 
 .userProfile div {
     margin: 20px 20px;
     font-size: 25px;
     font-weight: bold;
-    color: white;
 }
 
 .userProfile button {
@@ -58,4 +62,13 @@ html, body {
     text-align: center;
     background-color: white;
     border: 1px solid black;
+}
+
+ul {
+    list-style: none;
+    font-size: 23px;
+}
+
+a {
+    cursor: pointer;
 }
