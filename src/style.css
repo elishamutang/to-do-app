@@ -4,8 +4,56 @@
     box-sizing: border-box;
 }
 
+:root {
+    --sidebar: #213555;
+}
+
 html, body {
     width: 100%;
     height: 100vh;
     background: linear-gradient(45deg, #637A9F, #C9D7DD, #FFF3CF);
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 0.18fr 1fr;
+    grid-template-areas: 
+        "sidebar main"
+    ;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background: var(--sidebar);
+    width: 100%;
+    height: 100vh;
+}
+
+.userProfile {
+    border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.userProfile div {
+    margin: 20px 20px;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.userProfile button {
+    text-decoration: none;
+    margin: 0;
+    color: black;
+    border-radius: 50%;
+    border: none;
+    height: 40px;
+    width: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    background-color: white;
 }
