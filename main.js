@@ -31,7 +31,22 @@ html, body {
     width: 100%;
     height: 100vh;
     background: linear-gradient(45deg, #637A9F, #C9D7DD, #FFF3CF);
-}`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;AAC1B;;AAEA;IACI,WAAW;IACX,aAAa;IACb,6DAA6D;AACjE","sourcesContent":["* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body {\n    width: 100%;\n    height: 100vh;\n    background: linear-gradient(45deg, #637A9F, #C9D7DD, #FFF3CF);\n}"],"sourceRoot":""}]);
+}
+
+#container {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-areas: 
+        "sidebar main"
+    ;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    border: 1px solid black;
+    width: 100%;
+    height: 100vh;
+}`, "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;IACI,SAAS;IACT,UAAU;IACV,sBAAsB;AAC1B;;AAEA;IACI,WAAW;IACX,aAAa;IACb,6DAA6D;AACjE;;AAEA;IACI,aAAa;IACb,8BAA8B;IAC9B;;IAEA;AACJ;;AAEA;IACI,kBAAkB;IAClB,uBAAuB;IACvB,WAAW;IACX,aAAa;AACjB","sourcesContent":["* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nhtml, body {\n    width: 100%;\n    height: 100vh;\n    background: linear-gradient(45deg, #637A9F, #C9D7DD, #FFF3CF);\n}\n\n#container {\n    display: grid;\n    grid-template-columns: 25% 75%;\n    grid-template-areas: \n        \"sidebar main\"\n    ;\n}\n\n.sidebar {\n    grid-area: sidebar;\n    border: 1px solid black;\n    width: 100%;\n    height: 100vh;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
