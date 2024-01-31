@@ -117,9 +117,14 @@ a:hover,
     justify-content: space-between;
 }
 
-.header > a i {
-    margin-right: 20px;
+button {
+    text-decoration: none;
+    border: none;
+    background: none;
     color: white;
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 18px;
 }
 
 .bx-rotate-90 {
@@ -128,4 +133,34 @@ a:hover,
 
 .bx-rotate-90:hover {
     transform: rotate(180deg);
+}
+
+dialog {
+    margin: 0 auto;
+    top: 30%;
+    border: none;
+    width: 600px;
+    height: 250px;
+    border-radius: 20px;
+}
+
+dialog[open]::backdrop {
+    background: rgb(118, 118, 118);
+    animation: backdrop-fade 3s ease-out;
+}
+
+@keyframes backdrop-fade {
+    from {
+        background: transparent;
+    }
+    to {
+        background: rgba(118, 118, 118);
+        opacity: 0.5;
+    }
+}
+
+form {
+    width: inherit;
+    height: inherit;
+    padding: 20px;
 }
