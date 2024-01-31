@@ -56,17 +56,16 @@ html, body {
 .userProfile button {
     text-decoration: none;
     margin: 0;
-    color: black;
+    color: white;
     border-radius: 50%;
     border: none;
     height: 45px;
     width: 45px;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 28px;
     cursor: pointer;
     text-align: center;
-    background-color: white;
-    border: 1px solid black;
+    background: linear-gradient(45deg, #129cff7c, #f2ff92a0);
 }
 
 ul {
@@ -119,6 +118,14 @@ a:hover,
 }
 
 .header > a i {
-    margin-right: 15px;
+    margin-right: 20px;
     color: white;
+}
+
+.bx-rotate-90 {
+    transition: 0.3s;
+}
+
+.bx-rotate-90:hover {
+    transform: rotate(180deg);
 }
