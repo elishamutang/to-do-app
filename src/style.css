@@ -7,7 +7,7 @@
 
 :root {
     --sidebar: #35507a;
-    --secondary: rgba(255, 255, 255, 0.798);
+    --secondary: rgba(255, 255, 255, 0.529);
 }
 
 html, body {
@@ -84,6 +84,13 @@ li i::before {
 a {
     cursor: pointer;
     text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+a:hover,
+.userLists > ul > li > a:hover {
+    color: white;
 }
 
 .secondary {
