@@ -69,6 +69,14 @@ ul {
     font-size: 23px;
 }
 
+li i {
+    font-size: 25px;
+}
+
+li i::before {
+    margin-right: 10px;
+}
+
 a {
     cursor: pointer;
 }
