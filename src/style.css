@@ -146,7 +146,8 @@ dialog {
 
 dialog[open]::backdrop {
     background: rgb(118, 118, 118);
-    animation: backdrop-fade 3s ease-out;
+    opacity: 0.6;
+    animation: backdrop-fade 0.5s ease-out;
 }
 
 @keyframes backdrop-fade {
@@ -155,7 +156,6 @@ dialog[open]::backdrop {
     }
     to {
         background: rgba(118, 118, 118);
-        opacity: 0.5;
     }
 }
 
