@@ -2,16 +2,23 @@
 
 export function createNewList() {
 
-    const testBtn = document.querySelector('.header button');
-    const testDialog = document.querySelector('.header dialog');
+    // Open dialog
+    const addNewListBtn = document.querySelector('.header button');
+    const newListDialog = document.querySelector('.header dialog');
 
-    testBtn.addEventListener('click', (e) => {
-        testDialog.showModal();
+    // Focus on input
+    const titleInput = document.querySelector('.header dialog form > input');
+
+    addNewListBtn.addEventListener('click', (e) => {
+        newListDialog.showModal();
+        titleInput.focus();
     })
 
-    testDialog.addEventListener('click', (e) => {
-        if(e.target === testDialog) {
-            testDialog.close();
+    newListDialog.addEventListener('click', (e) => {
+        if(e.target === newListDialog) {
+            newListDialog.close();
         }
     })
+
+
 }
