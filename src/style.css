@@ -163,4 +163,6 @@ form {
     width: inherit;
     height: inherit;
     padding: 20px;
+    border-radius: inherit;
+    border: 1px solid red;
 }
