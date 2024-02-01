@@ -45,7 +45,7 @@ html, body {
 }
 
 .userInfo h1 {
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .userProfile div {
@@ -89,12 +89,9 @@ a {
 }
 
 a:hover,
-.userLists > ul > li > a:hover {
+.userLists > ul > li > a:hover,
+.secondary > li > i > a:hover {
     color: white;
-}
-
-.secondary {
-    color: var(--secondary);
 }
 
 .userLists {
@@ -107,8 +104,10 @@ a:hover,
     margin-top: 20px;
 }
 
-.userLists > ul > li > a {
+.secondary > li > a,
+.secondary > li > i > a {
     color: var(--secondary);
+    font-size: 25px;
 }
 
 .header {
@@ -126,6 +125,10 @@ button {
     cursor: pointer;
     margin-right: 20px;
     font-size: 18px;
+}
+
+.bx-task {
+    color: var(--secondary);
 }
 
 .bx-rotate-90 {
