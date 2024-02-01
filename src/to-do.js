@@ -3,7 +3,7 @@
 export function createNewList() {
 
     // Open dialog
-    const addNewListBtn = document.querySelector('.header button');
+    const addNewListBtn = document.querySelector('.header > button');
     const newListDialog = document.querySelector('.header dialog');
 
     // Focus on input
