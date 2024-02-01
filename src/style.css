@@ -145,7 +145,7 @@ dialog {
 }
 
 dialog[open]::backdrop {
-    background: rgb(118, 118, 118);
+    background: rgb(84, 84, 84);
     opacity: 0.6;
     animation: backdrop-fade 0.3s ease-out;
 }
@@ -155,7 +155,7 @@ dialog[open]::backdrop {
         background: transparent;
     }
     to {
-        background: rgba(118, 118, 118);
+        background: rgb(84, 84, 84);
     }
 }
 
