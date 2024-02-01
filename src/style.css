@@ -165,4 +165,13 @@ form {
     padding: 20px;
     border-radius: inherit;
     border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input {
+    font-size: 35px;
+    border: none;
+    border-bottom: 1px solid grey;
 }
