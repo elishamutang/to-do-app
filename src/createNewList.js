@@ -7,36 +7,39 @@ export function createNewList() {
     const newListDialog = document.querySelector('.header dialog');
 
     // Focus on input
-    const titleInput = document.querySelector('.header dialog form > input');
+    const titleInput = document.getElementById('userInput');
 
     addNewListBtn.addEventListener('click', (e) => {
         newListDialog.showModal();
         titleInput.focus();
     })
 
+    // Clicking outside form/dialog closes the dialog.
     newListDialog.addEventListener('mousedown', (e) => {
         if(e.target === newListDialog) {
             newListDialog.close();
         }
     })
 
-    // Exit button
+    // Exit button to close dialog.
     const exitBtn = document.querySelector('.exit');
 
     exitBtn.addEventListener('click', () => {
         newListDialog.close();
     })
 
-    // Continue button
-    const continueBtn = document.querySelector('button.continue');
+    // Prevent form submission.
+    const form = document.getElementById('createNewList');
 
-    continueBtn.addEventListener('mousedown', (event) => {
+    const submitOnContinue = function(event) {
         event.preventDefault();
         console.log(titleInput.value);
         setTimeout(() => {
             titleInput.value = '';
         }, 1000);
-    })
+        newListDialog.close();
+    }
 
+    form.addEventListener('submit', submitOnContinue);
 
 }
