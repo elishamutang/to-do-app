@@ -27,5 +27,16 @@ export function createNewList() {
         newListDialog.close();
     })
 
+    // Continue button
+    const continueBtn = document.querySelector('button.continue');
+
+    continueBtn.addEventListener('mousedown', (event) => {
+        event.preventDefault();
+        console.log(titleInput.value);
+        setTimeout(() => {
+            titleInput.value = '';
+        }, 1000);
+    })
+
 
 }
