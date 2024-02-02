@@ -14,10 +14,17 @@ export function createNewList() {
         titleInput.focus();
     })
 
-    newListDialog.addEventListener('click', (e) => {
+    newListDialog.addEventListener('mousedown', (e) => {
         if(e.target === newListDialog) {
             newListDialog.close();
         }
+    })
+
+    // Exit button
+    const exitBtn = document.querySelector('.exit');
+
+    exitBtn.addEventListener('click', () => {
+        newListDialog.close();
     })
 
 
