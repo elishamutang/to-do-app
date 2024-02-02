@@ -33,7 +33,11 @@ export function createNewList() {
 
     const submitOnContinue = function(event) {
         event.preventDefault();
-        console.log(titleInput.value);
+        const listTitle = titleInput.value;
+        
+        // Add to new list
+        addList(listTitle);
+
         setTimeout(() => {
             titleInput.value = '';
         }, 1000);
@@ -41,5 +45,22 @@ export function createNewList() {
     }
 
     form.addEventListener('submit', submitOnContinue);
+
+}
+
+function addList(listTitle) {
+
+    // Target My Lists.
+    const myLists = document.querySelector('.userLists > ul');
+
+    const newLi = document.createElement('li');
+    const newATag = document.createElement('a');
+
+    newATag.href = "";
+    newATag.textContent = listTitle;
+
+    newLi.append(newATag);
+
+    myLists.append(newLi);
 
 }
