@@ -37,7 +37,6 @@ html, body {
 }
 
 .userProfile, .userInfo {
-    /* border: 1px solid red; */
     display: flex;
     justify-content: flex-start;
     margin: 15px 0 30px 30px;
@@ -67,7 +66,8 @@ html, body {
     font-size: 28px;
     cursor: pointer;
     text-align: center;
-    background: var(--content);
+    /* background: var(--content); */
+    background: rgba(0, 255, 98, 0.674);
 }
 
 ul {
@@ -229,4 +229,38 @@ input:focus {
 
 .continue:hover {
     transform: scale(1.05);
+}
+
+.main {
+    grid-area: main;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1fr);
+    grid-template-rows: 0.07fr 0.9fr;
+    grid-template-areas: 
+        "header header header"
+        "taskOne taskTwo ."
+    ;
+    margin: 2%;
+    column-gap: 2%;
+    row-gap: 2%;
+}
+
+#allTasksHeader {
+    grid-area: header;
+}
+
+#allTasksDivOne {
+    grid-area: taskOne;
+}
+
+#allTasksDivTwo {
+    grid-area: taskTwo;
+}
+
+div.allTasks {
+    background: var(--sidebar);
+    height: 100%;
+    border-radius: 15px;
+    color: white;
 }
