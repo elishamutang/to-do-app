@@ -20,14 +20,14 @@ export function createNew(createNewBtn) {
         }
     })
 
-    // Exit button to close dialog.
+    // Exit button to close dialog when clicked.
     const exitBtn = document.querySelector(`form.${btnClass} > button.exit`);
 
     exitBtn.addEventListener('click', () => {
         dialog.close();
     })
 
-    // Prevent form submission.
+    // Prevent form submission to server.
     const form = document.querySelector(`form.${btnClass}`);
 
     const submitOnContinue = function(event) {
@@ -41,6 +41,8 @@ export function createNew(createNewBtn) {
             titleInput.value = '';
         }, 1000);
         dialog.close();
+
+        // Remove after each call else events will be added to the last one.
         form.removeEventListener('submit', submitOnContinue);
     }
 
@@ -48,9 +50,9 @@ export function createNew(createNewBtn) {
 
 }
 
+// Updates either My Lists or Tags section for newly created lists/tags.
 function addList(listTitle, btnClassName) {
 
-    console.log(`test`);
     // Target My Lists.
     const myLists = document.querySelector(`ul.secondary.${btnClassName}`);
 
@@ -59,6 +61,7 @@ function addList(listTitle, btnClassName) {
 
     newATag.href = "";
 
+    // Check whether for Tags or My Lists.
     if(btnClassName == 'tags' && !listTitle.includes('#')) {
         newATag.textContent = `#${listTitle}`;
     } else {
