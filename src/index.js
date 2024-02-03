@@ -3,4 +3,9 @@ import 'boxicons';
 import { createNew } from './createNewList';
 
 // Load DOM.
-createNew();
+
+(function DOMHandler() {
+
+    createNew();
+
+})();
