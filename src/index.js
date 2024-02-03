@@ -1,6 +1,6 @@
 import './style.css';
 import 'boxicons';
-import { createNewList } from './createNewList';
+import { createNew } from './createNewList';
 
 // Load DOM.
-createNewList();
+createNew();

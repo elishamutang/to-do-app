@@ -1,6 +1,6 @@
-// Create new list
+// Create new list or tags
 
-export function createNewList() {
+export function createNew() {
 
     // Open dialog
     const addNewListBtn = document.querySelector('.header > button');
