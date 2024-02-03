@@ -6,6 +6,7 @@ import { createNew } from './createNewList';
 
 (function DOMHandler() {
 
+    // Attach event listeners to create new lists / tags.
     createNew();
 
 })();
