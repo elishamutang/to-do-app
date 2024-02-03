@@ -7,7 +7,7 @@ export function createNew() {
     const newListDialog = document.querySelector('.header dialog');
 
     // Focus on input
-    const titleInput = document.getElementById('userInput');
+    const titleInput = document.getElementById('listInput');
 
     addNewListBtn.addEventListener('click', (e) => {
         newListDialog.showModal();
