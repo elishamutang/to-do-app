@@ -241,9 +241,9 @@ input:focus {
         "header header header"
         "taskOne taskTwo ."
     ;
-    margin: 2%;
+    margin: 1.5%;
     column-gap: 2%;
-    row-gap: 2%;
+    row-gap: 5%;
 }
 
 #allTasksHeader {
