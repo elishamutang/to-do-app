@@ -22,7 +22,6 @@ export function createNew(createNewBtn) {
 
     // Exit button to close dialog.
     const exitBtn = document.querySelector(`form.${btnClass} > button.exit`);
-    console.log(exitBtn);
 
     exitBtn.addEventListener('click', () => {
         dialog.close();
@@ -42,6 +41,7 @@ export function createNew(createNewBtn) {
             titleInput.value = '';
         }, 1000);
         dialog.close();
+        form.removeEventListener('submit', submitOnContinue);
     }
 
     form.addEventListener('submit', submitOnContinue);
@@ -50,15 +50,20 @@ export function createNew(createNewBtn) {
 
 function addList(listTitle, btnClassName) {
 
+    console.log(`test`);
     // Target My Lists.
     const myLists = document.querySelector(`ul.secondary.${btnClassName}`);
-    console.log(myLists);
 
     const newLi = document.createElement('li');
     const newATag = document.createElement('a');
 
     newATag.href = "";
-    newATag.textContent = listTitle;
+
+    if(btnClassName == 'tags' && !listTitle.includes('#')) {
+        newATag.textContent = `#${listTitle}`;
+    } else {
+        newATag.textContent = listTitle;
+    }
 
     newLi.append(newATag);
 

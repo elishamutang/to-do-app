@@ -13,6 +13,7 @@
 
 html, body {
     width: 100%;
+    min-height: 100vh;
     background: var(--content);
 }
 
@@ -28,6 +29,8 @@ html, body {
     grid-area: sidebar;
     background: var(--sidebar);
     width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
     
     display: flex;
     flex-direction: column;
