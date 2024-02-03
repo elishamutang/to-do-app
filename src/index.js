@@ -7,6 +7,12 @@ import { createNew } from './createNewList';
 (function DOMHandler() {
 
     // Attach event listeners to create new lists / tags.
-    createNew();
+    const createNewBtns = document.querySelectorAll('.header > button');
+
+    createNewBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            createNew(e.currentTarget);
+        })
+    })
 
 })();

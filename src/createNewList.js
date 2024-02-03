@@ -1,57 +1,58 @@
 // Create new list or tags
 
-export function createNew() {
+export function createNew(createNewBtn) {
+
+    const btnClass = createNewBtn.className;
 
     // Open dialog
-    const addNewListBtn = document.querySelector('.header > button');
-    const newListDialog = document.querySelector('.header dialog');
+    const dialog = document.querySelector(`dialog.${btnClass}`);
 
     // Focus on input
-    const titleInput = document.getElementById('listInput');
+    const titleInput = document.querySelector(`input.${btnClass}`);
 
-    addNewListBtn.addEventListener('click', (e) => {
-        newListDialog.showModal();
-        titleInput.focus();
-    })
+    dialog.showModal();
+    titleInput.focus();
 
     // Clicking outside form/dialog closes the dialog.
-    newListDialog.addEventListener('mousedown', (e) => {
-        if(e.target === newListDialog) {
-            newListDialog.close();
+    dialog.addEventListener('mousedown', (e) => {
+        if(e.target === dialog) {
+            dialog.close();
         }
     })
 
     // Exit button to close dialog.
-    const exitBtn = document.querySelector('.exit');
+    const exitBtn = document.querySelector(`form.${btnClass} > button.exit`);
+    console.log(exitBtn);
 
     exitBtn.addEventListener('click', () => {
-        newListDialog.close();
+        dialog.close();
     })
 
     // Prevent form submission.
-    const form = document.getElementById('createNewList');
+    const form = document.querySelector(`form.${btnClass}`);
 
     const submitOnContinue = function(event) {
         event.preventDefault();
         const listTitle = titleInput.value;
         
         // Add to new list
-        addList(listTitle);
+        addList(listTitle, btnClass);
 
         setTimeout(() => {
             titleInput.value = '';
         }, 1000);
-        newListDialog.close();
+        dialog.close();
     }
 
     form.addEventListener('submit', submitOnContinue);
 
 }
 
-function addList(listTitle) {
+function addList(listTitle, btnClassName) {
 
     // Target My Lists.
-    const myLists = document.querySelector('.userLists > ul');
+    const myLists = document.querySelector(`ul.secondary.${btnClassName}`);
+    console.log(myLists);
 
     const newLi = document.createElement('li');
     const newATag = document.createElement('a');
