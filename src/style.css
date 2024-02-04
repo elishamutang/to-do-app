@@ -273,6 +273,10 @@ form, dialog {
     /* border: 1px solid red; */
 }
 
+.overview > div {
+    margin-bottom: 20px;
+}
+
 #allTasksDivTwo {
     grid-area: taskTwo;
 }
@@ -296,4 +300,31 @@ div.allTasks {
 
 #addTask:focus {
     background: white;
+}
+
+fieldset {
+    border: none;
+}
+
+fieldset div {
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+    font-size: 18px;
+}
+
+fieldset legend {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+#task1, #task2 {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: 50%;
+    background: white;
+    border: 5px solid grey;
+    box-shadow: 0 0 0 4px white;
+    margin-left: 5px;
+    margin-right: 8px;
 }
