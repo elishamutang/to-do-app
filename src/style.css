@@ -8,7 +8,8 @@
 :root {
     --sidebar: #35507a;
     --secondary: rgba(255, 255, 255, 0.529);
-    --content: linear-gradient(90deg, #129cff7c, #f2ff92a0);
+    --content: linear-gradient(90deg, #129cff7c, rgba(99, 216, 158, 0.627));
+    --tenPercent: rgb(188, 2, 2);
 }
 
 html, body {
@@ -67,7 +68,7 @@ html, body {
     cursor: pointer;
     text-align: center;
     /* background: var(--content); */
-    background: rgba(0, 255, 98, 0.674);
+    background: var(--tenPercent);
 }
 
 ul {
