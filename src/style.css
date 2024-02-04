@@ -7,6 +7,7 @@
 
 :root {
     --sidebar: #35507a;
+    --toDoTask: #617da9;
     --secondary: rgba(255, 255, 255, 0.529);
     --content: linear-gradient(90deg, #129cff7c, rgba(99, 216, 158, 0.627));
     --tenPercent: rgb(188, 2, 2);
@@ -292,6 +293,8 @@ div.allTasks {
 #taskInput {
     background: var(--secondary);
     border-radius: 10px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
     border: none;
     padding: 15px;
     font-size: 18px;
@@ -308,6 +311,25 @@ div.allTasks {
     border-bottom-right-radius: inherit;
     grid-area: addTask;
     padding: 10px;
+    /* border: 1px solid red; */
+
+    display: flex;
+    position: relative;
+}
+
+#addTask > button {
+    background: white;
+    color: var(--tenPercent);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+#addTask > button:hover {
+    color: white;
+    background: var(--tenPercent);
 }
 
 fieldset {
@@ -315,9 +337,12 @@ fieldset {
 }
 
 fieldset div {
-    margin-bottom: 20px;
-    /* border: 1px solid red; */
-    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 8px;
+    background: var(--toDoTask);
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 fieldset legend {
@@ -325,7 +350,7 @@ fieldset legend {
     margin-bottom: 10px;
 }
 
-#task1, #task2 {
+/* #task1, #task2 {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
@@ -334,5 +359,10 @@ fieldset legend {
     border: 5px solid grey;
     box-shadow: 0 0 0 4px white;
     margin-left: 5px;
+    margin-right: 8px;
+} */
+
+.toDoObj {
+    cursor: pointer;
     margin-right: 8px;
 }
