@@ -34,7 +34,7 @@
                                 <button class="exit" type="reset">
                                     <i class='bx bx-x'></i>
                                 </button>
-                                <input type="text" id="listInput" class="userLists" placeholder="Add a title">
+                                <input type="text" id="listInput" class="userLists dialogInput" placeholder="Add a title">
                                 <button class="continue" type="submit">Continue</button>
                             </form>
                         </dialog>
@@ -62,7 +62,7 @@
                                 <button class="exit" type="reset">
                                     <i class='bx bx-x'></i>
                                 </button>
-                                <input type="text" id="tagInput" class="tags" placeholder="Add a title">
+                                <input type="text" id="tagInput" class="tags dialogInput" placeholder="Add a title">
                                 <button class="continue" type="submit">Continue</button>
                             </form>
                         </dialog>
@@ -85,15 +85,18 @@
                 </div>
                 <div class="allTasks tasksOverview" id="allTasksDivOne">
                     <div class="overview">
-                        <div id="today">
-                            <h1>Today</h1>
-                            <ul class="todaysList">
-                                <li>Workout</li>
-                                <li>Groceries</li>
-                                <li>Send dog to vet</li>
-                                <li>Pick Eva</li>
-                            </ul>
-                        </div>
+                        <fieldset id="today">
+                            <legend><a>Today</a></legend>
+
+                            <div>
+                                <input type="radio" id="task1">
+                                <label for="task1">Workout</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="task2">
+                                <label for="task2">Walk dog</label>
+                            </div>
+                        </fieldset>
                         <div id="tomorrow">
                             <h1>Tomorrow</h1>
                         </div>
@@ -104,7 +107,7 @@
                             <h1>Someday</h1>
                         </div>
                     </div>
-                    
+                    <input type="text" placeholder="New Task" id="addTask">
                 </div>
                 <div class="allTasks tasksDetails" id="allTasksDivTwo">
                     <h1>Today</h1>
