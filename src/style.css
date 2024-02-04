@@ -371,3 +371,23 @@ fieldset legend {
     cursor: pointer;
     margin-right: 8px;
 }
+
+#allTasksDivTwo {
+    display: grid;
+    grid-template-rows: 1fr;
+}
+
+#divTwoContainer {
+    margin: 20px;
+
+    display: grid;
+    grid-template-rows: 0.1fr;
+    grid-template-areas: 
+        "detailHeader"
+    ;
+}
+
+#detailHeader {
+    grid-area: detailHeader;
+    font-size: 25px;
+}
