@@ -168,7 +168,7 @@ dialog[open]::backdrop {
     }
 }
 
-form {
+form.tags, form.userLists {
     width: 100%;
     height: inherit;
     padding: 25px;
@@ -215,7 +215,7 @@ form, dialog {
 }
 
 .dialogInput:focus,
-#addTask:focus {
+#taskInput:focus {
     outline: none;
 }
 
@@ -261,7 +261,7 @@ form, dialog {
     grid-area: taskOne;
 
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 90% auto;
     grid-template-areas: 
         "overview"
         "addTask"
@@ -289,18 +289,25 @@ div.allTasks {
     color: white;
 }
 
-#addTask {
+#taskInput {
     background: var(--secondary);
     border-radius: 10px;
     border: none;
     padding: 15px;
     font-size: 18px;
-    margin: 20px;
     transition: 0.2s;
+    width: 100%;
 }
 
-#addTask:focus {
+#taskInput:focus {
     background: white;
+}
+
+#addTask {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    grid-area: addTask;
+    padding: 10px;
 }
 
 fieldset {
