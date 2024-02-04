@@ -1,6 +1,9 @@
 import './style.css';
 import 'boxicons';
 import { createNew } from './createNewList';
+import CreateToDoObjs from './createToDo';
+import allMyTasks from './allMyTasks';
+import viewTask from './viewTask';
 
 // Load DOM.
 
@@ -16,8 +19,24 @@ import { createNew } from './createNewList';
     })
 
     // Target input area to add new task.
-    const addNewTask = document.getElementById('input#addTask');
+    const addNewTask = document.getElementById('taskInput');
+    const taskInputForm = document.getElementById('addTask');
+    const fieldsetToday = document.getElementById('today');
 
-    console.log(addNewTask.value);
+    taskInputForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        allMyTasks(addNewTask.value, fieldsetToday);
+        addNewTask.value = '';
+    });
+
+    // Target Task.
+    const taskOverview = document.getElementById('allTasksDivOne');
+
+    taskOverview.addEventListener('click', (e) => {
+        if(e.target.className.includes('toDoDiv')) {
+            viewTask(e.target);
+        }
+    })
+
 
 })();
