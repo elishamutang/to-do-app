@@ -15,4 +15,9 @@ import { createNew } from './createNewList';
         })
     })
 
+    // Target input area to add new task.
+    const addNewTask = document.getElementById('input#addTask');
+
+    console.log(addNewTask.value);
+
 })();
