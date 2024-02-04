@@ -236,26 +236,40 @@ input:focus {
 
     display: grid;
     grid-template-columns: repeat(2, 1fr) 0.5fr;
-    grid-template-rows: 0.07fr 0.9fr;
+    grid-template-rows: 0.07fr 1fr;
     grid-template-areas: 
         "header header header"
         "taskOne taskTwo ."
     ;
     margin: 1.5%;
     column-gap: 2%;
-    row-gap: 5%;
+    row-gap: 3%;
 }
 
 #allTasksHeader {
     grid-area: header;
 }
 
-#allTasksHeader > h1 {
-    /* padding: 10px; */
+#allTasksHeader h1 {
+    font-size: 25px;
+    margin: 10px;
 }
 
 #allTasksDivOne {
     grid-area: taskOne;
+
+    display: grid;
+    grid-template-rows: 0.9fr 0.1fr;
+    grid-template-areas: 
+        "overview"
+        "addTask"
+    ;
+}
+
+.overview {
+    margin: 20px;
+    grid-area: overview;
+    /* border: 1px solid red; */
 }
 
 #allTasksDivTwo {
