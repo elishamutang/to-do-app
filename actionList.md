@@ -11,8 +11,8 @@ Priority (Low, Med, High)
 - Each 'To-Do' object (e.g Walk Dog task) should be an object.
 
 - Each 'To-Do' object shall have the following details:
-    - Title
-    - Description
+    - ~~Title~~
+    - ~~Description~~
     - Due Date
     - Priority
     - Notes
