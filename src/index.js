@@ -30,13 +30,13 @@ import viewTask from './viewTask';
     });
 
     // Target Task.
-    const taskOverview = document.getElementById('allTasksDivOne');
+    // const taskOverview = document.getElementById('allTasksDivOne');
 
-    taskOverview.addEventListener('click', (e) => {
-        if(e.target.className.includes('toDoDiv')) {
-            viewTask(e.target);
-        }
-    })
+    // taskOverview.addEventListener('click', (e) => {
+    //     if(e.target.className.includes('toDoDiv')) {
+    //         viewTask(e.target);
+    //     }
+    // })
 
 
 })();
