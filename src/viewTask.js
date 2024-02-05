@@ -9,7 +9,15 @@ export default function viewTask(task) {
     const allTasksDivTwo = document.getElementById('allTasksDivTwo');
 
     // Target header
-    const allTasksDivTwoHeader = document.querySelector('#detailHeader > h1');
+    const allTasksDivTwoDiv = document.querySelector('#detailHeader');
+    const allTasksDivTwoHeader = document.createElement('h1');
     allTasksDivTwoHeader.textContent = getTitle;
+
+    // Displays to-do detail title.
+    if(allTasksDivTwoDiv.children.length === 0) {
+        allTasksDivTwoDiv.append(allTasksDivTwoHeader);
+    } else {
+        allTasksDivTwoDiv.querySelector('h1').textContent = getTitle;
+    }
 
 }
