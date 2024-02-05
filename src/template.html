@@ -87,6 +87,12 @@
                     <div class="overview">
                         <fieldset id="today">
                             <legend><a>Today</a></legend>
+
+                            <div>
+                                <input type="checkbox" id="task1">
+                                <label for="task1">Working Out</label>
+                            </div>
+
                         </fieldset>
                         <div id="tomorrow">
                             <h1>Tomorrow</h1>
@@ -99,13 +105,22 @@
                         </div>
                     </div>
                     <form id="addTask">
-                        <input type="text" placeholder="New Task" id="taskInput">
+                        <input type="text" placeholder="New Task" id="addNewTask" class="taskInputs">
                         <button type="submit">Add</button>
                     </form>
                 </div>
                 <div class="allTasks tasksDetails" id="allTasksDivTwo">
+                    <!-- <div class="taskDetails" id="divTwoContainer">
+                        <div class="taskDetails" id="detailHeader">
+                        </div>
+                    </div> -->
                     <div class="taskDetails" id="divTwoContainer">
                         <div class="taskDetails" id="detailHeader">
+                            <h1>Working Out</h1>
+                        </div>
+                        <div class="taskDetails" id="detailNotes">
+                            <label for="notes">Notes</label>
+                            <input type="text" id="notes" class="taskInputs">
                         </div>
                     </div>
                 </div>
