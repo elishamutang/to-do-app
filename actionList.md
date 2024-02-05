@@ -9,16 +9,15 @@ Priority (Low, Med, High)
     - This will require 'To-Do' objects to be created dynamically, try using classes to create the objects.
 
 - Each 'To-Do' object (e.g Walk Dog task) should be an object.
-
 - Each 'To-Do' object shall have the following details:
     - ~~Title~~
-    - ~~Description~~
-    - Due Date
-    - Priority
-    - Notes
-    - Checklist (optional)
+    - ~~Description (Notes section, change from input to text area).~~
+    - Due Date (Mock-up done, create functionality).
+    - Priority (Mock-up done, create functionality).
+    - Notes (Notes section done, create functionality and change to text area).
+    - Checklist (No progress).
     
-- Revise radio buttons for Tasks Overview container.
+- Revise radio buttons for Tasks Overview container (On-hold for now)
 
-## Create welcome screen (Low)
+## Create welcome screen (Low) (On-Hold)
 - Prompt user to enter name.
