@@ -1,4 +1,4 @@
-// Click on any task to view in a separate window next to task overview window.
+// Click on any task to view details in a separate window next to task overview window.
 
 export default function viewTask(task) {
 
