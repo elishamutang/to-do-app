@@ -216,7 +216,7 @@ form, dialog {
 }
 
 .dialogInput:focus,
-#taskInput:focus {
+.taskInputs:focus {
     outline: none;
 }
 
@@ -290,24 +290,33 @@ div.allTasks {
     color: white;
 }
 
-#taskInput {
+.taskInputs {
     background: var(--secondary);
     border-radius: 10px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
     border: 1px solid transparent;
-    padding: 15px;
-    font-size: 18px;
-    transition: 0.2s;
-    width: 100%;
     transition: 0.3s;
 }
 
-#taskInput:focus {
+#notes {
+    padding: 5px 10px;
+    font-size: 20px;
+}
+
+#addNewTask {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%;
+}
+
+#notes:focus,
+#addNewTask:focus {
     background: white;
 }
 
-#taskInput:hover {
+#notes:hover,
+#addNewTask:hover {
     border-color: var(--secondary);
 }
 
@@ -381,13 +390,24 @@ fieldset legend {
     margin: 20px;
 
     display: grid;
-    grid-template-rows: 0.1fr;
+    grid-template-rows: 0.1fr 0.1fr;
     grid-template-areas: 
         "detailHeader"
+        "notes"
     ;
+    row-gap: 5px;
+    border: 1px solid red;
 }
 
 #detailHeader {
     grid-area: detailHeader;
-    font-size: 25px;
+    font-size: 20px;
+}
+
+#detailNotes {
+    border: 1px solid red;
+    grid-area: notes;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
