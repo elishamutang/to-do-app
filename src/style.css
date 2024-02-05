@@ -9,8 +9,8 @@
     --sidebar: #35507a;
     --toDoTask: #617da9;
     --secondary: rgba(255, 255, 255, 0.529);
-    --content: linear-gradient(90deg, #129cff7c, rgba(99, 216, 158, 0.627));
-    --tenPercent: rgb(188, 2, 2);
+    --content: linear-gradient(90deg, #129cff7c, rgba(94, 216, 155, 0.627));
+    --tenPercent: rgb(46, 195, 222);
 }
 
 html, body {
@@ -390,24 +390,52 @@ fieldset legend {
     margin: 20px;
 
     display: grid;
-    grid-template-rows: 0.1fr 0.1fr;
+    grid-template-rows: 0.05fr 0.1fr 0.1fr;
     grid-template-areas: 
         "detailHeader"
+        "additional"
         "notes"
     ;
-    row-gap: 5px;
-    border: 1px solid red;
+    row-gap: 10px;
+}
+
+#divTwoContainer, #divTwoContainer > div {
+    /* border: 1px solid red; */
 }
 
 #detailHeader {
     grid-area: detailHeader;
-    font-size: 20px;
 }
 
 #detailNotes {
-    border: 1px solid red;
     grid-area: notes;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+#detailNotes label {
+    font-size: 17px;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+}
+
+#additionalElems {
+    grid-area: additional;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+#additionalElems button {
+    background: var(--toDoTask);
+    padding: 10px 15px;
+    border-radius: 15px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+#additionalElems button:hover {
+    background: var(--tenPercent);
+    transform: scale(1.05);
 }
