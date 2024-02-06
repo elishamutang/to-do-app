@@ -390,13 +390,14 @@ fieldset legend {
     margin: 20px;
 
     display: grid;
-    grid-template-rows: 0.05fr 0.1fr 0.1fr;
+    grid-template-rows: 0.05fr 0.1fr 0.1fr minmax(min-content, max-content);
     grid-template-areas: 
         "detailHeader"
         "additional"
         "notes"
+        "checklist"
     ;
-    row-gap: 10px;
+    row-gap: 15px;
 }
 
 #divTwoContainer, #divTwoContainer > div {
@@ -414,7 +415,7 @@ fieldset legend {
     gap: 10px;
 }
 
-#detailNotes label {
+.detailSubHead {
     font-size: 17px;
     letter-spacing: 1.5px;
     font-weight: bold;
@@ -438,4 +439,8 @@ fieldset legend {
 #additionalElems button:hover {
     background: var(--tenPercent);
     transform: scale(1.05);
+}
+
+#checklistCon {
+    grid-area: checklist;
 }
