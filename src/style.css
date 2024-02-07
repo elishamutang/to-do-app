@@ -429,7 +429,7 @@ fieldset legend {
 }
 
 #additionalElems button {
-    background: var(--toDoTask);
+    background: var(--tenPercent);
     padding: 10px 15px;
     border-radius: 15px;
     font-size: 16px;
@@ -437,7 +437,6 @@ fieldset legend {
 }
 
 #additionalElems button:hover {
-    background: var(--tenPercent);
     transform: scale(1.05);
 }
 
