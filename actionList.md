@@ -15,7 +15,7 @@ Priority (Low, Med, High)
     - Due Date (Mock-up done, create functionality).
     - Priority (Mock-up done, create functionality).
     - Notes (Notes section done, create functionality and change to text area).
-    - Checklist (No progress).
+    - Checklist (Mock-up done, create functionality).
     
 - Revise radio buttons for Tasks Overview container (On-hold for now)
 
