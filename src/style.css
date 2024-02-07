@@ -350,13 +350,21 @@ fieldset {
     border: none;
 }
 
-fieldset div {
+fieldset > div {
     margin-bottom: 10px;
     padding: 8px;
     background: var(--toDoTask);
     border-radius: 5px;
     font-size: 20px;
     cursor: pointer;
+
+    display: flex;
+    gap: 5px;
+}
+
+fieldset label {
+    cursor: pointer;
+    width: 100%;
 }
 
 fieldset legend {
