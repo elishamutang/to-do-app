@@ -230,7 +230,12 @@ form, dialog {
     transition: 0.3s;
 }
 
-.continue:hover {
+.continue:disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.continue:not(:disabled):hover {
     transform: scale(1.05);
 }
 
@@ -442,6 +447,7 @@ fieldset legend {
     border-radius: 15px;
     font-size: 16px;
     transition: 0.3s;
+    font-weight: bold;
 }
 
 #additionalElems button:hover {
