@@ -1,13 +1,14 @@
 // Create new list or tags
 
+import { constructFrom } from "date-fns";
+
 export function createNew(createNewBtn) {
 
+    // Button class to identify whether lists or tags are being created.
     const btnClass = createNewBtn.className;
 
-    // Open dialog
+    // Open dialog and focus on input
     const dialog = document.querySelector(`dialog.${btnClass}`);
-
-    // Focus on input
     const titleInput = document.querySelector(`input.${btnClass}`);
 
     dialog.showModal();
@@ -27,26 +28,8 @@ export function createNew(createNewBtn) {
         dialog.close();
     })
 
-    // Prevent form submission to server.
-    const form = document.querySelector(`form.${btnClass}`);
-
-    const submitOnContinue = function(event) {
-        event.preventDefault();
-        const listTitle = titleInput.value;
-        
-        // Add to new list
-        addList(listTitle, btnClass);
-
-        setTimeout(() => {
-            titleInput.value = '';
-        }, 1000);
-        dialog.close();
-
-        // Remove after each call else events will be added to the last one.
-        form.removeEventListener('submit', submitOnContinue);
-    }
-
-    form.addEventListener('submit', submitOnContinue);
+    // Check form input, disable continue button if empty.
+    checkFormInput(titleInput, btnClass, dialog);
 
 }
 
@@ -71,5 +54,52 @@ function addList(listTitle, btnClassName) {
     newLi.append(newATag);
 
     myLists.append(newLi);
+
+}
+
+function checkFormInput(titleInput, btnClassName, dialog) {
+
+    const continueBtn = document.querySelector(`form.${btnClassName} > button.continue`);
+
+    // Initial state of form, button disabled cause of no input.
+    if(titleInput.value == '') {
+        continueBtn.disabled = true;
+    } else {
+        continueBtn.disabled = false;
+    }
+
+    // Detect user input.
+    titleInput.addEventListener('keyup', (e) => {
+        if(titleInput.value != '') {
+            continueBtn.disabled = false;
+        } else {
+            continueBtn.disabled = true;
+        }
+    })
+
+}
+
+function submitForm(titleInput, btnClass) {
+
+    // Prevent form submission to server.
+    // const form = document.querySelector(`form.${btnClass}`);
+
+    // const submitOnContinue = function(event) {
+    //     event.preventDefault();
+    //     const listTitle = titleInput.value;
+        
+    //     // Add to new list
+    //     addList(listTitle, btnClass);
+
+    //     setTimeout(() => {
+    //         titleInput.value = '';
+    //     }, 1000);
+    //     dialog.close();
+
+    //     // Remove after each call else events will be added to the last one.
+    //     form.removeEventListener('submit', submitOnContinue);
+    // }
+
+    // form.addEventListener('submit', submitOnContinue);
 
 }
