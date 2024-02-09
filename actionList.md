@@ -17,6 +17,7 @@ Priority (Low, Med, High)
     - Checklist (Mock-up done, create functionality).
     
 - Revise radio buttons for Tasks Overview container (On-hold for now)
+- Revise creating new lists/tags logic. Currently able to create empty lists/tags.
 
 ## Create welcome screen (Low) (On-Hold)
 - Prompt user to enter name.
