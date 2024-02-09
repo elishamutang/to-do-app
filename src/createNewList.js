@@ -62,7 +62,11 @@ function addList(listTitle, btnClassName) {
 
 function checkFormInput(titleInput, btnClassName) {
 
+    // Targets continue button.
     const continueBtn = document.querySelector(`form.${btnClassName} > button.continue`);
+
+    // Regular expression for a-z, A-Z and 0-9 characters only.
+    const regex = /^[a-zA-Z0-9]+$/;
 
     // Initial state of form, button disabled cause of no input.
     if(titleInput.value == '') {
@@ -73,8 +77,8 @@ function checkFormInput(titleInput, btnClassName) {
 
     // Detect user input.
     titleInput.addEventListener('keyup', (event) => {
-        if(titleInput.value == '') {
-            console.log('empty input');
+        // If user input does not follow regex pattern, continue button remains disabled.
+        if(regex.test(titleInput.value) == false) {
             continueBtn.disabled = true;
         } else {
             continueBtn.disabled = false;
