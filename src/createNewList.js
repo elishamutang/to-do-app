@@ -30,6 +30,8 @@ export function createNew(createNewBtn) {
 
     // Check form input, disable continue button if empty.
     checkFormInput(titleInput, btnClass);
+
+    // Submit Form.
     submitForm(titleInput, btnClass, dialog)
 
 }
@@ -71,11 +73,11 @@ function checkFormInput(titleInput, btnClassName) {
 
     // Detect user input.
     titleInput.addEventListener('keyup', (event) => {
-        if(titleInput.value != '') {
-            continueBtn.disabled = false;
-            console.log(titleInput.value, event);
-        } else {
+        if(titleInput.value == '') {
+            console.log('empty input');
             continueBtn.disabled = true;
+        } else {
+            continueBtn.disabled = false;
         }
     })
 
@@ -87,7 +89,6 @@ function submitForm(titleInput, btnClass, dialog) {
     const form = document.querySelector(`form.${btnClass}`);
 
     const submitOnContinue = function(event) {
-        event.preventDefault();
         const listTitle = titleInput.value;
         
         // Add to new list
@@ -98,6 +99,7 @@ function submitForm(titleInput, btnClass, dialog) {
         }, 1000);
         dialog.close();
 
+        event.preventDefault();
         // Remove after each call else events will be added to the last one.
         form.removeEventListener('submit', submitOnContinue);
     }
