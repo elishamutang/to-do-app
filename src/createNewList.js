@@ -29,7 +29,8 @@ export function createNew(createNewBtn) {
     })
 
     // Check form input, disable continue button if empty.
-    checkFormInput(titleInput, btnClass, dialog);
+    checkFormInput(titleInput, btnClass);
+    submitForm(titleInput, btnClass, dialog)
 
 }
 
@@ -57,7 +58,7 @@ function addList(listTitle, btnClassName) {
 
 }
 
-function checkFormInput(titleInput, btnClassName, dialog) {
+function checkFormInput(titleInput, btnClassName) {
 
     const continueBtn = document.querySelector(`form.${btnClassName} > button.continue`);
 
@@ -69,9 +70,10 @@ function checkFormInput(titleInput, btnClassName, dialog) {
     }
 
     // Detect user input.
-    titleInput.addEventListener('keyup', (e) => {
+    titleInput.addEventListener('keyup', (event) => {
         if(titleInput.value != '') {
             continueBtn.disabled = false;
+            console.log(titleInput.value, event);
         } else {
             continueBtn.disabled = true;
         }
@@ -79,27 +81,27 @@ function checkFormInput(titleInput, btnClassName, dialog) {
 
 }
 
-function submitForm(titleInput, btnClass) {
+function submitForm(titleInput, btnClass, dialog) {
 
     // Prevent form submission to server.
-    // const form = document.querySelector(`form.${btnClass}`);
+    const form = document.querySelector(`form.${btnClass}`);
 
-    // const submitOnContinue = function(event) {
-    //     event.preventDefault();
-    //     const listTitle = titleInput.value;
+    const submitOnContinue = function(event) {
+        event.preventDefault();
+        const listTitle = titleInput.value;
         
-    //     // Add to new list
-    //     addList(listTitle, btnClass);
+        // Add to new list
+        addList(listTitle, btnClass);
 
-    //     setTimeout(() => {
-    //         titleInput.value = '';
-    //     }, 1000);
-    //     dialog.close();
+        setTimeout(() => {
+            titleInput.value = '';
+        }, 1000);
+        dialog.close();
 
-    //     // Remove after each call else events will be added to the last one.
-    //     form.removeEventListener('submit', submitOnContinue);
-    // }
+        // Remove after each call else events will be added to the last one.
+        form.removeEventListener('submit', submitOnContinue);
+    }
 
-    // form.addEventListener('submit', submitOnContinue);
+    form.addEventListener('submit', submitOnContinue);
 
 }
