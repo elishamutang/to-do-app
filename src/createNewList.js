@@ -19,7 +19,7 @@ export function createNew(createNewBtn) {
         if(e.target === dialog) {
             dialog.close();
         }
-    })
+    });
 
     // Exit button to close dialog when clicked.
     const exitBtn = document.querySelector(`form.${btnClass} > button.exit`);
@@ -57,28 +57,28 @@ function addList(listTitle, btnClassName) {
 
 }
 
-function checkFormInput(titleInput, btnClassName) {
+export function checkFormInput(titleInput, btnClassName) {
 
-    // Targets continue button.
-    const continueBtn = document.querySelector(`form.${btnClassName} > button.continue`);
+    // Targets submit type button.
+    const submitBtn = document.querySelector(`form.${btnClassName} > button[type=submit]`);
 
     // Regular expression for a-z, A-Z and 0-9 characters only.
     const regex = /^[a-zA-Z0-9]+$/;
 
     // Initial state of form, button disabled cause of no input.
     if(titleInput.value == '') {
-        continueBtn.disabled = true;
+        submitBtn.disabled = true;
     } else {
-        continueBtn.disabled = false;
+        submitBtn.disabled = false;
     }
 
     // Detect user input.
     titleInput.addEventListener('keyup', (event) => {
         // If user input does not follow regex pattern, continue button remains disabled.
         if(regex.test(titleInput.value) == false) {
-            continueBtn.disabled = true;
+            submitBtn.disabled = true;
         } else {
-            continueBtn.disabled = false;
+            submitBtn.disabled = false;
         }
     })
 
@@ -104,10 +104,9 @@ function submitForm(titleInput, btnClass, dialog) {
         dialog.close();
 
         event.preventDefault();
-        // Remove after each call else events will be added to the last one.
-        form.removeEventListener('submit', submitOnContinue);
     }
 
-    form.addEventListener('submit', submitOnContinue);
+    // {once: true} automatically removes listener after being invoked.
+    form.addEventListener('submit', submitOnContinue, {once: true});
 
 }
