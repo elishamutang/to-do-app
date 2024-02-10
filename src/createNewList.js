@@ -28,10 +28,7 @@ export function createNew(createNewBtn) {
         dialog.close();
     })
 
-    // Check form input, disable continue button if empty.
-    checkFormInput(titleInput, btnClass);
-
-    // Submit Form.
+    // Submit and validate user input.
     submitForm(titleInput, btnClass, dialog)
 
 }
@@ -88,6 +85,9 @@ function checkFormInput(titleInput, btnClassName) {
 }
 
 function submitForm(titleInput, btnClass, dialog) {
+
+    // Check form input, determines if input is valid to be submitted or not.
+    checkFormInput(titleInput, btnClass);
 
     // Prevent form submission to server.
     const form = document.querySelector(`form.${btnClass}`);
