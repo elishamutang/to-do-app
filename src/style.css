@@ -320,8 +320,7 @@ div.allTasks {
     background: white;
 }
 
-#notes:hover,
-#addNewTask:hover {
+#notes:hover {
     border-color: var(--secondary);
 }
 
@@ -349,6 +348,12 @@ div.allTasks {
 #addTask > button:hover {
     color: white;
     background: var(--tenPercent);
+}
+
+#addTask > button:disabled {
+    color: var(--secondary);
+    background: var(--secondary);
+    cursor: auto;
 }
 
 fieldset {
