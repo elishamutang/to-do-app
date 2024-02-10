@@ -4,7 +4,6 @@ import { createNew } from './createNewList';
 import CreateToDoObjs from './createToDo';
 import addMyTask from './allMyTasks';
 import viewTask from './viewTask';
-import { checkFormInput } from './createNewList';
 
 // Load DOM.
 
