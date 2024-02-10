@@ -2,8 +2,9 @@ import './style.css';
 import 'boxicons';
 import { createNew } from './createNewList';
 import CreateToDoObjs from './createToDo';
-import allMyTasks from './allMyTasks';
+import addMyTask from './allMyTasks';
 import viewTask from './viewTask';
+import { checkFormInput } from './createNewList';
 
 // Load DOM.
 
@@ -19,24 +20,27 @@ import viewTask from './viewTask';
     })
 
     // Target input area to add new task.
-    const addNewTask = document.getElementById('taskInput');
+    const addNewTask = document.getElementById('addNewTask');
     const taskInputForm = document.getElementById('addTask');
     const fieldsetToday = document.getElementById('today');
 
-    taskInputForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        allMyTasks(addNewTask.value, fieldsetToday);
-        addNewTask.value = '';
-    });
+    // Initial state of submit button to be disabled.
+    const addNewTaskBtn = document.querySelector('button.addTask');
+    addNewTaskBtn.disabled = true;
+
+    addNewTask.addEventListener('focus', (event) => {
+        console.log(`${event.type} focused`);
+        addMyTask(taskInputForm.className, addNewTask, fieldsetToday);
+    })
 
     // Target Task.
-    // const taskOverview = document.getElementById('allTasksDivOne');
+    const taskOverview = document.getElementById('allTasksDivOne');
 
-    // taskOverview.addEventListener('click', (e) => {
-    //     if(e.target.className.includes('toDoDiv')) {
-    //         viewTask(e.target);
-    //     }
-    // })
+    taskOverview.addEventListener('click', (e) => {
+        if(e.target.className.includes('toDoDiv')) {
+            viewTask(e.target);
+        }
+    })
 
 
 })();
