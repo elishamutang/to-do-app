@@ -68,6 +68,8 @@ export function checkFormInput(titleInput, btnClassName) {
     // Initial state of form, button disabled cause of no input.
     if(titleInput.value == '') {
         submitBtn.disabled = true;
+    } else if(titleInput.value != '' && regex.test(titleInput.value) == false) {
+        submitBtn.disabled = true;
     } else {
         submitBtn.disabled = false;
     }
