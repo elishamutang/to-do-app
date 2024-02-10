@@ -21,7 +21,7 @@ html, body {
 
 #container {
     display: grid;
-    grid-template-columns: 0.18fr 1fr;
+    grid-template-columns: 0.2fr 0.8fr;
     grid-template-areas: 
         "sidebar main"
     ;
