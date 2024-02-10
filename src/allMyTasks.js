@@ -1,24 +1,27 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
+import { checkFormInput } from "./createNewList";
 
 // Add new task and displays them.
-export default function allMyTasks(task, fieldset) {
+export default function addMyTask(className, task, fieldset) {
 
-    const newTaskDiv = document.createElement('div');
-    newTaskDiv.className = 'toDoDiv';
+    checkFormInput(task, className);
 
-    const newCheckBox = document.createElement('input');
-    newCheckBox.type = 'checkbox';
-    newCheckBox.className = 'toDoObj';
-    newCheckBox.id = 'task1';
+    // const newTaskDiv = document.createElement('div');
+    // newTaskDiv.className = 'toDoDiv';
 
-    const newLabel = document.createElement('label');
-    newLabel.htmlFor = 'task1';
-    newLabel.textContent = task;
+    // const newCheckBox = document.createElement('input');
+    // newCheckBox.type = 'checkbox';
+    // newCheckBox.className = 'toDoObj';
+    // newCheckBox.id = 'task1';
 
-    newTaskDiv.append(newCheckBox);
-    newTaskDiv.append(newLabel);
+    // const newLabel = document.createElement('label');
+    // newLabel.htmlFor = 'task1';
+    // newLabel.textContent = task.value;
 
-    fieldset.append(newTaskDiv);
+    // newTaskDiv.append(newCheckBox);
+    // newTaskDiv.append(newLabel);
+
+    // fieldset.append(newTaskDiv);
 
 }
