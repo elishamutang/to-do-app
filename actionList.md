@@ -15,9 +15,15 @@ Priority (Low, Med, High)
     - Priority (Mock-up done, create functionality).
     - Notes (Notes section done, create functionality and change to text area).
     - Checklist (Mock-up done, create functionality).
-    
+
+- Planning to create a module for setting the "blueprint" of each To-Do object.
+    - A class containing the blueprint to create a each To-Do object (inside createToDo.js).
+    - Store each object inside an array.
+    - Dynamically add properties to the object.
+
+### To-Do List Basic Functionality (Low)
 - Revise radio buttons for Tasks Overview container (On-hold for now)
-- ~~Revise creating new lists/tags logic. Currently able to create empty lists/tags.~~
+
 
 ## Create welcome screen (Low) (On-Hold)
 - Prompt user to enter name.
