@@ -415,10 +415,6 @@ fieldset legend {
     row-gap: 15px;
 }
 
-#divTwoContainer, #divTwoContainer > div {
-    /* border: 1px solid red; */
-}
-
 #detailHeader {
     grid-area: detailHeader;
 }
