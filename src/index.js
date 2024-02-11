@@ -45,6 +45,8 @@ import viewTask from './viewTask';
     todayFieldset.addEventListener('click', (event) => {
         // Only pass label elements to viewTask.
         if(event.target.tagName === 'LABEL') {
+            // Prevents checkbox to be ticked when label is clicked.
+            event.preventDefault();
             viewTask(event.target);
         }
     })
