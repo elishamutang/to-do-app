@@ -43,7 +43,7 @@ import viewTask from './viewTask';
     const taskOverview = document.getElementById('allTasksDivOne');
 
     taskOverview.addEventListener('click', (e) => {
-        if(e.target.className.includes('toDoDiv')) {
+        if(e.target === document.querySelector('label')) {
             viewTask(e.target);
         }
     })
