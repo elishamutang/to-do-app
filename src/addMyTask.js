@@ -24,10 +24,6 @@ export default function addMyTask(task, fieldset) {
 
     fieldset.append(newTaskDiv);
 
-    // Set up object.
-    const testToDo = new ToDoObjs(task.value);
-    console.log(testToDo);
-
 }
 
 function updateNumOfToDos(newCheckBox, newLabel) {
