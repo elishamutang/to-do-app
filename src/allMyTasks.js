@@ -16,7 +16,7 @@ export default function addMyTask(task, fieldset) {
     newLabel.textContent = task.value;
 
     // Check number of To Do's.
-    checkNumOfToDos(newCheckBox, newLabel);
+    updateNumOfToDos(newCheckBox, newLabel);
 
     newTaskDiv.append(newCheckBox);
     newTaskDiv.append(newLabel);
@@ -25,7 +25,7 @@ export default function addMyTask(task, fieldset) {
 
 }
 
-function checkNumOfToDos(newCheckBox, newLabel) {
+function updateNumOfToDos(newCheckBox, newLabel) {
 
     // Check for number of to do's inside Today fieldset.
     const existingLables = document.querySelectorAll('#today > div > label');
