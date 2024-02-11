@@ -2,7 +2,7 @@ import './style.css';
 import 'boxicons';
 import { checkFormInput, createNew } from './createNewList';
 import ToDoObjs from './createToDo';
-import addMyTask from './allMyTasks';
+import addMyTask from './addMyTask';
 import viewTask from './viewTask';
 
 // Load DOM.
