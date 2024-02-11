@@ -1,6 +1,6 @@
 # Action List for this Project.
 
-Priority (Low, Med, High)
+Priority (Low, High)
 
 ## To-Do List Basic Functionality (High)
 - Create home page for user. User should be directed to an existing project list or 'home'.
