@@ -1,7 +1,21 @@
 // Module to create to-do objects.
 
-// export default class CreateToDoObjs {
+// Each To-Do object should have the following:
+// - Title
+// - Due date
+// - Priority
+// - Notes
+// - Checklist
 
-//     constructor()
 
-// }
+export default class ToDoObjs {
+
+    constructor(title, dueDate, priority, notes, checklist) {
+        this.title = title;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.notes = notes;
+        this.checklist = checklist;
+    }
+
+}
