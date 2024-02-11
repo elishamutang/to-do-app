@@ -34,7 +34,10 @@ import viewTask from './viewTask';
 
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
-        addMyTask(addNewTask, fieldsetToday);
+        const testToDo = addMyTask(addNewTask, fieldsetToday);
+        console.log(testToDo);
+        listOfObjs.push(testToDo);
+        console.log(listOfObjs);
         addNewTask.value = '';
         event.preventDefault();
     })
@@ -51,5 +54,7 @@ import viewTask from './viewTask';
         }
     })
 
+    // List of all objects
+    const listOfObjs = [];
 
 })();
