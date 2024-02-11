@@ -1,6 +1,6 @@
 import './style.css';
 import 'boxicons';
-import { createNew } from './createNewList';
+import { checkFormInput, createNew } from './createNewList';
 import CreateToDoObjs from './createToDo';
 import addMyTask from './allMyTasks';
 import viewTask from './viewTask';
@@ -27,9 +27,16 @@ import viewTask from './viewTask';
     const addNewTaskBtn = document.querySelector('button.addTask');
     addNewTaskBtn.disabled = true;
 
+    // Check user input when adding new tasks.
     addNewTask.addEventListener('focus', (event) => {
-        console.log(`${event.type} focused`);
-        addMyTask(taskInputForm.className, addNewTask, fieldsetToday);
+        checkFormInput(addNewTask, taskInputForm.className);
+    })
+
+    // Adds new task to overview div.
+    taskInputForm.addEventListener('submit', (event) => {
+        addMyTask(addNewTask, fieldsetToday);
+        addNewTask.value = '';
+        event.preventDefault();
     })
 
     // Target Task.
