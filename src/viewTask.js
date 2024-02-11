@@ -3,7 +3,7 @@
 export default function viewTask(task) {
 
     // Extract title from label
-    const getTitle = task.querySelector('label').textContent;
+    const getTitle = task.textContent;
 
     // Target window next to tasks overview.
     const allTasksDivTwo = document.getElementById('allTasksDivTwo');
