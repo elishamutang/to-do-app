@@ -62,8 +62,8 @@ export function checkFormInput(titleInput, btnClassName) {
     // Targets submit type button.
     const submitBtn = document.querySelector(`form.${btnClassName} > button[type=submit]`);
 
-    // Regular expression for a-z, A-Z and 0-9 characters only.
-    const regex = /^[a-zA-Z0-9]+$/;
+    // Regular expression to allow inputs with more than one word and a space between each word (e.g this regex works).
+    const regex = /^[a-z0-9]+( [a-z0-9]+)*$/i;
 
     // Initial state of form, button disabled cause of no input.
     if(titleInput.value == '') {
