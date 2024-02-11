@@ -1,5 +1,6 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
+import ToDoObjs from "./createToDo";
 
 // Add new task and displays them.
 export default function addMyTask(task, fieldset) {
@@ -22,6 +23,10 @@ export default function addMyTask(task, fieldset) {
     newTaskDiv.append(newLabel);
 
     fieldset.append(newTaskDiv);
+
+    // Set up object.
+    const testToDo = new ToDoObjs(task.value);
+    console.log(testToDo);
 
 }
 
