@@ -40,11 +40,12 @@ import viewTask from './viewTask';
     })
 
     // Target Task.
-    const taskOverview = document.getElementById('allTasksDivOne');
+    const todayFieldset = document.getElementById('today');
 
-    taskOverview.addEventListener('click', (e) => {
-        if(e.target === document.querySelector('label')) {
-            viewTask(e.target);
+    todayFieldset.addEventListener('click', (event) => {
+        // Only pass label elements to viewTask.
+        if(event.target.tagName === 'LABEL') {
+            viewTask(event.target);
         }
     })
 
