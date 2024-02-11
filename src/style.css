@@ -316,6 +316,11 @@ div.allTasks {
     width: 100%;
 }
 
+#addNewTask::placeholder {
+    font-weight: bold;
+    color: var(--secondary);
+}
+
 #notes:focus,
 #addNewTask:focus {
     background: white;
