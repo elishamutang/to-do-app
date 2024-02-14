@@ -1,7 +1,7 @@
 import './style.css';
 import 'boxicons';
 import { checkFormInput, createNew } from './createNewList';
-import ToDoObjs from './createToDo';
+import { checkList } from './createToDo';
 import addMyTask from './addMyTask';
 import viewTask from './viewTask';
 
@@ -67,6 +67,9 @@ import viewTask from './viewTask';
     })
 
 
+    // Interact with details of each To-Do task.
+    // Checklist
+    const checkListCon = document.getElementById('checkListCon');
     
 
 

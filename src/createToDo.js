@@ -19,3 +19,10 @@ export default class ToDoObjs {
     }
 
 }
+
+// To-Do object checklist
+export function checkList() {
+
+    
+
+}

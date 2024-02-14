@@ -86,24 +86,17 @@
                 <div class="allTasks tasksOverview" id="allTasksDivOne">
                     <div class="overview">
                         <fieldset id="today">
-                            <!-- Mockup, to be deleted after desired look achieved -->
                             <legend><a>Today</a></legend>
-
-                            <!-- <div>
-                                <input type="checkbox" id="task1">
-                                <label for="task1">Working Out</label>
-                            </div> -->
-                            <!-- Mockup, to be deleted after desired look achieved -->
                         </fieldset>
-                        <div id="tomorrow">
-                            <h1>Tomorrow</h1>
-                        </div>
-                        <div id="upcoming">
-                            <h1>Upcoming</h1>
-                        </div>
-                        <div id="someday">
-                            <h1>Someday</h1>
-                        </div>
+                        <fieldset id="tomorrow">
+                            <legend><a>Tomorrow</a></legend>
+                        </fieldset>
+                        <fieldset id="upcoming">
+                            <legend><a>Upcoming</a></legend>
+                        </fieldset>
+                        <fieldset id="someday">
+                            <legend><a>Someday</a></legend>
+                        </fieldset>
                     </div>
                     <form id="addTask" class="addTask">
                         <input type="text" placeholder="New Task" id="addNewTask" class="taskInputs addTask">
@@ -111,11 +104,6 @@
                     </form>
                 </div>
                 <div class="allTasks tasksDetails" id="allTasksDivTwo">
-                    <!-- <div class="taskDetails" id="divTwoContainer">
-                        <div class="taskDetails" id="detailHeader">
-                        </div>
-                    </div> -->
-
                     <!-- Mock-up, to be deleted after desired look achieved -->
                     <div class="taskDetails" id="divTwoContainer">
                         <div class="taskDetails" id="detailHeader">
@@ -136,7 +124,8 @@
                             <label for="notes" class="detailSubHead">Notes</label>
                             <input type="text" id="notes" class="taskInputs">
                         </div>
-                        <div class="taskDetails" id="checkListCon">
+                        <!-- <div class="taskDetails" id="checkListCon"> -->
+                        <form id="checkListCon" class="checkListTask taskDetails">
                             <fieldset id="checkList">
                                 <legend class="detailSubHead">Checklist</legend>
 
@@ -154,8 +143,12 @@
                                     <label for="pullUps">Pull ups</label>
                                 </div>
                                 <!-- Input text area with checkbox next to it -->
+                                <div>
+                                    <button type="submit" id="addChecklistItem" class="addTask">Add new item</button>
+                                </div>
                             </fieldset>
-                        </div>
+                        </form>
+                        <!-- </div> -->
                     </div>
                     <!-- Mock-up, to be deleted after desired look achieved -->
                 </div>

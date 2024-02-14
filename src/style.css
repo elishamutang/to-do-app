@@ -303,9 +303,9 @@ div.allTasks {
     transition: 0.3s;
 }
 
-#notes {
+#notes, #addNewChecklistItem {
     padding: 5px 10px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 #addNewTask {
@@ -321,8 +321,7 @@ div.allTasks {
     color: var(--secondary);
 }
 
-#notes:focus,
-#addNewTask:focus {
+.taskInputs:focus {
     background: white;
 }
 
@@ -452,6 +451,12 @@ fieldset legend {
     transform: scale(1.05);
 }
 
-#checklistCon {
+#checkListCon {
     grid-area: checklist;
+}
+
+#addChecklistItem {
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
 }
