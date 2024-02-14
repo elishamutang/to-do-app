@@ -9,6 +9,7 @@ import viewTask from './viewTask';
 
 (function DOMHandler() {
 
+    // Create new lists / tags.
     // Attach event listeners to create new lists / tags.
     const createNewBtns = document.querySelectorAll('.header > button');
 
@@ -18,12 +19,13 @@ import viewTask from './viewTask';
         })
     })
 
+    // Add new tasks.
     // Target input area to add new task.
     const addNewTask = document.getElementById('addNewTask');
     const taskInputForm = document.getElementById('addTask');
     const fieldsetToday = document.getElementById('today');
 
-    // Initial state of submit button to be disabled.
+    // Initial state of adding new task button will be disabled.
     const addNewTaskBtn = document.querySelector('button.addTask');
     addNewTaskBtn.disabled = true;
 
@@ -31,6 +33,9 @@ import viewTask from './viewTask';
     addNewTask.addEventListener('focus', (event) => {
         checkFormInput(addNewTask, taskInputForm.className);
     })
+
+    // Store newly created To-Do objects.
+    const listOfObjs = [];
 
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
@@ -48,7 +53,8 @@ import viewTask from './viewTask';
         event.preventDefault();
     })
 
-    // Target Task.
+    // View To-Do task in detail.
+    // Target To-Do task.
     const todayFieldset = document.getElementById('today');
 
     todayFieldset.addEventListener('click', (event) => {
@@ -60,7 +66,8 @@ import viewTask from './viewTask';
         }
     })
 
-    // List of all objects
-    const listOfObjs = [];
+
+    
+
 
 })();
