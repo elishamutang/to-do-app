@@ -21,8 +21,8 @@ export default class ToDoObjs {
 }
 
 // To-Do object checklist
-export function checkList() {
+// export function checkList(form, listOfObjs) {
 
-    
+//     console.log(listOfObjs);
 
-}
+// }
