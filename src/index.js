@@ -69,8 +69,15 @@ import viewTask from './viewTask';
 
     // Interact with details of each To-Do task.
     // Checklist
-    const checkListCon = document.getElementById('checkListCon');
-    
+    const checkListForm = document.getElementById('checkListForm');
+    const addNewChecklistItemBtn = document.getElementById('addChecklistItem');
+
+    addNewChecklistItemBtn.addEventListener('click', (event) => {
+        console.log('btn clicked');
+        checkList(checkListForm, listOfObjs);
+        event.preventDefault();
+    })
+
 
 
 })();
