@@ -34,10 +34,16 @@ import viewTask from './viewTask';
 
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
+
+        // Creates new to-do object.
         const testToDo = addMyTask(addNewTask, fieldsetToday);
         console.log(testToDo);
+
+        // Stores inside listOfObjs array.
         listOfObjs.push(testToDo);
         console.log(listOfObjs);
+
+        // Resets input.
         addNewTask.value = '';
         event.preventDefault();
     })
