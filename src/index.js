@@ -18,6 +18,7 @@ import viewTask from './viewTask';
             createNew(e.currentTarget);
         })
     })
+    
 
     // Add new tasks.
     // Target input area to add new task.
@@ -50,6 +51,7 @@ import viewTask from './viewTask';
         addNewTask.value = '';
         event.preventDefault();
     })
+
 
     // View To-Do task in detail.
     // Target To-Do task.
