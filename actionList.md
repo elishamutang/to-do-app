@@ -13,7 +13,7 @@ Priority (Low, High)
     - ~~Title~~
     - Due Date (Mock-up done, create functionality).
     - Priority (Mock-up done, create functionality).
-    - Notes (Notes section done, create functionality and change to text area).
+    - ~~Notes (Notes section done, create functionality~~ and change to text area).
     - Checklist (Mock-up done, create functionality).
 
 - Planning to create a module for setting the "blueprint" of each To-Do object.
