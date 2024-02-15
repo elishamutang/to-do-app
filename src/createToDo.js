@@ -33,10 +33,12 @@ export function checkList(fieldset, listOfObjs) {
     checklistInput.type = 'checkbox';
     checklistInput.className = 'toDoObj';
 
-    const checklistInputLabel = document.createElement('label');
+    const checklistInputText = document.createElement('input');
+    checklistInputText.type = 'text';
+    checklistInputText.className = 'taskInputs';
 
     checklistInputDiv.append(checklistInput);
-    checklistInputDiv.append(checklistInputLabel);
+    checklistInputDiv.append(checklistInputText);
 
     fieldset.append(checklistInputDiv);
 
