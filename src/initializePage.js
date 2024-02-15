@@ -73,6 +73,7 @@ export default function initializePage() {
 
         switch(event.target.id) {
 
+            // Try including checklist() and notes() inside viewTask and call the methods here.
             case 'addChecklistItem':
                 checkList(listOfObjs);
                 event.preventDefault();
