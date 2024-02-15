@@ -1,7 +1,7 @@
 import './style.css';
 import 'boxicons';
 import { checkFormInput, createNew } from './createNewList';
-import { checkList } from './createToDo';
+import { checkList } from './toDoObject';
 import addMyTask from './addMyTask';
 import viewTask from './viewTask';
 
