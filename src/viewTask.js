@@ -1,28 +1,49 @@
 // Click on any task to view details in a separate window next to task overview window.
 
+// Target window next to tasks overview (e.g task details).
+const taskDetails = document.getElementById('allTasksDivTwo');
+
 export default function viewTask(task, listOfObjs) {
 
     for (const obj of listOfObjs) {
         console.log(obj);
         if(task.textContent == obj.title) {
-            // // Extract title from label
+            // Extract title from label
             const getTitle = obj.title;
 
-            // // Target window next to tasks overview.
-            const allTasksDivTwo = document.getElementById('allTasksDivTwo');
+            // Target header
+            const taskDetailsHeader = document.querySelector('#detailHeader');
+            const taskDetailsHeaderElem = document.createElement('h1');
+            taskDetailsHeaderElem.textContent = getTitle;
 
-            // // Target header
-            const allTasksDivTwoDiv = document.querySelector('#detailHeader');
-            const allTasksDivTwoHeader = document.createElement('h1');
-            allTasksDivTwoHeader.textContent = getTitle;
-
-            // // Displays to-do detail title.
-            if(allTasksDivTwoDiv.children.length === 0) {
-                allTasksDivTwoDiv.append(allTasksDivTwoHeader);
+            // Displays to-do detail title.
+            if(taskDetailsHeader.children.length === 0) {
+                taskDetailsHeader.append(taskDetailsHeaderElem);
             } else {
-                allTasksDivTwoDiv.querySelector('h1').textContent = getTitle;
+                taskDetailsHeader.querySelector('h1').textContent = getTitle;
             }
         }
     }
+
+}
+
+// To-Do object checklist
+export function checkList(fieldset, listOfObjs) {
+
+    // Add input checklist task.
+    const checklistInputDiv = document.createElement('div');
+
+    const checklistInput = document.createElement('input');
+    checklistInput.type = 'checkbox';
+    checklistInput.className = 'toDoObj';
+
+    const checklistInputText = document.createElement('input');
+    checklistInputText.type = 'text';
+    checklistInputText.className = 'taskInputs';
+
+    checklistInputDiv.append(checklistInput);
+    checklistInputDiv.append(checklistInputText);
+
+    fieldset.append(checklistInputDiv);
 
 }

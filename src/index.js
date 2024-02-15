@@ -1,9 +1,8 @@
 import './style.css';
 import 'boxicons';
 import { checkFormInput, createNew } from './createNewList';
-import { checkList } from './toDoObject';
 import addMyTask from './addMyTask';
-import viewTask from './viewTask';
+import viewTask, { checkList } from './viewTask';
 
 // Load DOM.
 

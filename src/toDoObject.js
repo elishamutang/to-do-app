@@ -19,27 +19,3 @@ export default class ToDoObjs {
     }
 
 }
-
-// To-Do object checklist
-export function checkList(fieldset, listOfObjs) {
-
-    console.log(listOfObjs);
-    console.log(fieldset);
-
-    // Add input checklist task.
-    const checklistInputDiv = document.createElement('div');
-
-    const checklistInput = document.createElement('input');
-    checklistInput.type = 'checkbox';
-    checklistInput.className = 'toDoObj';
-
-    const checklistInputText = document.createElement('input');
-    checklistInputText.type = 'text';
-    checklistInputText.className = 'taskInputs';
-
-    checklistInputDiv.append(checklistInput);
-    checklistInputDiv.append(checklistInputText);
-
-    fieldset.append(checklistInputDiv);
-
-}
