@@ -2,7 +2,7 @@ import './style.css';
 import 'boxicons';
 import { checkFormInput, createNew } from './createNewList';
 import addMyTask from './addMyTask';
-import viewTask, { checkList } from './viewTask';
+import viewTask, { checkList } from './taskDetails';
 
 // Load DOM.
 
@@ -46,8 +46,9 @@ import viewTask, { checkList } from './viewTask';
         // Stores inside listOfObjs array.
         listOfObjs.push(testToDo);
 
-        // Resets input.
+        // Resets input and disables button.
         addNewTask.value = '';
+        addNewTaskBtn.disabled = true;
         event.preventDefault();
     })
 
@@ -67,14 +68,25 @@ import viewTask, { checkList } from './viewTask';
 
 
     // Interact with details of each To-Do task.
-    // Checklist
-    const checkListFormFieldset = document.getElementById('checkList');
-    const addNewChecklistItemBtn = document.getElementById('addChecklistItem');
+    // Task Details
+    const taskDetailsContainer = document.getElementById('allTasksDivTwo');
+    
+    taskDetailsContainer.addEventListener('click', (event) => {
+        console.log(event.target);
 
-    addNewChecklistItemBtn.addEventListener('click', (event) => {
-        console.log('btn clicked');
-        checkList(checkListFormFieldset, listOfObjs);
-        event.preventDefault();
+        switch(event.target.id) {
+
+            case 'addChecklistItem':
+                checkList(listOfObjs);
+                event.preventDefault();
+                break;
+            case 'notes':
+                break;
+
+
+
+        }
+
     })
 
 
