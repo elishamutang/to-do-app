@@ -28,7 +28,10 @@ export default function viewTask(task, listOfObjs) {
 }
 
 // To-Do object checklist
-export function checkList(fieldset, listOfObjs) {
+export function checkList(listOfObjs) {
+
+    // Checklist fieldset
+    const checkListFormFieldset = document.getElementById('checkList');
 
     // Add input checklist task.
     const checklistInputDiv = document.createElement('div');
@@ -44,6 +47,12 @@ export function checkList(fieldset, listOfObjs) {
     checklistInputDiv.append(checklistInput);
     checklistInputDiv.append(checklistInputText);
 
-    fieldset.append(checklistInputDiv);
+    checkListFormFieldset.append(checklistInputDiv);
+
+}
+
+function checkTaskDetailInputs() {
+
+
 
 }
