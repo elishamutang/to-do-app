@@ -461,3 +461,18 @@ fieldset legend {
     height: inherit;
     border-radius: inherit;
 }
+
+#checkList > div > input[type=text] {
+    width: 100%;
+}
+
+#checkList > div > input {
+    background-color: transparent;
+    color: white;
+    height: inherit;
+    border-radius: inherit;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    font-size: inherit;
+    padding: 5px;
+}
