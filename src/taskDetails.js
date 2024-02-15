@@ -5,10 +5,12 @@ const taskDetails = document.getElementById('allTasksDivTwo');
 
 export default function viewTask(task, listOfObjs) {
 
+    let currentObj;
+
     for (const obj of listOfObjs) {
-        console.log(obj);
         if(task.textContent == obj.title) {
             // Extract title from label
+            currentObj = obj;
             const getTitle = obj.title;
 
             // Target header
@@ -24,6 +26,8 @@ export default function viewTask(task, listOfObjs) {
             }
         }
     }
+
+    console.log(currentObj);
 
 }
 
