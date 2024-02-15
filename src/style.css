@@ -365,7 +365,8 @@ fieldset {
     border: none;
 }
 
-fieldset > div {
+fieldset > div,
+fieldset + div {
     margin-bottom: 10px;
     background: var(--toDoTask);
     border-radius: 5px;

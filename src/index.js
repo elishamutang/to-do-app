@@ -42,11 +42,9 @@ import viewTask from './viewTask';
 
         // Creates new to-do object.
         const testToDo = addMyTask(addNewTask, fieldsetToday);
-        console.log(testToDo);
 
         // Stores inside listOfObjs array.
         listOfObjs.push(testToDo);
-        console.log(listOfObjs);
 
         // Resets input.
         addNewTask.value = '';
@@ -62,19 +60,19 @@ import viewTask from './viewTask';
         if(event.target.tagName === 'LABEL') {
             // Prevents checkbox to be ticked when label is clicked.
             event.preventDefault();
-            viewTask(event.target);
+            viewTask(event.target, listOfObjs);
         }
     })
 
 
     // Interact with details of each To-Do task.
     // Checklist
-    const checkListForm = document.getElementById('checkListForm');
+    const checkListFormFieldset = document.getElementById('checkList');
     const addNewChecklistItemBtn = document.getElementById('addChecklistItem');
 
     addNewChecklistItemBtn.addEventListener('click', (event) => {
         console.log('btn clicked');
-        checkList(checkListForm, listOfObjs);
+        checkList(checkListFormFieldset, listOfObjs);
         event.preventDefault();
     })
 
