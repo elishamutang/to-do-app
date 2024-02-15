@@ -31,7 +31,7 @@ export default function viewTask(task, listOfObjs) {
 export function checkList(listOfObjs) {
 
     // Checklist fieldset
-    const checkListFormFieldset = document.getElementById('checkList');
+    const checkListFieldset = document.getElementById('checkList');
 
     // Add input checklist task.
     const checklistInputDiv = document.createElement('div');
@@ -47,12 +47,27 @@ export function checkList(listOfObjs) {
     checklistInputDiv.append(checklistInput);
     checklistInputDiv.append(checklistInputText);
 
-    checkListFormFieldset.append(checklistInputDiv);
+    checkListFieldset.append(checklistInputDiv);
 
 }
 
 function checkTaskDetailInputs() {
 
 
+
+}
+
+export function notes() {
+
+    // Target notes input
+    const notesInput = document.getElementById('notes');
+
+    // Target corresponding form.
+    const notesForm = document.getElementById('detailNotes');
+
+    notesForm.addEventListener('submit', (event) => {
+        console.log(notesInput.value);
+        event.preventDefault();
+    }, {once: true})
 
 }
