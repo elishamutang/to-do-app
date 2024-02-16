@@ -33,15 +33,17 @@ export default function initializePage() {
 
     // Store newly created To-Do objects.
     const listOfObjs = [];
+    // Initialize toDoObj
+    let toDoObj;
 
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
 
         // Creates new to-do object.
-        const testToDo = addMyTask(addNewTask, fieldsetToday);
+        toDoObj = addMyTask(addNewTask, fieldsetToday);
 
         // Stores inside listOfObjs array.
-        listOfObjs.push(testToDo);
+        listOfObjs.push(toDoObj);
 
         // Resets input and disables button.
         addNewTask.value = '';
@@ -59,7 +61,7 @@ export default function initializePage() {
         if(event.target.tagName === 'LABEL') {
             // Prevents checkbox to be ticked when label is clicked.
             event.preventDefault();
-            viewTask(event.target, listOfObjs);
+            toDoObj.viewTask(event.target, listOfObjs);
         }
     })
 
@@ -75,7 +77,7 @@ export default function initializePage() {
 
             // Try including checklist() and notes() inside viewTask and call the methods here.
             case 'addChecklistItem':
-                checkList();
+                toDoObj.checkList();
                 event.preventDefault();
                 break;
             case 'notes':
