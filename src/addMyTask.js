@@ -1,6 +1,6 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
-import ToDoObjs from "./toDoObject";
+import createToDoObj from "./taskDetails";
 
 // Add new task and displays them.
 export default function addMyTask(task, fieldset) {
@@ -25,7 +25,7 @@ export default function addMyTask(task, fieldset) {
     fieldset.append(newTaskDiv);
 
     // Create new object
-    return new ToDoObjs(task.value);
+    return new createToDoObj(task.value);
 
 }
 
