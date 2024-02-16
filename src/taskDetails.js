@@ -32,8 +32,8 @@ export default function viewTask(task, listOfObjs) {
 }
 
 // To-Do object checklist
-export function checkList(listOfObjs) {
-
+export function checkList() {
+    
     // Checklist fieldset
     const checkListFieldset = document.getElementById('checkList');
 
