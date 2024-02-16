@@ -81,7 +81,7 @@ export default function initializePage() {
                 event.preventDefault();
                 break;
             case 'notes':
-                notes();
+                toDoObj.notes();
                 break;
 
 

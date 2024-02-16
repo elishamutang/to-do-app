@@ -64,45 +64,19 @@ export default class createToDoObj {
 
     }
 
-}
+    notes() {
 
+        // Target notes input
+        const notesInput = document.getElementById('notes');
 
-// To-Do object checklist
-// export function checkList() {
+        // Target corresponding form.
+        const notesForm = document.getElementById('detailNotes');
 
-//     // Checklist fieldset
-//     const checkListFieldset = document.getElementById('checkList');
+        notesForm.addEventListener('submit', (event) => {
+            console.log(notesInput.value);
+            event.preventDefault();
+        }, {once: true})
 
-//     // Add input checklist task.
-//     const checklistInputDiv = document.createElement('div');
-
-//     const checklistInput = document.createElement('input');
-//     checklistInput.type = 'checkbox';
-//     checklistInput.className = 'toDoObj';
-
-//     const checklistInputText = document.createElement('input');
-//     checklistInputText.type = 'text';
-//     checklistInputText.className = 'taskInputs';
-
-//     checklistInputDiv.append(checklistInput);
-//     checklistInputDiv.append(checklistInputText);
-
-//     checkListFieldset.append(checklistInputDiv);
-
-// }
-
-
-export function notes() {
-
-    // Target notes input
-    const notesInput = document.getElementById('notes');
-
-    // Target corresponding form.
-    const notesForm = document.getElementById('detailNotes');
-
-    notesForm.addEventListener('submit', (event) => {
-        console.log(notesInput.value);
-        event.preventDefault();
-    }, {once: true})
+    }
 
 }
