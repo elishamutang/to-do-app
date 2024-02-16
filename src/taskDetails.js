@@ -1,9 +1,7 @@
 // Click on any task to view details in a separate window next to task overview window.
 
-// Target window next to tasks overview (e.g task details).
-const taskDetails = document.getElementById('allTasksDivTwo');
-
-// Class
+// Keeps track of which task is being viewed.
+let currentObj;
 
 export default class createToDoObj {
 
@@ -17,8 +15,6 @@ export default class createToDoObj {
 
     // Set To-Do object header in taskDetails.
     viewTask(task, listOfObjs) {
-
-        let currentObj;
 
         for (const obj of listOfObjs) {
             if(task.textContent == obj.title) {
