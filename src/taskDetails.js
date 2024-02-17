@@ -10,12 +10,10 @@ const multipleSpacesRegex = /[ ]{2,}/;
 
 export default class createToDoObj {
 
-    constructor(title, dueDate, priority, notes, checklist) {
+    // Initialize each instance of a To-Do object with a title and checklist array.
+    constructor(title) {
         this.title = title;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.notes = notes;
-        this.checklist = checklist;
+        this.checklist = [];
     };
 
     // Set To-Do object header in taskDetails.
@@ -83,6 +81,7 @@ export default class createToDoObj {
 
         }
 
+        // Store checklist items for each object.
         checklistItems.forEach((item) => {
             console.log(item.value);
         })
@@ -102,7 +101,7 @@ export default class createToDoObj {
                 console.log('whitespaces');
                 notesInput.value = "";
             } else {
-                currentObj.notes = `${notesInput.value}`;
+                currentObj.notes = `${notesInput.value}`; // Set notes for To-Do object.
                 console.log(currentObj);
             }
 
