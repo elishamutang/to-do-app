@@ -64,20 +64,29 @@ export default class createToDoObj {
 
     }
 
-    // ! Fix this method
     createNote() {
 
         // Target notes input
         const notesInput = document.getElementById('notes');
 
-        // Target corresponding form.
-        const notesForm = document.getElementById('detailNotes');
+        // Regex to identify more than 1 space entered.
+        // This regex can be improved but in the meantime it's good enough.
+        const multipleSpaces = /[ ]{2,}/;
 
-        notesForm.addEventListener('submit', (event) => {
-            console.log(notesInput.value);
-            event.preventDefault();
+        // Saves user input when focused out.
+        notesInput.addEventListener('focusout', (event) => {
+
+            // Resets input for more than 1 whitespace entered.
+            if(multipleSpaces.test(notesInput.value) === true) {
+                console.log('whitespaces');
+                notesInput.value = "";
+            } else {
+                currentObj.notes = `${notesInput.value}`;
+                console.log(currentObj);
+            }
+
         }, {once: true});
-
+        
     }
 
 }
