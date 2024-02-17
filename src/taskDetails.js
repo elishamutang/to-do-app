@@ -73,13 +73,13 @@ export default class createToDoObj {
 
                 console.log('Invalid input');
                 lastChecklistItem.value = "";
+                lastChecklistItem.focus();
 
             } else {
 
                 addNewChecklistItem();
-            }
 
-            lastChecklistItem.focus();
+            }
 
         }
 
