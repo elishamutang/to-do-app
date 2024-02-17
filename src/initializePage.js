@@ -72,9 +72,7 @@ export default function initializePage() {
     taskDetailsContainer.addEventListener('click', function(event) {
 
         if(listOfObjs.length !== 0) {
-
             taskDetailsEvent(event, toDoObj);
-
         } else {
             return;
         }
