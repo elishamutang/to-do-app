@@ -83,6 +83,10 @@ export default class createToDoObj {
 
         }
 
+        checklistItems.forEach((item) => {
+            console.log(item.value);
+        })
+
     }
 
     createNote() {
