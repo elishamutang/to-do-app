@@ -3,6 +3,11 @@
 // Keeps track of which task is being viewed.
 let currentObj;
 
+// Regex to identify more than 1 space entered.
+// This regex can be improved but in the meantime it's good enough.
+const multipleSpacesRegex = /[ ]{2,}/;
+
+
 export default class createToDoObj {
 
     constructor(title, dueDate, priority, notes, checklist) {
@@ -43,9 +48,12 @@ export default class createToDoObj {
 
     addToChecklist() {
 
+        // Target all checklist items
+        const checklistItems = document.querySelectorAll('.checklistItem');
+
         // Checklist fieldset
         const checkListFieldset = document.getElementById('checkList');
-
+        
         // Add input checklist task.
         const checklistInputDiv = document.createElement('div');
 
@@ -55,14 +63,36 @@ export default class createToDoObj {
 
         const checklistInput = document.createElement('input');
         checklistInput.type = 'text';
-        checklistInput.className = 'taskInputs';
+        checklistInput.className = 'taskInputs checklistItem';
 
-        checklistInputDiv.append(checklistCheckbox);
-        checklistInputDiv.append(checklistInput);
-        checkListFieldset.append(checklistInputDiv);
+        // Detect if last checklist item has any inputs.
+        if(checklistItems.length === 0) {
+
+            checklistInputDiv.append(checklistCheckbox);
+            checklistInputDiv.append(checklistInput);
+            checkListFieldset.append(checklistInputDiv);
+
+        } else if(checklistItems.length !== 0) {
+
+            // Check if first task item has any input.
+            const lastChecklistItem = checklistItems[checklistItems.length-1];
+
+            if(lastChecklistItem.value === "" || multipleSpacesRegex.test(lastChecklistItem.value) === true) {
+                console.log('Invalid input');
+                lastChecklistItem.value = "";
+            } else {
+                checklistInputDiv.append(checklistCheckbox);
+                checklistInputDiv.append(checklistInput);
+                checkListFieldset.append(checklistInputDiv);
+            }
+
+            lastChecklistItem.focus();
+
+        }
 
         // Focus user's attention to input checklist item(s).
         checklistInput.focus();
+
     }
 
     createNote() {
@@ -70,15 +100,11 @@ export default class createToDoObj {
         // Target notes input
         const notesInput = document.getElementById('notes');
 
-        // Regex to identify more than 1 space entered.
-        // This regex can be improved but in the meantime it's good enough.
-        const multipleSpaces = /[ ]{2,}/;
-
         // Saves user input when focused out.
         notesInput.addEventListener('focusout', (event) => {
 
             // Resets input for more than 1 whitespace entered.
-            if(multipleSpaces.test(notesInput.value) === true) {
+            if(multipleSpacesRegex.test(notesInput.value) === true) {
                 console.log('whitespaces');
                 notesInput.value = "";
             } else {
