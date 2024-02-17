@@ -68,12 +68,18 @@ export default function initializePage() {
     // Interact with details of each To-Do task.
     // Task Details
     const taskDetailsContainer = document.getElementById('allTasksDivTwo');
-    
+
     taskDetailsContainer.addEventListener('click', function(event) {
-        taskDetailsEvent(event, toDoObj);
+
+        if(listOfObjs.length !== 0) {
+
+            taskDetailsEvent(event, toDoObj);
+
+        } else {
+            return;
+        }
+        
     })
-
-
 
 };
 
