@@ -64,7 +64,7 @@ export default class createToDoObj {
 
     }
 
-    notes() {
+    createNote() {
 
         // Target notes input
         const notesInput = document.getElementById('notes');
@@ -75,7 +75,7 @@ export default class createToDoObj {
         notesForm.addEventListener('submit', (event) => {
             console.log(notesInput.value);
             event.preventDefault();
-        }, {once: true})
+        }, {once: true});
 
     }
 
