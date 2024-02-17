@@ -316,7 +316,7 @@ div.allTasks {
     width: 100%;
 }
 
-#addNewTask::placeholder {
+.taskInputs::placeholder {
     font-weight: bold;
     color: var(--secondary);
 }
