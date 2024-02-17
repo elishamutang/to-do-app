@@ -78,6 +78,8 @@ export default function initializePage() {
                 toDoObj.addToChecklist();
                 event.preventDefault();
                 break;
+
+            // ! Fix this logic
             case 'notes':
                 toDoObj.createNote();
                 break;

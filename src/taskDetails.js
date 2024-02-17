@@ -64,6 +64,7 @@ export default class createToDoObj {
 
     }
 
+    // ! Fix this method
     createNote() {
 
         // Target notes input
