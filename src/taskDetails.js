@@ -24,7 +24,7 @@ export default class createToDoObj {
         for (const obj of listOfObjs) {
             if(task.textContent == obj.title) {
 
-                // Extract title from label
+                // Determine current object that is selected and set the title on taskDetails.
                 currentObj = obj;
                 const getTitle = obj.title;
 
@@ -44,6 +44,14 @@ export default class createToDoObj {
         }
 
         console.log(currentObj);
+
+        // Switch To-Do object view
+
+
+
+
+
+
     }
 
     addToChecklist() {
@@ -51,26 +59,10 @@ export default class createToDoObj {
         // Target all checklist items
         const checklistItems = document.querySelectorAll('.checklistItem');
 
-        // Checklist fieldset
-        const checkListFieldset = document.getElementById('checkList');
-        
-        // Add input checklist task.
-        const checklistInputDiv = document.createElement('div');
-
-        const checklistCheckbox = document.createElement('input');
-        checklistCheckbox.type = 'checkbox';
-        checklistCheckbox.className = 'toDoObj';
-
-        const checklistInput = document.createElement('input');
-        checklistInput.type = 'text';
-        checklistInput.className = 'taskInputs checklistItem';
-
-        // Detect if last checklist item has any inputs.
+        // Add new checklist item entry if there is none currently.
         if(checklistItems.length === 0) {
 
-            checklistInputDiv.append(checklistCheckbox);
-            checklistInputDiv.append(checklistInput);
-            checkListFieldset.append(checklistInputDiv);
+            addNewChecklistItem();
 
         } else if(checklistItems.length !== 0) {
 
@@ -78,20 +70,18 @@ export default class createToDoObj {
             const lastChecklistItem = checklistItems[checklistItems.length-1];
 
             if(lastChecklistItem.value === "" || multipleSpacesRegex.test(lastChecklistItem.value) === true) {
+
                 console.log('Invalid input');
                 lastChecklistItem.value = "";
+
             } else {
-                checklistInputDiv.append(checklistCheckbox);
-                checklistInputDiv.append(checklistInput);
-                checkListFieldset.append(checklistInputDiv);
+
+                addNewChecklistItem();
             }
 
             lastChecklistItem.focus();
 
         }
-
-        // Focus user's attention to input checklist item(s).
-        checklistInput.focus();
 
     }
 
@@ -116,4 +106,28 @@ export default class createToDoObj {
         
     }
 
+}
+
+
+function addNewChecklistItem() {
+
+    // Checklist fieldset
+    const checkListFieldset = document.getElementById('checkList');
+        
+    // Add input checklist task.
+    const checklistInputDiv = document.createElement('div');
+
+    const checklistCheckbox = document.createElement('input');
+    checklistCheckbox.type = 'checkbox';
+    checklistCheckbox.className = 'toDoObj';
+
+    const checklistInput = document.createElement('input');
+    checklistInput.type = 'text';
+    checklistInput.className = 'taskInputs checklistItem';
+
+    checklistInputDiv.append(checklistCheckbox);
+    checklistInputDiv.append(checklistInput);
+    checkListFieldset.append(checklistInputDiv);
+
+    checklistInput.focus();
 }
