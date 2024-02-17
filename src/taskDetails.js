@@ -49,19 +49,20 @@ export default class createToDoObj {
         // Add input checklist task.
         const checklistInputDiv = document.createElement('div');
 
+        const checklistCheckbox = document.createElement('input');
+        checklistCheckbox.type = 'checkbox';
+        checklistCheckbox.className = 'toDoObj';
+
         const checklistInput = document.createElement('input');
-        checklistInput.type = 'checkbox';
-        checklistInput.className = 'toDoObj';
+        checklistInput.type = 'text';
+        checklistInput.className = 'taskInputs';
 
-        const checklistInputText = document.createElement('input');
-        checklistInputText.type = 'text';
-        checklistInputText.className = 'taskInputs';
-
+        checklistInputDiv.append(checklistCheckbox);
         checklistInputDiv.append(checklistInput);
-        checklistInputDiv.append(checklistInputText);
-
         checkListFieldset.append(checklistInputDiv);
 
+        // Focus user's attention to input checklist item(s).
+        checklistInput.focus();
     }
 
     createNote() {
