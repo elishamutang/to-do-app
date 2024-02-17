@@ -8,18 +8,15 @@ Priority (Low, High)
     - ~~Complete 2nd All Tasks div that goes into detail regarding each task.~~
     - This will require 'To-Do' objects to be created dynamically, try using classes to create the objects.
 
-- Each 'To-Do' object (e.g Walk Dog task) should be an object.
 - Each 'To-Do' object shall have the following details:
     - ~~Title~~
     - Due Date (Mock-up done, create functionality).
     - Priority (Mock-up done, create functionality).
     - ~~Notes (Notes section done, create functionality~~ and change to text area).
-    - Checklist (Mock-up done, create functionality).
+    - Checklist (Mock-up done, create functionality). **Halfway done, need to figure out feature to delete last input if out of focus**
 
-- Planning to create a module for setting the "blueprint" of each To-Do object.
-    - A class containing the blueprint to create a each To-Do object (inside createToDo.js).
-    - Store each object inside an array.
-    - Dynamically add properties to the object.
+- View controller
+    - Switch view according to selected To-Do object.
 
 ### To-Do List Basic Functionality (Low)
 - Revise radio buttons for Tasks Overview container (On-hold for now)
