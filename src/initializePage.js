@@ -1,6 +1,5 @@
 import { checkFormInput, createNew } from './createNewList';
 import addMyTask from './addMyTask';
-import viewTask, { checkList, notes } from './taskDetails';
 // Load DOM.
 
 export default function initializePage() {
@@ -71,8 +70,7 @@ export default function initializePage() {
     const taskDetailsContainer = document.getElementById('allTasksDivTwo');
     
     taskDetailsContainer.addEventListener('click', (event) => {
-        console.log(event.target);
-
+        
         switch(event.target.id) {
 
             // Try including checklist() and notes() inside viewTask and call the methods here.
@@ -81,7 +79,7 @@ export default function initializePage() {
                 event.preventDefault();
                 break;
             case 'notes':
-                toDoObj.notes();
+                toDoObj.createNote();
                 break;
 
 
