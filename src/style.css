@@ -452,7 +452,7 @@ fieldset legend {
     transform: scale(1.05);
 }
 
-#checkListForm {
+#checkListSect {
     grid-area: checklist;
 }
 
