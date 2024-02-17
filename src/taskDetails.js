@@ -41,7 +41,7 @@ export default class createToDoObj {
         console.log(currentObj);
     }
 
-    checkList() {
+    addToChecklist() {
 
         // Checklist fieldset
         const checkListFieldset = document.getElementById('checkList');
