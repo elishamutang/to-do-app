@@ -84,6 +84,13 @@ export default class createToDoObj {
         // Store checklist items for each object.
         checklistItems.forEach((item) => {
             console.log(item.value);
+
+            if(currentObj.checklist.includes(item.value)) {
+                return;
+            } else {
+                currentObj.checklist.push(item.value);
+            }
+
         })
 
     }
