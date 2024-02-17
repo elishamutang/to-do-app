@@ -69,27 +69,34 @@ export default function initializePage() {
     // Task Details
     const taskDetailsContainer = document.getElementById('allTasksDivTwo');
     
-    taskDetailsContainer.addEventListener('click', (event) => {
-        
-        switch(event.target.id) {
-
-            // Try including checklist() and notes() inside viewTask and call the methods here.
-            case 'addChecklistItem':
-                toDoObj.addToChecklist();
-                event.preventDefault();
-                break;
-
-            // ! Fix this logic
-            case 'notes':
-                toDoObj.createNote();
-                break;
-
-
-
-        }
-
+    taskDetailsContainer.addEventListener('click', function(event) {
+        taskDetailsEvent(event, toDoObj);
     })
 
 
 
 };
+
+
+function taskDetailsEvent(event, toDoObj) {
+
+    switch(event.target.id) {
+
+        // Try including checklist() and notes() inside viewTask and call the methods here.
+        case 'addChecklistItem':
+            toDoObj.addToChecklist();
+            event.preventDefault();
+            break;
+
+        // ! Fix this logic
+        case 'notes':
+            // Target notes input
+            // const notesInput = document.getElementById('notes');
+            toDoObj.createNote();
+            break;
+
+
+
+    }
+
+}
