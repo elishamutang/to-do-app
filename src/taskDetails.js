@@ -143,13 +143,11 @@ function createNewChecklistItem(checklistItems) {
     // If input is out of focus, automatically pushes input into To-Do object checklist property.
     checklistInput.addEventListener('focusout', (event) => {
 
+        // Store checklist item inside an object.
         const checklistItem = {
             input: checklistInput,
             value: checklistInput.value
         };
-
-        checklistItems = Array.from(checklistItems);
-        console.log(checklistItems);
 
         // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
         if(checklistInput.value === "" || multipleSpacesRegex.test(checklistInput.value) === true) {
@@ -157,16 +155,12 @@ function createNewChecklistItem(checklistItems) {
             // Remove checklistInputDiv and delete from checklist property array.
             checklistInputDiv.remove();
 
-            // Insert logic to delete from checklist property array.
+        } else {
 
-        } else if(checklistItems.includes(checklistInput)) {
-
-            console.log('included');
-
-            console.log(checklistItem);
+            currentObj.checklist.push(checklistItem);
 
         }
 
-    });
+    }, {once: true});
 
 }
