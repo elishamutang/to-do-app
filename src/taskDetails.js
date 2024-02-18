@@ -148,6 +148,9 @@ function createNewChecklistItem(checklistItems) {
             value: checklistInput.value
         };
 
+        checklistItems = Array.from(checklistItems);
+        console.log(checklistItems);
+
         // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
         if(checklistInput.value === "" || multipleSpacesRegex.test(checklistInput.value) === true) {
 
@@ -156,13 +159,13 @@ function createNewChecklistItem(checklistItems) {
 
             // Insert logic to delete from checklist property array.
 
-        } else {
+        } else if(checklistItems.includes(checklistInput)) {
 
-            currentObj.checklist.push(checklistItem);
+            console.log('included');
+
+            console.log(checklistItem);
 
         }
-
-        console.log(checklistItem);
 
     });
 
