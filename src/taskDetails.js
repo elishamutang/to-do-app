@@ -61,7 +61,7 @@ export default class createToDoObj {
         // Add new checklist item entry if there is none currently.
         if(checklistItems.length === 0) {
 
-            addNewChecklistItem(checklistItems);
+            createNewChecklistItem(checklistItems);
 
         } else if(checklistItems.length !== 0) {
 
@@ -74,7 +74,7 @@ export default class createToDoObj {
 
             } else {
 
-                addNewChecklistItem(checklistItems);
+                createNewChecklistItem(checklistItems);
 
             }
 
@@ -108,7 +108,7 @@ export default class createToDoObj {
 }
 
 
-function addNewChecklistItem(checklistItems) {
+function createNewChecklistItem(checklistItems) {
 
     // Checklist fieldset
     const checkListFieldset = document.getElementById('checkList');
@@ -140,29 +140,26 @@ function addNewChecklistItem(checklistItems) {
     checklistInput.focus();
 
 
-    // If input is focused out, automatically pushes input into To-Do object checklist property.
+    // If input is out of focus, automatically pushes input into To-Do object checklist property.
     checklistInput.addEventListener('focusout', (event) => {
 
-        console.log(`${checklistInput.id} lost focus. Input: ${checklistInput.value}`);
+        const checklistItem = {
+            input: checklistInput,
+            value: checklistInput.value
+        };
 
         // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
         if(checklistInput.value === "" || multipleSpacesRegex.test(checklistInput.value) === true) {
 
+            // Remove checklistInputDiv and delete from checklist property array.
             checklistInputDiv.remove();
 
-        } else if(currentObj.checklist.includes(checklistInput.value)) {
-            
-            console.log(checklistInput.value);
-            console.log(checklistInput.value === checklistInput.value);
+            // Insert logic to delete from checklist property array.
 
-        } else {
-            currentObj.checklist.push(checklistInput.value);
         }
 
-        console.log(currentObj.checklist);
+        console.log(checklistItem);
 
     });
-
-    console.log(checklistItems);
 
 }
