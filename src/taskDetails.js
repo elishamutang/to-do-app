@@ -55,7 +55,7 @@ export default class createToDoObj {
     addToChecklist() {
 
         // Target all checklist items
-        const checklistItems = document.querySelectorAll('.checklistItem');
+        const checklistItems = document.getElementsByClassName('checklistItem');
         const lastChecklistItem = checklistItems[checklistItems.length-1];
 
         // Add new checklist item entry if there is none currently.
@@ -97,7 +97,7 @@ export default class createToDoObj {
                 console.log('whitespaces');
                 notesInput.value = "";
             } else {
-                currentObj.notes = `${notesInput.value}`; // Set notes for To-Do object.
+                currentObj.notes = notesInput.value; // Set notes for To-Do object.
                 console.log(currentObj);
             }
 
@@ -139,18 +139,30 @@ function addNewChecklistItem(checklistItems) {
 
     checklistInput.focus();
 
+
     // If input is focused out, automatically pushes input into To-Do object checklist property.
     checklistInput.addEventListener('focusout', (event) => {
 
-        console.log(`${checklistInput.id} lost focus`);
+        console.log(`${checklistInput.id} lost focus. Input: ${checklistInput.value}`);
 
         // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
         if(checklistInput.value === "" || multipleSpacesRegex.test(checklistInput.value) === true) {
+
             checklistInputDiv.remove();
+
+        } else if(currentObj.checklist.includes(checklistInput.value)) {
+            
+            console.log(checklistInput.value);
+            console.log(checklistInput.value === checklistInput.value);
+
         } else {
             currentObj.checklist.push(checklistInput.value);
         }
 
-    })
+        console.log(currentObj.checklist);
+
+    });
+
+    console.log(checklistItems);
 
 }
