@@ -156,6 +156,10 @@ function createNewChecklistItem(checklistItems) {
 
             // Insert logic to delete from checklist property array.
 
+        } else {
+
+            currentObj.checklist.push(checklistItem);
+
         }
 
         console.log(checklistItem);
