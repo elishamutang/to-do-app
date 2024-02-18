@@ -61,11 +61,11 @@ export default class createToDoObj {
         // Add new checklist item entry if there is none currently.
         if(checklistItems.length === 0) {
 
-            addNewChecklistItem();
+            addNewChecklistItem(checklistItems);
 
         } else if(checklistItems.length !== 0) {
 
-            // Check if first task item has any input.
+            // If last checklist item does not have any input, prevent user from adding another one.
             if(lastChecklistItem.value === "" || multipleSpacesRegex.test(lastChecklistItem.value) === true) {
 
                 console.log('Invalid input');
@@ -74,8 +74,7 @@ export default class createToDoObj {
 
             } else {
 
-                addNewChecklistItem();
-                currentObj.checklist.push(lastChecklistItem.value);
+                addNewChecklistItem(checklistItems);
 
             }
 
@@ -109,7 +108,7 @@ export default class createToDoObj {
 }
 
 
-function addNewChecklistItem() {
+function addNewChecklistItem(checklistItems) {
 
     // Checklist fieldset
     const checkListFieldset = document.getElementById('checkList');
@@ -125,9 +124,27 @@ function addNewChecklistItem() {
     checklistInput.type = 'text';
     checklistInput.className = 'taskInputs checklistItem';
 
+    // Sets ID for each task input created.
+    let countOfItems = checklistItems.length + 1;
+
+    if(checklistItems.length === 0) {
+        checklistInput.id = `checklistInput-${countOfItems}`;
+    } else {
+        checklistInput.id = `checklistInput-${countOfItems++}`;
+    }
+    
     checklistInputDiv.append(checklistCheckbox);
     checklistInputDiv.append(checklistInput);
     checkListFieldset.append(checklistInputDiv);
 
     checklistInput.focus();
+
+    // If input is focused out, automatically pushes input into To-Do object checklist property.
+    checklistInput.addEventListener('focusout', (event) => {
+
+        console.log(`${checklistInput.id} lost focus`);
+        currentObj.checklist.push(checklistInput.value);
+
+    })
+
 }
