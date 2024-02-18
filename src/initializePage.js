@@ -82,6 +82,7 @@ export default function initializePage() {
 };
 
 
+// Handles events for task details.
 function taskDetailsEvent(event, toDoObj) {
 
     switch(event.target.id) {
