@@ -143,7 +143,13 @@ function addNewChecklistItem(checklistItems) {
     checklistInput.addEventListener('focusout', (event) => {
 
         console.log(`${checklistInput.id} lost focus`);
-        currentObj.checklist.push(checklistInput.value);
+
+        // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
+        if(checklistInput.value === "" || multipleSpacesRegex.test(checklistInput.value) === true) {
+            checklistInputDiv.remove();
+        } else {
+            currentObj.checklist.push(checklistInput.value);
+        }
 
     })
 
