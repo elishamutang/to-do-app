@@ -56,6 +56,7 @@ export default class createToDoObj {
 
         // Target all checklist items
         const checklistItems = document.querySelectorAll('.checklistItem');
+        const lastChecklistItem = checklistItems[checklistItems.length-1];
 
         // Add new checklist item entry if there is none currently.
         if(checklistItems.length === 0) {
@@ -65,8 +66,6 @@ export default class createToDoObj {
         } else if(checklistItems.length !== 0) {
 
             // Check if first task item has any input.
-            const lastChecklistItem = checklistItems[checklistItems.length-1];
-
             if(lastChecklistItem.value === "" || multipleSpacesRegex.test(lastChecklistItem.value) === true) {
 
                 console.log('Invalid input');
@@ -76,22 +75,13 @@ export default class createToDoObj {
             } else {
 
                 addNewChecklistItem();
+                currentObj.checklist.push(lastChecklistItem.value);
 
             }
 
         }
 
-        // Store checklist items for each object.
-        checklistItems.forEach((item) => {
-            console.log(item.value);
-
-            if(currentObj.checklist.includes(item.value)) {
-                return;
-            } else {
-                currentObj.checklist.push(item.value);
-            }
-
-        })
+        console.log(currentObj.checklist);
 
     }
 
