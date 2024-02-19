@@ -113,16 +113,18 @@ function taskDetailsEvent(event, toDoObj) {
 
                     for(const item of value) {
 
-                        if(item.input === event.target) {
+                        if(item.input === event.target && event.target.value !== "") {
 
+                            console.log('Not empty');
                             item.value = event.target.value;
 
+                        } else if(item.input === event.target && event.target.value === "") {
+
+                            console.log('Empty');
+
                         }
-
                     }
-
                 }
-
             }
 
             console.log(toDoObj);
