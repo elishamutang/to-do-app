@@ -13,7 +13,7 @@ Priority (Low, High)
     - Due Date (Mock-up done, create functionality).
     - Priority (Mock-up done, create functionality).
     - ~~Notes (Notes section done, create functionality~~ and change to text area).
-    - Checklist (Mock-up done, create functionality). **Halfway done, need to figure out feature to delete last input if out of focus**
+    - Checklist (Mock-up done, create functionality). **Almost done, need to figure out how to disable click and drag option. Maybe change input elem to label when out of focus or button clicked and change back to input when clicked.**
 
 - View controller
     - Switch view according to selected To-Do object.
