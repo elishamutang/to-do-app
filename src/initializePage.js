@@ -104,6 +104,25 @@ function taskDetailsEvent(event, toDoObj) {
     // Targets checklist items.
     if(event.target.className.includes('checklistItem')) {
 
+        console.log(event.target);
+
+        // Get existing element attributes
+        const checklistInputLabelAttr = {
+
+            id: event.target.id,
+            class: event.target.className,
+            value: event.target.textContent
+
+        };
+
+        console.log(checklistInputLabelAttr);
+
+
+        // Replace existing label element with input element when label element is clicked.
+
+        
+
+
         // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
         event.target.addEventListener('focusout', function editChecklistItem(event) {
 

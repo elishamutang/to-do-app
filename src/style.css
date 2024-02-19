@@ -303,6 +303,10 @@ div.allTasks {
     transition: 0.3s;
 }
 
+.taskInputs.checklistItem {
+    background: transparent;
+}
+
 #notes, #addNewChecklistItem {
     padding: 5px 10px;
     font-size: 16px;
