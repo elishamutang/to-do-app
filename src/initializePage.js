@@ -96,7 +96,16 @@ function taskDetailsEvent(event, toDoObj) {
             toDoObj.createNote();
             break;
 
+        default:
+            break;
 
+    }
+
+    // Targets checklist items.
+    if(event.target.className.includes('checklistItem')) {
+        console.log(event.target.id);
+
+        // Create another function to handle editing existing checklist item entries.
 
     }
 
