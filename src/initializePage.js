@@ -105,7 +105,7 @@ function taskDetailsEvent(event, toDoObj) {
     if(event.target.className.includes('checklistItem')) {
 
         // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
-        event.target.addEventListener('focusout', (event) => {
+        event.target.addEventListener('focusout', function editChecklistItem(event) {
 
             for(const [key, value] of Object.entries(toDoObj)) {
 
@@ -121,6 +121,7 @@ function taskDetailsEvent(event, toDoObj) {
                         } else if(item.input === event.target && event.target.value === "") {
 
                             console.log('Empty');
+                            event.target.value = item.value;
 
                         }
                     }
