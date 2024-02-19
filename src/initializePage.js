@@ -103,9 +103,31 @@ function taskDetailsEvent(event, toDoObj) {
 
     // Targets checklist items.
     if(event.target.className.includes('checklistItem')) {
-        console.log(event.target.id);
 
-        // Create another function to handle editing existing checklist item entries.
+        // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
+        event.target.addEventListener('focusout', (event) => {
+
+            for(const [key, value] of Object.entries(toDoObj)) {
+
+                if(key === 'checklist') {
+
+                    for(const item of value) {
+
+                        if(item.input === event.target) {
+
+                            item.value = event.target.value;
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+            console.log(toDoObj);
+
+        }, {once: true})
 
     }
 
