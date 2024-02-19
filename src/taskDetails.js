@@ -126,12 +126,7 @@ function createNewChecklistItem(checklistItems) {
 
     // Sets ID for each task input created.
     let countOfItems = checklistItems.length;
-
-    if(checklistItems.length === 0) {
-        checklistInput.id = `checklistInput-${countOfItems}`;
-    } else {
-        checklistInput.id = `checklistInput-${countOfItems++}`;
-    }
+    checklistInput.id = `checklistInput-${countOfItems}`;
     
     checklistInputDiv.append(checklistCheckbox);
     checklistInputDiv.append(checklistInput);
@@ -158,6 +153,15 @@ function createNewChecklistItem(checklistItems) {
         } else {
 
             currentObj.checklist.push(checklistItem);
+
+            // Change to label to prevent drag and drop i guess
+            const checklistInputLabel = document.createElement('label');
+            checklistInputLabel.className = 'taskInputs checklistItem';
+            checklistInputLabel.id = `checklistInput-${countOfItems}`;
+            checklistInputLabel.textContent = checklistInput.value;
+
+            checklistInput.replaceWith(checklistInputLabel);
+
 
         }
 
