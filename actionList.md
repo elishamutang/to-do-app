@@ -18,6 +18,11 @@ Priority (Low, High)
 - View controller
     - Switch view according to selected To-Do object.
 
+- Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.
+
+
+
+
 ### To-Do List Basic Functionality (Low)
 - Revise radio buttons for Tasks Overview container (On-hold for now)
 
