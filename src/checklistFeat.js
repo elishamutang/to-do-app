@@ -1,0 +1,60 @@
+// Change checklistInputElem from label elem to input elem for editing purposes.
+
+export function changeChecklistInputElem(event, toDoObj) {
+
+    // Replace existing label element with input element when label element is clicked.
+    const checklistItemElem = document.getElementById(`${event.target.id}`);
+
+    let checklistItemElemSub;
+        
+    checklistItemElemSub = document.createElement('input');
+    checklistItemElemSub.value = checklistItemElem.textContent;
+    
+    checklistItemElemSub.id = checklistItemElem.id;
+    checklistItemElemSub.className = checklistItemElem.className;
+
+    checklistItemElem.replaceWith(checklistItemElemSub);
+    checklistItemElemSub.focus();
+
+
+    // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
+    checklistItemElemSub.addEventListener('focusout', function editChecklistItem(event) {
+
+        console.log(checklistItemElemSub);
+
+        for(const [key, value] of Object.entries(toDoObj)) {
+
+            if(key === 'checklist') {
+
+                for(const item of value) {
+
+                    console.log(checklistItemElemSub.id === item.input.id);
+
+                    if(item.input.id === checklistItemElemSub.id && checklistItemElemSub.value !== "") {
+
+                        console.log('Not empty');
+                        item.value = checklistItemElemSub.value;
+
+                    } else if(item.input.id === checklistItemElemSub.id && checklistItemElemSub.value === "") {
+
+                        console.log('Empty');
+                        checklistItemElemSub.value = item.value;
+
+                    }
+                }
+            }
+        }
+
+        const checklistLabelElem = document.createElement('label');
+
+        checklistLabelElem.textContent = checklistItemElemSub.value;
+        checklistLabelElem.id = checklistItemElemSub.id;
+        checklistLabelElem.className = checklistItemElemSub.className;
+
+        checklistItemElemSub.replaceWith(checklistLabelElem);
+
+        console.log(toDoObj);
+
+    }, {once: true})
+
+}
