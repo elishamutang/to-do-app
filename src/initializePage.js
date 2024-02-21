@@ -1,5 +1,7 @@
 import { checkFormInput, createNew } from './createNewList';
 import addMyTask from './addMyTask';
+import { changeChecklistInputElem } from './checklistFeat';
+
 // Load DOM.
 
 export default function initializePage() {
@@ -104,52 +106,8 @@ function taskDetailsEvent(event, toDoObj) {
     // Targets checklist items.
     if(event.target.className.includes('checklistItem')) {
 
-        console.log(event.target);
-
-        // Get existing element attributes
-        const checklistInputLabelAttr = {
-
-            id: event.target.id,
-            class: event.target.className,
-            value: event.target.textContent
-
-        };
-
-        console.log(checklistInputLabelAttr);
-
-
-        // Replace existing label element with input element when label element is clicked.
-
-        
-
-
-        // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
-        event.target.addEventListener('focusout', function editChecklistItem(event) {
-
-            for(const [key, value] of Object.entries(toDoObj)) {
-
-                if(key === 'checklist') {
-
-                    for(const item of value) {
-
-                        if(item.input === event.target && event.target.value !== "") {
-
-                            console.log('Not empty');
-                            item.value = event.target.value;
-
-                        } else if(item.input === event.target && event.target.value === "") {
-
-                            console.log('Empty');
-                            event.target.value = item.value;
-
-                        }
-                    }
-                }
-            }
-
-            console.log(toDoObj);
-
-        }, {once: true})
+        // Replace label element to input element to change checklistItem content.
+        changeChecklistInputElem(event, toDoObj);
 
     }
 
