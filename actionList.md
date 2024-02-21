@@ -17,7 +17,7 @@ Priority (Low, High)
         - **~~Almost done, need to figure out how to disable click and drag option. Maybe change input elem to label when out of focus or button clicked and change back to input when clicked.~~**
         - **Figure out how to remove checklist items from the list and update ID number.**
 
-- View controller
+- **View controller**
     - Switch view according to selected To-Do object.
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
