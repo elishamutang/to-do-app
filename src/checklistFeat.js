@@ -6,10 +6,14 @@ export function changeChecklistInputElem(event, toDoObj) {
     const checklistItemElem = document.getElementById(`${event.target.id}`);
 
     let checklistItemElemSub;
-        
+    
+    if(checklistItemElem.tagName !== 'LABEL') {
+        return;
+    }
+
     checklistItemElemSub = document.createElement('input');
     checklistItemElemSub.value = checklistItemElem.textContent;
-    
+    checklistItemElemSub.type = 'text';
     checklistItemElemSub.id = checklistItemElem.id;
     checklistItemElemSub.className = checklistItemElem.className;
 
