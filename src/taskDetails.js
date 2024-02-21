@@ -123,7 +123,7 @@ function createNewChecklistItem(checklistItems) {
     checklistInput.className = 'taskInputs checklistItem';
 
     // Sets ID for each task input created.
-    let countOfItems = checklistItems.length;
+    const countOfItems = checklistItems.length;
     checklistInput.id = `checklistInput-${countOfItems}`;
     checklistCheckbox.id = `checkbox-${countOfItems}`;
     
