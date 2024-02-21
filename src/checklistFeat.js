@@ -16,6 +16,9 @@ export function changeChecklistInputElem(event, toDoObj) {
     checklistItemElem.replaceWith(checklistItemElemSub);
     checklistItemElemSub.focus();
 
+    console.log(checklistItemElem);
+    console.log(checklistItemElemSub);
+
 
     // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
     checklistItemElemSub.addEventListener('focusout', function editChecklistItem(event) {
@@ -44,14 +47,6 @@ export function changeChecklistInputElem(event, toDoObj) {
                 }
             }
         }
-
-        const checklistLabelElem = document.createElement('label');
-
-        checklistLabelElem.textContent = checklistItemElemSub.value;
-        checklistLabelElem.id = checklistItemElemSub.id;
-        checklistLabelElem.className = checklistItemElemSub.className;
-
-        checklistItemElemSub.replaceWith(checklistLabelElem);
 
         console.log(toDoObj);
 
