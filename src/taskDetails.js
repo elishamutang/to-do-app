@@ -58,12 +58,7 @@ export default class createToDoObj {
         const checklistItems = document.getElementsByClassName('checklistItem');
         const lastChecklistItem = checklistItems[checklistItems.length-1];
 
-        // Add new checklist item entry if there is none currently.
-        if(checklistItems.length === 0) {
-
-            createNewChecklistItem(checklistItems);
-
-        } else if(checklistItems.length !== 0) {
+        if(checklistItems.length !== 0) {
 
             // If last checklist item does not have any input, prevent user from adding another one.
             if(lastChecklistItem.value === "" || multipleSpacesRegex.test(lastChecklistItem.value) === true) {
@@ -78,6 +73,9 @@ export default class createToDoObj {
 
             }
 
+        } else {
+
+            createNewChecklistItem(checklistItems); // Add new checklist item entry if there is none currently.
         }
 
         console.log(currentObj.checklist);
