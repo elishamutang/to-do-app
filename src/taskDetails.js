@@ -24,7 +24,7 @@ export default class createToDoObj {
 
                 // Determine current object that is selected and set the title on taskDetails.
                 currentObj = obj;
-                const getTitle = obj.title;
+                const getTitle = currentObj.title;
 
                 // Target header
                 const taskDetailsHeader = document.querySelector('#detailHeader');
