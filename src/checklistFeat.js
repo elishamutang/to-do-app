@@ -4,6 +4,7 @@ export function changeChecklistInputElem(event, toDoObj) {
 
     // Replace existing label element with input element when label element is clicked.
     const checklistItemElem = document.getElementById(`${event.target.id}`);
+    const checklistLabelForAttr = checklistItemElem.htmlFor;
 
     let checklistItemElemSub;
     
@@ -49,11 +50,13 @@ export function changeChecklistInputElem(event, toDoObj) {
             }
         }
 
+        // Change back to label when focused out of input elem.
         const checklistLabelElem = document.createElement('label');
 
         checklistLabelElem.id = checklistItemElemSub.id;
         checklistLabelElem.className = checklistItemElemSub.className;
         checklistLabelElem.textContent = checklistItemElemSub.value;
+        checklistLabelElem.htmlFor = checklistLabelForAttr;
 
         checklistItemElemSub.replaceWith(checklistLabelElem);
 
