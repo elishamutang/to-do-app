@@ -28,7 +28,6 @@ export function changeChecklistInputElem(event, toDoObj) {
     // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
     checklistItemElemSub.addEventListener('focusout', function editChecklistItem(event) {
 
-
         for(const [key, value] of Object.entries(toDoObj)) {
 
             if(key === 'checklist') {
