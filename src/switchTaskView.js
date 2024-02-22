@@ -48,9 +48,9 @@ export default function changeTask(currentObj) {
 
     // })
     
-    const test = Array.from(document.getElementsByClassName('checklistItem'));
+    const currentItems = Array.from(document.getElementsByClassName('checklistItem'));
 
-    const checklistItemTest = Array.from(currentObj.checklist).map((item) => {
+    const objectChecklistItems = Array.from(currentObj.checklist).map((item) => {
                                 return item.input;
                             });
 
