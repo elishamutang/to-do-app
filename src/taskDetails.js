@@ -1,5 +1,6 @@
-// Click on any task to view details in a separate window next to task overview window.
+import changeTask from "./switchTaskView";
 
+// Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
 let currentObj;
 
@@ -14,6 +15,7 @@ export default class createToDoObj {
     constructor(title) {
         this.title = title;
         this.checklist = [];
+        this.notes = "";
     };
 
     // Set To-Do object header in taskDetails.
@@ -24,19 +26,7 @@ export default class createToDoObj {
 
                 // Determine current object that is selected and set the title on taskDetails.
                 currentObj = obj;
-                const getTitle = currentObj.title;
-
-                // Target header
-                const taskDetailsHeader = document.querySelector('#detailHeader');
-                const taskDetailsHeaderElem = document.createElement('h1');
-                taskDetailsHeaderElem.textContent = getTitle;
-
-                // Displays to-do detail title.
-                if(taskDetailsHeader.children.length === 0) {
-                    taskDetailsHeader.append(taskDetailsHeaderElem);
-                } else {
-                    taskDetailsHeader.querySelector('h1').textContent = getTitle;
-                }
+                changeTask(currentObj);
 
             }
         }
@@ -151,8 +141,6 @@ function createNewChecklistItem(checklistItems) {
 
         } else {
 
-            currentObj.checklist.push(checklistItem);
-
             // Change to label and transfer over attributes to label elem.
             const checklistInputLabel = document.createElement('label');
             checklistInputLabel.className = 'taskInputs checklistItem';
@@ -162,6 +150,9 @@ function createNewChecklistItem(checklistItems) {
 
             checklistInput.replaceWith(checklistInputLabel);
 
+            checklistItem.input = checklistInputLabel;
+
+            currentObj.checklist.push(checklistItem);
 
         }
 
