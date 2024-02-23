@@ -21,7 +21,6 @@ export default function changeTask(currentObj) {
     notesSect.value = currentObj.notes;    
 
 
-    // *! Fix logic below
     // Target checklist
     const checklistFieldset = document.getElementById('checkList');
 
@@ -54,6 +53,15 @@ export default function changeTask(currentObj) {
             return;
 
         } else {
+
+            const checklistDivElems = currentObj.checklist.map((elem) => {
+                return elem.divElem;
+            })
+
+            // !* Fix logic here, switching between different To-Do objects should overwrite current checklist with appropriate one.
+            checklistDivElems.forEach((div) => {
+                checklistFieldset.append(div);
+            })
 
             console.log(`Append ${currentObj.title} checklist items`);
 
