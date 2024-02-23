@@ -25,35 +25,38 @@ export default function changeTask(currentObj) {
     // Target checklist
     const checklistFieldset = document.getElementById('checkList');
 
-    const checklistFieldsetDivChildren = Array.from(checklistFieldset.children).filter((child) => {
+    const checklistDiv =  Array.from(checklistFieldset.children).filter((child) => {
         return child.tagName === 'DIV';
-    });
-    
-    const currentItems = Array.from(document.getElementsByClassName('checklistItem'));
-
-    const objectChecklistItems = Array.from(currentObj.checklist).map((item) => {
-                                return item.input;
-                            });
-
-    // Check whether current items equal to items in current obj.
-    const testResult = currentItems.every((element, idx) => {       
-        return element === objectChecklistItems[idx];
     })
 
-    console.log(currentItems, objectChecklistItems);
 
-    if(testResult) {
-        return;
+    if(currentObj.checklist.length === 0) {
+
+        console.log(`${currentObj.title} has no checklist items`);
+        
+        // If currentObj checklist property is empty, remove all divs.
+        checklistDiv.forEach((div) => {
+            div.remove();
+        })
+
     } else {
 
-        if(currentObj.checklist.length === 0) {
-            console.log('empty obj');
-            checklistFieldsetDivChildren.forEach((div) => {
-                div.remove();
-            });
+        // Check if still viewing currentObj by comparing each checklist item on fieldset against checklist array.
+        const checklistCurrentItems = Array.from(checklistFieldset.getElementsByClassName('checklistItem'));
+
+        const result = currentObj.checklist.every((elem, idx) => {
+            return elem.input === checklistCurrentItems[idx];
+        })
+
+        if(result === true) {
+            console.log('All checklist current items are identical with currentObj checklist items');
+
+            return;
 
         } else {
-            console.log('not emtpy');
+
+            console.log(`Append ${currentObj.title} checklist items`);
+
         }
 
     }
