@@ -114,6 +114,7 @@ function createNewChecklistItem(checklistItems) {
 
     // Sets ID for each task input created.
     const countOfItems = checklistItems.length;
+    checklistInputDiv.id = `checklistDiv-${countOfItems}`;
     checklistInput.id = `checklistInput-${countOfItems}`;
     checklistCheckbox.id = `checkbox-${countOfItems}`;
     
@@ -130,7 +131,8 @@ function createNewChecklistItem(checklistItems) {
         // Store checklist item inside an object.
         const checklistItem = {
             input: checklistInput,
-            value: checklistInput.value
+            value: checklistInput.value,
+            divElem: checklistInputDiv
         };
 
         // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
