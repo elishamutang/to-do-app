@@ -21,32 +21,13 @@ export default function changeTask(currentObj) {
     notesSect.value = currentObj.notes;    
 
 
+    // *! Fix logic below
     // Target checklist
     const checklistFieldset = document.getElementById('checkList');
-    const checklistFieldsetChildren = Array.from(checklistFieldset.children);
 
-    // checklistFieldsetChildren.forEach((child) => {
-
-    //     if(child.tagName === 'DIV') {
-            
-    //         const divChildren = Array.from(child.children);
-
-    //         divChildren.forEach((divChild) => {
-                
-    //             if(divChild.tagName === 'LABEL') {
-
-    //                 currentObj.checklist.forEach((item) => {
-    //                     console.log(divChild.textContent, item.input.textContent);
-    //                     console.log(divChild.textContent === item.input.textContent);
-    //                 })
-
-    //             }
-
-    //         })
-
-    //     }
-
-    // })
+    const checklistFieldsetDivChildren = Array.from(checklistFieldset.children).filter((child) => {
+        return child.tagName === 'DIV';
+    });
     
     const currentItems = Array.from(document.getElementsByClassName('checklistItem'));
 
@@ -54,7 +35,28 @@ export default function changeTask(currentObj) {
                                 return item.input;
                             });
 
-    
+    // Check whether current items equal to items in current obj.
+    const testResult = currentItems.every((element, idx) => {       
+        return element === objectChecklistItems[idx];
+    })
+
+    console.log(currentItems, objectChecklistItems);
+
+    if(testResult) {
+        return;
+    } else {
+
+        if(currentObj.checklist.length === 0) {
+            console.log('empty obj');
+            checklistFieldsetDivChildren.forEach((div) => {
+                div.remove();
+            });
+
+        } else {
+            console.log('not emtpy');
+        }
+
+    }
     
     
 
