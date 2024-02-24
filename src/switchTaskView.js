@@ -1,4 +1,4 @@
-// Switch task view based on currentObj from taskDetails.js
+// Switch task view based on currentObj from taskDetails.js and overwrite the details.
 
 export default function changeTask(currentObj) {
 
@@ -21,13 +21,12 @@ export default function changeTask(currentObj) {
     notesSect.value = currentObj.notes;    
 
 
-    // Target checklist
+    // Target checklist (overwrite checklist field with items corresponding to the correct To-Do task)
     const checklistFieldset = document.getElementById('checkList');
 
     const checklistDiv =  Array.from(checklistFieldset.children).filter((child) => {
         return child.tagName === 'DIV';
     })
-
 
     if(currentObj.checklist.length === 0) {
 
@@ -58,7 +57,6 @@ export default function changeTask(currentObj) {
                 return elem.divElem;
             })
 
-            // !* Fix logic here, switching between different To-Do objects should overwrite current checklist with appropriate one.
             if(checklistDiv.length === 0) {
 
                 checklistDivElems.forEach((div) => {
