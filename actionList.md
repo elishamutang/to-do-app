@@ -13,7 +13,7 @@ Priority (Low, High)
     - Due Date (Mock-up done, create functionality).
     - Priority (Mock-up done, create functionality).
     - ~~Notes (Notes section done, create functionality~~ and change to text area).
-    - Checklist (Mock-up done, create functionality). 
+    - ~~Checklist~~
         - **~~Almost done, need to figure out how to disable click and drag option. Maybe change input elem to label when out of focus or button clicked and change back to input when clicked.~~**
         - **Figure out how to remove checklist items from the list and update ID number.**
 
