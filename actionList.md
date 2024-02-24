@@ -19,6 +19,13 @@ Priority (Low, High)
 
 - **View controller**
     - Switch view according to selected To-Do object.
+        
+        - Header (done)
+        - Notes (done)
+        - Checklist (done)
+        - Remind Me
+        - Priority
+        - List (e.g Personal, Work)
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
