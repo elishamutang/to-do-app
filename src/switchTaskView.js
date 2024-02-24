@@ -48,8 +48,8 @@ export default function changeTask(currentObj) {
         })
 
         if(result === true) {
-            console.log('All checklist current items are identical with currentObj checklist items');
 
+            console.log('All checklist current items are identical with currentObj checklist items');
             return;
 
         } else {
@@ -59,11 +59,24 @@ export default function changeTask(currentObj) {
             })
 
             // !* Fix logic here, switching between different To-Do objects should overwrite current checklist with appropriate one.
-            checklistDivElems.forEach((div) => {
-                checklistFieldset.append(div);
-            })
+            if(checklistDiv.length === 0) {
 
-            console.log(`Append ${currentObj.title} checklist items`);
+                checklistDivElems.forEach((div) => {
+                    checklistFieldset.append(div);
+                })
+
+            } else {
+
+                console.log('Overwrite current divs');
+                checklistDiv.forEach((div) => {
+                    div.remove();
+                })
+
+                checklistDivElems.forEach((elem) => {
+                    checklistFieldset.append(elem);
+                })
+
+            }
 
         }
 
