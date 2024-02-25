@@ -1,4 +1,5 @@
 import changeTask from "./switchTaskView";
+import { format } from "date-fns";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -87,15 +88,28 @@ export default class createToDoObj {
     reminder(event) {
 
         // Remind Me
-        const reminderBtn = event.target;
-        console.log(reminderBtn);
-
         const reminderDialog = document.getElementById('reminder');
+        const reminderForm = document.getElementById('setReminder');
+
+        const dateInput = document.getElementById('dateInput');
+        dateInput.min = format(new Date(), "yyyy-MM-dd");
 
         reminderDialog.showModal();
+        dateInput.focus();
 
-        reminderDialog.addEventListener('click', (event) => {
-            console.log(event.target);
+        reminderDialog.addEventListener('click', function closeDialog(event) {
+            if(event.target === reminderDialog) {
+                reminderDialog.close();
+                this.removeEventListener('click', closeDialog);
+            }
+        })
+
+        reminderForm.addEventListener('submit', function detectSubmit(event) {
+            event.preventDefault();
+            
+            const resultingDate = format(new Date(dateInput.value), "dd/MM/yyyy");
+
+            console.log(`Un-format date: ${dateInput.value}\nFormat date: ${resultingDate}`);
         })
 
     }
