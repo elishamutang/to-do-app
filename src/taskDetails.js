@@ -1,5 +1,5 @@
 import changeTask from "./switchTaskView";
-import { format, formatDistance } from "date-fns";
+import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict } from "date-fns";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -95,6 +95,7 @@ export default class createToDoObj {
         dateInput.min = format(new Date(), "yyyy-MM-dd");
 
         const currentTime = new Date();
+        console.log(currentTime);
 
         reminderDialog.showModal();
         dateInput.focus();
@@ -108,16 +109,17 @@ export default class createToDoObj {
 
         reminderForm.addEventListener('submit', function detectSubmit(event) {
             event.preventDefault();
-            
-            // Formatted submitted date value
-            const resultingDate = format(new Date(dateInput.value), "dd/MM/yyyy");
+
+            const resultingDate = new Date(dateInput.value);
+            console.log(resultingDate);
 
             // Calculate distance from current date to reminder date.
-            const duration = formatDistance(currentTime, dateInput.value);
+            const duration = formatDistanceToNowStrict(resultingDate);
 
-            console.log(`Un-format date: ${dateInput.value}\nFormat date: ${resultingDate}`);
             console.log(`Remind me in ${duration}`);
-        })
+
+            reminderDialog.close();
+        }, {once: true})
 
     }
 
