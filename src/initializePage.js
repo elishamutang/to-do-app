@@ -98,6 +98,12 @@ function taskDetailsEvent(event, toDoObj) {
             toDoObj.createNote();
             break;
 
+        case 'remindMe':
+        case 'priority':
+        case 'currentList':
+            toDoObj.additionalFeats(event);
+            break;
+
         default:
             break;
 

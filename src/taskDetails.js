@@ -1,4 +1,5 @@
 import changeTask from "./switchTaskView";
+import AdditionalFeatures from "./additionalFeats";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -24,7 +25,7 @@ export default class createToDoObj {
         for (const obj of listOfObjs) {
             if(task.textContent == obj.title) {
 
-                // Determine current object that is selected and set the title on taskDetails.
+                // Determine current object that is selected and changes task if needed.
                 currentObj = obj;
                 changeTask(currentObj);
 
@@ -32,13 +33,6 @@ export default class createToDoObj {
         }
 
         console.log(currentObj);
-
-        // Switch To-Do object view
-
-
-
-
-
 
     }
 
@@ -91,6 +85,13 @@ export default class createToDoObj {
 
         }, {once: true});
         
+    }
+
+    additionalFeats(event) {
+
+        // Remind Me, Priority and Current List.
+        console.log(event.target);
+
     }
 
 }

@@ -4,3 +4,10 @@
 // - Current list
 
 
+export default class AdditionalFeatures {
+
+    constructor(btnID) {
+        this.btnID = btnID;
+    }
+
+}
