@@ -99,15 +99,15 @@ function taskDetailsEvent(event, toDoObj) {
             break;
 
         case 'remindMe':
-            toDoObj.reminder(event);
+            toDoObj.reminder();
             break;
 
         case 'currentList':
-            toDoObj.editList(event);
+            toDoObj.editList();
             break;
 
         case 'priority':
-            toDoObj.priority(event);
+            toDoObj.priority();
             break;
 
         default:

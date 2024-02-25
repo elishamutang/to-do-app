@@ -85,7 +85,7 @@ export default class createToDoObj {
         
     }
 
-    reminder(event) {
+    reminder() {
 
         // Remind Me
         const reminderDialog = document.getElementById('reminder');
