@@ -87,19 +87,32 @@ export default class createToDoObj {
     reminder(event) {
 
         // Remind Me
-        
+        const reminderBtn = event.target;
+        console.log(reminderBtn);
 
-    }
+        const reminderDialog = document.getElementById('reminder');
 
-    priority(event) {
+        reminderDialog.showModal();
 
-        // Priority
+        reminderDialog.addEventListener('click', (event) => {
+            console.log(event.target);
+        })
 
     }
 
     editList(event) {
 
         // Current list
+        const currentList = event.target;
+        console.log(currentList);
+
+    }
+
+    priority(event) {
+
+        // Priority
+        const priorityBtn = event.target;
+        console.log(priorityBtn);
 
     }
 
