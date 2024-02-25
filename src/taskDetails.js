@@ -30,9 +30,7 @@ export default class createToDoObj {
 
             }
         }
-
         console.log(currentObj);
-
     }
 
     addToChecklist() {
@@ -86,10 +84,22 @@ export default class createToDoObj {
         
     }
 
-    additionalFeats(event) {
+    reminder(event) {
 
-        // Remind Me, Priority and Current List.
+        // Remind Me
         
+
+    }
+
+    priority(event) {
+
+        // Priority
+
+    }
+
+    editList(event) {
+
+        // Current list
 
     }
 
