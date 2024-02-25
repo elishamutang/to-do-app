@@ -110,15 +110,29 @@
                             <h1>Working Out</h1>
                         </div>
                         <div class="taskDetails" id="additionalElems">
-                            <button id="remindMe" class="additional">
-                                Remind Me
-                            </button>
-                            <button id="currentList" class="additional">
-                                Personal
-                            </button>
-                            <button id="priority" class="additional">
-                                Priority
-                            </button>
+
+                            <div class="additional">
+                                <dialog id="reminder">
+                                    <!-- Insert form here -->
+                                    <input type="date">
+                                </dialog>
+                                <button id="remindMe">
+                                    Remind Me
+                                </button>
+                            </div>
+
+                            <div class="additional">
+                                <button id="currentList">
+                                    Personal
+                                </button>
+                            </div>
+
+                            <div class="additional">
+                                <button id="priority">
+                                    Priority
+                                </button>
+                            </div>
+
                         </div>
                         <div id="detailNotes">
                             <div class="detailSubHead">Notes</div>
