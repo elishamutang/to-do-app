@@ -1,5 +1,4 @@
 import changeTask from "./switchTaskView";
-import AdditionalFeatures from "./additionalFeats";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -90,7 +89,7 @@ export default class createToDoObj {
     additionalFeats(event) {
 
         // Remind Me, Priority and Current List.
-        console.log(event.target);
+        
 
     }
 
