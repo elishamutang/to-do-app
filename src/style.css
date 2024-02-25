@@ -170,7 +170,7 @@ dialog[open]::backdrop {
     }
 }
 
-form.tags, form.userLists {
+form.tags, form.userLists, form.additional {
     width: 100%;
     height: inherit;
     padding: 25px;
