@@ -102,11 +102,12 @@ function taskDetailsEvent(event, toDoObj) {
             toDoObj.reminder(event);
             break;
 
-        case 'priority':
-            toDoObj.priority(event);
-
         case 'currentList':
             toDoObj.editList(event);
+            break;
+
+        case 'priority':
+            toDoObj.priority(event);
             break;
 
         default:
