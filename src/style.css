@@ -257,6 +257,7 @@ form, dialog {
 
 #allTasksHeader {
     grid-area: header;
+    width: fit-content;
 }
 
 #allTasksHeader h1 {
