@@ -102,7 +102,11 @@ export default class createToDoObj {
         dateInput.focus();
 
         // When Remind Me button is clicked, if the date is set, show that date on datetime-local input.
-
+        if(currentObj.rawReminderDate !== "") {
+            dateInput.value = currentObj.rawReminderDate;
+        } else {
+            dateInput.value = dateInput.min;
+        }
 
         //
 
@@ -145,7 +149,8 @@ export default class createToDoObj {
 
             reminderBtn.textContent = "Remind Me";
 
-            currentObj.reminderDate = "";
+            currentObj.rawReminderDate = "";
+            currentObj.formattedReminderDate = "";
 
             reminderDialog.close();
 
