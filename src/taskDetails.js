@@ -17,6 +17,7 @@ export default class createToDoObj {
         this.title = title;
         this.checklist = [];
         this.notes = "";
+        this.reminderDate = "";
     };
 
     // Set To-Do object header in taskDetails.
@@ -94,9 +95,6 @@ export default class createToDoObj {
         const dateInput = document.getElementById('dateInput');
         dateInput.min = format(new Date(), "yyyy-MM-dd"); // Minimum date value set to current date.
 
-        const currentTime = new Date();
-        console.log(currentTime);
-
         reminderDialog.showModal();
         dateInput.focus();
 
@@ -116,6 +114,22 @@ export default class createToDoObj {
 
             reminderBtn.textContent = `${formattedResultingDate}`; // Do something after date is set, like an icon or smtg.
             
+            currentObj.reminderDate = dateInput.value;
+
+            // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
+            
+
+            reminderDialog.close();
+
+        }, {once: true})
+
+
+        reminderForm.addEventListener('reset', function deleteReminder() {
+
+            reminderBtn.textContent = "Remind Me";
+
+            currentObj.reminderDate = "";
+
             reminderDialog.close();
 
         }, {once: true})
