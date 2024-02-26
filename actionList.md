@@ -23,7 +23,7 @@ Priority (Low, High)
         - Header (done)
         - Notes (done)
         - Checklist (done)
-        - Remind Me
+        - Remind Me (done)
         - Priority
         - List (e.g Personal, Work)
 
