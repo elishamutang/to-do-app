@@ -18,7 +18,7 @@ export default class createToDoObj {
         this.title = title;
         this.checklist = [];
         this.notes = "";
-        this.reminderDate = "";
+        this.rawReminderDate = "";
     };
 
     // Set To-Do object header in taskDetails.
@@ -110,12 +110,13 @@ export default class createToDoObj {
 
             event.preventDefault();
 
-            const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, K:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
+            const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, h:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
             console.log(formattedResultingDate);
 
             reminderBtn.textContent = `${formattedResultingDate}`; // Do something after date is set, like an icon or smtg.
             
-            currentObj.reminderDate = dateInput.value;
+            currentObj.rawReminderDate = dateInput.value;
+            currentObj.formattedReminderDate = formattedResultingDate;
 
             // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
             const today = isToday(dateInput.value);
