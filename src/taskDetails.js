@@ -94,10 +94,15 @@ export default class createToDoObj {
         const reminderForm = document.getElementById('setReminder');
 
         const dateInput = document.getElementById('dateInput');
-        dateInput.min = format(new Date(), "yyyy-MM-dd"); // Minimum date value set to current date.
+        dateInput.min = new Date(); // Minimum date value set to current date. *! Fix this
 
         reminderDialog.showModal();
         dateInput.focus();
+
+        // When Remind Me button is clicked, if the date is set, show that date on datetime-local input.
+
+
+        //
 
         reminderDialog.addEventListener('click', function closeDialog(event) {
             if(event.target === reminderDialog) {
@@ -128,6 +133,8 @@ export default class createToDoObj {
             }
 
             reminderDialog.close();
+
+            dateInput.value = "";
 
         }, {once: true})
 
