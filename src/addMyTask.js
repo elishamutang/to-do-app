@@ -74,7 +74,7 @@ export function moveMyTask(currentObj) {
     console.log(overviewFieldsets);
 
 
-    console.log(`Object reminder date: ${format(currentObj.reminderDate, "MMM do, yyyy, K:mma")}`);
+    console.log(`Object reminder date: ${currentObj.formattedReminderDate}`);
 
     // Future date
     if(isTomorrow(currentObj.reminderDate)) {
