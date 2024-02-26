@@ -1,5 +1,6 @@
 import changeTask from "./switchTaskView";
-import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict, formatISO, formatRFC3339 } from "date-fns";
+import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict, formatISO, formatRFC3339, isEqual, isToday } from "date-fns";
+import { moveMyTask } from "./addMyTask";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -109,7 +110,7 @@ export default class createToDoObj {
 
             event.preventDefault();
 
-            const formattedResultingDate = format(new Date(dateInput.value), "MMM do, yyyy, K:mb"); // Date format example: "Mon 26th, 2024, 10:59PM"
+            const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, K:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
             console.log(formattedResultingDate);
 
             reminderBtn.textContent = `${formattedResultingDate}`; // Do something after date is set, like an icon or smtg.
@@ -117,7 +118,13 @@ export default class createToDoObj {
             currentObj.reminderDate = dateInput.value;
 
             // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
+            const today = isToday(dateInput.value);
             
+            if(!today) {
+
+                moveMyTask(currentObj);
+
+            }
 
             reminderDialog.close();
 
