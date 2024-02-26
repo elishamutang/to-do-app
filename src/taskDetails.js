@@ -1,5 +1,5 @@
 import changeTask from "./switchTaskView";
-import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict, formatISO, formatRFC3339, isEqual, isToday, getYear, getMinutes, getMonth, getDay, getHours } from "date-fns";
+import { format, isToday } from "date-fns";
 import { moveMyTask } from "./addMyTask";
 
 // Click on any task to view details in a separate window next to task overview window.
@@ -20,7 +20,7 @@ export default class createToDoObj {
         this.notes = "";
         this.rawReminderDate = "";
     };
-    
+
 
     // Set To-Do object header in taskDetails.
     viewTask(task, listOfObjs) {
