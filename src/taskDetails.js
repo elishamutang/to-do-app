@@ -20,6 +20,7 @@ export default class createToDoObj {
         this.notes = "";
         this.rawReminderDate = "";
     };
+    
 
     // Set To-Do object header in taskDetails.
     viewTask(task, listOfObjs) {
@@ -35,6 +36,7 @@ export default class createToDoObj {
         }
         console.log(currentObj);
     }
+
 
     addToChecklist() {
 
@@ -66,6 +68,7 @@ export default class createToDoObj {
 
     }
 
+
     createNote() {
 
         // Target notes input
@@ -86,6 +89,7 @@ export default class createToDoObj {
         }, {once: true});
         
     }
+
 
     reminder(reminderBtn) {
 
@@ -108,7 +112,6 @@ export default class createToDoObj {
             dateInput.value = dateInput.min;
         }
 
-        //
 
         reminderDialog.addEventListener('click', function closeDialog(event) {
             if(event.target === reminderDialog) {
@@ -116,6 +119,7 @@ export default class createToDoObj {
                 this.removeEventListener('click', closeDialog);
             }
         })
+
 
         reminderForm.addEventListener('submit', function detectSubmit(event) {
 
@@ -158,6 +162,7 @@ export default class createToDoObj {
 
     }
 
+
     editList(event) {
 
         // Current list
@@ -165,6 +170,7 @@ export default class createToDoObj {
         console.log(currentList);
 
     }
+
 
     priority(event) {
 
