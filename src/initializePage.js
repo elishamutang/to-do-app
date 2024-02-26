@@ -99,7 +99,7 @@ function taskDetailsEvent(event, toDoObj) {
             break;
 
         case 'remindMe':
-            toDoObj.reminder();
+            toDoObj.reminder(event.target);
             break;
 
         case 'currentList':
