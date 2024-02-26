@@ -86,10 +86,10 @@ export default function changeTask(currentObj) {
     // Overwrite Reminder date
     const reminderBtn = document.getElementById('remindMe');
 
-    if(currentObj.reminderDate === "") {
+    if(currentObj.rawReminderDate === "") {
         reminderBtn.textContent = "Remind Me";
     } else {
-        reminderBtn.textContent = format(currentObj.reminderDate, "MMM do, yyyy, K:mma");
+        reminderBtn.textContent = currentObj.formattedReminderDate;
     }
 
     
