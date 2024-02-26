@@ -1,5 +1,5 @@
 import changeTask from "./switchTaskView";
-import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict } from "date-fns";
+import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict, formatISO, formatRFC3339 } from "date-fns";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -85,14 +85,14 @@ export default class createToDoObj {
         
     }
 
-    reminder() {
+    reminder(reminderBtn) {
 
         // Remind Me
         const reminderDialog = document.getElementById('reminder');
         const reminderForm = document.getElementById('setReminder');
 
         const dateInput = document.getElementById('dateInput');
-        dateInput.min = format(new Date(), "yyyy-MM-dd");
+        dateInput.min = format(new Date(), "yyyy-MM-dd"); // Minimum date value set to current date.
 
         const currentTime = new Date();
         console.log(currentTime);
@@ -108,17 +108,16 @@ export default class createToDoObj {
         })
 
         reminderForm.addEventListener('submit', function detectSubmit(event) {
+
             event.preventDefault();
 
-            const resultingDate = new Date(dateInput.value);
-            console.log(resultingDate);
+            const formattedResultingDate = format(new Date(dateInput.value), "MMM do, yyyy, K:mb");
+            console.log(formattedResultingDate);
 
-            // Calculate distance from current date to reminder date.
-            const duration = formatDistanceToNowStrict(resultingDate);
-
-            console.log(`Remind me in ${duration}`);
-
+            reminderBtn.textContent = `${formattedResultingDate}`; // Do something after date is set, like an icon or smtg.
+            
             reminderDialog.close();
+
         }, {once: true})
 
     }
