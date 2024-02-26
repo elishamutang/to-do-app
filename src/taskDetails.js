@@ -1,5 +1,5 @@
 import changeTask from "./switchTaskView";
-import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict, formatISO, formatRFC3339, isEqual, isToday } from "date-fns";
+import { format, formatDistance, formatDistanceToNow, formatDistanceToNowStrict, formatISO, formatRFC3339, isEqual, isToday, getYear, getMinutes, getMonth, getDay, getHours } from "date-fns";
 import { moveMyTask } from "./addMyTask";
 
 // Click on any task to view details in a separate window next to task overview window.
@@ -94,8 +94,10 @@ export default class createToDoObj {
         const reminderForm = document.getElementById('setReminder');
 
         const dateInput = document.getElementById('dateInput');
-        dateInput.min = new Date(); // Minimum date value set to current date. *! Fix this
 
+        // Minimum date value set to current date (format: YYYY-MM-ddThh:mm, e.g 2017-06-01T08:30) 
+        dateInput.min = `${format(new Date(), "yyyy")}-${format(new Date(), "MM")}-${format(new Date(), "dd")}T${format(new Date(), "hh")}:${format(new Date(), "mm")}`; 
+        
         reminderDialog.showModal();
         dateInput.focus();
 
