@@ -1,10 +1,12 @@
+import { format } from "date-fns";
+
 // Switch task view based on currentObj from taskDetails.js and overwrite the details.
 
 export default function changeTask(currentObj) {
 
     const getTitle = currentObj.title;
 
-    // Target header
+    // Overwrite header
     const taskDetailsHeader = document.getElementById('detailHeader');
     const taskDetailsHeaderElem = document.createElement('h1');
     taskDetailsHeaderElem.textContent = getTitle;
@@ -16,12 +18,12 @@ export default function changeTask(currentObj) {
         taskDetailsHeader.querySelector('h1').textContent = getTitle;
     }
 
-    // Target notes
+    // Overwrite notes
     const notesSect = document.getElementById('notes');
     notesSect.value = currentObj.notes;    
 
 
-    // Target checklist (overwrite checklist field with items corresponding to the correct To-Do task)
+    // Overwrite checklist items
     const checklistFieldset = document.getElementById('checkList');
 
     const checklistDiv =  Array.from(checklistFieldset.children).filter((child) => {
@@ -79,6 +81,17 @@ export default function changeTask(currentObj) {
         }
 
     }
+
+
+    // Overwrite Reminder date
+    const reminderBtn = document.getElementById('remindMe');
+
+    if(currentObj.reminderDate === "") {
+        reminderBtn.textContent = "Remind Me";
+    } else {
+        reminderBtn.textContent = format(currentObj.reminderDate, "MMM do, yyyy, K:mb");
+    }
+
     
     
 
