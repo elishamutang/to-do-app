@@ -89,7 +89,7 @@ export default function changeTask(currentObj) {
     if(currentObj.reminderDate === "") {
         reminderBtn.textContent = "Remind Me";
     } else {
-        reminderBtn.textContent = format(currentObj.reminderDate, "MMM do, yyyy, K:mb");
+        reminderBtn.textContent = format(currentObj.reminderDate, "MMM do, yyyy, K:mma");
     }
 
     
