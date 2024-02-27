@@ -27,7 +27,7 @@ Priority (Low, High)
         - Priority
         - List (e.g Personal, Work)
 
-- **Finish moveMyTask function in addMyTask.js first**
+- ~~Finish moveMyTask function in addMyTask.js first~~
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
 
