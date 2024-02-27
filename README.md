@@ -15,15 +15,17 @@
 
 ### Fork repo, install dependencies.
 
-- Fork repo and run the following commands
+- Fork repo and run the following commands in the terminal:
 
-    Install dependecies:
+
+    **Install dependecies**
 
     ```
     npm install
     ```
 
-    Run app in browser:
+
+    **Run app in browser**
     ```
     npm run dev
     ```
