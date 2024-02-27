@@ -53,17 +53,17 @@ export default function initializePage() {
     })
 
 
-    // View To-Do task in detail.
-    // Target To-Do task.
-    const todayFieldset = document.getElementById('today');
+    // View any To-Do task in greater detail.
+    const overviewDiv = document.querySelector('.overview');
 
-    todayFieldset.addEventListener('click', (event) => {
+    overviewDiv.addEventListener('click', (event) => {
+
         // Only pass label elements to viewTask.
         if(event.target.tagName === 'LABEL') {
-            // Prevents checkbox to be ticked when label is clicked.
-            event.preventDefault();
+            event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
             toDoObj.viewTask(event.target, listOfObjs);
         }
+
     })
 
 
