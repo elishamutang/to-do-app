@@ -19,6 +19,8 @@ export default class createToDoObj {
         this.checklist = [];
         this.notes = "";
         this.rawReminderDate = "";
+        this.priority = "";
+        this.list = "";
     };
 
 
@@ -172,7 +174,7 @@ export default class createToDoObj {
     }
 
 
-    priority(event) {
+    setPriority(event) {
 
         // Priority
         const priorityBtn = event.target;
