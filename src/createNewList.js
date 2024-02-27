@@ -1,6 +1,5 @@
 // Create new list or tags
 
-import { constructFrom } from "date-fns";
 
 export function createNew(createNewBtn) {
 

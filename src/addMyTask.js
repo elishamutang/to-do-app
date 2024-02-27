@@ -1,9 +1,23 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
+import { isFuture, format, isTomorrow } from "date-fns";
 import createToDoObj from "./taskDetails";
 
 // Add new task and displays them.
 export default function addMyTask(task, fieldset) {
+
+    // Creates new task
+    const newTask = createTaskWrapper(task.value);
+
+    fieldset.append(newTask);
+
+    // Create new object
+    return new createToDoObj(task.value);
+
+}
+
+
+function createTaskWrapper(taskValue) {
 
     // Creates new task in overview div.
     const newTaskDiv = document.createElement('div');
@@ -14,35 +28,66 @@ export default function addMyTask(task, fieldset) {
     newCheckBox.className = 'toDoObj';
 
     const newLabel = document.createElement('label');
-    newLabel.textContent = task.value;
+    newLabel.textContent = taskValue;
 
     // Check number of To Do's.
-    updateNumOfToDos(newCheckBox, newLabel);
+    updateNumOfToDos(newCheckBox, newLabel, newTaskDiv);
 
     newTaskDiv.append(newCheckBox);
     newTaskDiv.append(newLabel);
 
-    fieldset.append(newTaskDiv);
-
-    // Create new object
-    return new createToDoObj(task.value);
+    return newTaskDiv;
 
 }
 
-function updateNumOfToDos(newCheckBox, newLabel) {
+
+function updateNumOfToDos(newCheckBox, newLabel, newTaskDiv) {
 
     // Check for number of to do's inside Today fieldset.
-    const existingLables = document.querySelectorAll('#today > div > label');
+    const existingDivs = document.getElementsByClassName('toDoDiv');
+
     let labelNum = 1;
 
     // Updates checkbox ID and label for attribute based on number of existing to do's.
-    if(existingLables.length == 0) {
+    if(existingDivs.length == 0) {
+
+        newTaskDiv.id = `taskDiv-${labelNum}`;
         newCheckBox.id = `task-${labelNum}`;
         newLabel.htmlFor = `task-${labelNum}`;
+
     } else {
-        const lastLabelNum = existingLables.length;
-        newCheckBox.id = `task-${labelNum+lastLabelNum}`;
-        newLabel.htmlFor = `task-${labelNum+lastLabelNum}`;
+
+        const lastLabelNum = existingDivs.length;
+
+        newTaskDiv.id = `taskDiv-${lastLabelNum+labelNum}`
+        newCheckBox.id = `task-${lastLabelNum+labelNum}`;
+        newLabel.htmlFor = `task-${lastLabelNum+labelNum}`;
+
     }
+
+}
+
+// !* Finish this first!
+export function moveMyTask(currentObj) {
+
+    const overviewFieldsets = document.querySelectorAll('.overview > fieldset');
+    console.log(overviewFieldsets);
+
+
+    console.log(`Object reminder date: ${currentObj.formattedReminderDate}`);
+
+    // Future date
+    if(isTomorrow(currentObj.reminderDate)) {
+
+        console.log("Tomorrow's date");
+
+        // Get currentObj element in DOM.
+        const currentObjElem = document.querySelector('')
+
+        const createWrapper = createTaskWrapper(currentObj.title);
+
+    }
+    
+
 
 }

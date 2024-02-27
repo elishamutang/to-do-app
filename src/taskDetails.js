@@ -1,4 +1,6 @@
 import changeTask from "./switchTaskView";
+import { format, isToday } from "date-fns";
+import { moveMyTask } from "./addMyTask";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -16,7 +18,9 @@ export default class createToDoObj {
         this.title = title;
         this.checklist = [];
         this.notes = "";
+        this.rawReminderDate = "";
     };
+
 
     // Set To-Do object header in taskDetails.
     viewTask(task, listOfObjs) {
@@ -24,23 +28,15 @@ export default class createToDoObj {
         for (const obj of listOfObjs) {
             if(task.textContent == obj.title) {
 
-                // Determine current object that is selected and set the title on taskDetails.
+                // Determine current object that is selected and changes task if needed.
                 currentObj = obj;
                 changeTask(currentObj);
 
             }
         }
-
         console.log(currentObj);
-
-        // Switch To-Do object view
-
-
-
-
-
-
     }
+
 
     addToChecklist() {
 
@@ -72,6 +68,7 @@ export default class createToDoObj {
 
     }
 
+
     createNote() {
 
         // Target notes input
@@ -91,6 +88,96 @@ export default class createToDoObj {
 
         }, {once: true});
         
+    }
+
+
+    reminder(reminderBtn) {
+
+        // Remind Me
+        const reminderDialog = document.getElementById('reminder');
+        const reminderForm = document.getElementById('setReminder');
+
+        const dateInput = document.getElementById('dateInput');
+
+        // Minimum date value set to current date (format: YYYY-MM-ddThh:mm, e.g 2017-06-01T08:30) 
+        dateInput.min = `${format(new Date(), "yyyy")}-${format(new Date(), "MM")}-${format(new Date(), "dd")}T${format(new Date(), "hh")}:${format(new Date(), "mm")}`; 
+        
+        reminderDialog.showModal();
+        dateInput.focus();
+
+        // When Remind Me button is clicked, if the date is set, show that date on datetime-local input.
+        if(currentObj.rawReminderDate !== "") {
+            dateInput.value = currentObj.rawReminderDate;
+        } else {
+            dateInput.value = dateInput.min;
+        }
+
+
+        reminderDialog.addEventListener('click', function closeDialog(event) {
+            if(event.target === reminderDialog) {
+                reminderDialog.close();
+                this.removeEventListener('click', closeDialog);
+            }
+        })
+
+
+        reminderForm.addEventListener('submit', function detectSubmit(event) {
+
+            event.preventDefault();
+
+            const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, h:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
+            console.log(formattedResultingDate);
+
+            reminderBtn.textContent = `${formattedResultingDate}`; // Do something after date is set, like an icon or smtg.
+            
+            currentObj.rawReminderDate = dateInput.value;
+            currentObj.formattedReminderDate = formattedResultingDate;
+
+            // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
+            const today = isToday(dateInput.value);
+            
+            if(!today) {
+
+                moveMyTask(currentObj);
+
+            }
+
+            reminderDialog.close();
+
+            dateInput.value = "";
+
+        }, {once: true})
+
+
+        reminderForm.addEventListener('reset', function deleteReminder() {
+
+            reminderBtn.textContent = "Remind Me";
+
+            currentObj.rawReminderDate = "";
+            currentObj.formattedReminderDate = "";
+
+            reminderDialog.close();
+
+        }, {once: true})
+
+    }
+
+
+    editList(event) {
+
+        // Current list
+        const currentList = event.target;
+        console.log(currentList);
+
+    }
+
+
+    priority(event) {
+
+        // Priority
+        const priorityBtn = event.target;
+        console.log(priorityBtn);
+
     }
 
 }

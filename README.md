@@ -13,15 +13,17 @@
 - This project is currently a WIP, currently at 75% completion.
 - To test out this To-Do App, refer to the sections below.
 
-### Fork repo, install dependencies
+### Fork repo, install dependencies.
 
 - Fork repo and run the following commands in the terminal:
+
 
     **Install dependecies**
 
     ```
     npm install
     ```
+
 
     **Run app in browser**
     ```

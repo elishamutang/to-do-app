@@ -170,7 +170,7 @@ dialog[open]::backdrop {
     }
 }
 
-form.tags, form.userLists {
+form.tags, form.userLists, form.additional {
     width: 100%;
     height: inherit;
     padding: 25px;
@@ -180,6 +180,24 @@ form.tags, form.userLists {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+#reminder {
+    width: 400px;
+}
+
+#reminderHeader {
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+#setReminder > input {
+    outline: none;
+    padding: 1rem;
+    font-size: 16px;
+    border-radius: 5px;
+    border: white;
 }
 
 .bx-x {
@@ -257,6 +275,7 @@ form, dialog {
 
 #allTasksHeader {
     grid-area: header;
+    width: fit-content;
 }
 
 #allTasksHeader h1 {
@@ -447,7 +466,7 @@ fieldset legend {
     background: var(--tenPercent);
     padding: 10px 15px;
     border-radius: 15px;
-    font-size: 16px;
+    font-size: 14px;
     transition: 0.3s;
     font-weight: bold;
 }
@@ -479,4 +498,17 @@ fieldset legend {
     border-bottom-left-radius: 0;
     font-size: inherit;
     padding: 5px;
+}
+
+.reminderBtns {
+    display: flex;
+    gap: 1em;
+}
+
+#deleteReminder:hover {
+    background-color: lightcoral;
+}
+
+#setReminderBtn:hover {
+    background-color: rgb(105, 201, 105);
 }
