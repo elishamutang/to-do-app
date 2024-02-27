@@ -10,7 +10,7 @@ Priority (Low, High)
 
 - Each 'To-Do' object shall have the following details:
     - ~~Title~~
-    - Due Date (Mock-up done, create functionality).
+    - ~~Due Date (Mock-up done, create functionality).~~
     - Priority (Mock-up done, create functionality).
     - ~~Notes (Notes section done, create functionality~~ and change to text area).
     - ~~Checklist~~
@@ -27,6 +27,7 @@ Priority (Low, High)
         - Priority
         - List (e.g Personal, Work)
 
+- **Finish moveMyTask function in addMyTask.js first**
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
 

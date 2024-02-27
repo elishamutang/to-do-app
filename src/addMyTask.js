@@ -67,7 +67,7 @@ function updateNumOfToDos(newCheckBox, newLabel, newTaskDiv) {
 
 }
 
-
+// !* Finish this first!
 export function moveMyTask(currentObj) {
 
     const overviewFieldsets = document.querySelectorAll('.overview > fieldset');
