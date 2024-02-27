@@ -110,15 +110,36 @@
                             <h1>Working Out</h1>
                         </div>
                         <div class="taskDetails" id="additionalElems">
-                            <button id="remindMe" class="additional">
-                                Remind Me
-                            </button>
-                            <button id="personal" class="additional">
-                                Personal
-                            </button>
-                            <button id="priority" class="additional">
-                                Priority
-                            </button>
+
+                            <div>
+                                <dialog id="reminder">
+                                    <!-- Insert form here -->
+                                    <form class="additional" id="setReminder">
+                                        <div id="reminderHeader">Reminder</div>
+                                        <input type="datetime-local" id="dateInput">
+                                        <div class="reminderBtns">
+                                            <button type="submit" id="setReminderBtn">Set it</button>
+                                            <button type="reset" id="deleteReminder">Delete</button>
+                                        </div>
+                                    </form>
+                                </dialog>
+                                <button id="remindMe">
+                                    Remind Me
+                                </button>
+                            </div>
+
+                            <div>
+                                <button id="currentList">
+                                    Personal
+                                </button>
+                            </div>
+
+                            <div>
+                                <button id="priority">
+                                    Priority
+                                </button>
+                            </div>
+
                         </div>
                         <div id="detailNotes">
                             <div class="detailSubHead">Notes</div>
