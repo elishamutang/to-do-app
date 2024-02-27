@@ -6,15 +6,43 @@ import { changeChecklistInputElem } from './checklistFeat';
 
 export default function initializePage() {
 
+    // Default arrangement/view
+    const mainHeader = document.getElementById('mainHeader');
+
+    const mainHeaderHeading = document.createElement('h1');
+    mainHeaderHeading.textContent = 'All My Tasks';
+
+    mainHeader.append(mainHeaderHeading);
+
+
     // Create new lists / tags.
     // Attach event listeners to create new lists / tags.
     const createNewBtns = document.querySelectorAll('.header > button');
 
     createNewBtns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-            createNew(e.currentTarget);
+        btn.addEventListener('click', (event) => {
+            createNew(event.currentTarget);
         })
     })
+
+    
+    // Sidebar event listener
+    const sidebarElem = document.querySelector('aside');
+
+    sidebarElem.addEventListener('click', (event) => {
+
+        if(event.target.tagName === "A") {
+
+            
+
+            console.log(event.target.textContent);
+
+        }
+
+    })
+
+
+
     
 
     // Add new tasks.
