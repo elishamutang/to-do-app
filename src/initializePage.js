@@ -33,9 +33,7 @@ export default function initializePage() {
 
         if(event.target.tagName === "A") {
 
-            
-
-            console.log(event.target.textContent);
+            mainHeaderHeading.textContent = event.target.textContent;
 
         }
 
