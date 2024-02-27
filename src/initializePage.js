@@ -38,9 +38,6 @@ export default function initializePage() {
         }
 
     })
-
-
-
     
 
     // Add new tasks.
@@ -60,6 +57,7 @@ export default function initializePage() {
 
     // Store newly created To-Do objects.
     const listOfObjs = [];
+    
     // Initialize toDoObj
     let toDoObj;
 
@@ -129,11 +127,11 @@ function taskDetailsEvent(event, toDoObj) {
             break;
 
         case 'currentList':
-            toDoObj.editList();
+            toDoObj.editList(event.target);
             break;
 
         case 'priority':
-            toDoObj.setPriority();
+            toDoObj.setPriority(event.target);
             break;
 
         default:
