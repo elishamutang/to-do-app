@@ -133,7 +133,7 @@ function taskDetailsEvent(event, toDoObj) {
             break;
 
         case 'priority':
-            toDoObj.priority();
+            toDoObj.setPriority();
             break;
 
         default:
