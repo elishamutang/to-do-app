@@ -125,7 +125,7 @@ export default class createToDoObj {
 
             event.preventDefault();
 
-            const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, h:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
+            const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, hh:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
             console.log(formattedResultingDate);
 
             reminderBtn.textContent = `${formattedResultingDate}`; // Do something after date is set, like an icon or smtg.
