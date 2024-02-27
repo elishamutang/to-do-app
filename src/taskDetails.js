@@ -20,7 +20,7 @@ export default class createToDoObj {
         this.notes = "";
         this.rawReminderDate = "";
         this.priority = "";
-        this.list = "";
+        this.list = "Personal"; // by default
     };
 
 
@@ -165,20 +165,22 @@ export default class createToDoObj {
     }
 
 
-    editList(event) {
+    editList(setListBtn) {
 
-        // Current list
-        const currentList = event.target;
-        console.log(currentList);
+        // Current list by default is under Personal
+        console.log(setListBtn);
+
+        
+
+
 
     }
 
 
-    setPriority(event) {
+    setPriority(setPriorityBtn) {
 
         // Priority
-        const priorityBtn = event.target;
-        console.log(priorityBtn);
+        console.log(setPriorityBtn);
 
     }
 
