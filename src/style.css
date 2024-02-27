@@ -273,12 +273,12 @@ form, dialog {
     row-gap: 3%;
 }
 
-#allTasksHeader {
+#mainHeader {
     grid-area: header;
     width: fit-content;
 }
 
-#allTasksHeader h1 {
+#mainHeader h1 {
     font-size: 25px;
     margin: 10px;
 }
