@@ -67,27 +67,32 @@ function updateNumOfToDos(newCheckBox, newLabel, newTaskDiv) {
 
 }
 
-// !* Finish this first!
+// Move To-Do task based on reminder date set.
 export function moveMyTask(currentObj) {
 
-    const overviewFieldsets = document.querySelectorAll('.overview > fieldset');
-    console.log(overviewFieldsets);
+    // Get currentObj element in DOM (assume user does not create a task with the same title)
+    const existingToDoTasks = Array.from(document.getElementsByClassName('toDoDiv'));
 
+    for(const task of existingToDoTasks) {
 
-    console.log(`Object reminder date: ${currentObj.formattedReminderDate}`);
+        if(task.textContent === currentObj.title) {
 
-    // Future date
-    if(isTomorrow(currentObj.reminderDate)) {
+            if(isTomorrow(currentObj.rawReminderDate)) {
 
-        console.log("Tomorrow's date");
+                const tomorrowFieldset = document.getElementById('tomorrow');
 
-        // Get currentObj element in DOM.
-        const currentObjElem = document.querySelector('')
+                tomorrowFieldset.append(task);
 
-        const createWrapper = createTaskWrapper(currentObj.title);
+            } else if(isFuture(currentObj.rawReminderDate)) {
+
+                const upcomingFieldset = document.getElementById('upcoming');
+
+                upcomingFieldset.append(task);
+
+            }
+
+        }
 
     }
-    
-
 
 }
