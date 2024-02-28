@@ -189,7 +189,11 @@ export default class createToDoObj {
         listsInsidelistBtn.forEach((userList) => {
 
             if(currentObj.list === userList.textContent) {
+
                 console.log(`To-Do object is currently sitting in ${userList.textContent}`);
+
+                userList.className = 'current';
+
             }
 
         })
