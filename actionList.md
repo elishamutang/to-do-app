@@ -29,6 +29,8 @@ Priority (Low, High)
 
 - ~~Finish moveMyTask function in addMyTask.js first~~
 - **Finish editList and setPriority methods**
+    - Figure out how to make linksContainer scrollable within its div, let additional items increase the height.
+    
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
 
