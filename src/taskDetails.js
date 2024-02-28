@@ -167,24 +167,47 @@ export default class createToDoObj {
 
     editList(setListBtn) {
 
-        // Current list by default is under Personal
-        console.log(setListBtn);
-
         // Prepare all user lists.
-        const allLists = document.querySelectorAll('ul.userLists > li > a');
+        const allLists = Array.from(document.querySelectorAll('ul.userLists > li > a'));
+        const allListsClone = allLists.map((list) => list.cloneNode(true)); // To be appended in linksContainer
+
         const linksContainer = document.getElementById('linksContainer');
+        
+        const existingLists = Array.from(linksContainer.children);
+
+        if(existingLists.length === 0) {
+
+            allListsClone.forEach((clone) => {
+                linksContainer.append(clone);
+            })
+
+        } else {
+
+            const existingListsText = existingLists.map((existingList) => {
+                return existingList.textContent;
+            })
+
+            allListsClone.forEach((clone) => {
+
+                if(!existingListsText.includes(clone.textContent)) {
+                    linksContainer.append(clone);
+                }
+
+            })
+
+        }
+
 
         const listDialog = document.getElementById('list');
-
-        allLists.forEach((list) => {
-            linksContainer.append(list);
-        })
-
         listDialog.showModal();
 
-        listDialog.addEventListener('click', (event) => {
+        listDialog.addEventListener('click', function closeListDialog(event) {
 
-            console.log(event.target);
+            if(event.target === listDialog) {
+                listDialog.close();
+                this.removeEventListener('click', closeListDialog);
+            }
+
         })
 
 
