@@ -170,7 +170,22 @@ export default class createToDoObj {
         // Current list by default is under Personal
         console.log(setListBtn);
 
-        
+        // Prepare all user lists.
+        const allLists = document.querySelectorAll('ul.userLists > li > a');
+        const linksContainer = document.getElementById('linksContainer');
+
+        const listDialog = document.getElementById('list');
+
+        allLists.forEach((list) => {
+            linksContainer.append(list);
+        })
+
+        listDialog.showModal();
+
+        listDialog.addEventListener('click', (event) => {
+
+            console.log(event.target);
+        })
 
 
 
