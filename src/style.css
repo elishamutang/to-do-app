@@ -524,7 +524,6 @@ fieldset legend {
 
 #listHeader {
     margin-top: 1rem;
-    margin-bottom: 1rem;
     font-size: 1.3rem;
     width: 100%;
     text-align: center;
@@ -549,4 +548,15 @@ fieldset legend {
 
 #linksContainer > a {
     font-size: 1.5rem;
+    padding: 1px 7px;
+    border-radius: 8px;
+}
+
+#linksContainer > a:first-child {
+    margin-top: 1.5rem;
+}
+
+.current {
+    border: 2px solid rgb(168, 168, 168);
+    box-shadow: 0px 3px 5px black;
 }
