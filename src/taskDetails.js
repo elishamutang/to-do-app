@@ -168,28 +168,28 @@ export default class createToDoObj {
     editList(setListBtn) {
 
         // Prepare all user lists.
-        const allLists = Array.from(document.querySelectorAll('ul.userLists > li > a'));
-        const allListsClone = allLists.map((list) => list.cloneNode(true)); // To be appended in linksContainer
+        const currentLists = Array.from(document.querySelectorAll('ul.userLists > li > a'));
+        const currentListsClone = currentLists.map((list) => list.cloneNode(true)); // To be appended in linksContainer
 
         const linksContainer = document.getElementById('linksContainer');
         
-        const existingLists = Array.from(linksContainer.children);
+        const listsInsidelistBtn = Array.from(linksContainer.children);
 
-        if(existingLists.length === 0) {
+        if(listsInsidelistBtn.length === 0) {
 
-            allListsClone.forEach((clone) => {
+            currentListsClone.forEach((clone) => {
                 linksContainer.append(clone);
             })
 
         } else {
 
-            const existingListsText = existingLists.map((existingList) => {
-                return existingList.textContent;
+            const listsInsidelistBtnText = listsInsidelistBtn.map((list) => {
+                return list.textContent;
             })
 
-            allListsClone.forEach((clone) => {
+            currentListsClone.forEach((clone) => {
 
-                if(!existingListsText.includes(clone.textContent)) {
+                if(!listsInsidelistBtnText.includes(clone.textContent)) {
                     linksContainer.append(clone);
                 }
 
