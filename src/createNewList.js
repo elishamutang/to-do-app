@@ -41,7 +41,7 @@ function addList(listTitle, btnClassName) {
     const newLi = document.createElement('li');
     const newATag = document.createElement('a');
 
-    newATag.href = "";
+    newATag.removeAttribute('href');
 
     // Check whether for Tags or My Lists.
     if(btnClassName == 'tags' && !listTitle.includes('#')) {
