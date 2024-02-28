@@ -175,32 +175,30 @@ export default class createToDoObj {
         
         const listsInsidelistBtn = Array.from(linksContainer.children);
 
-        if(listsInsidelistBtn.length === 0) {
+        const listsInsidelistBtnText = listsInsidelistBtn.map((list) => { return list.textContent })
 
-            currentListsClone.forEach((clone) => {
+        // Updates based on newly created lists.
+        currentListsClone.forEach((clone) => {
+
+            if(!listsInsidelistBtnText.includes(clone.textContent)) {
                 linksContainer.append(clone);
-            })
+            }
 
-        } else {
+        })
 
-            const listsInsidelistBtnText = listsInsidelistBtn.map((list) => {
-                return list.textContent;
-            })
+        listsInsidelistBtn.forEach((userList) => {
 
-            currentListsClone.forEach((clone) => {
+            if(currentObj.list === userList.textContent) {
+                console.log(`To-Do object is currently sitting in ${userList.textContent}`);
+            }
 
-                if(!listsInsidelistBtnText.includes(clone.textContent)) {
-                    linksContainer.append(clone);
-                }
-
-            })
-
-        }
+        })
 
 
         const listDialog = document.getElementById('list');
         listDialog.showModal();
 
+        // Closes dialog if clicked outside, might make this into a utility function.
         listDialog.addEventListener('click', function closeListDialog(event) {
 
             if(event.target === listDialog) {
