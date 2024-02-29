@@ -29,11 +29,15 @@ export default function initializePage() {
     // Sidebar event listener
     const sidebarElem = document.querySelector('aside');
 
+    const defaultSelectedList = document.querySelector('.default');
+
     sidebarElem.addEventListener('click', (event) => {
 
         if(event.target.tagName === "A") {
 
-            mainHeaderHeading.textContent = event.target.textContent;
+            const selection = event.target;
+
+            mainHeaderHeading.textContent = selection.textContent; // Update heading to show what list is currently displayed.
 
         }
 
