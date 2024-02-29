@@ -92,9 +92,7 @@ a {
     transition: 0.3s;
 }
 
-a:hover,
-.userLists > ul > li > a:hover,
-.secondary > li > i > a:hover {
+.list:hover {
     color: white;
 }
 
@@ -108,8 +106,7 @@ a:hover,
     margin-top: 20px;
 }
 
-.secondary > li > a,
-.secondary > li > i > a {
+.list {
     color: var(--secondary);
     font-size: 25px;
 }
@@ -559,4 +556,8 @@ fieldset legend {
 .current {
     border: 2px solid var(--toDoTask);
     box-shadow: 0px 3px 5px black;
+}
+
+a.default {
+    color: var(--tenPercent);
 }
