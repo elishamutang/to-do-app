@@ -29,8 +29,6 @@ export default function initializePage() {
     // Sidebar event listener
     const sidebarElem = document.querySelector('aside');
 
-    const defaultSelectedList = document.querySelector('.default'); // All My Tasks
-
     sidebarElem.addEventListener('click', (event) => {
 
         if(event.target.tagName === "A") {
