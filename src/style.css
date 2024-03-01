@@ -79,6 +79,7 @@ ul {
 
 li i {
     font-size: 23px;
+    transition: 0.3s;
 }
 
 li i::before {
@@ -92,7 +93,7 @@ a {
     transition: 0.3s;
 }
 
-.list:hover {
+li:hover > i, .list:hover {
     color: white;
 }
 
@@ -558,6 +559,10 @@ fieldset legend {
     box-shadow: 0px 3px 5px black;
 }
 
-a.default {
+a.viewing, i.viewing {
     color: var(--tenPercent);
+}
+
+li:hover > i {
+    color: white;
 }
