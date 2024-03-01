@@ -29,6 +29,8 @@ export default function initializePage() {
     // Sidebar event listener
     const sidebarElem = document.querySelector('aside');
 
+    let lastSelection = [];
+
     sidebarElem.addEventListener('click', (event) => {
 
         if(event.target.tagName === "A") {
@@ -36,6 +38,33 @@ export default function initializePage() {
             const selection = event.target;
 
             mainHeaderHeading.textContent = selection.textContent; // Update heading to show what list is currently displayed.
+
+            const allListItems = Array.from(document.getElementsByClassName('list'));
+
+            // Code below is for styling current selection.
+            allListItems.forEach((item) => {
+
+                if(item.textContent === selection.textContent) {
+
+                    selection.className += ' viewing';
+                    lastSelection.push(item);
+
+                }
+
+            })
+
+            if(lastSelection.length > 1) {
+
+                const currentSelectedElem = lastSelection[lastSelection.length-1];
+                const lastSelectedElem = lastSelection[lastSelection.length-2];
+
+                if(currentSelectedElem.textContent !== lastSelectedElem.textContent) {
+                    
+                    lastSelection[lastSelection.length-2].className = 'list';
+
+                }
+
+            }
 
         }
 
