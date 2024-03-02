@@ -1,6 +1,6 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
-import { isFuture, format, isTomorrow } from "date-fns";
+import { isToday, format, isTomorrow, isFuture } from "date-fns";
 import createToDoObj from "./taskDetails";
 
 // Add new task and displays them.
@@ -88,6 +88,12 @@ export function moveMyTask(currentObj) {
                 const upcomingFieldset = document.getElementById('upcoming');
 
                 upcomingFieldset.append(task);
+
+            } else {
+
+                const todayFieldset = document.getElementById('today');
+
+                todayFieldset.append(task);
 
             }
 
