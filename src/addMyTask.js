@@ -77,7 +77,13 @@ export function moveMyTask(currentObj) {
 
         if(task.textContent === currentObj.title) {
 
-            if(isTomorrow(currentObj.rawReminderDate)) {
+            if(isToday(currentObj.rawReminderDate)) {
+
+                const todayFieldset = document.getElementById('today');
+
+                todayFieldset.append(task);
+
+            } else if(isTomorrow(currentObj.rawReminderDate)) {
 
                 const tomorrowFieldset = document.getElementById('tomorrow');
 
