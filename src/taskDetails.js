@@ -173,20 +173,20 @@ export default class createToDoObj {
 
         const linksContainer = document.getElementById('linksContainer');
         
-        const listsInsidelistBtn = Array.from(linksContainer.children);
+        const listsInsideListContainer = Array.from(linksContainer.children);
 
-        const listsInsidelistBtnText = listsInsidelistBtn.map((list) => { return list.textContent })
+        const listsInsideListContainerText = listsInsideListContainer.map((list) => { return list.textContent })
 
         // Updates based on newly created lists.
         currentListsClone.forEach((clone) => {
 
-            if(!listsInsidelistBtnText.includes(clone.textContent)) {
+            if(!listsInsideListContainerText.includes(clone.textContent)) {
                 linksContainer.append(clone);
             }
 
         })
 
-        listsInsidelistBtn.forEach((userList) => {
+        listsInsideListContainer.forEach((userList) => {
 
             if(currentObj.list === userList.textContent) {
 
