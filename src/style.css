@@ -6,11 +6,13 @@
 }
 
 :root {
-    --sidebar: #35507a;
+    /* --sidebar: #155485; */
+    --sidebar: #1D5D9B;
     --toDoTask: #617da9;
     --secondary: rgba(255, 255, 255, 0.529);
-    --content: linear-gradient(90deg, #129cff7c, rgba(94, 216, 155, 0.627));
-    --tenPercent: rgb(46, 195, 222);
+    /* --content: linear-gradient(90deg, #129cff7c, rgba(122, 236, 240, 0.627)); */
+    --content: #91C8E4;
+    --tenPercent: #59C1BD;
 }
 
 html, body {
@@ -317,6 +319,7 @@ div.allTasks {
     background: var(--secondary);
     border-radius: 10px;
     border: 1px solid transparent;
+    font-weight: bold;
     transition: 0.3s;
 }
 
@@ -344,6 +347,11 @@ div.allTasks {
 
 .taskInputs:focus {
     background: white;
+}
+
+.taskInputs:not(:focus) {
+    color: var(--secondary);
+    font-weight: bold;
 }
 
 #notes:hover {
@@ -389,7 +397,7 @@ fieldset {
 fieldset > div,
 fieldset + div {
     margin-bottom: 10px;
-    background: var(--toDoTask);
+    background: var(--tenPercent);
     border-radius: 5px;
     font-size: 20px;
     cursor: pointer;
