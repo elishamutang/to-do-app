@@ -165,7 +165,7 @@ export default class createToDoObj {
     }
 
 
-    editList(setListBtn) {
+    editList() {
 
         // Prepare all user lists.
         const currentLists = Array.from(document.querySelectorAll('ul.userLists > li > a'));
