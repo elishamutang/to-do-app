@@ -114,7 +114,7 @@ export default class createToDoObj {
             dateInput.value = dateInput.min;
         }
 
-
+        // Closes reminder dialog if user clicks outside dialog.
         reminderDialog.addEventListener('click', function closeDialog(event) {
             if(event.target === reminderDialog) {
                 reminderDialog.close();
@@ -127,26 +127,19 @@ export default class createToDoObj {
 
             event.preventDefault();
 
+            console.log(dateInput.value);
             const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, hh:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
             console.log(formattedResultingDate);
 
-            reminderBtn.textContent = `${formattedResultingDate}`; // Do something after date is set, like an icon or smtg.
+            reminderBtn.textContent = `${formattedResultingDate}`; // Display date on the button.
             
             currentObj.rawReminderDate = dateInput.value;
             currentObj.formattedReminderDate = formattedResultingDate;
 
             // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
-            const today = isToday(dateInput.value);
-            
-            if(!today) {
-
-                moveMyTask(currentObj);
-
-            }
+            moveMyTask(currentObj);
 
             reminderDialog.close();
-
-            dateInput.value = "";
 
         }, {once: true})
 
@@ -157,6 +150,8 @@ export default class createToDoObj {
 
             currentObj.rawReminderDate = "";
             currentObj.formattedReminderDate = "";
+
+            moveMyTask(currentObj);
 
             reminderDialog.close();
 
