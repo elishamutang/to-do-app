@@ -181,19 +181,14 @@ export default class createToDoObj {
         currentListsClone.forEach((clone) => {
 
             if(!listsInsideListContainerText.includes(clone.textContent)) {
+
                 linksContainer.append(clone);
-            }
 
-        })
+                if(currentObj.list === clone.textContent) {
 
-        listsInsideListContainer.forEach((userList) => {
+                    clone.className += ' current';
 
-            if(currentObj.list === userList.textContent) {
-
-                console.log(`To-Do object is currently sitting in ${userList.textContent}`);
-
-                userList.className = 'current';
-
+                }
             }
 
         })
