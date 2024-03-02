@@ -186,6 +186,7 @@ export default class createToDoObj {
 
                 if(currentObj.list === clone.textContent) {
 
+                    // Added class of current for current list that To-Do object is in.
                     clone.className += ' current';
 
                 }
