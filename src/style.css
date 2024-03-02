@@ -95,7 +95,7 @@ a {
     transition: 0.3s;
 }
 
-li:hover > i, .list:hover {
+li:hover > i, li:hover > i > a {
     color: white;
 }
 
@@ -112,6 +112,10 @@ li:hover > i, .list:hover {
 .list {
     color: var(--secondary);
     font-size: 25px;
+}
+
+.list:hover {
+    color: white;
 }
 
 .header {
@@ -569,8 +573,4 @@ fieldset legend {
 
 a.viewing, i.viewing {
     color: var(--tenPercent);
-}
-
-li:hover > i {
-    color: white;
 }
