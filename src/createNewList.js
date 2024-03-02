@@ -40,6 +40,7 @@ function addList(listTitle, btnClassName) {
 
     const newLi = document.createElement('li');
     const newATag = document.createElement('a');
+    newATag.className = 'list';
 
     newATag.removeAttribute('href');
 
