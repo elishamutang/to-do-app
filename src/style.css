@@ -6,13 +6,11 @@
 }
 
 :root {
-    /* --sidebar: #155485; */
     --sidebar: #1D5D9B;
-    --toDoTask: #617da9;
+    --toDoTask: #7ca7eb7d;
     --secondary: rgba(255, 255, 255, 0.529);
-    /* --content: linear-gradient(90deg, #129cff7c, rgba(122, 236, 240, 0.627)); */
     --content: #91C8E4;
-    --tenPercent: #59C1BD;
+    --tenPercent: #59c1bed8;
 }
 
 html, body {
@@ -354,7 +352,7 @@ div.allTasks {
 }
 
 .taskInputs:not(:focus) {
-    color: var(--secondary);
+    color: white;
     font-weight: bold;
 }
 
@@ -367,7 +365,6 @@ div.allTasks {
     border-bottom-right-radius: inherit;
     grid-area: addTask;
     padding: 10px;
-    /* border: 1px solid red; */
 
     display: flex;
     position: relative;
@@ -401,7 +398,7 @@ fieldset {
 fieldset > div,
 fieldset + div {
     margin-bottom: 10px;
-    background: var(--tenPercent);
+    background: var(--toDoTask);
     border-radius: 5px;
     font-size: 20px;
     cursor: pointer;
