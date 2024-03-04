@@ -102,7 +102,7 @@ export default class createToDoObj {
         const dateInput = document.getElementById('dateInput');
 
         // Minimum date value set to current date (format: YYYY-MM-ddThh:mm, e.g 2017-06-01T08:30) 
-        dateInput.min = `${format(new Date(), "yyyy")}-${format(new Date(), "MM")}-${format(new Date(), "dd")}T${format(new Date(), "hh")}:${format(new Date(), "mm")}`; 
+        dateInput.min = `${format(new Date(), "yyyy")}-${format(new Date(), "MM")}-${format(new Date(), "dd")}T${format(new Date(), "HH")}:${format(new Date(), "mm")}`; 
         
         reminderDialog.showModal();
         dateInput.focus();
