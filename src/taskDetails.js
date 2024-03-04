@@ -162,7 +162,6 @@ export default class createToDoObj {
 
     editList(listBtn) {
 
-        console.log(listBtn.textContent);
 
         // Prepare all user lists.
         const currentLists = Array.from(document.querySelectorAll('ul.userLists > li > a'));
@@ -185,7 +184,7 @@ export default class createToDoObj {
 
                     // Added class of current for current list that To-Do object is in.
                     clone.className += ' current';
-                    listBtn.innerHTML = `<i class='bx bx-list-ul'>${currentObj.list}`;
+                    listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
 
                 }
             }
@@ -218,7 +217,7 @@ export default class createToDoObj {
                 } else {
 
                     currentObj.list = selectedList.textContent;
-                    listBtn.innerHTML = `<i class='bx bx-list-ul'>${currentObj.list}`;
+                    listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
 
                     selectionMovement.push(currentObj.list); // Update movement.
 
