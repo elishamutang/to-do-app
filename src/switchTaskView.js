@@ -87,13 +87,15 @@ export default function changeTask(currentObj) {
     const reminderBtn = document.getElementById('remindMe');
 
     if(currentObj.rawReminderDate === "") {
-        reminderBtn.textContent = "Remind Me";
+
+        reminderBtn.innerHTML = "<i class='bx bxs-bell-ring' style='color:#fdfdfd'></i>" + "Remind Me";
+
     } else {
+
         reminderBtn.textContent = currentObj.formattedReminderDate;
+
     }
 
-    
-    
 
 
 }
