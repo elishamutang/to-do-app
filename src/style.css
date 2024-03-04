@@ -568,3 +568,14 @@ fieldset legend {
 a.viewing, i.viewing {
     color: var(--tenPercent);
 }
+
+#remindMe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.bxs-bell-ring {
+    font-size: 16px;
+}
