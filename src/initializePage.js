@@ -158,7 +158,7 @@ function taskDetailsEvent(event, toDoObj) {
             break;
 
         case 'currentList':
-            toDoObj.editList();
+            toDoObj.editList(event.target);
             break;
 
         case 'tags':
