@@ -161,8 +161,8 @@ function taskDetailsEvent(event, toDoObj) {
             toDoObj.editList();
             break;
 
-        case 'priority':
-            toDoObj.setPriority(event.target);
+        case 'tags':
+            toDoObj.setTag(event.target);
             break;
 
         default:

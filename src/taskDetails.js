@@ -260,10 +260,10 @@ export default class createToDoObj {
     }
 
 
-    setPriority(setPriorityBtn) {
+    setTag(setTagBtn) {
 
         // Priority
-        console.log(setPriorityBtn);
+        console.log(setTagBtn);
 
     }
 
