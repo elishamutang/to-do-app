@@ -257,8 +257,6 @@ export default class createToDoObj {
 
         })
 
-
-
     }
 
 
