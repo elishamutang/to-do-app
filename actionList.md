@@ -5,8 +5,7 @@ Priority (Low, High)
 ## To-Do List Basic Functionality (High)
 - Create home page for user. User should be directed to an existing project list or 'home'.
     - Currently named as 'All My Tasks', user able to get an overview of all current and upcoming tasks.
-    - ~~Complete 2nd All Tasks div that goes into detail regarding each task.~~
-    - This will require 'To-Do' objects to be created dynamically, try using classes to create the objects.
+    - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
 - Each 'To-Do' object shall have the following details:
     - ~~Title~~
@@ -24,13 +23,13 @@ Priority (Low, High)
         - Notes (done)
         - Checklist (done)
         - Remind Me (done)
-        - Priority
+        - Priority (TBC)
         - List (e.g Personal, Work) (currently working on this)
 
-- ~~Finish moveMyTask function in addMyTask.js first~~
 - **Finish editList and setPriority methods**
-    - Figure out how to update styling for current list that selected To-Do object is currently sitting in.
+    - ~~Figure out how to update styling for current list that selected To-Do object is currently sitting in.~~ (Done)
     - ~~Figure out how to make linksContainer scrollable within its div, let additional items increase the height.~~ (Done)
+    - Update sidebar based on number of To-Do objects belonging to a certain list/tag.
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
