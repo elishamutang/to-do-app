@@ -204,19 +204,7 @@ export default class createToDoObj {
             // Style current list that the selected To-Do object is in.
             } else if(event.target.tagName === 'A') {
 
-                const Selected = {
-
-                    listText: currentObj.list,
-                    
-                    listTag() {
-
-                        console.log(linksContainer.children);
-
-                    }
-
-                }; // Keep track of previous and current selected lists.
-
-                
+                let selectionMovement = [currentObj.list]; // By default, all newly created lists are added to Personal.               
                 let selectedList = event.target;
 
                 if(selectedList.textContent === currentObj.list) {
@@ -227,12 +215,39 @@ export default class createToDoObj {
                 } else {
 
                     currentObj.list = selectedList.textContent;
+                    selectionMovement.push(currentObj.list); // Update movement.
 
-                    // selectionMovement.push(currentObj.list);
+                    const listLinks = [];
+                    const linksContainerChildren = Array.from(linksContainer.children);
 
-                    // console.log(selectionMovement);
+                    linksContainerChildren.forEach((child) => {
 
-                    console.log(Selected.listTag());
+                        selectionMovement.forEach((text) => {
+
+                            if(child.textContent === text) {
+
+                                listLinks.push(child);
+
+                            }
+
+                        })
+
+                    })
+                    
+                    // Updates styling of class current based on where the selected To-Do obj is currently sitting in.
+                    listLinks.forEach((list) => {
+
+                        if(currentObj.list === list.textContent) {
+
+                            list.className += ' current';
+
+                        } else {
+
+                            list.className = 'list';
+
+                        }
+
+                    })
 
                     console.log(`Object moved to ${currentObj.list}`);
 
