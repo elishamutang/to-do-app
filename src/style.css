@@ -588,7 +588,7 @@ a.viewing, i.viewing {
 }
 
 #tagDialog {
-    width: 300px;
+    width: 250px;
     max-height: 400px;
     height: min-content;
     top: 20%;
