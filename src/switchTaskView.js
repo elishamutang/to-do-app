@@ -97,5 +97,27 @@ export default function changeTask(currentObj) {
     }
 
 
+    // Overwrite currentList button text
+    const currentListBtn = document.getElementById('currentList');
+
+    currentListBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
+    const linksContainerChildren = Array.from(linksContainer.children);
+
+    linksContainerChildren.forEach((link) => {
+
+        // Overwrite currentList styling to highlight current list that the To-Do object is currently sitting in.
+        if(link.className.includes('current') && link.textContent !== currentObj.list) {
+
+            link.className = 'list';
+
+        } else if(!link.className.includes('current') && link.textContent === currentObj.list) {
+
+            link.className += ' current';
+
+        }
+
+    })
+    
+    
 
 }
