@@ -31,7 +31,7 @@ Priority (Low, High)
     - ~~Figure out how to make linksContainer scrollable within its div, let additional items increase the height.~~ (Done)
     - Finish setPriority method.
     - Update sidebar based on number of To-Do objects belonging to a certain list/tag.
-    - Update Personal button text with current list that the To-Do object is currently sitting in.
+    - ~~Update Personal button text with current list that the To-Do object is currently sitting in.~~ (Done)
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
