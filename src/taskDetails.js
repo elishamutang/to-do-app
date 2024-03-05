@@ -195,13 +195,13 @@ export default class createToDoObj {
         const listDialog = document.getElementById('list');
         listDialog.showModal();
 
-        listDialog.addEventListener('click', function closeListDialog(event) {
+        listDialog.addEventListener('click', function listDialogFunc(event) {
 
             // Closes dialog if clicked outside.
             if(event.target === listDialog) {
                 
                 listDialog.close();
-                this.removeEventListener('click', closeListDialog);
+                this.removeEventListener('click', listDialogFunc);
 
             // Style current list that the selected To-Do object is in.
             } else if(event.target.tagName === 'A') {
