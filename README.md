@@ -5,9 +5,9 @@
 
 ## Screenshots
 
-![Groceries-view](image.png)
+![Groceries List](<to-do app overview.png>)
 
-![Working-out-view](image-1.png)
+![Working Out List](working-out-view.png)
 
 ## Disclaimer
 - This project is currently a WIP, currently at 75% completion.
