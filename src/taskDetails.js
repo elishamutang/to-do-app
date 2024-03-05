@@ -266,9 +266,6 @@ export default class createToDoObj {
 
     setTag(setTagBtn) {
 
-        // Priority
-        console.log(setTagBtn);
-
         const tagsBtn = document.getElementById('tags');
         const tagsBtnDeepClone = tagsBtn.cloneNode(true);
 
@@ -280,6 +277,12 @@ export default class createToDoObj {
         tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
 
             // Code goes here
+            if(event.target === tagDialogElem) {
+
+                tagDialogElem.close();
+                this.removeEventListener('click', tagDialogFunc);
+
+            }
 
         })
 
