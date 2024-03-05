@@ -538,7 +538,10 @@ fieldset legend {
 }
 
 #list {
-    width: 350px;
+    top: 20%;
+    width: 300px;
+    max-height: 300px;
+    height: min-content;
 }
 
 #linksContainer {
@@ -550,7 +553,7 @@ fieldset legend {
     gap: 0.5rem;
     overflow-y: auto;
     overflow-x: hidden;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     scrollbar-width: thin;
 }
 
