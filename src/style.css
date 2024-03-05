@@ -469,7 +469,7 @@ fieldset legend {
     align-items: center;
 }
 
-#additionalElems button {
+.additionalFeatBtns {
     background: var(--tenPercent);
     padding: 10px 15px;
     border-radius: 15px;
@@ -478,7 +478,7 @@ fieldset legend {
     font-weight: bold;
 }
 
-#additionalElems button:hover {
+.additionalFeatBtns:hover {
     transform: scale(1.05);
 }
 
@@ -569,9 +569,7 @@ a.viewing, i.viewing {
     color: var(--tenPercent);
 }
 
-#remindMe,
-#currentList,
-#tags {
+.additionalFeatBtns {
     display: flex;
     justify-content: center;
     align-items: center;
