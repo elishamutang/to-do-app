@@ -321,7 +321,19 @@ export default class createToDoObj {
 
                     } else if(selectedTag === tag && currentObj.tags.includes(selectedTag.textContent)) {
 
-                        
+                        for(let i = 0; i < currentObj.tags.length; i++) {
+
+                            if(currentObj.tags[i] === selectedTag.textContent) {
+
+                                console.log(`${currentObj.tags[i]} at ${i} in currentObj.tags array will be removed.`);
+
+                                currentObj.tags.splice(i, 1); // Removes tag from To-Do object.
+                                
+                                selectedTag.innerHTML = selectedTag.textContent;
+
+                            }
+
+                        }
 
                     }
                     
