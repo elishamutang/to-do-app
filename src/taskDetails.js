@@ -19,7 +19,7 @@ export default class createToDoObj {
         this.checklist = [];
         this.notes = "";
         this.rawReminderDate = "";
-        this.priority = "";
+        this.tags = [];
         this.list = "Personal"; // by default
     };
 
@@ -274,13 +274,59 @@ export default class createToDoObj {
 
         tagDialogElem.showModal();
 
+        const allTags = Array.from(document.getElementById('allTags').children); // Array of all anchor tags under allTags div.
+
+        // Style relevant tags associated with currentObj.tags array.
+        if(currentObj.tags.length !== 0) {
+
+            currentObj.tags.forEach((tag) => {
+
+                allTags.forEach((existingTag) => {
+
+                    if(tag === existingTag.textContent) {
+
+                        existingTag.innerHTML = `${tag}<i class='bx bxs-check-circle'></i>`;
+
+                    }
+
+                })
+    
+            })
+
+        }
+
+        // Event listener for tagDialog dialog.
         tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
 
-            // Code goes here
-            if(event.target === tagDialogElem) {
+            const cancelBtn = document.getElementById('cancelBtn');
+
+            // Close dialog
+            if(event.target === tagDialogElem || event.target === cancelBtn) {
 
                 tagDialogElem.close();
                 this.removeEventListener('click', tagDialogFunc);
+
+            } else if(event.target.tagName === 'A') {
+
+                const selectedTag = event.target;
+
+                // Goes thru each tag under allTags div.
+                allTags.forEach((tag) => {
+
+                    if(selectedTag === tag && !currentObj.tags.includes(selectedTag.textContent)) {
+
+                        currentObj.tags.push(selectedTag.textContent);
+
+                        selectedTag.innerHTML += "<i class='bx bxs-check-circle'></i>";
+
+                    } else if(selectedTag === tag && currentObj.tags.includes(selectedTag.textContent)) {
+
+                        
+
+                    }
+                    
+                })
+
 
             }
 
