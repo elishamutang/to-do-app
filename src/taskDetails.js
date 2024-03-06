@@ -295,9 +295,13 @@ export default class createToDoObj {
 
         }
 
+
+        const tempTagsList = []; // Empty array to contain selected tags.
+
         // Event listener for tagDialog dialog.
         tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
 
+            const saveBtn = document.getElementById('saveTagSelection');
             const cancelBtn = document.getElementById('cancelBtn');
 
             // Close dialog
@@ -305,6 +309,13 @@ export default class createToDoObj {
 
                 tagDialogElem.close();
                 this.removeEventListener('click', tagDialogFunc);
+
+                // Resets tag selection if not saved.
+                allTags.forEach((tag) => {
+
+                    tag.innerHTML = tag.textContent;
+
+                })
 
             } else if(event.target.tagName === 'A') {
 
@@ -315,7 +326,8 @@ export default class createToDoObj {
 
                     if(selectedTag === tag && !currentObj.tags.includes(selectedTag.textContent)) {
 
-                        currentObj.tags.push(selectedTag.textContent);
+                        // currentObj.tags.push(selectedTag.textContent);
+                        tempTagsList.push(selectedTag.textContent);
 
                         selectedTag.innerHTML += "<i class='bx bxs-check-circle'></i>";
 
@@ -339,6 +351,32 @@ export default class createToDoObj {
                     
                 })
 
+            } else if(event.target === saveBtn) {
+
+                // Pushes selected tags into To-Do tags array.
+                if(currentObj.tags.length === 0) {
+
+                    tempTagsList.forEach((tag) => {
+
+                        currentObj.tags.push(tag);
+
+                    })
+
+                } else {
+
+                    // *! Not yet tested, to test tomorrow morning.
+                    tempTagsList.forEach((tempTag) => {
+
+                        if(!currentObj.tags.includes(tempTag)) {
+
+                            currentObj.tags.push(tempTag);
+
+                        }
+
+                    })
+
+
+                }
 
             }
 
