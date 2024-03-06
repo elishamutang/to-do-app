@@ -512,11 +512,11 @@ fieldset legend {
     gap: 1em;
 }
 
-#deleteReminder:hover {
+#deleteReminder:hover, #cancelBtn:hover {
     background-color: lightcoral;
 }
 
-#setReminderBtn:hover {
+#setReminderBtn:hover, #saveTagSelection:hover {
     background-color: rgb(105, 201, 105);
 }
 
@@ -588,8 +588,8 @@ a.viewing, i.viewing {
 }
 
 #tagDialog {
-    width: 250px;
-    max-height: 400px;
+    width: 300px;
+    max-height: 500px;
     height: min-content;
     top: 20%;
 }
@@ -618,18 +618,36 @@ a.viewing, i.viewing {
 }
 
 #allTags a {
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    font-weight: normal;
+    margin-bottom: 5px;
+    font-size: 1.3rem;
     padding: 8px;
     transition: 0.2s;
     border-radius: 5px;
     width: 100%;
     text-align: center;
+    color: var(--secondary);
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
 }
 
 #allTags a:hover {
     color: white;
     border-radius: 5px;
     background-color: var(--secondary);
+}
+
+.tagBtns {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.bxs-check-circle {
+    color: white;
 }
