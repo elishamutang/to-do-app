@@ -1,5 +1,5 @@
 import changeTask from "./switchTaskView";
-import { format, isToday } from "date-fns";
+import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
 
 // Click on any task to view details in a separate window next to task overview window.
