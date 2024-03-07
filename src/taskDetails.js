@@ -357,11 +357,38 @@ export default class createToDoObj {
 
                 if(tempTagsList.length !== 0) {
 
-                    prepareToSave(tempTagsList); // Save selected tag(s).
+                    // Save selected tag(s).
+                    if(currentObj.tags.length === 0) {
+
+                        tempTagsList.forEach((tag) => {
+
+                            currentObj.tags.push(tag);
+
+                        })
+
+                    } else {
+
+                        tempTagsList.forEach((tempTag) => {
+
+                            if(!currentObj.tags.includes(tempTag)) {
+
+                                currentObj.tags.push(tempTag);
+
+                            }
+
+                        })
+
+                    }
+
 
                 } else if(tagsToRemove.length !== 0) {
 
-                    prepareToRemove(tagsToRemove); // Remove To-Do tag(s).
+                    // Remove To-Do tag(s).
+                    tagsToRemove.forEach((idx) => {
+
+                        currentObj.tags.splice(idx, 1);
+
+                    })
 
                 }
 
@@ -370,46 +397,6 @@ export default class createToDoObj {
             }
 
         })
-
-        
-        function prepareToSave(tempTagsList) {
-
-            // Pushes selected tags into To-Do tags array.
-            if(currentObj.tags.length === 0) {
-
-                tempTagsList.forEach((tag) => {
-
-                    currentObj.tags.push(tag);
-
-                })
-
-            } else {
-
-                // Pushes selected tags into To-Do tags array if selected tags not inside already.
-                tempTagsList.forEach((tempTag) => {
-
-                    if(!currentObj.tags.includes(tempTag)) {
-
-                        currentObj.tags.push(tempTag);
-
-                    }
-
-                })
-
-            }
-
-        }
-
-
-        function prepareToRemove(tagsToRemove) {
-
-            tagsToRemove.forEach((idx) => {
-
-                currentObj.tags.splice(idx, 1);
-
-            })
-
-        }
 
 
         // Insert code here to change display of tags.
