@@ -365,6 +365,8 @@ export default class createToDoObj {
 
                 }
 
+                tagDialogElem.close();
+
             }
 
         })
