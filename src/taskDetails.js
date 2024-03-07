@@ -266,9 +266,6 @@ export default class createToDoObj {
 
     setTag(setTagBtn) {
 
-        const tagsBtn = document.getElementById('tags');
-        const tagsBtnDeepClone = tagsBtn.cloneNode(true);
-
         // Open dialog
         const tagDialogElem = document.getElementById('tagDialog');
 
@@ -380,6 +377,8 @@ export default class createToDoObj {
 
                     }
 
+                    updateTagsDisplay();
+
 
                 } else if(tagsToRemove.length !== 0) {
 
@@ -399,7 +398,16 @@ export default class createToDoObj {
         })
 
 
-        // Insert code here to change display of tags.
+        // Update tags display after saving.
+        function updateTagsDisplay() {
+
+            // Insert code here to change display of tags.
+            const tagsBtn = document.getElementById('tags');
+            const tagsBtnDeepClone = tagsBtn.cloneNode(true);
+
+            const additionalElemsSect = document.getElementById('additionalElems');
+
+        }
 
     }
 
