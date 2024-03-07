@@ -407,6 +407,9 @@ export default class createToDoObj {
 
             const additionalElemsSect = document.getElementById('additionalElems');
 
+            // Using flex for #divTwoContainer appends this where I want it.
+            // additionalElemsSect.insertAdjacentElement('afterend', tagsBtn); 
+
         }
 
     }
