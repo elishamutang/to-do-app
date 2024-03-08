@@ -659,12 +659,12 @@ a.viewing, i.viewing {
     transition: 0.2s;
 }
 
-.bx-message-square-add:hover {
-    color: white;
-}
-
-.selectedTags {
+.selectedTagsDivContainer {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.selectedTagsDivContainer:hover > .bx-message-square-add {
+    color: white;
 }
