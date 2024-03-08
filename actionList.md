@@ -10,7 +10,7 @@ Priority (Low, High)
 - Each 'To-Do' object shall have the following details:
     - ~~Title~~
     - ~~Due Date (Mock-up done, create functionality).~~
-    - Priority (Mock-up done, create functionality).
+    - ~~Tags (Mock-up done, create functionality).~~
     - ~~Notes (Notes section done, create functionality~~ and change to text area).
     - ~~Checklist~~
         - **~~Almost done, need to figure out how to disable click and drag option. Maybe change input elem to label when out of focus or button clicked and change back to input when clicked.~~**
@@ -23,13 +23,13 @@ Priority (Low, High)
         - Notes (done)
         - Checklist (done)
         - Remind Me (done)
-        - Priority (TBC)
-        - List (e.g Personal, Work) (currently working on this)
+        - Tags (currently working on this)
+        - List (e.g Personal, Work) (done)
 
-- **Finish editList and setPriority methods**
+- **Finish editList and setTags methods**
     - ~~Figure out how to update styling for current list that selected To-Do object is currently sitting in.~~ (Done)
     - ~~Figure out how to make linksContainer scrollable within its div, let additional items increase the height.~~ (Done)
-    - Finish setPriority method.
+    - Finish setTags method. Fix updating tags bug.
     - Update sidebar based on number of To-Do objects belonging to a certain list/tag.
     - ~~Update Personal button text with current list that the To-Do object is currently sitting in.~~ (Done)
 
