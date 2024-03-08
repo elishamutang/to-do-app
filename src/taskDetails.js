@@ -296,6 +296,14 @@ export default class createToDoObj {
         const tempTagsList = []; // Empty array to contain selected tags.
         const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
 
+        if(currentObj.tags.length !== 0) {
+
+            currentObj.tags.forEach((currentTag) => {
+                tempTagsList.push(currentTag);
+            })
+
+        }
+
         // Event listener for tagDialog dialog.
         tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
 
@@ -351,60 +359,61 @@ export default class createToDoObj {
 
             } else if(event.target === saveBtn) {
 
-                console.log(tempTagsList);
+                // Save selected tag(s).
+                // If currentObj.tags is empty, push all saved tags in tempTagsList into currentObj.tags.
+                if(currentObj.tags.length === 0) {
 
-                if(tempTagsList.length !== 0) {
+                    tempTagsList.forEach((tag) => {
 
-                    // Save selected tag(s).
-                    if(currentObj.tags.length === 0) {
+                        currentObj.tags.push(tag);
 
-                        tempTagsList.forEach((tag) => {
+                    })
 
-                            currentObj.tags.push(tag);
+                } else {
 
+                    if(tempTagsList.length !== 0) {
+
+                        tempTagsList.forEach((tempTag) => {
+    
+                            // Adding new tags.
+                            if(!currentObj.tags.includes(tempTag)) {
+    
+                                console.log('enter 2')
+    
+                                currentObj.tags.push(tempTag);
+    
+                            } else {
+    
+                                if(tagsToRemove.length !== 0) {
+    
+                                    tagsToRemove.forEach((idx) => {
+    
+                                        currentObj.tags.splice(idx, 1);
+    
+                                    })
+    
+                                }
+    
+                            }
+    
                         })
 
                     } else {
 
-                        tempTagsList.forEach((tempTag) => {
-
-                            if(!currentObj.tags.includes(tempTag)) {
-
-                                currentObj.tags.push(tempTag);
-
-                            }
-
-                        })
+                        currentObj.tags = tempTagsList; // Reset to empty array.
 
                     }
 
-                    updateTagsDisplay();
-
-
-                } else if(tagsToRemove.length !== 0) {
-
-                    // Remove To-Do tag(s).
-                    tagsToRemove.forEach((idx) => {
-
-                        currentObj.tags.splice(idx, 1);
-
-                    })
-
                 }
+
+                updateTagsDisplay();
+                this.removeEventListener('click', tagDialogFunc);
 
                 tagDialogElem.close();
 
             }
 
         })
-
-        if(currentObj.tags.length !== 0) {
-
-            currentObj.tags.forEach((currentTag) => {
-                console.log(currentTag);
-            })
-
-        }
 
 
         // Update tags display after saving.
