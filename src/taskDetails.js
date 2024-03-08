@@ -378,8 +378,6 @@ export default class createToDoObj {
                             // Adding new tags.
                             if(!currentObj.tags.includes(tempTag)) {
     
-                                console.log('enter 2')
-    
                                 currentObj.tags.push(tempTag);
     
                             } else {
@@ -419,6 +417,7 @@ export default class createToDoObj {
         // Update tags display after saving.
         function updateTagsDisplay() {
 
+            const tagsDiv = document.getElementById('tagsDiv');
             const tagsBtn = document.getElementById('tags');
             const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
             selectedTagsDivContainer.id = 'selectedTagsDivContainer';
@@ -428,7 +427,10 @@ export default class createToDoObj {
             tagsBtn.innerHTML = `${currentObj.tags[0]}<i class='bx bx-message-square-add'></i>`;
             tagsBtn.className = 'selectedTagsDivContainer';
 
-            selectedTagsDivContainer.appendChild(tagsBtn);
+            const divTwoContainer = document.getElementById('divTwoContainer');
+            const divTwoContainerChildren = Array.from(divTwoContainer.children);
+
+            selectedTagsDivContainer.appendChild(tagsDiv);
 
             additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
 
