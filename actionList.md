@@ -29,7 +29,7 @@ Priority (Low, High)
 - **Finish editList and setTags methods**
     - ~~Figure out how to update styling for current list that selected To-Do object is currently sitting in.~~ (Done)
     - ~~Figure out how to make linksContainer scrollable within its div, let additional items increase the height.~~ (Done)
-    - Finish setTags method. Fix updating tags bug.
+    - Finish setTags method.
     - Update sidebar based on number of To-Do objects belonging to a certain list/tag.
     - ~~Update Personal button text with current list that the To-Do object is currently sitting in.~~ (Done)
 
