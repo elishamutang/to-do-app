@@ -322,21 +322,22 @@ export default class createToDoObj {
                 // Goes thru each tag under allTags div.
                 allTags.forEach((tag) => {
 
-                    if(selectedTag === tag && !currentObj.tags.includes(selectedTag.textContent)) {
+                    if(selectedTag === tag && !tempTagsList.includes(selectedTag.textContent)) {
 
                         tempTagsList.push(selectedTag.textContent); // Pushes into temporary tags list in preparation for saving.
 
                         selectedTag.innerHTML += "<i class='bx bxs-check-circle'></i>";
 
-                    } else if(selectedTag === tag && currentObj.tags.includes(selectedTag.textContent)) {
+                    } else if(selectedTag === tag && tempTagsList.includes(selectedTag.textContent)) {
 
-                        for(let i = 0; i < currentObj.tags.length; i++) {
+                        for(let i = 0; i < tempTagsList.length; i++) {
 
-                            if(currentObj.tags[i] === selectedTag.textContent) {
+                            if(tempTagsList[i] === selectedTag.textContent) {
 
-                                console.log(`${currentObj.tags[i]} at ${i} in currentObj.tags array will be removed.`);
+                                console.log(`${tempTagsList[i]} at ${i} in currentObj.tags array will be removed.`);
                                 
                                 tagsToRemove.push(i) // Push index of tag from currentObj.tags to remove tag.
+                                tempTagsList.splice(i, 1);
 
                                 selectedTag.innerHTML = selectedTag.textContent;
 
@@ -396,6 +397,14 @@ export default class createToDoObj {
             }
 
         })
+
+        if(currentObj.tags.length !== 0) {
+
+            currentObj.tags.forEach((currentTag) => {
+                console.log(currentTag);
+            })
+
+        }
 
 
         // Update tags display after saving.
