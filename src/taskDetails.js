@@ -401,14 +401,18 @@ export default class createToDoObj {
         // Update tags display after saving.
         function updateTagsDisplay() {
 
-            // Insert code here to change display of tags.
             const tagsBtn = document.getElementById('tags');
-            const tagsBtnDeepClone = tagsBtn.cloneNode(true);
+            const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
+            selectedTagsDivContainer.id = 'selectedTagsDivContainer';
 
             const additionalElemsSect = document.getElementById('additionalElems');
 
-            // Using flex for #divTwoContainer appends this where I want it.
-            // additionalElemsSect.insertAdjacentElement('afterend', tagsBtn); 
+            tagsBtn.innerHTML = `${currentObj.tags[0]}<i class='bx bx-message-square-add'></i>`;
+            tagsBtn.className = 'selectedTagsDivContainer';
+
+            selectedTagsDivContainer.appendChild(tagsBtn);
+
+            additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
 
         }
 
