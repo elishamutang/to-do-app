@@ -663,6 +663,7 @@ a.viewing, i.viewing {
     display: flex;
     align-items: center;
     gap: 5px;
+    width: min-content;
 }
 
 .selectedTagsDivContainer:hover > .bx-message-square-add {
