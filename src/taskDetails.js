@@ -417,22 +417,52 @@ export default class createToDoObj {
         // Update tags display after saving.
         function updateTagsDisplay() {
 
-            const tagsDiv = document.getElementById('tagsDiv');
             const tagsBtn = document.getElementById('tags');
-            const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
-            selectedTagsDivContainer.id = 'selectedTagsDivContainer';
-
-            const additionalElemsSect = document.getElementById('additionalElems');
-
-            tagsBtn.innerHTML = `${currentObj.tags[0]}<i class='bx bx-message-square-add'></i>`;
-            tagsBtn.className = 'selectedTagsDivContainer';
-
             const divTwoContainer = document.getElementById('divTwoContainer');
             const divTwoContainerChildren = Array.from(divTwoContainer.children);
+            const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
 
-            selectedTagsDivContainer.appendChild(tagsDiv);
+            if(!divTwoContainerChildren.includes(targetTagsDivContainer)) {
 
-            additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
+                const tagsDiv = document.getElementById('tagsDiv');
+                const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
+                selectedTagsDivContainer.id = 'selectedTagsDivContainer';
+
+                const additionalElemsSect = document.getElementById('additionalElems');
+
+                if(currentObj.tags.length > 1) {
+
+                    currentObj.tags.forEach((tag, idx) => {
+
+                        if(idx === 0) {
+                            tagsBtn.innerHTML = `${tag}`;
+                        } else {
+                            tagsBtn.innerHTML += ` ${tag}`;
+                        }
+
+                    })
+
+                    tagsBtn.innerHTML += ` <i class='bx bx-message-square-add'></i>`;
+
+                } else {
+
+                    tagsBtn.innerHTML = `${currentObj.tags[0]}<i class='bx bx-message-square-add'></i>`;
+
+                }
+                
+                tagsBtn.className = 'selectedTagsDivContainer';
+
+                selectedTagsDivContainer.appendChild(tagsDiv);
+
+                additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
+
+            } else {
+
+                console.log(`${targetTagsDivContainer.id} is present`);
+
+                console.log(tags.innerHTML.includes(currentObj.tags[currentObj.tags.length-1]));
+
+            }
 
         }
 
