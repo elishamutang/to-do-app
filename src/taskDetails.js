@@ -458,9 +458,20 @@ export default class createToDoObj {
 
             } else {
 
-                console.log(`${targetTagsDivContainer.id} is present`);
+                // Utilize a regex to find <i></i> tag.
+                const tagsBtnArray = tagsBtn.innerHTML.split(" ");
 
-                console.log(tags.innerHTML.includes(currentObj.tags[currentObj.tags.length-1]));
+                console.log(tagsBtnArray);
+
+                currentObj.tags.forEach((tag) => {
+
+                    if(!tagsBtn.innerHTML.includes(tag)) {
+
+                        console.log(`${tag} not included`);
+
+                    }
+
+                })
 
             }
 
