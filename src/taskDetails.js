@@ -458,10 +458,10 @@ export default class createToDoObj {
 
             } else {
 
-                // Utilize a regex to find <i></i> tag.
+                // Find index of boxicon tag and insert new tags before it.
                 const tagsBtnArray = tagsBtn.innerHTML.split(" ");
 
-                console.log(tagsBtnArray);
+                const boxiconTagIdx = tagsBtnArray.indexOf("<i");
 
                 currentObj.tags.forEach((tag) => {
 
@@ -469,9 +469,13 @@ export default class createToDoObj {
 
                         console.log(`${tag} not included`);
 
+                        tagsBtnArray.splice(boxiconTagIdx, 0, tag);
+
                     }
 
                 })
+
+                tagsBtn.innerHTML = tagsBtnArray.join(" ");
 
             }
 
