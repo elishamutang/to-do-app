@@ -1,5 +1,5 @@
 import changeTask from "./switchTaskView";
-import { format } from "date-fns";
+import { constructFrom, format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
 
 // Click on any task to view details in a separate window next to task overview window.
@@ -456,16 +456,37 @@ export default class createToDoObj {
 
                 console.log(`tagsBtnDisplayArray: ${tagsBtnDisplayArray}`);
                 console.log(`currentObj tags: ${currentObj.tags}`);
+                
+                // Addition or removal of tags update the display (or innerHTML) of selectedTagsDivContainer.
+                if(currentObj.tags.length > tagsBtnDisplayArray.length) {
 
-                tagsBtnDisplayArray = currentObj.tags; // Update tagsBtnDisplayArray
+                    currentObj.tags.forEach((tag) => {
 
-                console.log(`tagsBtnDisplayArray after: ${tagsBtnDisplayArray}`);
+                        if(!tagsBtnDisplayArray.includes(tag)) {
 
-                tagsBtnDisplayArray.forEach((tag, idx) => {
+                            tagsBtnDisplayArray.push(tag);
+                            console.log(tagsBtnDisplayArray);
+    
+                        }
 
-                    // Add code here.
+                    })
 
-                })
+                } else {
+
+                    tagsBtnDisplayArray.forEach((tag, idx) => {
+
+                        if(!currentObj.tags.includes(tag)) {
+
+                            console.log(tag, idx);
+                            tagsBtnDisplayArray.splice(idx, 1);
+                            
+                        }
+
+                    })
+
+                }
+
+                tagsBtn.innerHTML = `${tagsBtnDisplayArray.join(" ")} ${boxiconTag}`; // Constructs the final string for display.
 
             }
 
