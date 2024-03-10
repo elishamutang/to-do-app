@@ -465,7 +465,7 @@ export default class createToDoObj {
 
                 currentObj.tags.forEach((tag) => {
 
-                    if(!tagsBtn.innerHTML.includes(tag)) {
+                    if(!tagsBtnArray.includes(tag)) {
 
                         console.log(`${tag} not included`);
 
