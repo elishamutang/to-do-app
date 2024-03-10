@@ -381,7 +381,8 @@ export default class createToDoObj {
                                 currentObj.tags.push(tempTag);
     
                             } else {
-    
+                                
+                                // Remove existing tags.
                                 if(tagsToRemove.length !== 0) {
     
                                     tagsToRemove.forEach((idx) => {
@@ -423,7 +424,7 @@ export default class createToDoObj {
             const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
 
             // First time save (e.g no tags associated with the particular to-do task).
-            if(!divTwoContainerChildren.includes(targetTagsDivContainer)) {
+            if(!divTwoContainerChildren.includes(targetTagsDivContainer) && currentObj.tags.length !== 0) {
 
                 const tagsDiv = document.getElementById('tagsDiv');
                 const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
@@ -431,26 +432,17 @@ export default class createToDoObj {
 
                 const additionalElemsSect = document.getElementById('additionalElems');
 
-                if(currentObj.tags.length > 1) {
+                currentObj.tags.forEach((tag, idx) => {
 
-                    currentObj.tags.forEach((tag, idx) => {
+                    if(idx === 0) {
+                        tagsBtn.innerHTML = `${tag}`;
+                    } else {
+                        tagsBtn.innerHTML += ` ${tag}`;
+                    }
 
-                        if(idx === 0) {
-                            tagsBtn.innerHTML = `${tag}`;
-                        } else {
-                            tagsBtn.innerHTML += ` ${tag}`;
-                        }
+                })
 
-                    })
-
-                    tagsBtn.innerHTML += ` <i class='bx bx-message-square-add'></i>`;
-
-                } else {
-
-                    tagsBtn.innerHTML = `${currentObj.tags[0]}<i class='bx bx-message-square-add'></i>`;
-
-                }
-                
+                tagsBtn.innerHTML += ` <i class='bx bx-message-square-add'></i>`;
                 tagsBtn.className = 'selectedTagsDivContainer';
 
                 selectedTagsDivContainer.appendChild(tagsDiv);
