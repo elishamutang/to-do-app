@@ -450,41 +450,12 @@ export default class createToDoObj {
             } else {
 
                 // Update selectedTagsDivContainer display (not first time save).
-                const tagsBtnDisplayArray = tagsBtn.innerHTML.split(" ");
+                let tagsBtnDisplayArray = tagsBtn.innerHTML.split(" ");
 
                 const boxiconTag = tagsBtnDisplayArray.splice(tagsBtnDisplayArray.indexOf("<i")).join(" "); // <i></i> boxicon tag.
-
-                console.log(`tagsBtnDisplayArray: ${tagsBtnDisplayArray}`);
-                console.log(`currentObj tags: ${currentObj.tags}`);
                 
                 // Addition or removal of tags update the display (or innerHTML) of selectedTagsDivContainer.
-                if(currentObj.tags.length > tagsBtnDisplayArray.length) {
-
-                    currentObj.tags.forEach((tag) => {
-
-                        if(!tagsBtnDisplayArray.includes(tag)) {
-
-                            tagsBtnDisplayArray.push(tag);
-                            console.log(tagsBtnDisplayArray);
-    
-                        }
-
-                    })
-
-                } else {
-
-                    tagsBtnDisplayArray.forEach((tag, idx) => {
-
-                        if(!currentObj.tags.includes(tag)) {
-
-                            console.log(tag, idx);
-                            tagsBtnDisplayArray.splice(idx, 1);
-                            
-                        }
-
-                    })
-
-                }
+                tagsBtnDisplayArray = currentObj.tags;
 
                 tagsBtn.innerHTML = `${tagsBtnDisplayArray.join(" ")} ${boxiconTag}`; // Constructs the final string for display.
 
