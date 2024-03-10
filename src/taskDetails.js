@@ -417,18 +417,19 @@ export default class createToDoObj {
         function updateTagsDisplay() {
 
             const tagsBtn = document.getElementById('tags');
+            const tagsDiv = document.getElementById('tagsDiv');
+
             const divTwoContainer = document.getElementById('divTwoContainer');
             const divTwoContainerChildren = Array.from(divTwoContainer.children);
+
             const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
+            const additionalElemsSect = document.getElementById('additionalElems');
 
             // First time save (e.g no tags associated with the particular to-do task).
             if(!divTwoContainerChildren.includes(targetTagsDivContainer) && currentObj.tags.length !== 0) {
 
-                const tagsDiv = document.getElementById('tagsDiv');
                 const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
                 selectedTagsDivContainer.id = 'selectedTagsDivContainer';
-
-                const additionalElemsSect = document.getElementById('additionalElems');
 
                 currentObj.tags.forEach((tag, idx) => {
 
@@ -457,7 +458,20 @@ export default class createToDoObj {
                 // Addition or removal of tags update the display (or innerHTML) of selectedTagsDivContainer.
                 tagsBtnDisplayArray = currentObj.tags;
 
-                tagsBtn.innerHTML = `${tagsBtnDisplayArray.join(" ")} ${boxiconTag}`; // Constructs the final string for display.
+                if(currentObj.tags.length === 0) {
+
+                    tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;
+                    tagsBtn.className = 'additionalFeatBtns';
+
+                    selectedTagsDivContainer.remove();
+
+                    additionalElemsSect.insertAdjacentElement('beforeend', tagsDiv);
+
+                } else {
+
+                    tagsBtn.innerHTML = `${tagsBtnDisplayArray.join(" ")} ${boxiconTag}`; // Constructs the final string for display.
+
+                }
 
             }
 
