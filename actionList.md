@@ -15,6 +15,7 @@ Priority (Low, High)
     - ~~Checklist~~
         - **~~Almost done, need to figure out how to disable click and drag option. Maybe change input elem to label when out of focus or button clicked and change back to input when clicked.~~**
         - **Figure out how to remove checklist items from the list and update ID number.**
+    - Store user data using localStorage.
 
 - **View controller**
     - Switch view according to selected To-Do object.
@@ -23,15 +24,17 @@ Priority (Low, High)
         - Notes (done)
         - Checklist (done)
         - Remind Me (done)
-        - Tags (currently working on this)
+        - Tags (done)
         - List (e.g Personal, Work) (done)
 
 - **Finish editList and setTags methods**
     - ~~Figure out how to update styling for current list that selected To-Do object is currently sitting in.~~ (Done)
     - ~~Figure out how to make linksContainer scrollable within its div, let additional items increase the height.~~ (Done)
-    - Finish setTags method.
+    - ~~Finish setTags method.~~
     - Update sidebar based on number of To-Do objects belonging to a certain list/tag.
     - ~~Update Personal button text with current list that the To-Do object is currently sitting in.~~ (Done)
+
+- **Utilize localStorage to store user data.**
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
