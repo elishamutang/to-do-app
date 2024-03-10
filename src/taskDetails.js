@@ -342,10 +342,14 @@ export default class createToDoObj {
 
                             if(tempTagsList[i] === selectedTag.textContent) {
 
+                                console.log(tempTagsList); // tempTagsList before tag removal.
+
                                 console.log(`${tempTagsList[i]} at ${i} in currentObj.tags array will be removed.`);
                                 
-                                tagsToRemove.push(i) // Push index of tag from currentObj.tags to remove tag.
-                                tempTagsList.splice(i, 1);
+                                tagsToRemove.push(i) // Indicates that they are potential tags to be removed.
+                                tempTagsList.splice(i, 1); // Removes tags from tempTagsList that will potentially be saved in currentObj.tags array.
+
+                                console.log(tempTagsList); // tempTagsList after tag removal.
 
                                 selectedTag.innerHTML = selectedTag.textContent;
 
@@ -381,12 +385,8 @@ export default class createToDoObj {
                                 // Remove existing tags.
                                 if(tagsToRemove.length !== 0) {
 
-                                    tagsToRemove.forEach((idx) => {
-    
-                                        currentObj.tags.splice(idx, 1);
-    
-                                    })
-    
+                                    currentObj.tags = tempTagsList;
+
                                 }
     
                             }
