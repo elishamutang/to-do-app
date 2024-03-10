@@ -1,7 +1,9 @@
 # To-Do App (WIP)
 
 ## About
-- This project from The Odin Project focuses on the usage of Objects, DOM manipulation, NPM and Webpack (for bundling).
+- A minimal To-Do List application written in HTML/CSS and Vanilla JavaScript.
+- Users are directed to a 'Home' page, where new to-do tasks can be added or ticked off. Additionally, users are able to create new Lists or Tags.
+- Additional features such as Remind Me, Changing list, and adding tags were added.
 
 ## Screenshots
 
