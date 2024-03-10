@@ -422,6 +422,7 @@ export default class createToDoObj {
             const divTwoContainerChildren = Array.from(divTwoContainer.children);
             const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
 
+            // First time save (e.g no tags associated with the particular to-do task).
             if(!divTwoContainerChildren.includes(targetTagsDivContainer)) {
 
                 const tagsDiv = document.getElementById('tagsDiv');
@@ -458,6 +459,8 @@ export default class createToDoObj {
 
             } else {
 
+                // Code below adds additional tags and updates selectedTagsDivContainer display.
+
                 // Find index of boxicon tag and insert new tags before it.
                 const tagsBtnArray = tagsBtn.innerHTML.split(" ");
 
@@ -467,7 +470,7 @@ export default class createToDoObj {
 
                     if(!tagsBtnArray.includes(tag)) {
 
-                        console.log(`${tag} not included`);
+                        console.log(`${tag} not included in selectedTagsDivContainer display`);
 
                         tagsBtnArray.splice(boxiconTagIdx, 0, tag);
 
@@ -476,6 +479,11 @@ export default class createToDoObj {
                 })
 
                 tagsBtn.innerHTML = tagsBtnArray.join(" ");
+
+
+                // Code below to remove existing tags.
+                console.log(tagsBtnArray);
+
 
             }
 
