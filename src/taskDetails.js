@@ -454,26 +454,29 @@ export default class createToDoObj {
                 // Find index of boxicon tag and insert new tags before it.
                 const tagsBtnArray = tagsBtn.innerHTML.split(" ");
 
-                const boxiconTagIdx = tagsBtnArray.indexOf("<i");
+                const boxiconTag = tagsBtnArray.slice(tagsBtnArray.indexOf("<i")).join(" "); // <i></i> boxicon tag.
 
-                currentObj.tags.forEach((tag) => {
+                console.log(boxiconTag);
 
-                    if(!tagsBtnArray.includes(tag)) {
 
-                        console.log(`${tag} not included in selectedTagsDivContainer display`);
+                // currentObj.tags.forEach((tag) => {
 
-                        tagsBtnArray.splice(boxiconTagIdx, 0, tag);
+                //     if(!tagsBtnArray.includes(tag)) {
 
-                    }
+                //         console.log(`${tag} not included in selectedTagsDivContainer display`);
 
-                })
+                //         tagsBtnArray.splice(boxiconTagIdx, 0, tag);
+
+                //     }
+
+                // })
 
                 tagsBtn.innerHTML = tagsBtnArray.join(" ");
 
 
                 // Code below to remove existing tags.
-                // console.log(tagsBtnArray);
-                // console.log(currentObj.tags);
+                console.log(tagsBtnArray);
+                console.log(currentObj.tags);
 
 
             }
