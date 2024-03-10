@@ -47,3 +47,6 @@ Priority (Low, High)
 
 ## Create welcome screen (Low) (On-Hold)
 - Prompt user to enter name.
+
+## Re-factoring (Low)
+- Use inheritance for features in additionalElems div.
