@@ -363,11 +363,7 @@ export default class createToDoObj {
                 // If currentObj.tags is empty, push all saved tags in tempTagsList into currentObj.tags.
                 if(currentObj.tags.length === 0) {
 
-                    tempTagsList.forEach((tag) => {
-
-                        currentObj.tags.push(tag);
-
-                    })
+                    currentObj.tags = tempTagsList;
 
                 } else {
 
@@ -384,7 +380,7 @@ export default class createToDoObj {
                                 
                                 // Remove existing tags.
                                 if(tagsToRemove.length !== 0) {
-    
+
                                     tagsToRemove.forEach((idx) => {
     
                                         currentObj.tags.splice(idx, 1);
@@ -399,7 +395,9 @@ export default class createToDoObj {
 
                     } else {
 
-                        currentObj.tags = tempTagsList; // Reset to empty array.
+                        // tempTagsList = [];
+            
+                        currentObj.tags = tempTagsList; // Resets currentObj.tags to empty array.
 
                     }
 
@@ -474,7 +472,8 @@ export default class createToDoObj {
 
 
                 // Code below to remove existing tags.
-                console.log(tagsBtnArray);
+                // console.log(tagsBtnArray);
+                // console.log(currentObj.tags);
 
 
             }
