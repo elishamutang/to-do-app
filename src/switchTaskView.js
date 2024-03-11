@@ -117,7 +117,9 @@ export default function changeTask(currentObj) {
         }
 
     })
-    
+
+
+    // Overwrite tags display.
     
 
 }
