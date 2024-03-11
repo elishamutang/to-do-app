@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 // Switch task view based on currentObj from taskDetails.js and overwrite the details.
 
 export default function changeTask(currentObj) {
@@ -120,6 +118,28 @@ export default function changeTask(currentObj) {
 
 
     // Overwrite tags display.
-    
+    const selectedTagsDivContainer = document.getElementById('selectedTagsDivContainer');
+    const tagsDiv = document.getElementById('tagsDiv');
+    const tagsBtn = document.getElementById('tags');
+
+    const additionalElems = document.getElementById('additionalElems');
+    const divTwoContainerChildren = Array.from(document.getElementById('divTwoContainer').children);
+
+
+    if(currentObj.tags.length === 0) {
+
+        if(divTwoContainerChildren.includes(selectedTagsDivContainer)) {
+
+            console.log('remove');
+            selectedTagsDivContainer.remove();
+
+            tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;;
+            tagsBtn.className = 'additionalFeatBtns';
+
+            additionalElems.insertAdjacentElement('beforeend', tagsDiv);
+
+        }
+
+    }
 
 }
