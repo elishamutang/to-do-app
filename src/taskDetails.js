@@ -410,7 +410,6 @@ export default class createToDoObj {
         // Update tags display after saving.
         function updateTagsDisplay() {
 
-            let tagsInsideTheirDivs = [];
             const tagsBtn = document.getElementById('tags');
             const tagsDiv = document.getElementById('tagsDiv');
 
@@ -426,24 +425,17 @@ export default class createToDoObj {
                 const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
                 selectedTagsDivContainer.id = 'selectedTagsDivContainer';
 
-                // tagsBtn.innerHTML = "";
+                tagsBtn.innerHTML = "";
 
                 // Insert each tag in its own div.
-                currentObj.tags.forEach((tag, idx) => {
+                currentObj.tags.forEach((tag) => {
 
-                    // const individualTagDiv = document.createElement('div');
-                    // individualTagDiv.textContent = tag;
+                    const individualTagDiv = document.createElement('div');
 
-                    // tagsInsideTheirDivs.push(individualTagDiv);
+                    individualTagDiv.className = 'selectedTags';
+                    individualTagDiv.textContent = tag;
 
-                    if(idx === 0) {
-                        tagsBtn.innerHTML = `${tag}`;
-                        // tagsBtn.append(tagsInsideTheirDivs[idx]);
-
-                    } else {
-                        tagsBtn.innerHTML += ` ${tag}`;
-                        // tagsBtn.append(tagsInsideTheirDivs[idx]);
-                    }
+                    tagsBtn.append(individualTagDiv);
 
                 })
 
@@ -457,31 +449,41 @@ export default class createToDoObj {
             } else {
 
                 // Update selectedTagsDivContainer display (not first time save).
-                let tagsBtnDisplayArray = tagsBtn.innerHTML.split(" ");
+                const getAllDisplayTags = Array.from(document.getElementsByClassName('selectedTags')); // Tags
+                const getAllDisplayTagsTextContent = getAllDisplayTags.map(tag => tag.textContent);
 
-                const boxiconTag = tagsBtnDisplayArray.splice(tagsBtnDisplayArray.indexOf("<i")).join(" "); // <i></i> boxicon tag.
-                
-                // Addition or removal of tags update the display (or innerHTML) of selectedTagsDivContainer.
-                tagsBtnDisplayArray = currentObj.tags;
+                const boxiconTag = tagsBtn.querySelector('i');
 
+                // Addition or removal of tags for a To-Do task.
                 if(currentObj.tags.length === 0) {
 
                     tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;
                     tagsBtn.className = 'additionalFeatBtns';
 
-                    selectedTagsDivContainer.remove();
+                    targetTagsDivContainer.remove();
 
                     additionalElemsSect.insertAdjacentElement('beforeend', tagsDiv);
 
                 } else {
 
-                    tagsBtn.innerHTML = `${tagsBtnDisplayArray.join(" ")} ${boxiconTag}`; // Constructs the final string for display.
+                    tagsBtn.innerHTML = "";
+
+                    currentObj.tags.forEach((tag) => {
+
+                        const createNewTagDiv = document.createElement('div');
+
+                        createNewTagDiv.className = 'selectedTags';
+                        createNewTagDiv.textContent = tag;
+
+                        tagsBtn.append(createNewTagDiv);
+
+                    })
+
+                    tagsBtn.insertAdjacentElement('beforeend', boxiconTag);
 
                 }
 
             }
-
-            console.log(tagsInsideTheirDivs);
 
         }
 
