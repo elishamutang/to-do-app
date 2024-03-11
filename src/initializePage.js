@@ -176,11 +176,6 @@ function taskDetailsEvent(event, toDoObj) {
         // Replace label element to input element to change checklistItem content.
         changeChecklistInputElem(event, toDoObj);
 
-    } else if(event.target.className.includes('selectedTags')) {
-
-        // Allow user to change (add or remove) tag.
-        toDoObj.setTag(event.target);
-
-    } 
-
+    }
+    
 }
