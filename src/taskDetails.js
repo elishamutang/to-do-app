@@ -276,13 +276,14 @@ export default class createToDoObj {
         const tempTagsList = []; // Empty array to contain selected tags.
         const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
 
-        // Style relevant tags associated with currentObj.tags array.
         if(currentObj.tags.length !== 0) {
 
             currentObj.tags.forEach((tag) => {
 
+                // Any tag currently associated with currentObj will be pushed into tempTagsList.
                 tempTagsList.push(tag);
 
+                // Style relevant tags associated with currentObj.tags array when tagDialogElem modal is open.
                 allTags.forEach((existingTag) => {
 
                     if(tag === existingTag.textContent) {
