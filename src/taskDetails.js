@@ -406,87 +406,6 @@ export default class createToDoObj {
 
         })
 
-
-        // Update tags display after saving.
-        function updateTagsDisplay() {
-
-            const tagsBtn = document.getElementById('tags');
-            const tagsDiv = document.getElementById('tagsDiv');
-
-            const divTwoContainer = document.getElementById('divTwoContainer');
-            const divTwoContainerChildren = Array.from(divTwoContainer.children);
-
-            const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
-            const additionalElemsSect = document.getElementById('additionalElems');
-
-            // First time save (e.g no tags associated with the particular to-do task).
-            if(!divTwoContainerChildren.includes(targetTagsDivContainer) && currentObj.tags.length !== 0) {
-
-                const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
-                selectedTagsDivContainer.id = 'selectedTagsDivContainer';
-
-                tagsBtn.innerHTML = "";
-
-                // Insert each tag in its own div.
-                currentObj.tags.forEach((tag) => {
-
-                    const individualTagDiv = document.createElement('div');
-
-                    individualTagDiv.className = 'selectedTags';
-                    individualTagDiv.textContent = tag;
-
-                    tagsBtn.append(individualTagDiv);
-
-                })
-
-                tagsBtn.innerHTML += ` <i class='bx bx-message-square-add'></i>`;
-                tagsBtn.className = 'selectedTagsDivContainer';
-
-                selectedTagsDivContainer.appendChild(tagsDiv);
-
-                additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
-
-            } else {
-
-                // Update selectedTagsDivContainer display (not first time save).
-                const getAllDisplayTags = Array.from(document.getElementsByClassName('selectedTags')); // Tags
-                const getAllDisplayTagsTextContent = getAllDisplayTags.map(tag => tag.textContent);
-
-                const boxiconTag = tagsBtn.querySelector('i');
-
-                // Addition or removal of tags for a To-Do task.
-                if(currentObj.tags.length === 0) {
-
-                    tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;
-                    tagsBtn.className = 'additionalFeatBtns';
-
-                    targetTagsDivContainer.remove();
-
-                    additionalElemsSect.insertAdjacentElement('beforeend', tagsDiv);
-
-                } else {
-
-                    tagsBtn.innerHTML = "";
-
-                    currentObj.tags.forEach((tag) => {
-
-                        const createNewTagDiv = document.createElement('div');
-
-                        createNewTagDiv.className = 'selectedTags';
-                        createNewTagDiv.textContent = tag;
-
-                        tagsBtn.append(createNewTagDiv);
-
-                    })
-
-                    tagsBtn.insertAdjacentElement('beforeend', boxiconTag);
-
-                }
-
-            }
-
-        }
-
     }
 
 }
@@ -555,5 +474,82 @@ function createNewChecklistItem(checklistItems) {
         }
 
     }, {once: true});
+
+}
+
+// Update tags display after saving.
+function updateTagsDisplay() {
+
+    const tagsBtn = document.getElementById('tags');
+    const tagsDiv = document.getElementById('tagsDiv');
+
+    const divTwoContainer = document.getElementById('divTwoContainer');
+    const divTwoContainerChildren = Array.from(divTwoContainer.children);
+
+    const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
+    const additionalElemsSect = document.getElementById('additionalElems');
+
+    // First time save (e.g no tags associated with the particular to-do task).
+    if(!divTwoContainerChildren.includes(targetTagsDivContainer) && currentObj.tags.length !== 0) {
+
+        const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
+        selectedTagsDivContainer.id = 'selectedTagsDivContainer';
+
+        tagsBtn.innerHTML = "";
+
+        // Insert each tag in its own div.
+        currentObj.tags.forEach((tag) => {
+
+            const individualTagDiv = document.createElement('div');
+
+            individualTagDiv.className = 'selectedTags';
+            individualTagDiv.textContent = tag;
+
+            tagsBtn.append(individualTagDiv);
+
+        })
+
+        tagsBtn.innerHTML += ` <i class='bx bx-message-square-add'></i>`;
+        tagsBtn.className = 'selectedTagsDivContainer';
+
+        selectedTagsDivContainer.appendChild(tagsDiv);
+
+        additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
+
+    } else {
+
+        // Update selectedTagsDivContainer display (not first time save).
+        const boxiconTag = tagsBtn.querySelector('i');
+
+        // Addition or removal of tags for a To-Do task.
+        if(currentObj.tags.length === 0) {
+
+            tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;
+            tagsBtn.className = 'additionalFeatBtns';
+
+            targetTagsDivContainer.remove();
+
+            additionalElemsSect.insertAdjacentElement('beforeend', tagsDiv);
+
+        } else {
+
+            tagsBtn.innerHTML = "";
+
+            currentObj.tags.forEach((tag) => {
+
+                const createNewTagDiv = document.createElement('div');
+
+                createNewTagDiv.className = 'selectedTags';
+                createNewTagDiv.textContent = tag;
+
+                tagsBtn.append(createNewTagDiv);
+
+            })
+
+            tagsBtn.insertAdjacentElement('beforeend', boxiconTag);
+
+        }
+
+    }
 
 }
