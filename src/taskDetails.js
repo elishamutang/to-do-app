@@ -273,10 +273,15 @@ export default class createToDoObj {
 
         const allTags = Array.from(document.getElementById('allTags').children); // Array of all anchor tags under allTags div.
 
+        const tempTagsList = []; // Empty array to contain selected tags.
+        const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
+
         // Style relevant tags associated with currentObj.tags array.
         if(currentObj.tags.length !== 0) {
 
             currentObj.tags.forEach((tag) => {
+
+                tempTagsList.push(tag);
 
                 allTags.forEach((existingTag) => {
 
@@ -288,18 +293,6 @@ export default class createToDoObj {
 
                 })
     
-            })
-
-        }
-
-
-        const tempTagsList = []; // Empty array to contain selected tags.
-        const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
-
-        if(currentObj.tags.length !== 0) {
-
-            currentObj.tags.forEach((currentTag) => {
-                tempTagsList.push(currentTag);
             })
 
         }
@@ -416,6 +409,7 @@ export default class createToDoObj {
         // Update tags display after saving.
         function updateTagsDisplay() {
 
+            let tagsInsideTheirDivs = [];
             const tagsBtn = document.getElementById('tags');
             const tagsDiv = document.getElementById('tagsDiv');
 
@@ -431,12 +425,23 @@ export default class createToDoObj {
                 const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
                 selectedTagsDivContainer.id = 'selectedTagsDivContainer';
 
+                // tagsBtn.innerHTML = "";
+
+                // Insert each tag in its own div.
                 currentObj.tags.forEach((tag, idx) => {
+
+                    // const individualTagDiv = document.createElement('div');
+                    // individualTagDiv.textContent = tag;
+
+                    // tagsInsideTheirDivs.push(individualTagDiv);
 
                     if(idx === 0) {
                         tagsBtn.innerHTML = `${tag}`;
+                        // tagsBtn.append(tagsInsideTheirDivs[idx]);
+
                     } else {
                         tagsBtn.innerHTML += ` ${tag}`;
+                        // tagsBtn.append(tagsInsideTheirDivs[idx]);
                     }
 
                 })
@@ -474,6 +479,8 @@ export default class createToDoObj {
                 }
 
             }
+
+            console.log(tagsInsideTheirDivs);
 
         }
 
