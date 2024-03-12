@@ -118,7 +118,8 @@ export default function changeTask(currentObj) {
 
 
     // Overwrite tags display.
-    const selectedTagsDivContainer = document.getElementById('selectedTagsDivContainer');
+    const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
+
     const tagsDiv = document.getElementById('tagsDiv');
     const tagsBtn = document.getElementById('tags');
 
@@ -128,10 +129,10 @@ export default function changeTask(currentObj) {
 
     if(currentObj.tags.length === 0) {
 
-        if(divTwoContainerChildren.includes(selectedTagsDivContainer)) {
+        if(divTwoContainerChildren.includes(targetTagsDivContainer)) {
 
             console.log('remove');
-            selectedTagsDivContainer.remove();
+            targetTagsDivContainer.remove();
 
             tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;;
             tagsBtn.className = 'additionalFeatBtns';
@@ -140,6 +141,80 @@ export default function changeTask(currentObj) {
 
         }
 
+    } else {
+
+        console.log('currentObj tags not empty');
+
+        if(!divTwoContainerChildren.includes(targetTagsDivContainer)) {
+
+            console.log('no selectedTagsDivContainer');
+
+            const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
+            selectedTagsDivContainer.id = 'selectedTagsDivContainer';
+
+            tagsBtn.innerHTML = "";
+
+            // Insert each tag in its own div.
+            currentObj.tags.forEach((tag) => {
+
+                const individualTagDiv = document.createElement('div');
+
+                individualTagDiv.className = 'selectedTags';
+                individualTagDiv.textContent = tag;
+
+                tagsBtn.append(individualTagDiv);
+
+            })
+
+            tagsBtn.innerHTML += ` <i class='bx bx-message-square-add'></i>`;
+            tagsBtn.className = 'selectedTagsDivContainer';
+
+            selectedTagsDivContainer.appendChild(tagsDiv);
+
+            additionalElems.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
+
+        } else {
+
+            console.log('has seletedTagDivContainer');
+
+            const boxiconTag = tagsBtn.querySelector('i');
+            tagsBtn.innerHTML = "";
+
+            currentObj.tags.forEach((tag) => {
+
+                const createNewTagDiv = document.createElement('div');
+
+                createNewTagDiv.className = 'selectedTags';
+                createNewTagDiv.textContent = tag;
+
+                tagsBtn.append(createNewTagDiv);
+
+            })
+
+            tagsBtn.insertAdjacentElement('beforeend', boxiconTag);
+
+        }
+
+
     }
+
+    
+    // Overwrite tagDialogElem.
+    const allTags = Array.from(document.getElementById('allTags').children);
+
+    allTags.forEach((tag) => {
+
+        if(currentObj.tags.includes(tag.textContent)) {
+
+            console.log(`${currentObj.title} includes ${tag.textContent}`);
+            tag.innerHTML = `${tag.textContent}<i class='bx bxs-check-circle'></i>`;
+
+        } else {
+
+            tag.innerHTML = `${tag.textContent}`;
+
+        }
+        
+    })
 
 }
