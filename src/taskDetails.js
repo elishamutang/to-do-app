@@ -276,12 +276,10 @@ export default class createToDoObj {
         const tempTagsList = []; // Empty array to contain selected tags.
         const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
 
-        console.log(allTags);
 
         // Styling tagDialogElem with current tags.
         if(currentObj.tags.length !== 0) {
 
-            console.log(tempTagsList);
             currentObj.tags.forEach((tag) => {
 
                 // Any tag currently associated with currentObj will be pushed into tempTagsList.
@@ -292,7 +290,6 @@ export default class createToDoObj {
 
                     if(tag === existingTag.textContent) {
 
-                        console.log(tag);
                         existingTag.innerHTML = `${tag}<i class='bx bxs-check-circle'></i>`;
 
                     }
@@ -310,6 +307,7 @@ export default class createToDoObj {
             })
 
         }
+        
 
         // Event listener for tagDialog dialog.
         tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
