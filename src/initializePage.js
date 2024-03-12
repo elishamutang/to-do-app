@@ -82,7 +82,7 @@ export default function initializePage() {
     addNewTaskBtn.disabled = true;
 
     // Check user input when adding new tasks.
-    addNewTask.addEventListener('focus', (event) => {
+    addNewTask.addEventListener('focus', () => {
         checkFormInput(addNewTask, taskInputForm.className);
     })
 
