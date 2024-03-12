@@ -162,7 +162,7 @@ function taskDetailsEvent(event, toDoObj) {
             break;
 
         case 'tags':
-            toDoObj.setTag(event.target);
+            toDoObj.setTag();
             break;
 
         default:

@@ -264,7 +264,7 @@ export default class createToDoObj {
     }
 
 
-    setTag(setTagBtn) {
+    setTag() {
 
         // Open dialog
         const tagDialogElem = document.getElementById('tagDialog');
