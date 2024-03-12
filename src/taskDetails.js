@@ -278,6 +278,7 @@ export default class createToDoObj {
 
         console.log(allTags);
 
+        // Styling tagDialogElem with current tags.
         if(currentObj.tags.length !== 0) {
 
             console.log(tempTagsList);
