@@ -93,6 +93,23 @@ ul {
     gap: 20px;
 }
 
+li {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+li > div {
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 20%;
+}
+
+.bxs-circle {
+    color: var(--tenPercent);
+    font-size: 18px;
+}
+
 li i {
     font-size: 23px;
     transition: 0.3s;
@@ -582,8 +599,12 @@ fieldset legend {
     border: 2px solid white;
 }
 
-a.viewing, i.viewing {
+a.viewing {
     color: var(--tenPercent);
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .additionalFeatBtns {
