@@ -25,8 +25,9 @@ html, body {
 }
 
 #container {
+    min-height: 100vh;
     display: grid;
-    grid-template-columns: 0.15fr 0.85fr;
+    grid-template-columns: 13% 87%;
     grid-template-areas: 
         "sidebar main"
     ;
@@ -36,7 +37,6 @@ html, body {
     grid-area: sidebar;
     background: var(--sidebar);
     width: 100%;
-    min-height: 100vh;
     overflow-x: hidden;
     
     display: flex;
@@ -53,7 +53,15 @@ html, body {
 }
 
 .userInfo h1 {
-    font-size: 30px;
+    font-size: 28px;
+}
+
+.userTasks {
+    gap: 10px;
+}
+
+.userTasks:hover > i, .userTasks:hover > a {
+    color: white;
 }
 
 .userProfile div {
@@ -74,7 +82,6 @@ html, body {
     font-size: 28px;
     cursor: pointer;
     text-align: center;
-    /* background: var(--content); */
     background: var(--tenPercent);
 }
 
@@ -114,7 +121,7 @@ li:hover > i, li:hover > i > a {
 
 .list {
     color: var(--secondary);
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .list:hover {
@@ -143,6 +150,8 @@ button {
 
 .bx-task {
     color: var(--secondary);
+    font-size: 20px;
+    transition: 0.3s;
 }
 
 .bx-rotate-90 {
