@@ -11,6 +11,11 @@
     --secondary: rgba(255, 255, 255, 0.529);
     --content: #91C8E4;
     --tenPercent: #59c1bed8;
+    --priority: rgb(194, 31, 31);
+    --important: orangered;
+    --urgent: darkred;
+    --deadline: orange;
+    --family: mediumseagreen;
 }
 
 html, body {
@@ -459,7 +464,6 @@ fieldset legend {
 
 .detailSubHead {
     font-size: 17px;
-    letter-spacing: 1.5px;
     font-weight: bold;
 }
 
@@ -655,7 +659,7 @@ a.viewing, i.viewing {
 
 .bx-message-square-add {
     color: var(--secondary);
-    font-size: 20px;
+    font-size: 23px;
     transition: 0.2s;
 }
 
@@ -668,4 +672,31 @@ a.viewing, i.viewing {
 
 .selectedTagsDivContainer:hover > .bx-message-square-add {
     color: white;
+}
+
+div.selectedTags {
+    background: var(--tenPercent);
+    padding: 3px 8px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+#priority {
+    background: var(--priority);
+}
+
+#important {
+    background: var(--important);
+}
+
+#urgent {
+    background: var(--urgent);
+}
+
+#deadline {
+    background: var(--deadline);
+}
+
+#family {
+    background: var(--family);
 }
