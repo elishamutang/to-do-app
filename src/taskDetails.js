@@ -266,6 +266,7 @@ export default class createToDoObj {
 
     setTag() {
 
+        // Prepare list in dialog.
         // One-liner to get tag text only without # infront.
         const allTagsList = Array.from(document.getElementsByClassName('currentTags')).map(tag => tag.textContent).map(text => text.replace('#', ''));
 
@@ -289,7 +290,7 @@ export default class createToDoObj {
 
         tagDialogElem.showModal();
 
-        const allTags = Array.from(document.getElementById('allTags').children); // Array of all anchor tags under allTags div.
+        const allTags = Array.from(allTagsDiv.children); // Array of all anchor tags under allTags div.
 
         const tempTagsList = []; // Empty array to contain selected tags.
         const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
