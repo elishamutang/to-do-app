@@ -1,6 +1,7 @@
 import changeTask from "./switchTaskView";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
+import updateSidebar from "./updateSidebar";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -257,6 +258,8 @@ export default class createToDoObj {
 
                 }
 
+                updateSidebar(currentObj, currentLists); // Update sidebar quantity.
+
             }
 
         })
@@ -268,13 +271,14 @@ export default class createToDoObj {
 
         // Prepare list in dialog.
         // One-liner to get tag text only without # infront.
-        const allTagsList = Array.from(document.getElementsByClassName('currentTags')).map(tag => tag.textContent).map(text => text.replace('#', ''));
+        const allTagsList = Array.from(document.getElementsByClassName('currentTags'));
+        const allTagsListText = allTagsList.map(tag => tag.textContent).map(text => text.replace('#', ''));
 
         const allTagsDiv = document.getElementById('allTags');
 
         if(allTagsDiv.children.length === 0) {
 
-            allTagsList.forEach((text) => {
+            allTagsListText.forEach((text) => {
 
                 const textToTag = document.createElement('a');
                 textToTag.textContent = text;
@@ -426,7 +430,8 @@ export default class createToDoObj {
 
                 }
 
-                updateTagsDisplay();
+                updateSidebar(currentObj, allTagsList);
+                updateTagsDisplay(); // Inserts a div just below the additionalElem div where it displays the selected tags.
                 this.removeEventListener('click', tagDialogFunc);
 
                 tagDialogElem.close();
