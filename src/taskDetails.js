@@ -514,6 +514,7 @@ function updateTagsDisplay() {
             const individualTagDiv = document.createElement('div');
 
             individualTagDiv.className = 'selectedTags';
+            individualTagDiv.id = tag.toLowerCase();
             individualTagDiv.textContent = tag;
 
             tagsBtn.append(individualTagDiv);
@@ -551,6 +552,7 @@ function updateTagsDisplay() {
                 const createNewTagDiv = document.createElement('div');
 
                 createNewTagDiv.className = 'selectedTags';
+                createNewTagDiv.id = tag.toLowerCase();
                 createNewTagDiv.textContent = tag;
 
                 tagsBtn.append(createNewTagDiv);
