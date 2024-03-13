@@ -142,38 +142,32 @@ export default function initializePage() {
 // Handles events for task details.
 function taskDetailsEvent(event, toDoObj) {
 
-    switch(event.target.id) {
+    const elem = event.target;
+    
+    if(elem.id === 'addChecklistItem') {
 
-        case 'addChecklistItem':
-            toDoObj.addToChecklist();
-            event.preventDefault();
-            break;
+        toDoObj.addToChecklist();
+        event.preventDefault();
+        
+    } else if(elem.id === 'notes') {
 
-        case 'notes':
-            toDoObj.createNote();
-            break;
+        toDoObj.createNote();
 
-        case 'remindMe':
-            toDoObj.reminder(event.target);
-            break;
+    } else if(elem.id === 'remindMe') {
 
-        case 'currentList':
-            toDoObj.editList(event.target);
-            break;
+        toDoObj.reminder(elem);
 
-        case 'tags':
-            toDoObj.setTag();
-            break;
+    } else if(elem.id === 'currentList') {
 
-        default:
-            break;
+        toDoObj.editList(elem);
 
-    }
+    } else if(elem.id === 'tags' || elem.className === 'selectedTags') {
 
-    // Targets checklist items.
-    if(event.target.className.includes('checklistItem')) {
+        toDoObj.setTag();
 
-        // Replace label element to input element to change checklistItem content.
+    } else if(elem.className.includes('checklistItem')) {
+
+        // Target checklist items. Replaces label element to input element to change checklistItem content. 
         changeChecklistInputElem(event, toDoObj);
 
     }
