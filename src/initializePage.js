@@ -45,6 +45,7 @@ export default function initializePage() {
                 if(item.textContent === selection.textContent) {
 
                     selection.className += ' viewing';
+                    selection.innerHTML += "<i class='bx bxs-circle'></i>";
                     lastSelection.push(item);
 
                 }
@@ -59,6 +60,7 @@ export default function initializePage() {
                 if(currentSelectedElem.textContent !== lastSelectedElem.textContent) {
                     
                     lastSelection[lastSelection.length-2].className = 'list';
+                    lastSelection[lastSelection.length-2].innerHTML = lastSelection[lastSelection.length-2].textContent;
 
                 }
 
