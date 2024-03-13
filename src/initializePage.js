@@ -15,14 +15,12 @@ export default function initializePage() {
     mainHeader.append(mainHeaderHeading);
 
 
-    // Create new lists / tags.
-    // Attach event listeners to create new lists / tags.
-    const createNewBtns = document.querySelectorAll('.header > button');
+    // Create new lists
+    // Attach event listeners to create new lists
+    const createNewListBtn = document.querySelector('.header > button');
 
-    createNewBtns.forEach((btn) => {
-        btn.addEventListener('click', (event) => {
-            createNew(event.currentTarget);
-        })
+    createNewListBtn.addEventListener('click', (event) => {
+        createNew(event.currentTarget);
     })
 
     
