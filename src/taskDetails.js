@@ -277,6 +277,15 @@ export default class createToDoObj {
         const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
 
 
+        const allTagsList = Array.from(document.getElementsByClassName('currentTags')).map(tag => tag.textContent);
+        
+        allTagsList.forEach((text) => {
+
+            console.log(text);
+
+        })
+
+
         // Styling tagDialogElem with current tags.
         if(currentObj.tags.length !== 0) {
 
