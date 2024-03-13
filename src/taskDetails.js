@@ -266,6 +266,24 @@ export default class createToDoObj {
 
     setTag() {
 
+        // One-liner to get tag text only without # infront.
+        const allTagsList = Array.from(document.getElementsByClassName('currentTags')).map(tag => tag.textContent).map(text => text.replace('#', ''));
+
+        const allTagsDiv = document.getElementById('allTags');
+
+        if(allTagsDiv.children.length === 0) {
+
+            allTagsList.forEach((text) => {
+
+                const textToTag = document.createElement('a');
+                textToTag.textContent = text;
+    
+                allTagsDiv.append(textToTag);
+    
+            })
+            
+        }
+
         // Open dialog
         const tagDialogElem = document.getElementById('tagDialog');
 
@@ -275,16 +293,6 @@ export default class createToDoObj {
 
         const tempTagsList = []; // Empty array to contain selected tags.
         const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
-
-
-        const allTagsList = Array.from(document.getElementsByClassName('currentTags')).map(tag => tag.textContent);
-        
-        allTagsList.forEach((text) => {
-
-            console.log(text);
-
-        })
-
 
         // Styling tagDialogElem with current tags.
         if(currentObj.tags.length !== 0) {
