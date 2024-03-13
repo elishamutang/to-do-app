@@ -520,7 +520,7 @@ function updateTagsDisplay() {
 
         })
 
-        tagsBtn.innerHTML += ` <i class='bx bx-message-square-add'></i>`;
+        tagsBtn.innerHTML += ` <i class='bx bx-message-square-add selectedTags'></i>`;
         tagsBtn.className = 'selectedTagsDivContainer';
 
         selectedTagsDivContainer.appendChild(tagsDiv);

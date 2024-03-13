@@ -161,7 +161,7 @@ function taskDetailsEvent(event, toDoObj) {
 
         toDoObj.editList(elem);
 
-    } else if(elem.id === 'tags' || elem.className === 'selectedTags') {
+    } else if(elem.id === 'tags' || elem.className.includes('selectedTags')) {
 
         toDoObj.setTag();
 
