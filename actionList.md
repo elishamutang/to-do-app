@@ -28,7 +28,7 @@ Priority (Low, High)
         - List (e.g Personal, Work) (done)
 
 - **Finish editList and setTags methods**
-    - Update sidebar based on number of To-Do objects belonging to a certain list/tag.
+    - Update sidebar based on number of To-Do objects belonging to a certain list/tag. (updateSidebar.js)
     - Finish switchView.js.
     - ~~Figure out how to update styling for current list that selected To-Do object is currently sitting in.~~ (Done)
     - ~~Figure out how to make linksContainer scrollable within its div, let additional items increase the height.~~ (Done)
