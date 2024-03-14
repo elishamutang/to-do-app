@@ -1,7 +1,7 @@
 import changeTask from "./switchTaskView";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
-import updateSidebar from "./updateSidebar";
+import { updateSidebarLists, updateSidebarTags } from "./updateSidebar";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -258,7 +258,7 @@ export default class createToDoObj {
 
                 }
 
-                updateSidebar(currentObj, currentLists); // Update sidebar quantity.
+                updateSidebarLists(currentObj, currentLists); // Update sidebar quantity.
 
             }
 
@@ -430,7 +430,7 @@ export default class createToDoObj {
 
                 }
 
-                updateSidebar(currentObj, allTagsList);
+                updateSidebarTags(currentObj, allTagsList);
                 updateTagsDisplay(); // Inserts a div just below the additionalElem div where it displays the selected tags.
                 this.removeEventListener('click', tagDialogFunc);
 
