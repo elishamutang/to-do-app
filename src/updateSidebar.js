@@ -1,8 +1,26 @@
 // Update quantities of to-do task based on tags and list.
 
-export default function updateSidebar(currentObj, listsOrTags) {
+export function updateSidebarLists(currentObj, currentLists) {
 
-    console.log(currentObj.list);
-    console.log(listsOrTags);
+    currentLists.forEach((list) => {
+
+        if(currentObj.list === list.textContent) {
+
+            // Insert code here
+
+        }
+
+
+    })
+
+
+}
+
+
+export function updateSidebarTags(currentObj, allTagsList) {
+
+    // Insert code here
+
+
 
 }
