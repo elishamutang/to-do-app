@@ -8,6 +8,8 @@ export function updateSidebarLists(currentObj, currentLists) {
 
             // Insert code here
 
+            // Append amount of items in a specific list next to anchor tag element for each list item.
+
         }
 
 
