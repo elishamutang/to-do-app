@@ -1,27 +1,42 @@
 // Update quantities of to-do task based on tags and list.
 
 let count = 0;
+let lastSelection;
 
 export function updateSidebarLists(currentObj, currentLists) {
 
     const counter = document.createElement('div');
     counter.className = 'counter';
 
-    currentLists.forEach((list) => {
+    const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
 
-        if(currentObj.list === list.textContent) {
+    const targetCounter = document.querySelector('div.counter');
 
-            // Insert code here
+    // !* Fix this logic
+    sidebarListElems.forEach((listElem) => {
 
-            // Append amount of items in a specific list next to anchor tag element for each list item.
-            counter.innerHTML = `${++count}`;
+        // Loops through each li element.
+        const listElemChildren = Array.from(listElem.children);
 
-            list.insertAdjacentElement('afterend', counter);
+        listElemChildren.forEach((elemChild) => {
 
-        }
+            if(elemChild.textContent === currentObj.list) {
 
+                listElem.insertAdjacentElement('beforeend', counter);
+
+                console.log(`This To-Do task belongs to ${elemChild.textContent}`);
+
+                console.log(listElemChildren);
+                console.log(listElemChildren.includes(targetCounter));
+
+            }
+
+        })
+        
+        
 
     })
+
 
 
 }
