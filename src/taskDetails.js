@@ -165,7 +165,7 @@ export default class createToDoObj {
 
 
         // Prepare all user lists.
-        const currentLists = Array.from(document.querySelectorAll('ul.lists > li > a'));
+        const currentLists = Array.from(document.querySelectorAll('ul.lists > li > a.list'));
         const currentListsClone = currentLists.map((list) => list.cloneNode(true)); // To be appended in linksContainer
 
         const linksContainer = document.getElementById('linksContainer');
