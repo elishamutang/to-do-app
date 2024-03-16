@@ -177,6 +177,9 @@ export default class createToDoObj {
         // Updates based on newly created lists.
         currentListsClone.forEach((clone) => {
 
+            clone.className = 'list'; // Reset cloned sidebar lists class names.
+            clone.innerHTML = clone.textContent; // Prevents boxicon icon to appear in listDialog elem.
+
             if(!listsInsideListContainerText.includes(clone.textContent)) {
 
                 linksContainer.append(clone);
@@ -186,12 +189,6 @@ export default class createToDoObj {
                     // Added class of current for current list that To-Do object is in.
                     clone.className += ' current';
                     listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
-
-                    if(clone.className.includes('viewing')) {
-
-                        clone.className = 'list current';
-
-                    }
 
                 }
             }
