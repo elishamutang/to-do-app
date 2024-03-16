@@ -187,6 +187,12 @@ export default class createToDoObj {
                     clone.className += ' current';
                     listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
 
+                    if(clone.className.includes('viewing')) {
+
+                        clone.className = 'list current';
+
+                    }
+
                 }
             }
 
