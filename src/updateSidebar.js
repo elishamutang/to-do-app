@@ -3,13 +3,12 @@
 let count = 0;
 let lastSelection = [];
 
-export function updateSidebarLists(currentObj, currentLists) {
+export function updateSidebarLists(currentObj) {
 
     const counter = document.createElement('div');
     counter.className = 'counter';
 
     const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
-
 
     // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
@@ -50,7 +49,7 @@ export function updateSidebarLists(currentObj, currentLists) {
 }
 
 
-export function updateSidebarTags(currentObj, allTagsList) {
+export function updateSidebarTags(currentObj) {
 
     // Insert code here
 
