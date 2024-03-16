@@ -37,27 +37,17 @@ export default function initializePage() {
 
             mainHeaderHeading.textContent = selection.textContent; // Update heading to show what list is currently displayed.
 
-            const allListItems = Array.from(document.getElementsByClassName('list'));
+            const allListItems = Array.from(document.querySelector('aside').getElementsByClassName('list'));
 
-            const allListElems = Array.from(document.querySelectorAll('ul.lists > li')); // Gets all li elements in sidebar.
-            console.log(allListElems);
-
-            // Code below is for styling current selection. (!* Fix this logic)
+            // Code below is for styling current selection in sidebar.
             allListItems.forEach((item) => {
 
                 if(item.textContent === selection.textContent) {
 
-                    console.log(item);
-
-                    if(!Array.from(item.classList).includes('viewing')) {
-
-                        const boxiconCircle = document.createElement('i');
-                        boxiconCircle.className = 'bx bxs-circle';
-
+                    if(!item.className.includes('viewing')) {
 
                         selection.className += ' viewing';
-                        // selection.innerHTML += "<i class='bx bxs-circle'></i>";
-                        selection.insertAdjacentElement('afterend', boxiconCircle);
+                        selection.innerHTML += "<i class='bx bxs-circle'></i>";
 
                     }
 
@@ -76,18 +66,6 @@ export default function initializePage() {
                     
                     lastSelectedElem.className = 'list'; // Remove styling if switching to a different list.
                     lastSelectedElem.innerHTML = lastSelectedElem.textContent;
-
-                    allListElems.forEach((listElem) => {
-
-                        if(listElem.contains(lastSelectedElem)) {
-
-                            console.log(listElem.querySelector('i'));
-                            listElem.querySelector('i').remove();
-
-                        }
-
-                    })
-
 
                 }
 
