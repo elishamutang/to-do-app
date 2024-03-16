@@ -261,7 +261,7 @@ export default class createToDoObj {
 
                 }
 
-                updateSidebarLists(currentObj, currentLists); // Update sidebar quantity.
+                updateSidebarLists(currentObj); // Update sidebar quantity.
 
             }
 
@@ -433,7 +433,7 @@ export default class createToDoObj {
 
                 }
 
-                updateSidebarTags(currentObj, allTagsList);
+                updateSidebarTags(currentObj);
                 updateTagsDisplay(); // Inserts a div just below the additionalElem div where it displays the selected tags.
                 this.removeEventListener('click', tagDialogFunc);
 
