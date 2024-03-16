@@ -1,6 +1,7 @@
 import { checkFormInput, createNew } from './createNewList';
 import addMyTask from './addMyTask';
 import { changeChecklistInputElem } from './checklistFeat';
+import { updateSidebarLists } from './updateSidebar';
 
 // Load DOM.
 
@@ -109,6 +110,10 @@ export default function initializePage() {
         // Resets input and disables button.
         addNewTask.value = '';
         addNewTaskBtn.disabled = true;
+
+        // Updates sidebar (by default each newly created To-Do task will belong to personal)
+        updateSidebarLists(toDoObj);
+
         event.preventDefault();
     })
 
