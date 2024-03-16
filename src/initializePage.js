@@ -39,13 +39,28 @@ export default function initializePage() {
 
             const allListItems = Array.from(document.getElementsByClassName('list'));
 
-            // Code below is for styling current selection.
+            const allListElems = Array.from(document.querySelectorAll('ul.lists > li')); // Gets all li elements in sidebar.
+            console.log(allListElems);
+
+            // Code below is for styling current selection. (!* Fix this logic)
             allListItems.forEach((item) => {
 
                 if(item.textContent === selection.textContent) {
 
-                    selection.className += ' viewing';
-                    selection.innerHTML += "<i class='bx bxs-circle'></i>";
+                    console.log(item);
+
+                    if(!Array.from(item.classList).includes('viewing')) {
+
+                        const boxiconCircle = document.createElement('i');
+                        boxiconCircle.className = 'bx bxs-circle';
+
+
+                        selection.className += ' viewing';
+                        // selection.innerHTML += "<i class='bx bxs-circle'></i>";
+                        selection.insertAdjacentElement('afterend', boxiconCircle);
+
+                    }
+
                     lastSelection.push(item);
 
                 }
@@ -59,8 +74,20 @@ export default function initializePage() {
 
                 if(currentSelectedElem.textContent !== lastSelectedElem.textContent) {
                     
-                    lastSelection[lastSelection.length-2].className = 'list';
-                    lastSelection[lastSelection.length-2].innerHTML = lastSelection[lastSelection.length-2].textContent;
+                    lastSelectedElem.className = 'list'; // Remove styling if switching to a different list.
+                    lastSelectedElem.innerHTML = lastSelectedElem.textContent;
+
+                    allListElems.forEach((listElem) => {
+
+                        if(listElem.contains(lastSelectedElem)) {
+
+                            console.log(listElem.querySelector('i'));
+                            listElem.querySelector('i').remove();
+
+                        }
+
+                    })
+
 
                 }
 
