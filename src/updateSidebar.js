@@ -10,7 +10,6 @@ export function updateSidebarLists(currentObj, currentLists) {
 
     const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
 
-    const targetCounter = document.querySelector('div.counter');
 
     // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
@@ -22,12 +21,19 @@ export function updateSidebarLists(currentObj, currentLists) {
 
             if(elemChild.textContent === currentObj.list) {
 
-                listElem.insertAdjacentElement('beforeend', counter);
-
+                counter.id = `${elemChild.textContent.toLowerCase()}Counter`;
                 console.log(`This To-Do task belongs to ${elemChild.textContent}`);
 
-                console.log(listElemChildren);
-                console.log(listElemChildren.includes(targetCounter));
+                // Checks for selected li element if a div.counter element is already included.
+                if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
+
+                    listElem.insertAdjacentElement('beforeend', counter);
+
+                } else {
+
+                    console.log(`${elemChild.textContent} contains ${counter.id}`);
+
+                }
 
             }
 
