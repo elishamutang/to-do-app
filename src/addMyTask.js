@@ -1,6 +1,6 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
-import { isToday, format, isTomorrow, isFuture } from "date-fns";
+import { isToday, isTomorrow, isFuture } from "date-fns";
 import createToDoObj from "./taskDetails";
 
 // Add new task and displays them.
