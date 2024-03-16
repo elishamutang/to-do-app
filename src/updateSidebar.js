@@ -1,6 +1,6 @@
 // Update quantities of to-do task based on tags and list.
 
-let count = 0;
+let count = 1;
 let lastSelection = [];
 
 export function updateSidebarLists(currentObj) {
@@ -27,6 +27,7 @@ export function updateSidebarLists(currentObj) {
                 if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
 
                     listElem.insertAdjacentElement('beforeend', counter);
+                    listElem.querySelector('div.counter').textContent = 1;
 
                 } else {
 
