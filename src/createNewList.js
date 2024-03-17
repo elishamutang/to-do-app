@@ -36,7 +36,7 @@ export function createNew(createNewBtn) {
 function addList(listTitle, btnClassName) {
 
     // Target My Lists.
-    const myLists = document.querySelector(`ul.secondary.${btnClassName}`);
+    const myLists = document.querySelector(`ul.secondary.lists`);
 
     const newLi = document.createElement('li');
     const newATag = document.createElement('a');
@@ -44,12 +44,7 @@ function addList(listTitle, btnClassName) {
 
     newATag.removeAttribute('href');
 
-    // Check whether for Tags or My Lists.
-    if(btnClassName == 'tags' && !listTitle.includes('#')) {
-        newATag.textContent = `#${listTitle}`;
-    } else {
-        newATag.textContent = listTitle;
-    }
+    newATag.textContent = listTitle;
 
     newLi.append(newATag);
 
