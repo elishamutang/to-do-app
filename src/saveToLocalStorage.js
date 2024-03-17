@@ -1,9 +1,9 @@
 // localStorage
 
-export default function saveToLocal(listOfObjs) {
+export default function saveToLocal(userData, dataName) {
 
-    localStorage.setItem("listOfObjs", JSON.stringify(listOfObjs));
+    localStorage.setItem(dataName, JSON.stringify(userData));
 
-    console.log(JSON.parse(localStorage.getItem("listOfObjs")));
-
+    console.log(localStorage);
+    
 }
