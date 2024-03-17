@@ -10,6 +10,12 @@ export function updateSidebarLists(currentObj) {
 
     const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
 
+    // Pass in listOfObjs here? Go thru each one and determine which belongs to which list.
+
+
+
+    
+
     // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
 
