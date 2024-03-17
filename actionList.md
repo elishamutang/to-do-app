@@ -8,7 +8,7 @@ Priority (Low, High)
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
 - **Finish editList and setTags methods**
-    - Update sidebar based on number of To-Do objects belonging to a certain list/tag. (updateSidebar.js)
+    - ~~Update sidebar based on number of To-Do objects belonging to a certain list/tag.~~ (Counter function done)
 
 - **Finish saveToLocalStorage.js**
     - Update information in localStorage everytime user updates any of the data such as Reminder Date, List, Tags etc.
