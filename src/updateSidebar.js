@@ -1,20 +1,17 @@
 // Update quantities of to-do task based on tags and list.
 
-let count = 1;
-let lastSelection = [];
+import saveToLocal from "./saveToLocalStorage";
 
-export function updateSidebarLists(currentObj) {
+let count = 1;
+
+export function updateSidebarLists(currentObj, listOfObjs) {
 
     const counter = document.createElement('div');
     counter.className = 'counter';
 
     const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
-
-    // Pass in listOfObjs here? Go thru each one and determine which belongs to which list.
-
-
-
     
+    const actualLists = [];
 
     // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
@@ -23,6 +20,12 @@ export function updateSidebarLists(currentObj) {
         const listElemChildren = Array.from(listElem.children);
 
         listElemChildren.forEach((elemChild) => {
+
+            if(elemChild.className === 'list') {
+
+                actualLists.push(elemChild.textContent);
+
+            }
 
             if(elemChild.textContent === currentObj.list) {
 
@@ -46,12 +49,24 @@ export function updateSidebarLists(currentObj) {
             }
 
         })
-        
-        
 
     })
 
+    console.log(listOfObjs);
+    
+    // Object to keep track of total number of To-Do tasks in each list (Personal, Work, Groceries).
+    const countsForEachList = {};
 
+    listOfObjs.forEach((obj) => {
+
+        // Counts number of To-Do tasks for each list.
+        countsForEachList[obj.list] = countsForEachList[obj.list] ? countsForEachList[obj.list] + 1 : 1;
+
+    })
+
+    saveToLocal(countsForEachList, "listCounter");
+
+    console.log(countsForEachList);
 
 }
 
