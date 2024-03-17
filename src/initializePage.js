@@ -112,7 +112,7 @@ export default function initializePage() {
         addNewTaskBtn.disabled = true;
 
         // Updates sidebar (by default each newly created To-Do task will belong to personal)
-        updateSidebarLists(toDoObj);
+        updateSidebarLists(toDoObj, listOfObjs);
 
         event.preventDefault();
     })
