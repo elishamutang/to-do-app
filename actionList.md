@@ -7,32 +7,13 @@ Priority (Low, High)
     - Currently named as 'All My Tasks', user able to get an overview of all current and upcoming tasks.
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
-- Each 'To-Do' object shall have the following details:
-    - ~~Title~~
-    - ~~Due Date (Mock-up done, create functionality).~~
-    - ~~Tags (Mock-up done, create functionality).~~
-    - ~~Notes (Notes section done, create functionality~~ and change to text area).
-    - ~~Checklist~~
-        - **~~Almost done, need to figure out how to disable click and drag option. Maybe change input elem to label when out of focus or button clicked and change back to input when clicked.~~**
-        - **Figure out how to remove checklist items from the list and update ID number.**
-    - ~~Store user data using localStorage.~~
-
 - **Finish editList and setTags methods**
     - Update sidebar based on number of To-Do objects belonging to a certain list/tag. (updateSidebar.js)
-    - Add keyframes for responsiveness.
-    - Finish switchView.js.
-    - ~~Figure out how to update styling for current list that selected To-Do object is currently sitting in.~~ (Done)
-    - ~~Figure out how to make linksContainer scrollable within its div, let additional items increase the height.~~ (Done)
-    - ~~Finish setTags method.~~ (Done)
-    - ~~Fix bug with setTag method, figure out how to allow users to click on selectedTags after updating tags display.~~ (Done)
-    - ~~Figure out how to overwrite tags display when a different to-do task is clicked.~~ (Done)
-    - ~~Update Personal button text with current list that the To-Do object is currently sitting in.~~ (Done)
 
-- ~~Utilize localStorage to store user data.~~ (Done, in saveToLocalStorage.js)
+- **Finish saveToLocalStorage.js**
+    - Update information in localStorage everytime user updates any of the data such as Reminder Date, List, Tags etc.
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
-
-
 
 
 ### To-Do List Basic Functionality (Low)
