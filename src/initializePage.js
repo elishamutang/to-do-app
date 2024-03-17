@@ -113,7 +113,7 @@ export default function initializePage() {
         addNewTaskBtn.disabled = true;
 
         // Save to localStorage.
-        saveToLocal(listOfObjs);
+        saveToLocal(listOfObjs, "listOfObjs");
 
         // Updates sidebar (by default each newly created To-Do task will belong to personal)
         updateSidebarLists(toDoObj, listOfObjs);
