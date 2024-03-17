@@ -15,17 +15,7 @@ Priority (Low, High)
     - ~~Checklist~~
         - **~~Almost done, need to figure out how to disable click and drag option. Maybe change input elem to label when out of focus or button clicked and change back to input when clicked.~~**
         - **Figure out how to remove checklist items from the list and update ID number.**
-    - Store user data using localStorage.
-
-- **View controller**
-    - Switch view according to selected To-Do object.
-        
-        - Header (done)
-        - Notes (done)
-        - Checklist (done)
-        - Remind Me (done)
-        - Tags (done)
-        - List (e.g Personal, Work) (done)
+    - ~~Store user data using localStorage.~~
 
 - **Finish editList and setTags methods**
     - Update sidebar based on number of To-Do objects belonging to a certain list/tag. (updateSidebar.js)
@@ -38,7 +28,7 @@ Priority (Low, High)
     - ~~Figure out how to overwrite tags display when a different to-do task is clicked.~~ (Done)
     - ~~Update Personal button text with current list that the To-Do object is currently sitting in.~~ (Done)
 
-- **Utilize localStorage to store user data.**
+- ~~Utilize localStorage to store user data.~~ (Done, in saveToLocalStorage.js)
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
