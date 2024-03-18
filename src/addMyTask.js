@@ -9,7 +9,7 @@ export default function addMyTask(task, fieldset) {
     // Creates new task
     const newTask = createTaskWrapper(task.value);
 
-    fieldset.append(newTask);
+    fieldset.insertAdjacentElement('afterbegin', newTask); // Always insert tasks at the top.
 
     // Create new object
     return new CreateToDoObj(task.value);
