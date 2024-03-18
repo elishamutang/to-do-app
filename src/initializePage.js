@@ -116,7 +116,7 @@ export default function initializePage() {
         saveToLocal(listOfObjs, "listOfObjs");
 
         // Updates sidebar (by default each newly created To-Do task will belong to personal)
-        updateSidebarLists(toDoObj, listOfObjs);
+        updateSidebarLists(toDoObj);
 
         event.preventDefault();
     })
