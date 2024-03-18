@@ -7,11 +7,13 @@ Priority (Low, High)
     - Currently named as 'All My Tasks', user able to get an overview of all current and upcoming tasks.
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
+- **Finish updateSidebar.js**
+
 - **Finish editList and setTags methods**
     - ~~Update sidebar based on number of To-Do objects belonging to a certain list/tag.~~ (Counter function done)
 
 - **Finish saveToLocalStorage.js**
-    - Update information in localStorage everytime user updates any of the data such as Reminder Date, List, Tags etc.
+    - ~~Update information in localStorage everytime user updates any of the data such as Reminder Date, List, Tags etc.~~ (Done)
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 

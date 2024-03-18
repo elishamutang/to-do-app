@@ -3,7 +3,8 @@ import saveToLocal from "./saveToLocalStorage";
 
 let count = 1;
 
-export function updateSidebarLists(currentObj, listOfObjs) {
+// Personal list (default list)
+export function updateSidebarLists(currentObj) {
 
     const counter = document.createElement('div');
     counter.className = 'counter';
@@ -11,7 +12,11 @@ export function updateSidebarLists(currentObj, listOfObjs) {
     const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
 
     // Update count of to-do tasks for each list in sidebar.
+    const listOfObjs = localStorage.getItem("listOfObjs") ? JSON.parse(localStorage.getItem("listOfObjs")) : null;
+
     const countOfTasks = counterFunc(listOfObjs);
+
+    // console.log(listOfObjs);
 
     // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
@@ -24,18 +29,7 @@ export function updateSidebarLists(currentObj, listOfObjs) {
             if(elemChild.textContent === currentObj.list) {
 
                 counter.id = `${elemChild.textContent.toLowerCase()}Counter`;
-                console.log(`This To-Do task belongs to ${elemChild.textContent}`);
-
-                for(let [key, value] of Object.entries(countOfTasks)) {
-
-                    if(key === elemChild.textContent) {
-
-                        console.log(elemChild.textContent, value);
-
-                    }
-
-                }
-
+                console.log(`${currentObj.title} belongs to ${elemChild.textContent}`);
 
                 // Checks for selected li element if a div.counter element is already included.
                 if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
@@ -46,7 +40,6 @@ export function updateSidebarLists(currentObj, listOfObjs) {
                 } else {
 
                     console.log(`${elemChild.textContent} contains ${counter.id}`);
-
                     listElem.querySelector('div.counter').textContent = `${++count}`;
 
                 }
