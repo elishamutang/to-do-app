@@ -1,7 +1,9 @@
 import changeTask from "./switchTaskView";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
-import { updateSidebarLists, updateSidebarTags } from "./updateSidebar";
+import { updateSidebarLists } from "./updateSidebar";
+import { saveUserData } from "./saveToLocalStorage";
+import { createNewChecklistItem } from "./checklistFeat";
 
 // Click on any task to view details in a separate window next to task overview window.
 // Keeps track of which task is being viewed.
@@ -12,7 +14,7 @@ let currentObj;
 const multipleSpacesRegex = /[ ]{2,}/;
 
 
-export default class createToDoObj {
+export default class CreateToDoObj {
 
     // Initialize each instance of a To-Do object with a title and checklist array.
     constructor(title) {
@@ -58,14 +60,16 @@ export default class createToDoObj {
 
             } else {
 
-                createNewChecklistItem(checklistItems);
+                createNewChecklistItem(currentObj, checklistItems, multipleSpacesRegex);
 
             }
 
         } else {
 
-            createNewChecklistItem(checklistItems); // Add new checklist item entry if there is none currently.
+            createNewChecklistItem(currentObj, checklistItems, multipleSpacesRegex); // Add new checklist item entry if there is none currently.
         }
+
+        saveUserData(currentObj, "checklist"); // Save checklist items to localStorage.
 
         console.log(currentObj.checklist);
 
@@ -78,15 +82,19 @@ export default class createToDoObj {
         const notesInput = document.getElementById('notes');
 
         // Saves user input when focused out.
-        notesInput.addEventListener('focusout', (event) => {
+        notesInput.addEventListener('focusout', () => {
 
             // Resets input for more than 1 whitespace entered.
             if(multipleSpacesRegex.test(notesInput.value) === true) {
+
                 console.log('whitespaces');
                 notesInput.value = "";
+
             } else {
+
                 currentObj.notes = notesInput.value; // Set notes for To-Do object.
-                console.log(currentObj);
+                saveUserData(currentObj, "notes");
+
             }
 
         }, {once: true});
@@ -123,7 +131,7 @@ export default class createToDoObj {
             }
         })
 
-
+        // Submit or save reminder date.
         reminderForm.addEventListener('submit', function detectSubmit(event) {
 
             event.preventDefault();
@@ -137,6 +145,9 @@ export default class createToDoObj {
             currentObj.rawReminderDate = dateInput.value;
             currentObj.formattedReminderDate = formattedResultingDate;
 
+            saveUserData(currentObj, "rawReminderDate"); // Save user property data to localStorage.
+            saveUserData(currentObj, "formattedReminderDate");
+
             // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
             moveMyTask(currentObj);
 
@@ -145,6 +156,7 @@ export default class createToDoObj {
         }, {once: true})
 
 
+        // Reset reminder date.
         reminderForm.addEventListener('reset', function deleteReminder() {
 
             reminderBtn.textContent = "Remind Me";
@@ -152,7 +164,10 @@ export default class createToDoObj {
             currentObj.rawReminderDate = "";
             currentObj.formattedReminderDate = "";
 
-            moveMyTask(currentObj);
+            saveUserData(currentObj, "rawReminderDate"); // Save user property data to localStorage.
+            saveUserData(currentObj, "formattedReminderDate");
+
+            moveMyTask(currentObj); // Move task to Today (default)
 
             reminderDialog.close();
 
@@ -259,9 +274,11 @@ export default class createToDoObj {
 
                     console.log(`Object moved to ${currentObj.list}`);
 
+                    saveUserData(currentObj, "list"); // Save user property data to localStorage.
+
                 }
 
-                // updateSidebarLists(currentObj); // Update sidebar quantity.
+                updateSidebarLists(currentObj); // Update sidebar quantity.
 
             }
 
@@ -394,9 +411,10 @@ export default class createToDoObj {
             } else if(event.target === saveBtn) {
 
                 // Save selected tag(s).
-                // If currentObj.tags is empty, push all saved tags in tempTagsList into currentObj.tags.
+                
                 if(currentObj.tags.length === 0) {
 
+                    // If currentObj.tags is empty, push all saved tags in tempTagsList into currentObj.tags.
                     currentObj.tags = tempTagsList;
 
                 } else {
@@ -425,16 +443,20 @@ export default class createToDoObj {
 
                     } else {
 
-                        // tempTagsList = [];
+                        // Resets currentObj.tags to tempTagsList = [];
             
-                        currentObj.tags = tempTagsList; // Resets currentObj.tags to empty array.
+                        currentObj.tags = tempTagsList;
 
                     }
 
                 }
 
+                saveUserData(currentObj, "tags"); // Save user property data to localStorage.
+
                 // updateSidebarTags(currentObj);
+
                 updateTagsDisplay(); // Inserts a div just below the additionalElem div where it displays the selected tags.
+
                 this.removeEventListener('click', tagDialogFunc);
 
                 tagDialogElem.close();
@@ -444,73 +466,6 @@ export default class createToDoObj {
         })
 
     }
-
-}
-
-
-function createNewChecklistItem(checklistItems) {
-
-    // Checklist fieldset
-    const checkListFieldset = document.getElementById('checkList');
-        
-    // Add input checklist task.
-    const checklistInputDiv = document.createElement('div');
-
-    const checklistCheckbox = document.createElement('input');
-    checklistCheckbox.type = 'checkbox';
-    checklistCheckbox.className = 'toDoObj';
-
-    const checklistInput = document.createElement('input');
-    checklistInput.type = 'text';
-    checklistInput.className = 'taskInputs checklistItem';
-
-    // Sets ID for each task input created.
-    const countOfItems = checklistItems.length;
-    checklistInputDiv.id = `checklistDiv-${countOfItems}`;
-    checklistInput.id = `checklistInput-${countOfItems}`;
-    checklistCheckbox.id = `checkbox-${countOfItems}`;
-    
-    checklistInputDiv.append(checklistCheckbox);
-    checklistInputDiv.append(checklistInput);
-    checkListFieldset.append(checklistInputDiv);
-
-    checklistInput.focus();
-
-
-    // If input is out of focus, automatically pushes input into To-Do object checklist property.
-    checklistInput.addEventListener('focusout', (event) => {
-
-        // Store checklist item inside an object.
-        const checklistItem = {
-            input: checklistInput,
-            value: checklistInput.value,
-            divElem: checklistInputDiv
-        };
-
-        // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
-        if(checklistInput.value === "" || multipleSpacesRegex.test(checklistInput.value) === true) {
-
-            // Remove checklistInputDiv and delete from checklist property array.
-            checklistInputDiv.remove();
-
-        } else {
-
-            // Change to label and transfer over attributes to label elem.
-            const checklistInputLabel = document.createElement('label');
-            checklistInputLabel.className = 'taskInputs checklistItem';
-            checklistInputLabel.id = `checklistInput-${countOfItems}`;
-            checklistInputLabel.textContent = checklistInput.value;
-            checklistInputLabel.htmlFor = checklistCheckbox.id;
-
-            checklistInput.replaceWith(checklistInputLabel);
-
-            checklistItem.input = checklistInputLabel;
-
-            currentObj.checklist.push(checklistItem);
-
-        }
-
-    }, {once: true});
 
 }
 
