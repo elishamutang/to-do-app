@@ -1,5 +1,4 @@
 // Change checklistInputElem from label elem to input elem for editing purposes.
-
 export function changeChecklistInputElem(event, toDoObj) {
 
     // Replace existing label element with input element when label element is clicked.
@@ -62,5 +61,71 @@ export function changeChecklistInputElem(event, toDoObj) {
         console.log(toDoObj);
 
     }, {once: true})
+
+}
+
+// Create new checklist item.
+export function createNewChecklistItem(currentObj, checklistItems, multipleSpacesRegex) {
+
+    // Checklist fieldset
+    const checkListFieldset = document.getElementById('checkList');
+        
+    // Add input checklist task.
+    const checklistInputDiv = document.createElement('div');
+
+    const checklistCheckbox = document.createElement('input');
+    checklistCheckbox.type = 'checkbox';
+    checklistCheckbox.className = 'toDoObj';
+
+    const checklistInput = document.createElement('input');
+    checklistInput.type = 'text';
+    checklistInput.className = 'taskInputs checklistItem';
+
+    // Sets ID for each task input created.
+    const countOfItems = checklistItems.length;
+    checklistInputDiv.id = `checklistDiv-${countOfItems}`;
+    checklistInput.id = `checklistInput-${countOfItems}`;
+    checklistCheckbox.id = `checkbox-${countOfItems}`;
+    
+    checklistInputDiv.append(checklistCheckbox);
+    checklistInputDiv.append(checklistInput);
+    checkListFieldset.append(checklistInputDiv);
+
+    checklistInput.focus();
+
+
+    // If input is out of focus, automatically pushes input into To-Do object checklist property.
+    checklistInput.addEventListener('focusout', () => {
+
+        // Store checklist item inside an object.
+        const checklistItem = {
+            value: checklistInput.value,
+            divElem: checklistInputDiv.outerHTML
+        };
+
+        // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
+        if(checklistInput.value === "" || multipleSpacesRegex.test(checklistInput.value) === true) {
+
+            // Remove checklistInputDiv and delete from checklist property array.
+            checklistInputDiv.remove();
+
+        } else {
+
+            // Change to label and transfer over attributes to label elem.
+            const checklistInputLabel = document.createElement('label');
+            checklistInputLabel.className = 'taskInputs checklistItem';
+            checklistInputLabel.id = `checklistInput-${countOfItems}`;
+            checklistInputLabel.textContent = checklistInput.value;
+            checklistInputLabel.htmlFor = checklistCheckbox.id;
+
+            checklistInput.replaceWith(checklistInputLabel);
+
+            checklistItem.input = checklistInputLabel.outerHTML;
+
+            currentObj.checklist.push(checklistItem);
+
+        }
+
+    }, {once: true});
 
 }
