@@ -1,4 +1,4 @@
-// localStorage
+// localStorage Web API.
 
 export default function saveToLocal(userData, dataName) {
 
@@ -6,7 +6,7 @@ export default function saveToLocal(userData, dataName) {
     
 }
 
-
+// Save changes to user data properties such as Reminder, Notes, Checklist Items etc.
 export function saveUserData(currentObj, userProp) {
 
     // Check if listOfObjs exist
@@ -24,5 +24,23 @@ export function saveUserData(currentObj, userProp) {
     }
 
     saveToLocal(listOfObjs, "listOfObjs");
+
+}
+
+// Test whether localStorage is supported in user's browser.
+export function checkForLocalStorageSupport() {
+
+    try {
+
+        const key = "testKey";
+        localStorage.setItem(key, key);
+        localStorage.removeItem(key);
+        return true;
+
+    } catch (e) {
+
+        return false;
+
+    }
 
 }

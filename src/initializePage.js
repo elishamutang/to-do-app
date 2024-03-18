@@ -2,11 +2,14 @@ import { checkFormInput, createNew } from './createNewList';
 import addMyTask from './addMyTask';
 import { changeChecklistInputElem } from './checklistFeat';
 import { updateSidebarLists } from './updateSidebar';
-import saveToLocal from './saveToLocalStorage';
+import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 
 // Load DOM.
 
 export default function initializePage() {
+
+    // Check for localStorage support in user's browser.
+    checkForLocalStorageSupport();
 
     // Default arrangement/view
     const mainHeader = document.getElementById('mainHeader');
