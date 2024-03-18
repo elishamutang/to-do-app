@@ -9,7 +9,7 @@ import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 export default function initializePage() {
 
     // Check for localStorage support in user's browser.
-    checkForLocalStorageSupport();
+    const checkLS = checkForLocalStorageSupport() ? console.log("You have localStorage") : console.log("You don't have localStorage");
 
     // Default arrangement/view
     const mainHeader = document.getElementById('mainHeader');
