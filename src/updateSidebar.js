@@ -11,7 +11,7 @@ export function updateSidebarLists(currentObj, listOfObjs) {
     const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
 
     // Update count of to-do tasks for each list in sidebar.
-    counterFunc(listOfObjs);
+    const countOfTasks = counterFunc(listOfObjs);
 
     // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
@@ -25,6 +25,17 @@ export function updateSidebarLists(currentObj, listOfObjs) {
 
                 counter.id = `${elemChild.textContent.toLowerCase()}Counter`;
                 console.log(`This To-Do task belongs to ${elemChild.textContent}`);
+
+                for(let [key, value] of Object.entries(countOfTasks)) {
+
+                    if(key === elemChild.textContent) {
+
+                        console.log(elemChild.textContent, value);
+
+                    }
+
+                }
+
 
                 // Checks for selected li element if a div.counter element is already included.
                 if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
@@ -71,5 +82,7 @@ function counterFunc(listOfObjs) {
     })
 
     saveToLocal(countsForEachList, "listCounter");
+
+    return countsForEachList;
 
 }

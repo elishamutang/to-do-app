@@ -160,6 +160,7 @@ export default function changeTask(currentObj) {
                 const individualTagDiv = document.createElement('div');
 
                 individualTagDiv.className = 'selectedTags';
+                individualTagDiv.id = tag.toLowerCase();
                 individualTagDiv.textContent = tag;
 
                 tagsBtn.append(individualTagDiv);
@@ -185,6 +186,7 @@ export default function changeTask(currentObj) {
                 const createNewTagDiv = document.createElement('div');
 
                 createNewTagDiv.className = 'selectedTags';
+                createNewTagDiv.id = tag.toLowerCase();
                 createNewTagDiv.textContent = tag;
 
                 tagsBtn.append(createNewTagDiv);
