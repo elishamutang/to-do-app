@@ -4,6 +4,7 @@ import saveToLocal from "./saveToLocalStorage";
 // Personal list (default list)
 export function updateSidebarLists(currentObj) {
 
+    // Counter div to display quantity next to each list.
     const counterDiv = document.createElement('div');
     counterDiv.className = 'counter';
 
@@ -12,42 +13,45 @@ export function updateSidebarLists(currentObj) {
     // Update count of to-do tasks for each list in sidebar.
     const countOfTasks = counterFunc();
 
-    // console.log(countOfTasks);
 
-    // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
 
-        // Loops through each li element.
         const listElemChildren = Array.from(listElem.children);
 
-        for(let [list, count] of Object.entries(countOfTasks)) {
+        listElemChildren.forEach((child) => {
 
-            listElemChildren.forEach((elemChild) => {
+            // Update quantites for each list.
+            if(Object.keys(countOfTasks).includes(child.textContent)) {
 
-                if(elemChild.textContent === list) {
+                if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
 
-                    if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
+                    listElem.insertAdjacentElement('beforeend', counterDiv);
 
-                        listElem.insertAdjacentElement('beforeend', counterDiv);
-                        listElem.querySelector('div.counter').textContent = count;
+                }
 
-                    } else {
+                listElem.querySelector('div.counter').textContent = countOfTasks[child.textContent];
 
-                        console.log(`${elemChild.textContent} contains ${counterDiv.id}`);
-                        listElem.querySelector('div.counter').textContent = count;
+            } else {
+
+                // Remove div counter if quantity is 0, in other words remove existing div.counter elem if not found in countOfTasks.
+                if(child.tagName === 'A') {
+
+                    if(listElemChildren.includes(listElem.querySelector('div.counter'))) {
+
+                        listElem.querySelector('div.counter').remove();
 
                     }
 
                 }
 
+            }
 
-            })
-
-        }
+        })
 
     })
 
 }
+
 
 // Count number of To-Do objects for each list.
 function counterFunc() {
