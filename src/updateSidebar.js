@@ -1,22 +1,18 @@
 // Update quantities of to-do task based on tags and list.
 import saveToLocal from "./saveToLocalStorage";
 
-let count = 1;
-
 // Personal list (default list)
 export function updateSidebarLists(currentObj) {
 
-    const counter = document.createElement('div');
-    counter.className = 'counter';
+    const counterDiv = document.createElement('div');
+    counterDiv.className = 'counter';
 
     const sidebarListElems = Array.from(document.querySelector('ul.lists').children);
 
     // Update count of to-do tasks for each list in sidebar.
-    const listOfObjs = localStorage.getItem("listOfObjs") ? JSON.parse(localStorage.getItem("listOfObjs")) : null;
+    const countOfTasks = counterFunc();
 
-    const countOfTasks = counterFunc(listOfObjs);
-
-    // console.log(listOfObjs);
+    // console.log(countOfTasks);
 
     // !* Fix this logic
     sidebarListElems.forEach((listElem) => {
@@ -24,45 +20,39 @@ export function updateSidebarLists(currentObj) {
         // Loops through each li element.
         const listElemChildren = Array.from(listElem.children);
 
-        listElemChildren.forEach((elemChild) => {
+        for(let [list, count] of Object.entries(countOfTasks)) {
 
-            if(elemChild.textContent === currentObj.list) {
+            listElemChildren.forEach((elemChild) => {
 
-                counter.id = `${elemChild.textContent.toLowerCase()}Counter`;
-                console.log(`${currentObj.title} belongs to ${elemChild.textContent}`);
+                if(elemChild.textContent === list) {
 
-                // Checks for selected li element if a div.counter element is already included.
-                if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
+                    if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
 
-                    listElem.insertAdjacentElement('beforeend', counter);
-                    listElem.querySelector('div.counter').textContent = 1;
+                        listElem.insertAdjacentElement('beforeend', counterDiv);
+                        listElem.querySelector('div.counter').textContent = count;
 
-                } else {
+                    } else {
 
-                    console.log(`${elemChild.textContent} contains ${counter.id}`);
-                    listElem.querySelector('div.counter').textContent = `${++count}`;
+                        console.log(`${elemChild.textContent} contains ${counterDiv.id}`);
+                        listElem.querySelector('div.counter').textContent = count;
+
+                    }
 
                 }
 
-            }
 
-        })
+            })
+
+        }
 
     })
 
 }
 
+// Count number of To-Do objects for each list.
+function counterFunc() {
 
-export function updateSidebarTags(currentObj) {
-
-    // Insert code here
-
-
-
-}
-
-
-function counterFunc(listOfObjs) {
+    const listOfObjs = localStorage.getItem("listOfObjs") ? JSON.parse(localStorage.getItem("listOfObjs")) : null;
 
     // Object to keep track of total number of To-Do tasks in each list (Personal, Work, Groceries).
     const countsForEachList = {};
