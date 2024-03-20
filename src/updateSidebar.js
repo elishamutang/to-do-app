@@ -2,7 +2,7 @@
 import saveToLocal from "./saveToLocalStorage";
 
 // Personal list (default list)
-export function updateSidebarLists(currentObj) {
+export function updateSidebarLists() {
 
     // Counter div to display quantity next to each list.
     const counterDiv = document.createElement('div');
@@ -21,7 +21,7 @@ export function updateSidebarLists(currentObj) {
         listElemChildren.forEach((child) => {
 
             // Update quantites for each list.
-            if(Object.keys(countOfTasks).includes(child.textContent)) {
+            if(Object.keys(countOfTasks.countsForEachList).includes(child.textContent)) {
 
                 if(!listElemChildren.includes(listElem.querySelector('div.counter'))) {
 
@@ -29,7 +29,7 @@ export function updateSidebarLists(currentObj) {
 
                 }
 
-                listElem.querySelector('div.counter').textContent = countOfTasks[child.textContent];
+                listElem.querySelector('div.counter').textContent = countOfTasks.countsForEachList[child.textContent];
 
             } else {
 
@@ -60,16 +60,28 @@ function counterFunc() {
 
     // Object to keep track of total number of To-Do tasks in each list (Personal, Work, Groceries).
     const countsForEachList = {};
+    const countsForEachTag = {};
 
     listOfObjs.forEach((obj) => {
 
         // Counts number of To-Do tasks for each list.
         countsForEachList[obj.list] = countsForEachList[obj.list] ? countsForEachList[obj.list] + 1 : 1;
 
+        const objTags = obj.tags;
+
+        objTags.forEach((tag) => {
+
+            // Counts number of To-Do tasks for each tag associated with it.
+            countsForEachTag[tag] = countsForEachTag[tag] ? countsForEachTag[tag] + 1 : 1;
+
+        })
+        
+
     })
 
+    saveToLocal(countsForEachTag, "tagCounter");
     saveToLocal(countsForEachList, "listCounter");
 
-    return countsForEachList;
+    return { countsForEachList, countsForEachTag };
 
 }
