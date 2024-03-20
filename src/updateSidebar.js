@@ -2,7 +2,7 @@
 import saveToLocal from "./saveToLocalStorage";
 
 // Personal list (default list)
-export function updateSidebarLists() {
+export function updateSidebar() {
 
     // Counter div to display quantity next to each list.
     const counterDiv = document.createElement('div');
@@ -75,7 +75,6 @@ function counterFunc() {
             countsForEachTag[tag] = countsForEachTag[tag] ? countsForEachTag[tag] + 1 : 1;
 
         })
-        
 
     })
 

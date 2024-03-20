@@ -1,7 +1,7 @@
 import changeTask from "./switchTaskView";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
-import { updateSidebarLists } from "./updateSidebar";
+import { updateSidebar } from "./updateSidebar";
 import { saveUserData } from "./saveToLocalStorage";
 import { createNewChecklistItem } from "./checklistFeat";
 
@@ -278,7 +278,7 @@ export default class CreateToDoObj {
 
                 }
 
-                updateSidebarLists(currentObj); // Update sidebar quantity.
+                updateSidebar(currentObj); // Update sidebar quantity.
 
             }
 
