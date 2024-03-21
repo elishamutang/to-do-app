@@ -8,7 +8,7 @@ Priority (Low, High)
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
 - **Finish updateSidebar.js**
-    - Finish up tag display function.
+    - Finish up tag counter function.
 
 - **Finish editList and setTags methods**
     - ~~Update sidebar based on number of To-Do objects belonging to a certain list/tag.~~ (Counter function done)
