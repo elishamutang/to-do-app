@@ -278,7 +278,7 @@ export default class CreateToDoObj {
 
                 }
 
-                updateSidebar(currentObj); // Update sidebar quantity.
+                updateSidebar(); // Update sidebar quantity.
 
             }
 
