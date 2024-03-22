@@ -1,7 +1,7 @@
 import changeTask from "./switchTaskView";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
-import { updateSidebar } from "./updateSidebar";
+import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebar";
 import { saveUserData } from "./saveToLocalStorage";
 import { createNewChecklistItem } from "./checklistFeat";
 
@@ -278,7 +278,7 @@ export default class CreateToDoObj {
 
                 }
 
-                updateSidebar(); // Update sidebar quantity.
+                updateSidebarListDisplay(); // Count number of to-do task belonging to a particular list and update it on the sidebar.
 
             }
 
@@ -453,7 +453,7 @@ export default class CreateToDoObj {
 
                 saveUserData(currentObj, "tags"); // Save user property data to localStorage.
 
-                // updateSidebarTags(currentObj);
+                updateSidebarTagsDisplay(); // Counts number of to-do tasks belonging to a certain tag and display on sidebar. 
 
                 updateTagsDisplay(); // Inserts a div just below the additionalElem div where it displays the selected tags.
 
