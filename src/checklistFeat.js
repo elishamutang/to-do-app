@@ -1,3 +1,5 @@
+import { saveUserData } from "./saveToLocalStorage";
+
 // Change checklistInputElem from label elem to input elem for editing purposes.
 export function changeChecklistInputElem(event, toDoObj) {
 
@@ -19,10 +21,6 @@ export function changeChecklistInputElem(event, toDoObj) {
 
     checklistItemElem.replaceWith(checklistItemElemSub);
     checklistItemElemSub.focus();
-
-    console.log(checklistItemElem);
-    console.log(checklistItemElemSub);
-
 
     // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
     checklistItemElemSub.addEventListener('focusout', function editChecklistItem(event) {
@@ -59,6 +57,8 @@ export function changeChecklistInputElem(event, toDoObj) {
         checklistItemElemSub.replaceWith(checklistLabelElem);
 
         console.log(toDoObj);
+
+        saveUserData(toDoObj, "checklist");
 
     }, {once: true})
 
@@ -100,7 +100,7 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
         // Store checklist item inside an object.
         const checklistItem = {
             value: checklistInput.value,
-            divElem: checklistInputDiv.outerHTML
+            divElem: checklistInputDiv
         };
 
         // Remove checklistInputDiv element if checklistInput loses focus and does not contain any inputs.
@@ -120,11 +120,13 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
 
             checklistInput.replaceWith(checklistInputLabel);
 
-            checklistItem.input = checklistInputLabel.outerHTML;
+            checklistItem.input = checklistInputLabel;
 
             currentObj.checklist.push(checklistItem);
 
         }
+
+        saveUserData(currentObj, "checklist");
 
     }, {once: true});
 
