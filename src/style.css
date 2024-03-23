@@ -333,7 +333,6 @@ form, dialog {
 .overview {
     margin: 20px;
     grid-area: overview;
-    /* border: 1px solid red; */
 }
 
 .overview > div {
@@ -470,22 +469,15 @@ fieldset legend {
 
     display: flex;
     flex-direction: column;
-    /* grid-template-rows: 0.05fr 0.1fr 0.1fr minmax(min-content, max-content);
-    grid-template-areas: 
-        "detailHeader"
-        "additional"
-        "notes"
-        "checklist"
-    ; */
     row-gap: 15px;
 }
 
 #detailHeader {
-    grid-area: detailHeader;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 #detailNotes {
-    grid-area: notes;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -497,7 +489,6 @@ fieldset legend {
 }
 
 #additionalElems {
-    grid-area: additional;
     display: flex;
     gap: 15px;
     align-items: center;
@@ -514,10 +505,6 @@ fieldset legend {
 
 .additionalFeatBtns:hover {
     transform: scale(1.05);
-}
-
-#checkListSect {
-    grid-area: checklist;
 }
 
 #addChecklistItem {
