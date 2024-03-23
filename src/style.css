@@ -604,6 +604,8 @@ fieldset legend {
 
 a.viewing {
     color: var(--tenPercent);
+    filter: brightness(1.5);
+    text-shadow: var(--tenPercent) 1px 0px 10px;
 
     display: flex;
     align-items: center;
