@@ -160,7 +160,11 @@ function taskDetailsEvent(event, toDoObj) {
 
     const elem = event.target;
     
-    if(elem.id === 'addChecklistItem') {
+    if(elem.id === 'detailHeader') {
+
+        console.log(elem.textContent);
+
+    } else if(elem.id === 'addChecklistItem') {
 
         toDoObj.addToChecklist();
         event.preventDefault();
