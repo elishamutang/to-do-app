@@ -162,7 +162,7 @@ function taskDetailsEvent(event, toDoObj) {
     
     if(elem.id === 'detailHeader') {
 
-        console.log(elem.textContent);
+        toDoObj.changeTaskTitle();
 
     } else if(elem.id === 'addChecklistItem') {
 

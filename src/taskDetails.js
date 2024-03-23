@@ -42,6 +42,13 @@ export default class CreateToDoObj {
         console.log(currentObj);
     }
 
+    // Change task title for a To-Do object.
+    changeTaskTitle() {
+
+        console.log(currentObj.title);
+
+    }
+
 
     addToChecklist() {
 
