@@ -52,7 +52,6 @@ export default function initializePage() {
                     if(!item.className.includes('viewing')) {
 
                         selection.className += ' viewing';
-                        selection.innerHTML += "<i class='bx bxs-circle'></i>";
 
                     }
 
