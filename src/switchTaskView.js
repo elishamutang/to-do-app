@@ -6,15 +6,8 @@ export default function changeTask(currentObj) {
 
     // Overwrite header
     const taskDetailsHeader = document.getElementById('detailHeader');
-    const taskDetailsHeaderElem = document.createElement('h1');
-    taskDetailsHeaderElem.textContent = getTitle;
-
-    // Displays to-do detail title.
-    if(taskDetailsHeader.children.length === 0) {
-        taskDetailsHeader.append(taskDetailsHeaderElem);
-    } else {
-        taskDetailsHeader.querySelector('h1').textContent = getTitle;
-    }
+    // const taskDetailsHeaderElem = document.createElement('h1');
+    taskDetailsHeader.textContent = getTitle;
 
     // Overwrite notes
     const notesSect = document.getElementById('notes');
