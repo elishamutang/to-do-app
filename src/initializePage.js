@@ -98,14 +98,11 @@ export default function initializePage() {
     // Store newly created To-Do objects.
     const listOfObjs = [];
     
-    // Initialize toDoObj
-    let toDoObj;
-
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
 
         // Creates new to-do object.
-        toDoObj = addMyTask(addNewTask, fieldsetToday);
+        const toDoObj = addMyTask(addNewTask, fieldsetToday);
 
         // Stores inside listOfObjs array.
         listOfObjs.push(toDoObj);
@@ -124,15 +121,30 @@ export default function initializePage() {
     })
 
 
+    // Initialize currentObj
+    let currentObj;
+
     // View any To-Do task in greater detail.
     const overviewDiv = document.querySelector('.overview');
 
     overviewDiv.addEventListener('click', (event) => {
 
-        // Only pass label elements to viewTask.
+        // Set currentObj to To-Do task that was clicked.
         if(event.target.tagName === 'LABEL') {
+
+            for(let obj of listOfObjs) {
+                
+                if(obj.title === event.target.textContent) {
+
+                    currentObj = obj;
+
+                }
+
+            }
+
             event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
-            toDoObj.viewTask(event.target, listOfObjs);
+            currentObj.viewTask();
+
         }
 
     })
@@ -145,7 +157,7 @@ export default function initializePage() {
     taskDetailsContainer.addEventListener('click', function(event) {
 
         if(listOfObjs.length !== 0) {
-            taskDetailsEvent(event, toDoObj);
+            taskDetailsEvent(event, currentObj);
         } else {
             return;
         }
@@ -156,39 +168,39 @@ export default function initializePage() {
 
 
 // Handles events for task details.
-function taskDetailsEvent(event, toDoObj) {
+function taskDetailsEvent(event, currentObj) {
 
     const elem = event.target;
     
     if(elem.id === 'detailHeader') {
 
-        toDoObj.changeTaskTitle();
+        currentObj.changeTaskTitle();
 
     } else if(elem.id === 'addChecklistItem') {
 
-        toDoObj.addToChecklist();
+        currentObj.addToChecklist();
         event.preventDefault();
         
     } else if(elem.id === 'notes') {
 
-        toDoObj.createNote();
+        currentObj.createNote();
 
     } else if(elem.id === 'remindMe') {
 
-        toDoObj.reminder(elem);
+        currentObj.reminder(elem);
 
     } else if(elem.id === 'currentList') {
 
-        toDoObj.editList(elem);
+        currentObj.editList(elem);
 
     } else if(elem.id === 'tags' || elem.className.includes('selectedTags')) {
 
-        toDoObj.setTag();
+        currentObj.setTag();
 
     } else if(elem.className.includes('checklistItem')) {
 
         // Target checklist items. Replaces label element to input element to change checklistItem content. 
-        changeChecklistInputElem(event, toDoObj);
+        changeChecklistInputElem(event, currentObj);
 
     }
     
