@@ -7,21 +7,12 @@ export function changeChecklistInputElem(event, toDoObj) {
     const checklistItemElem = document.getElementById(`${event.target.id}`);
     const checklistLabelForAttr = checklistItemElem.htmlFor;
 
-    let checklistItemElemSub;
-    
-    if(checklistItemElem.tagName !== 'LABEL') {
-        return;
-    }
-
-    checklistItemElemSub = document.createElement('input');
-    checklistItemElemSub.value = checklistItemElem.textContent;
-    checklistItemElemSub.type = 'text';
-    checklistItemElemSub.id = checklistItemElem.id;
-    checklistItemElemSub.className = checklistItemElem.className;
-
+    // Switch LABEL elem to INPUT elem.
+    const checklistItemElemSub = switchElem(checklistItemElem);
     checklistItemElem.replaceWith(checklistItemElemSub);
-    checklistItemElemSub.focus();
 
+    checklistItemElemSub.focus();
+ 
     // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
     checklistItemElemSub.addEventListener('focusout', function editChecklistItem() {
 
@@ -46,14 +37,9 @@ export function changeChecklistInputElem(event, toDoObj) {
             }
         }
 
-        // Change back to label when focused out of input elem.
-        const checklistLabelElem = document.createElement('label');
-
-        checklistLabelElem.id = checklistItemElemSub.id;
-        checklistLabelElem.className = checklistItemElemSub.className;
-        checklistLabelElem.textContent = checklistItemElemSub.value;
+        // Switch INPUT elem back to LABEL and keep INPUT attributes and data.
+        const checklistLabelElem = switchElem(checklistItemElemSub);
         checklistLabelElem.htmlFor = checklistLabelForAttr;
-
         checklistItemElemSub.replaceWith(checklistLabelElem);
 
         console.log(toDoObj);
@@ -64,6 +50,7 @@ export function changeChecklistInputElem(event, toDoObj) {
 
 }
 
+
 // Create new checklist item.
 export function createNewChecklistItem(currentObj, checklistItems, multipleSpacesRegex) {
 
@@ -73,7 +60,7 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
     const countOfItems = checklistItems.length;
 
     // Generate checklistDiv that contains checkbox and text input elem for user input.
-    const checklistWrapper = prepareListItem(countOfItems);
+    const checklistWrapper = prepareInputListItem(countOfItems);
     checklistFieldset.append(checklistWrapper);
 
     // Select input elem inside checklistWrapper, that will be substituted to a label elem after.s
@@ -123,7 +110,7 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
 }
 
 
-export function prepareListItem(countOfItems) {
+export function prepareInputListItem(countOfItems) {
 
     // Add input checklist task.
     const checklistInputDiv = document.createElement('div');
@@ -146,4 +133,31 @@ export function prepareListItem(countOfItems) {
 
     return checklistInputDiv;
 
-} 
+}
+
+
+export function switchElem(checklistItemElem) {
+
+    if(checklistItemElem.tagName === 'LABEL') {
+
+        const checklistItemInputElem = document.createElement('input');
+        checklistItemInputElem.value = checklistItemElem.textContent;
+        checklistItemInputElem.type = 'text';
+        checklistItemInputElem.id = checklistItemElem.id;
+        checklistItemInputElem.className = checklistItemElem.className;
+
+        return checklistItemInputElem;
+
+    } else if(checklistItemElem.tagName === 'INPUT') {
+
+        const checklistLabelElem = document.createElement('label');
+
+        checklistLabelElem.id = checklistItemElem.id;
+        checklistLabelElem.className = checklistItemElem.className;
+        checklistLabelElem.textContent = checklistItemElem.value;
+
+        return checklistLabelElem;
+
+    }
+
+}
