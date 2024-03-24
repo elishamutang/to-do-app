@@ -362,7 +362,7 @@ div.allTasks {
     background: transparent;
 }
 
-#notes, #addNewChecklistItem {
+#notes, #addNewChecklistItem, #detailHeader {
     padding: 5px 10px;
     font-size: 16px;
 }
