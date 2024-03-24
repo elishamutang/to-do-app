@@ -1,5 +1,7 @@
 // Switch task view based on currentObj from taskDetails.js and overwrite the details.
 
+import { prepareInputListItem, switchElem } from "./checklistFeat";
+
 export default function changeTask(currentObj) {
 
     const getTitle = currentObj.title;
@@ -24,20 +26,30 @@ export default function changeTask(currentObj) {
     if(currentObj.checklist.length === 0) {
 
         console.log(`${currentObj.title} has no checklist items`);
-        
-        // If currentObj checklist property is empty, remove all divs.
-        checklistDiv.forEach((div) => {
-            div.remove();
-        })
 
+        if(checklistDiv.length !== 0) {
+
+            // If currentObj checklist property is empty, remove all existing divs if present.
+            checklistDiv.forEach((div) => {
+                div.remove();
+            })
+
+        }
+        
     } else {
 
-        // Check if still viewing currentObj by comparing each checklist item on fieldset against checklist array.
-        const checklistCurrentItems = Array.from(checklistFieldset.getElementsByClassName('checklistItem'));
+        let result = false;
 
-        const result = currentObj.checklist.every((elem, idx) => {
-            return elem.input === checklistCurrentItems[idx];
-        })
+        // Check if still viewing currentObj by comparing each checklist item on fieldset against checklist array.
+        if(checklistDiv.length !== 0) {
+
+            const checklistCurrentItems = Array.from(checklistFieldset.getElementsByClassName('checklistItem'));
+
+            result = currentObj.checklist.every((elem, idx) => {
+                return elem.value === checklistCurrentItems[idx].textContent;
+            })
+
+        }
 
         if(result === true) {
 
@@ -46,26 +58,30 @@ export default function changeTask(currentObj) {
 
         } else {
 
-            const checklistDivElems = currentObj.checklist.map((elem) => {
-                return elem.divElem;
-            })
-
-            if(checklistDiv.length === 0) {
-
-                checklistDivElems.forEach((div) => {
-                    checklistFieldset.append(div);
-                })
-
-            } else {
+            if(checklistDiv.length !== 0) {
 
                 console.log('Overwrite current divs');
+
                 checklistDiv.forEach((div) => {
                     div.remove();
                 })
 
-                checklistDivElems.forEach((elem) => {
-                    checklistFieldset.append(elem);
-                })
+            }
+
+            for(let i = 0; i < currentObj.checklist.length; i++) {
+
+                const checklistDivWrapper = prepareInputListItem(i);
+                const currentObjChecklistItem = currentObj.checklist[i];
+
+                // Gets INPUT elem inside checklistDivWrapper to be sub to LABEL elem.
+                const checklistItemInput = checklistDivWrapper.querySelector("input[type='text']"); 
+
+                const checklistLabelElem = switchElem(checklistItemInput);
+                checklistLabelElem.textContent = currentObjChecklistItem.value;
+
+                checklistItemInput.replaceWith(checklistLabelElem);
+
+                checklistFieldset.append(checklistDivWrapper);
 
             }
 
