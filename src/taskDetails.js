@@ -23,7 +23,7 @@ export default class CreateToDoObj {
     };
 
 
-    // Set To-Do object header in taskDetails.
+    // Display task details.
     viewTask() {
         
         changeTask(this);
@@ -31,9 +31,36 @@ export default class CreateToDoObj {
     }
 
     // Change task title for a To-Do object.
-    changeTaskTitle() {
+    changeTaskTitle(elem) {
 
-        console.log(this.title);
+        const currentObj = this;
+
+        if(elem.tagName === 'DIV') {
+
+            const headerInput = document.createElement('input');
+            headerInput.type = 'text';
+            headerInput.className = 'taskInputs';
+            headerInput.id = elem.id;
+            headerInput.value = elem.textContent;
+
+            elem.replaceWith(headerInput);
+
+            headerInput.focus();
+
+            headerInput.addEventListener('focusout', function changeBackToDiv() {
+
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'taskDetails';
+                headerDiv.id = headerInput.id;
+                headerDiv.textContent = headerInput.value;
+
+                saveUserData(currentObj, "title");
+
+                headerInput.replaceWith(headerDiv);
+
+            }, {once: true});
+
+        }
 
     }
 
