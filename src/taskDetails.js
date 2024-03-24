@@ -5,10 +5,6 @@ import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSide
 import { saveUserData } from "./saveToLocalStorage";
 import { createNewChecklistItem } from "./checklistFeat";
 
-// Click on any task to view details in a separate window next to task overview window.
-// Keeps track of which task is being viewed.
-let currentObj;
-
 // Regex to identify more than 1 space entered.
 // This regex can be improved but in the meantime it's good enough.
 const multipleSpacesRegex = /[ ]{2,}/;
@@ -28,24 +24,16 @@ export default class CreateToDoObj {
 
 
     // Set To-Do object header in taskDetails.
-    viewTask(task, listOfObjs) {
+    viewTask() {
+        
+        changeTask(this);
 
-        for (const obj of listOfObjs) {
-            if(task.textContent == obj.title) {
-
-                // Determine current object that is selected and changes task if needed.
-                currentObj = obj;
-                changeTask(currentObj);
-
-            }
-        }
-        console.log(currentObj);
     }
 
     // Change task title for a To-Do object.
     changeTaskTitle() {
 
-        console.log(currentObj.title);
+        console.log(this.title);
 
     }
 
@@ -67,23 +55,25 @@ export default class CreateToDoObj {
 
             } else {
 
-                createNewChecklistItem(currentObj, checklistItems, multipleSpacesRegex);
+                createNewChecklistItem(this, checklistItems, multipleSpacesRegex);
 
             }
 
         } else {
 
-            createNewChecklistItem(currentObj, checklistItems, multipleSpacesRegex); // Add new checklist item entry if there is none currently.
+            createNewChecklistItem(this, checklistItems, multipleSpacesRegex); // Add new checklist item entry if there is none currently.
         }
 
-        saveUserData(currentObj, "checklist"); // Save checklist items to localStorage.
+        saveUserData(this, "checklist"); // Save checklist items to localStorage.
 
-        console.log(currentObj.checklist);
+        console.log(this.checklist);
 
     }
 
 
     createNote() {
+
+        const currentObj = this;
 
         // Target notes input
         const notesInput = document.getElementById('notes');
@@ -111,6 +101,8 @@ export default class CreateToDoObj {
 
     reminder(reminderBtn) {
 
+        const currentObj = this;
+
         // Remind Me
         const reminderDialog = document.getElementById('reminder');
         const reminderForm = document.getElementById('setReminder');
@@ -124,18 +116,20 @@ export default class CreateToDoObj {
         dateInput.focus();
 
         // When Remind Me button is clicked, if the date is set, show that date on datetime-local input.
-        if(currentObj.rawReminderDate !== "") {
-            dateInput.value = currentObj.rawReminderDate;
+        if(this.rawReminderDate !== "") {
+            dateInput.value = this.rawReminderDate;
         } else {
             dateInput.value = dateInput.min;
         }
 
         // Closes reminder dialog if user clicks outside dialog.
         reminderDialog.addEventListener('click', function closeDialog(event) {
+
             if(event.target === reminderDialog) {
                 reminderDialog.close();
                 this.removeEventListener('click', closeDialog);
             }
+
         })
 
         // Submit or save reminder date.
@@ -153,7 +147,7 @@ export default class CreateToDoObj {
             currentObj.formattedReminderDate = formattedResultingDate;
 
             saveUserData(currentObj, "rawReminderDate"); // Save user property data to localStorage.
-            saveUserData(currentObj, "formattedReminderDate");
+            saveUserData(currentObj, "formattedReminderDate"); // Save user property data to localStorage.
 
             // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
             moveMyTask(currentObj);
@@ -185,6 +179,7 @@ export default class CreateToDoObj {
 
     editList(listBtn) {
 
+        const currentObj = this;
 
         // Prepare all user lists.
         const currentLists = Array.from(document.querySelectorAll('ul.lists > li > a.list'));
@@ -206,11 +201,11 @@ export default class CreateToDoObj {
 
                 linksContainer.append(clone);
 
-                if(currentObj.list === clone.textContent) {
+                if(this.list === clone.textContent) {
 
                     // Added class of current for current list that To-Do object is in.
                     clone.className += ' current';
-                    listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
+                    listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${this.list}`;
 
                 }
             }
@@ -296,6 +291,8 @@ export default class CreateToDoObj {
 
     setTag() {
 
+        const currentObj = this;
+
         // Prepare list in dialog.
         // One-liner to get tag text only without # infront.
         const allTagsList = Array.from(document.getElementsByClassName('currentTags'));
@@ -327,9 +324,9 @@ export default class CreateToDoObj {
         const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
 
         // Styling tagDialogElem with current tags.
-        if(currentObj.tags.length !== 0) {
+        if(this.tags.length !== 0) {
 
-            currentObj.tags.forEach((tag) => {
+            this.tags.forEach((tag) => {
 
                 // Any tag currently associated with currentObj will be pushed into tempTagsList.
                 tempTagsList.push(tag);
@@ -418,7 +415,7 @@ export default class CreateToDoObj {
             } else if(event.target === saveBtn) {
 
                 // Save selected tag(s).
-                
+
                 if(currentObj.tags.length === 0) {
 
                     // If currentObj.tags is empty, push all saved tags in tempTagsList into currentObj.tags.
@@ -462,7 +459,7 @@ export default class CreateToDoObj {
 
                 updateSidebarTagsDisplay(); // Counts number of to-do tasks belonging to a certain tag and display on sidebar. 
 
-                updateTagsDisplay(); // Inserts a div just below the additionalElem div where it displays the selected tags.
+                updateTagsDisplay(currentObj); // Inserts a div just below the additionalElem div where it displays the selected tags.
 
                 this.removeEventListener('click', tagDialogFunc);
 
@@ -477,7 +474,7 @@ export default class CreateToDoObj {
 }
 
 // Update tags display after saving.
-function updateTagsDisplay() {
+function updateTagsDisplay(currentObj) {
 
     const tagsBtn = document.getElementById('tags');
     const tagsDiv = document.getElementById('tagsDiv');
