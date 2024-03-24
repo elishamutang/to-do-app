@@ -42,8 +42,6 @@ export function changeChecklistInputElem(event, toDoObj) {
         checklistLabelElem.htmlFor = checklistLabelForAttr;
         checklistItemElemSub.replaceWith(checklistLabelElem);
 
-        console.log(toDoObj);
-
         saveUserData(toDoObj, "checklist");
 
     }, {once: true})
