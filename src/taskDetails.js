@@ -27,6 +27,8 @@ export default class CreateToDoObj {
     // Display task details.
     viewTask() {
         
+        console.log(this);
+
         changeTask(this);
 
     }
