@@ -13,13 +13,14 @@ const multipleSpacesRegex = /[ ]{2,}/;
 export default class CreateToDoObj {
 
     // Initialize each instance of a To-Do object with a title and checklist array.
-    constructor(title) {
+    constructor(title, taskId) {
         this.title = title;
         this.checklist = [];
         this.notes = "";
         this.rawReminderDate = "";
         this.tags = [];
         this.list = "Personal"; // by default
+        this.taskId = taskId;
     };
 
 
@@ -54,7 +55,13 @@ export default class CreateToDoObj {
                 headerDiv.id = headerInput.id;
                 headerDiv.textContent = headerInput.value;
 
+                currentObj.title = headerDiv.textContent;
                 saveUserData(currentObj, "title");
+
+                const taskDivElem = document.getElementById(currentObj.taskId);
+
+                const taskLabelElem = taskDivElem.querySelector('label');
+                taskLabelElem.textContent = currentObj.title;
 
                 headerInput.replaceWith(headerDiv);
 
