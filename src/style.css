@@ -482,7 +482,7 @@ fieldset legend {
 
 #detailHeader:hover {
     background-color: var(--secondary);
-    cursor: pointer;
+    cursor: auto;
 }
 
 #detailNotes {
