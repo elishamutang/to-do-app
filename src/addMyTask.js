@@ -12,7 +12,7 @@ export default function addMyTask(task, fieldset) {
     fieldset.insertAdjacentElement('afterbegin', newTask); // Always insert tasks at the top.
 
     // Create new object
-    return new CreateToDoObj(task.value);
+    return new CreateToDoObj(task.value, newTask.id);
 
 }
 
