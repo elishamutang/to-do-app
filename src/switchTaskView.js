@@ -8,7 +8,6 @@ export default function changeTask(currentObj) {
 
     // Overwrite header
     const taskDetailsHeader = document.getElementById('detailHeader');
-    // const taskDetailsHeaderElem = document.createElement('h1');
     taskDetailsHeader.textContent = getTitle;
 
     // Overwrite notes
