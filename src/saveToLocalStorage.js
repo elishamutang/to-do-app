@@ -13,8 +13,8 @@ export function saveUserData(currentObj, userProp) {
     const listOfObjs = localStorage.getItem("listOfObjs") ? JSON.parse(localStorage.getItem("listOfObjs")) : null;
 
     for(let obj of listOfObjs) {
-                        
-        if(currentObj.title === obj.title && currentObj[userProp] !== obj[userProp]) {
+
+        if(currentObj.taskId === obj.taskId && currentObj[userProp] !== obj[userProp]) {
 
             console.log(`Old ${userProp}: ${obj[userProp]} vs New ${userProp}: ${currentObj[userProp]}`);
             obj[userProp] = currentObj[userProp];
