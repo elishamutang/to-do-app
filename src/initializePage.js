@@ -3,8 +3,6 @@ import addMyTask from './addMyTask';
 import { changeChecklistInputElem } from './checklistFeat';
 import { updateSidebarListDisplay } from './updateSidebar';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
-import { homePage } from './homepage';
-import { otherPages } from './otherPages';
 
 // Load DOM.
 
@@ -75,18 +73,6 @@ export default function initializePage() {
                     lastSelectedElem.innerHTML = lastSelectedElem.textContent;
 
                 }
-
-            }
-
-            switch(selection.textContent) {
-
-                case 'All My Tasks':
-                    homePage();
-                    break;
-                
-                default:
-                    otherPages();
-                    break;
 
             }
 

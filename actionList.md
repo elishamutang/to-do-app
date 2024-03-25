@@ -8,6 +8,7 @@ Priority (Low, High)
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
 - **Figure out how to remove to do tasks and also setup tasks in home page based on localStorage**
+- **Figure out how to switch between lists, tags and all my tasks page.**
 
 
 ### To-Do List Basic Functionality (Low)
