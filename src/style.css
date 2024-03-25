@@ -391,6 +391,7 @@ div.allTasks {
 
 #notes:hover {
     border-color: var(--secondary);
+    border: 1px solid white;
 }
 
 #addTask {
@@ -534,6 +535,15 @@ fieldset legend {
     border-bottom-left-radius: 0;
     font-size: inherit;
     padding: 5px;
+}
+
+#checkList > div {
+    transition: 0.3s;
+}
+
+#checkList > div:hover {
+    background-color: var(--secondary);
+    border: 1px solid white;
 }
 
 .reminderBtns {
