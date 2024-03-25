@@ -475,6 +475,14 @@ fieldset legend {
 #detailHeader {
     font-size: 35px;
     font-weight: bold;
+    transition: 0.3s;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+#detailHeader:hover {
+    background-color: var(--secondary);
+    cursor: pointer;
 }
 
 #detailNotes {
