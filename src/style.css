@@ -466,11 +466,12 @@ fieldset legend {
 }
 
 #divTwoContainer {
-    margin: 20px;
+    padding: 20px;
 
     display: flex;
     flex-direction: column;
     row-gap: 15px;
+    grid-area: taskTwo;
 }
 
 #detailHeader {

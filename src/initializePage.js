@@ -4,6 +4,7 @@ import { changeChecklistInputElem } from './checklistFeat';
 import { updateSidebarListDisplay } from './updateSidebar';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { homePage } from './homepage';
+import { otherPages } from './otherPages';
 
 // Load DOM.
 
@@ -82,13 +83,9 @@ export default function initializePage() {
                 case 'All My Tasks':
                     homePage();
                     break;
-
-                case 'Personal':
-                    console.log(selection);
-                    break;
                 
-                case 'Work':
-                    console.log(selection);
+                default:
+                    otherPages();
                     break;
 
             }
@@ -167,7 +164,7 @@ export default function initializePage() {
 
     // Interact with details of each To-Do task.
     // Task Details
-    const taskDetailsContainer = document.getElementById('allTasksDivTwo');
+    const taskDetailsContainer = document.getElementById('divTwoContainer');
 
     taskDetailsContainer.addEventListener('click', function(event) {
 
