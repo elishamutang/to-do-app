@@ -7,7 +7,7 @@ Priority (Low, High)
     - Currently named as 'All My Tasks', user able to get an overview of all current and upcoming tasks.
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
-- **Fix saveUserData, new title not saved.**
+- **Consider looking up taskId instead of title in initializePage.js**
 
 - **Updating ID numbering if a To-Do task gets deleted/finished, same for checklist items.**
 
