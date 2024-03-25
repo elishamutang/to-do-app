@@ -3,6 +3,7 @@ import addMyTask from './addMyTask';
 import { changeChecklistInputElem } from './checklistFeat';
 import { updateSidebarListDisplay } from './updateSidebar';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
+import { homePage } from './homepage';
 
 // Load DOM.
 
@@ -42,6 +43,7 @@ export default function initializePage() {
 
             mainHeaderHeading.textContent = selection.textContent; // Update heading to show what list is currently displayed.
 
+            // Get every anchor tag (list or tag) from aside element.
             const allListItems = Array.from(document.querySelector('aside').getElementsByClassName('list'));
 
             // Code below is for styling current selection in sidebar.
@@ -72,6 +74,22 @@ export default function initializePage() {
                     lastSelectedElem.innerHTML = lastSelectedElem.textContent;
 
                 }
+
+            }
+
+            switch(selection.textContent) {
+
+                case 'All My Tasks':
+                    homePage();
+                    break;
+
+                case 'Personal':
+                    console.log(selection);
+                    break;
+                
+                case 'Work':
+                    console.log(selection);
+                    break;
 
             }
 
@@ -137,12 +155,12 @@ export default function initializePage() {
 
                 currentObj = obj;
 
+                event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
+                currentObj.viewTask();
+
             }
 
         }
-
-        event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
-        currentObj.viewTask();
 
     })
 
