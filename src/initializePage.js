@@ -130,22 +130,19 @@ export default function initializePage() {
     overviewDiv.addEventListener('click', (event) => {
 
         // Set currentObj to To-Do task that was clicked.
-        if(event.target.tagName === 'LABEL') {
+        for(let obj of listOfObjs) {
+            
+            // Utilize taskId of To-Do object div.
+            if(obj.taskId === event.target.id) {
 
-            for(let obj of listOfObjs) {
-                
-                if(obj.title === event.target.textContent) {
-
-                    currentObj = obj;
-
-                }
+                currentObj = obj;
 
             }
 
-            event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
-            currentObj.viewTask();
-
         }
+
+        event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
+        currentObj.viewTask();
 
     })
 
