@@ -22,46 +22,45 @@ function createTaskWrapper(taskValue) {
     // Creates new task in overview div.
     const newTaskDiv = document.createElement('div');
     newTaskDiv.className = 'toDoDiv';
+    
+    // Append text content as a text node.
+    const newTaskDivTextNode = document.createTextNode(taskValue);
 
     const newCheckBox = document.createElement('input');
     newCheckBox.type = 'checkbox';
     newCheckBox.className = 'toDoObj';
 
-    const newLabel = document.createElement('label');
-    newLabel.textContent = taskValue;
 
     // Check number of To Do's.
-    updateNumOfToDos(newCheckBox, newLabel, newTaskDiv);
+    updateNumOfToDos(newCheckBox, newTaskDiv);
 
     newTaskDiv.append(newCheckBox);
-    newTaskDiv.append(newLabel);
+    newTaskDiv.append(newTaskDivTextNode);
 
     return newTaskDiv;
 
 }
 
 
-function updateNumOfToDos(newCheckBox, newLabel, newTaskDiv) {
+function updateNumOfToDos(newCheckBox, newTaskDiv) {
 
     // Check for number of to do's inside Today fieldset.
     const existingDivs = document.getElementsByClassName('toDoDiv');
 
-    let labelNum = 1;
+    let divNum = 1;
 
     // Updates checkbox ID and label for attribute based on number of existing to do's.
     if(existingDivs.length == 0) {
 
-        newTaskDiv.id = `taskDiv-${labelNum}`;
-        newCheckBox.id = `task-${labelNum}`;
-        newLabel.htmlFor = `task-${labelNum}`;
+        newTaskDiv.id = `taskDiv-${divNum}`;
+        newCheckBox.id = `task-${divNum}`;
 
     } else {
 
-        const lastLabelNum = existingDivs.length;
+        const lastdivNum = existingDivs.length;
 
-        newTaskDiv.id = `taskDiv-${lastLabelNum+labelNum}`
-        newCheckBox.id = `task-${lastLabelNum+labelNum}`;
-        newLabel.htmlFor = `task-${lastLabelNum+labelNum}`;
+        newTaskDiv.id = `taskDiv-${lastdivNum+divNum}`
+        newCheckBox.id = `task-${lastdivNum+divNum}`;
 
     }
 
