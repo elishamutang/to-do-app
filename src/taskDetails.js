@@ -59,9 +59,7 @@ export default class CreateToDoObj {
                 saveUserData(currentObj, "title");
 
                 const taskDivElem = document.getElementById(currentObj.taskId);
-
-                const taskLabelElem = taskDivElem.querySelector('label');
-                taskLabelElem.textContent = currentObj.title;
+                taskDivElem.childNodes[1].textContent = currentObj.title;
 
                 headerInput.replaceWith(headerDiv);
 
