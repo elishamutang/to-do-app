@@ -1,7 +1,7 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
 import { isToday, isTomorrow, isFuture } from "date-fns";
-import CreateToDoObj from "./taskDetails";
+import CreateToDoObj from "./createToDoObj";
 
 // Add new task and displays them.
 export default function addMyTask(task, fieldset) {
