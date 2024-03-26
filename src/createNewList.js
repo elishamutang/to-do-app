@@ -33,7 +33,7 @@ export function createNew(createNewBtn) {
 }
 
 // Updates either My Lists or Tags section for newly created lists/tags.
-function addList(listTitle, btnClassName) {
+function addList(listTitle) {
 
     // Target My Lists.
     const myLists = document.querySelector(`ul.secondary.lists`);
@@ -70,7 +70,7 @@ export function checkFormInput(titleInput, btnClassName) {
     }
 
     // Detect user input.
-    titleInput.addEventListener('keyup', (event) => {
+    titleInput.addEventListener('keyup', () => {
         // If user input does not follow regex pattern, continue button remains disabled.
         if(regex.test(titleInput.value) == false) {
             submitBtn.disabled = true;
@@ -90,13 +90,13 @@ function submitForm(titleInput, btnClass, dialog) {
     const form = document.querySelector(`form.${btnClass}`);
 
     const submitOnContinue = function(event) {
-        const listTitle = titleInput.value;
+        const listTitle = form.listInput.value;
         
         // Add to new list
         addList(listTitle, btnClass);
 
         setTimeout(() => {
-            titleInput.value = '';
+            form.listInput.value = '';
         }, 1000);
         dialog.close();
 
