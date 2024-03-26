@@ -17,10 +17,18 @@ export default function startUp() {
     const startUpInput = document.createElement('input');
     startUpInput.type = 'text';
     startUpInput.id = 'userNameInput';
-    startUpInput.placeholder = 'Your name goes here...';
+    startUpInput.placeholder = 'Your name here...';
     startUpInput.className = 'userLists dialogInput';
 
+    // Continue button
+    const continueBtn = document.createElement('button');
+    continueBtn.className = 'continue';
+    continueBtn.type = 'submit';
+    continueBtn.textContent = 'Continue';
+
+
     startUpForm.append(startUpInput);
+    startUpForm.append(continueBtn);
     startUpDialog.append(startUpForm);
 
     // Insert startUpDialog right after body tag.
