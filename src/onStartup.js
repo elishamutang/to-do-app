@@ -26,7 +26,6 @@ export default function startUp() {
     continueBtn.type = 'submit';
     continueBtn.textContent = 'Continue';
 
-
     startUpForm.append(startUpInput);
     startUpForm.append(continueBtn);
     startUpDialog.append(startUpForm);
@@ -35,5 +34,13 @@ export default function startUp() {
     document.querySelector('body').insertAdjacentElement('afterbegin', startUpDialog);
 
     startUpDialog.showModal();
+
+    startUpForm.addEventListener('submit', (event) => {
+
+        event.preventDefault();
+        console.log(startUpForm.userNameInput.value);
+
+    })
+
 
 }
