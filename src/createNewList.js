@@ -90,11 +90,14 @@ function submitForm(titleInput, btnClass, dialog) {
     const form = document.querySelector(`form.${btnClass}`);
 
     const submitOnContinue = function(event) {
+
+        // Get form input value.
         const listTitle = form.listInput.value;
         
-        // Add to new list
+        // Add to new list.
         addList(listTitle, btnClass);
 
+        // Clear out input value.
         setTimeout(() => {
             form.listInput.value = '';
         }, 1000);
