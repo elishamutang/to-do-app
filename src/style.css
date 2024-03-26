@@ -24,6 +24,10 @@ html, body {
     background: var(--content);
 }
 
+body {
+    position: relative;
+}
+
 #container {
     min-height: 100vh;
     display: grid;
@@ -288,6 +292,7 @@ form, dialog {
 .continue:disabled {
     opacity: 0.5;
     cursor: auto;
+    background-color: var(--secondary);
 }
 
 .continue:not(:disabled):hover {
@@ -401,7 +406,6 @@ div.allTasks {
     padding: 10px;
 
     display: flex;
-    position: relative;
 }
 
 #addTask > button {
@@ -740,4 +744,16 @@ div.selectedTags {
 
 #family {
     background: var(--family);
+}
+
+#startUpDialog {
+    position: absolute;
+    text-align: center;
+    background: transparent;
+    top: 30%;
+}
+
+#startUpForm {
+    height: 100%;
+    justify-content: center;
 }
