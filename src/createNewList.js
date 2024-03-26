@@ -63,7 +63,7 @@ export function checkFormInput(titleInput, btnClassName) {
     // Initial state of form, button disabled cause of no input.
     if(titleInput.value == '') {
         submitBtn.disabled = true;
-    } else if(titleInput.value != '' && regex.test(titleInput.value) == false) {
+    } else if(titleInput.value != '' && !regex.test(titleInput.value)) {
         submitBtn.disabled = true;
     } else {
         submitBtn.disabled = false;
@@ -72,7 +72,7 @@ export function checkFormInput(titleInput, btnClassName) {
     // Detect user input.
     titleInput.addEventListener('keyup', () => {
         // If user input does not follow regex pattern, continue button remains disabled.
-        if(regex.test(titleInput.value) == false) {
+        if(!regex.test(titleInput.value)) {
             submitBtn.disabled = true;
         } else {
             submitBtn.disabled = false;
