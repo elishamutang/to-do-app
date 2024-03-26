@@ -1,5 +1,5 @@
 // When user loads the page, greeted with a dialog that asks for name.
-
+import { checkFormInput } from "./createNewList";
 
 export default function startUp() {
 
@@ -11,7 +11,7 @@ export default function startUp() {
     const startUpForm = document.createElement('form');
     startUpForm.id = 'startUpForm';
     startUpForm.method = 'dialog';
-    startUpForm.className = 'userLists';
+    startUpForm.className = 'onStartup';
 
     // Text input
     const startUpInput = document.createElement('input');
@@ -39,6 +39,8 @@ export default function startUp() {
 
         event.preventDefault();
         console.log(startUpForm.userNameInput.value);
+
+        // checkFormInput(startUpForm.userNameInput, )
 
     })
 
