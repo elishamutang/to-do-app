@@ -21,7 +21,7 @@ export default function startUp() {
     const startUpInput = document.createElement('input');
     startUpInput.type = 'text';
     startUpInput.id = 'userNameInput';
-    startUpInput.placeholder = 'Your name here...';
+    startUpInput.placeholder = 'Your username here...';
     startUpInput.className = 'userLists dialogInput';
 
     // Continue button
@@ -52,13 +52,14 @@ export default function startUp() {
         const userProfile = document.getElementById('userProfile');
         const userNameDiv = document.getElementById('userName');
 
-        userProfile.querySelector('button').textContent = Array.from(userName)[0];
+        // Username first letter as part of user profile.
+        userProfile.querySelector('button').textContent = (Array.from(userName)[0]).toUpperCase();
         
         // Randomly generate profile colors.
         userProfile.querySelector('button').style.backgroundColor = rcolor({
                                                                             hue: (Math.random() + goldenRatio) % 1, 
-                                                                            saturation: 0.5, 
-                                                                            value: 0.95
+                                                                            saturation: 0.8, 
+                                                                            value: 0.8
                                                                             });
 
         userNameDiv.textContent = userName;
@@ -66,6 +67,7 @@ export default function startUp() {
         startUpDialog.close();
 
         initializePage();
+        
     })
 
 
