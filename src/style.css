@@ -50,7 +50,7 @@ body {
     flex-direction: column;
 }
 
-.userProfile, .userInfo {
+#userProfile, .userInfo {
     display: flex;
     justify-content: flex-start;
     margin: 1.5rem;
@@ -71,13 +71,13 @@ body {
     color: white;
 }
 
-.userProfile div {
+#userProfile div {
     margin: 20px 15px;
     font-size: 23px;
     font-weight: bold;
 }
 
-.userProfile button {
+#userProfile button {
     text-decoration: none;
     margin: 0;
     color: white;
