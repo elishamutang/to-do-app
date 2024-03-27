@@ -11,6 +11,12 @@ export default function initializePage() {
     // Check for localStorage support in user's browser.
     const checkLS = checkForLocalStorageSupport() ? console.log("You have localStorage") : console.log("You don't have localStorage");
 
+    // Set divTwoContainer as display:none initially, until user clicks on a to-do task to view details.
+    const taskDetailsContainer = document.getElementById('divTwoContainer');
+    taskDetailsContainer.style.display = 'none';
+    taskDetailsContainer.remove();
+
+
     // Default arrangement/view
     const mainHeader = document.getElementById('mainHeader');
 
@@ -139,6 +145,10 @@ export default function initializePage() {
                 currentObj = obj;
 
                 event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
+
+                document.querySelector('main').append(taskDetailsContainer);
+                taskDetailsContainer.style.display = 'flex';
+
                 currentObj.viewTask();
 
             }
@@ -150,8 +160,6 @@ export default function initializePage() {
 
     // Interact with details of each To-Do task.
     // Task Details
-    const taskDetailsContainer = document.getElementById('divTwoContainer');
-
     taskDetailsContainer.addEventListener('click', function(event) {
 
         if(listOfObjs.length !== 0) {
