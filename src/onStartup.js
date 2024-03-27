@@ -1,5 +1,6 @@
 // When user loads the page, greeted with a dialog that asks for name.
 import { checkFormInput } from "./createNewList";
+import initializePage from './initializePage';
 
 const rcolor = require('rcolor');
 const goldenRatio = 0.618;
@@ -62,6 +63,9 @@ export default function startUp() {
 
         userNameDiv.textContent = userName;
 
+        startUpDialog.close();
+
+        initializePage();
     })
 
 
