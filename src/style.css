@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Lora, Arial, Helvetica;
 }
 
 :root {
@@ -69,8 +72,8 @@ body {
 }
 
 .userProfile div {
-    margin: 20px 20px;
-    font-size: 25px;
+    margin: 20px 15px;
+    font-size: 23px;
     font-weight: bold;
 }
 
@@ -79,11 +82,11 @@ body {
     margin: 0;
     color: white;
     border-radius: 50%;
-    border: none;
+    border: 3px solid var(--secondary);
     height: 45px;
     width: 45px;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 25px;
     cursor: pointer;
     text-align: center;
     background: var(--tenPercent);
@@ -753,6 +756,10 @@ div.selectedTags {
     top: 30%;
 }
 
+#startUpDialog[open]::backdrop {
+    opacity: 0.95;
+}
+
 #startUpForm {
     height: 100%;
     justify-content: space-between;
@@ -760,4 +767,6 @@ div.selectedTags {
 
 #userNameInput {
     margin-top: 15%;
+    font-family: Lora;
+    font-weight: 600;
 }
