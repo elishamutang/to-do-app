@@ -6,13 +6,9 @@ Priority (Low, High)
 - Create home page for user. User should be directed to an existing project list or 'home'.
     - Currently named as 'All My Tasks', user able to get an overview of all current and upcoming tasks.
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
-
-- **Finish onStartup.js**
-    - Allow users to enter name and set that value in sidebar.
     
 - **Figure out how to remove to do tasks and also setup tasks in home page based on localStorage**
 - **Figure out how to switch between lists, tags and all my tasks page.**
-
 
 ### To-Do List Basic Functionality (Low)
 - Revise radio buttons for Tasks Overview container (On-hold for now)
