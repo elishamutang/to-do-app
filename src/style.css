@@ -757,10 +757,13 @@ div.selectedTags {
 }
 
 #startUpDialog[open]::backdrop {
-    opacity: 0.95;
+    background: rgb(67 101 151);
+    opacity: 0.98;
+    backdrop-filter: blur(10px);
 }
 
 #startUpForm {
+    border: 3px solid var(--secondary);
     height: 100%;
     justify-content: space-between;
 }
