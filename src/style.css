@@ -759,7 +759,6 @@ div.selectedTags {
 #startUpDialog[open]::backdrop {
     background: rgb(67 101 151);
     opacity: 0.98;
-    backdrop-filter: blur(10px);
 }
 
 #startUpForm {
