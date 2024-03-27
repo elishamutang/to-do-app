@@ -2,6 +2,7 @@
 import { checkFormInput } from "./createNewList";
 import initializePage from './initializePage';
 
+// Random color generator for userProfile.
 const rcolor = require('rcolor');
 const goldenRatio = 0.618;
 
