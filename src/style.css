@@ -604,13 +604,14 @@ fieldset legend {
     scrollbar-width: thin;
 }
 
-#linksContainer > a {
+div#linksContainer .list {
     font-size: 1.5rem;
     padding: 1px 7px;
     border-radius: 8px;
+    border: 2px solid transparent;
 }
 
-.current {
+#linksContainer > a.list.current {
     color: white;
     border: 2px solid white;
 }
