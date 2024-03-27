@@ -772,3 +772,12 @@ div.selectedTags {
     font-family: Lora;
     font-weight: 600;
 }
+
+.toDoDiv {
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.toDoDiv:hover {
+    border: 2px solid var(--secondary);
+}
