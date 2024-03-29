@@ -788,3 +788,8 @@ div.selectedTags {
     background-color: var(--secondary);
     filter: brightness(0.8);
 }
+
+.disable {
+    pointer-events: none;
+    filter: contrast(0.4);
+}
