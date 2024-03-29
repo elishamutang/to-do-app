@@ -1,4 +1,4 @@
-import changeTask from "./switchTaskView";
+import changeTask from "./changeTask";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
 import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebar";
