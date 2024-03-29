@@ -782,3 +782,9 @@ div.selectedTags {
 .toDoDiv:hover {
     border: 2px solid var(--secondary);
 }
+
+.complete {
+    text-decoration: line-through;
+    background-color: var(--secondary);
+    filter: brightness(0.8);
+}
