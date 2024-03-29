@@ -3,6 +3,7 @@ import addMyTask from './addMyTask';
 import { changeChecklistInputElem } from './checklistFeat';
 import { updateSidebarListDisplay } from './updateSidebar';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
+import { taskCompletion } from './taskCompletion';
 
 // Load DOM.
 
@@ -137,21 +138,33 @@ export default function initializePage() {
     overviewDiv.addEventListener('click', (event) => {
 
         // Set currentObj to To-Do task that was clicked.
-        for(let obj of listOfObjs) {
+        if(event.target.className === 'toDoDiv') {
+
+            for(let obj of listOfObjs) {
             
-            // Utilize taskId of To-Do object div.
-            if(obj.taskId === event.target.id) {
-
-                currentObj = obj;
-
-                event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
-
-                document.querySelector('main').append(taskDetailsContainer);
-                taskDetailsContainer.style.display = 'flex';
-
-                currentObj.viewTask();
-
+                // Utilize taskId of To-Do object div.
+                if(obj.taskId === event.target.id) {
+    
+                    currentObj = obj;
+    
+                    event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
+    
+                    document.querySelector('main').append(taskDetailsContainer);
+                    taskDetailsContainer.style.display = 'flex';
+    
+                    currentObj.viewTask();
+    
+                }
+    
             }
+
+        }
+
+        if(event.target.tagName === 'INPUT') {
+
+            const taskDiv = event.target.parentNode;
+
+            taskCompletion(taskDiv, taskDetailsContainer);
 
         }
 
