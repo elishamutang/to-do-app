@@ -104,7 +104,7 @@ export default function initializePage() {
     })
 
     // Store newly created To-Do objects.
-    const listOfObjs = [];
+    const objForObjs = {};
     
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
@@ -112,18 +112,18 @@ export default function initializePage() {
         // Creates new to-do object.
         const toDoObj = addMyTask(addNewTask, fieldsetToday);
 
-        // Stores inside listOfObjs array.
-        listOfObjs.push(toDoObj);
+        // Stores inside objForObjs.
+        objForObjs[toDoObj.taskId] = toDoObj;
 
         // Resets input and disables button.
         addNewTask.value = '';
         addNewTaskBtn.disabled = true;
 
         // Save to localStorage.
-        saveToLocal(listOfObjs, "listOfObjs");
+        saveToLocal(objForObjs, "allObjs");
 
         // Updates sidebar (by default each newly created To-Do task will belong to personal)
-        updateSidebarListDisplay(toDoObj);
+        updateSidebarListDisplay();
 
         event.preventDefault();
     })
@@ -138,28 +138,28 @@ export default function initializePage() {
     overviewDiv.addEventListener('click', (event) => {
 
         // Set currentObj to To-Do task that was clicked.
-        if(event.target.className === 'toDoDiv') {
+        if(Array.from(event.target.classList).includes('toDoDiv')) {
 
-            for(let obj of listOfObjs) {
-            
-                // Utilize taskId of To-Do object div.
-                if(obj.taskId === event.target.id) {
-    
-                    currentObj = obj;
-    
-                    event.preventDefault(); // Prevents checkbox to be ticked when label is clicked.
-    
+            Object.keys(objForObjs).forEach((key) => {
+
+                if(key === event.target.id) {
+
+                    currentObj = objForObjs[key];
+
+                    event.preventDefault();
+
                     document.querySelector('main').append(taskDetailsContainer);
                     taskDetailsContainer.style.display = 'flex';
-    
+
                     currentObj.viewTask();
-    
+
                 }
-    
-            }
+
+            })
 
         }
 
+        // Checkbox logic
         if(event.target.tagName === 'INPUT') {
 
             const taskDiv = event.target.parentNode;
@@ -175,7 +175,7 @@ export default function initializePage() {
     // Task Details
     taskDetailsContainer.addEventListener('click', function(event) {
 
-        if(listOfObjs.length !== 0) {
+        if(Object.keys(objForObjs).length !== 0) {
             taskDetailsEvent(event, currentObj);
         } else {
             return;
