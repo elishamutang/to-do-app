@@ -9,21 +9,26 @@ export default function saveToLocal(userData, dataName) {
 // Save changes to user data properties such as Reminder, Notes, Checklist Items etc.
 export function saveUserData(currentObj, userProp) {
 
-    // Check if listOfObjs exist
-    const listOfObjs = localStorage.getItem("listOfObjs") ? JSON.parse(localStorage.getItem("listOfObjs")) : null;
+    // Check if objForObjs exist
+    const objForObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : null;
 
-    for(let obj of listOfObjs) {
+    Object.keys(objForObjs).forEach((key) => {
 
-        if(currentObj.taskId === obj.taskId && currentObj[userProp] !== obj[userProp]) {
+        if(currentObj.taskId === key) {
 
-            console.log(`Old ${userProp}: ${obj[userProp]} vs New ${userProp}: ${currentObj[userProp]}`);
-            obj[userProp] = currentObj[userProp];
+            const relevantObj = objForObjs[key];
+
+            // Displays old vs new data for the selected object.
+            console.log(`Old ${userProp}: ${relevantObj[userProp]} vs New ${userProp}: ${currentObj[userProp]}`);
+
+            relevantObj[userProp] = currentObj[userProp];
+            
 
         }
 
-    }
+    })
 
-    saveToLocal(listOfObjs, "listOfObjs");
+    saveToLocal(objForObjs, "allObjs");
 
 }
 
