@@ -21,6 +21,7 @@ export default class CreateToDoObj {
         this.tags = [];
         this.list = "Personal"; // by default
         this.taskId = taskId;
+        this.completed = false; // task completion.
     };
 
 
