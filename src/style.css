@@ -789,7 +789,13 @@ div.selectedTags {
     filter: brightness(0.8);
 }
 
-.disable {
+div.disable {
     pointer-events: none;
     filter: contrast(0.4);
+    transition: 0.3s;
+}
+
+div.disable > #additionalElems > div > button,
+div.disable > #checkListSect > div > button {
+    background-color: var(--secondary);
 }
