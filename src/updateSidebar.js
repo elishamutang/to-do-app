@@ -107,22 +107,22 @@ export function updateSidebarTagsDisplay() {
 // Count number of To-Do objects for each list.
 function counterFunc() {
 
-    const listOfObjs = localStorage.getItem("listOfObjs") ? JSON.parse(localStorage.getItem("listOfObjs")) : null;
+    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : null;
 
     // Object to keep track of total number of To-Do tasks in each list (Personal, Work, Groceries).
     const countsForEachList = {};
     const countsForEachTag = {};
 
-    listOfObjs.forEach((obj) => {
+    Object.keys(allObjs).forEach((key) => {
+        
+        const toDoObject = allObjs[key];
 
-        // Counts number of To-Do tasks for each list.
-        countsForEachList[obj.list] = countsForEachList[obj.list] ? countsForEachList[obj.list] + 1 : 1;
+        countsForEachList[toDoObject.list] = countsForEachList[toDoObject.list] ? countsForEachList[toDoObject.list] + 1 : 1;
 
-        const objTags = obj.tags;
+        const toDoObjectTags = toDoObject.tags;
 
-        objTags.forEach((tag) => {
+        toDoObjectTags.forEach((tag) => {
 
-            // Counts number of To-Do tasks for each tag associated with it.
             countsForEachTag[tag] = countsForEachTag[tag] ? countsForEachTag[tag] + 1 : 1;
 
         })
