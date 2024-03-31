@@ -105,15 +105,18 @@ export default function initializePage() {
 
     // Store newly created To-Do objects.
     const objForObjs = {};
+
+    // Initialize currentObj
+    let currentObj;
     
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
 
         // Creates new to-do object.
-        const toDoObj = addMyTask(addNewTask, fieldsetToday);
-
+        const currentObj = addMyTask(addNewTask, fieldsetToday);
+        
         // Stores inside objForObjs.
-        objForObjs[toDoObj.taskId] = toDoObj;
+        objForObjs[currentObj.taskId] = currentObj;
 
         // Resets input and disables button.
         addNewTask.value = '';
@@ -128,9 +131,6 @@ export default function initializePage() {
         event.preventDefault();
     })
 
-
-    // Initialize currentObj
-    let currentObj;
 
     // View any To-Do task in greater detail.
     const overviewDiv = document.querySelector('.overview');
@@ -164,7 +164,17 @@ export default function initializePage() {
 
             const taskDiv = event.target.parentNode;
 
-            taskCompletion(taskDiv, taskDetailsContainer);
+            for(let key of Object.keys(objForObjs)) {
+
+                if(key === taskDiv.id) {
+
+                    currentObj = objForObjs[key];
+
+                }
+
+            }
+
+            taskCompletion(taskDiv, taskDetailsContainer, currentObj);
 
         }
 
