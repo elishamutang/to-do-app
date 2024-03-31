@@ -4,16 +4,20 @@ import { prepareInputListItem, switchElem } from "./checklistFeat";
 
 export default function changeTask(currentObj) {
 
-    const getTitle = currentObj.title;
+    // Get divTwoContainer
+    const divTwoContainer = document.getElementById('divTwoContainer');
+    divTwoContainer.dataset.task = currentObj.taskId;
+
+    // Check whether selected task has been completed or not.
+    checkCompletion(currentObj, divTwoContainer);
 
     // Overwrite header
     const taskDetailsHeader = document.getElementById('detailHeader');
-    taskDetailsHeader.textContent = getTitle;
+    taskDetailsHeader.textContent = currentObj.title;
 
     // Overwrite notes
     const notesSect = document.getElementById('notes');
     notesSect.value = currentObj.notes;    
-
 
     // Overwrite checklist items
     const checklistFieldset = document.getElementById('checkList');
@@ -226,5 +230,61 @@ export default function changeTask(currentObj) {
         }
         
     })
+
+}
+
+
+function checkCompletion(currentObj, divTwoContainer) {
+
+    const toDoStatus = currentObj.completed;
+
+    const divTwoContainerClassList = Array.from(divTwoContainer.classList);
+
+    const getAllInputs = Array.from(divTwoContainer.getElementsByTagName('input'));
+    const getAllButtons = Array.from(divTwoContainer.getElementsByTagName('button'));
+
+    if(currentObj.taskId === divTwoContainer.dataset.task) {
+
+        if(!toDoStatus && divTwoContainerClassList.includes('disable')) {
+
+            const newClassList = divTwoContainerClassList.filter((className) => {
+    
+                return className !== 'disable';
+    
+            })
+    
+            divTwoContainer.className = newClassList.join(' ');
+    
+            getAllInputs.forEach((input) => {
+    
+                input.disabled = false;
+    
+            })
+    
+            getAllButtons.forEach((button) => {
+    
+                button.disabled = false;
+    
+            })
+    
+        } else if(toDoStatus && !divTwoContainerClassList.includes('disable')) {
+    
+            divTwoContainer.className += ' disable';
+    
+            getAllInputs.forEach((input) => {
+    
+                input.disabled = true;
+    
+            })
+    
+            getAllButtons.forEach((button) => {
+    
+                button.disabled = true;
+    
+            })
+    
+        }
+
+    }
 
 }
