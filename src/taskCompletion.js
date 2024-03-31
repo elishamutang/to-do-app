@@ -8,24 +8,42 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     const taskDivClassList = Array.from(taskDiv.classList);
     const taskDetailsContainerClassList = Array.from(taskDetailsContainer.classList);
 
-    // If checkbox is checked, task is considered complete and taskDetailsContainer will be disabled.
-    if(taskDivClassList.includes('complete') && taskDetailsContainerClassList.includes('disable')) {
-
-        taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
-        taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
-
-    } else {
-
-        taskDiv.className += ' complete';
-        taskDetailsContainer.className += ' disable';
-
-    }
-
     // Get all taskDetailsContainer inputs/buttons to disable them.
     const getInputs = Array.from(taskDetailsContainer.getElementsByTagName('input'));
     const getButtons = Array.from(taskDetailsContainer.getElementsByTagName('button'));
 
     let isComplete;
+
+    // If currentObj and taskDetailsContainer are not referring to the same object, taskDetailsContainer remains unchanged.
+    // For example, task1 and task2, if user is viewing task1 and accidentally checks task2, it won't disable taskDetailsContainer for task1 (current view).
+    if(currentObj.taskId !== taskDetailsContainer.dataset.task) {
+
+        if(taskDivClassList.includes('complete')) {
+
+            taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
+
+        } else {
+
+            taskDiv.className += ' complete';
+
+        }
+
+    } else {
+
+        // If checkbox is checked, task is considered complete and taskDetailsContainer will be disabled.
+        if(taskDivClassList.includes('complete') && taskDetailsContainerClassList.includes('disable')) {
+
+            taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
+            taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
+
+        } else {
+
+            taskDiv.className += ' complete';
+            taskDetailsContainer.className += ' disable';
+
+        }
+
+    }
 
     if(taskDivClassList.includes('complete')) {
 
