@@ -24,7 +24,9 @@ function createTaskWrapper(taskValue) {
     newTaskDiv.className = 'toDoDiv';
     
     // Append text content as a text node.
-    const newTaskDivTextNode = document.createTextNode(taskValue);
+    const newTaskText = document.createElement('p');
+    newTaskText.textContent = taskValue;
+    newTaskText.className = 'taskTitle'
 
     const newCheckBox = document.createElement('input');
     newCheckBox.type = 'checkbox';
@@ -35,7 +37,7 @@ function createTaskWrapper(taskValue) {
     updateNumOfToDos(newCheckBox, newTaskDiv);
 
     newTaskDiv.append(newCheckBox);
-    newTaskDiv.append(newTaskDivTextNode);
+    newTaskDiv.append(newTaskText);
 
     return newTaskDiv;
 
