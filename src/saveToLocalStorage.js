@@ -10,7 +10,7 @@ export default function saveToLocal(userData, dataName) {
 export function saveUserData(currentObj, userProp) {
 
     // Check if objForObjs exist
-    const objForObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : null;
+    const objForObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
 
     Object.keys(objForObjs).forEach((key) => {
 
