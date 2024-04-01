@@ -1,8 +1,12 @@
 // Disables (or enables) inputs for task details, when checkbox is checked or not.
 
-import { saveUserData } from "./saveToLocalStorage";
+import saveToLocal, { saveUserData } from "./saveToLocalStorage";
+import { updateSidebarListDisplay } from "./updateSidebar";
 
 export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
+
+    // Get all to-do objects (allObjs is an object)
+    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : null;
 
     // Get class list of taskDiv and taskDetailsContainer
     const taskDivClassList = Array.from(taskDiv.classList);
@@ -78,6 +82,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     
         })
 
+        // Flagging variable to indicate task completion status.
         isComplete = true;
 
         // Append clickable delete button.
@@ -87,24 +92,41 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
         deleteTaskBtn.innerHTML = "<i class='bx bxs-x-circle bx-rotate-90'></i>";
         taskDiv.append(deleteTaskBtn);
 
-        deleteTaskBtn.addEventListener('click', (event) => {
+        // Save in localStorage.
+        updateCurrentObj(isComplete, currentObj, allObjs);
 
-            console.log(event.target);
+        // Option to delete completed tasks.
+        deleteTaskBtn.addEventListener('click', () => {
+
+            // Removes taskDiv and taskDetailsContainer upon clicking delete button.
+            taskDiv.remove();
+            taskDetailsContainer.remove();
+
+            Object.entries(allObjs).forEach(([key], idx) => {
+
+                if(currentObj.taskId === key) {
+
+                    // Splices allObjs, returns an object that only includes tasks that were not deleted.
+                    const revisedObj = objectSplice(allObjs, idx);
+
+                    // Overwrite allObjs in localStorage.
+                    saveToLocal(revisedObj, "allObjs");
+
+                    // Updates display in sidebar.
+                    updateSidebarListDisplay();
+
+                }
+
+            })
 
         })
 
     }
-
-    // Save in localStorage.
-    updateCurrentObj(isComplete, currentObj);
     
 }
 
 
-function updateCurrentObj(isComplete, currentObj) {
-
-    // Get all to-do objects (allObjs is an object)
-    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : null;
+function updateCurrentObj(isComplete, currentObj, allObjs) {
 
     Object.keys(allObjs).forEach((key) => {
 
@@ -126,6 +148,27 @@ function updateCurrentObj(isComplete, currentObj) {
 
     })
 
-    console.log(currentObj);
+}
+
+
+function objectSplice(obj, startIdx, endIdx=1) {
+
+    let newObj = {};
+
+    Object.entries(obj).forEach(([key, value], idx) => {
+
+        if(idx >= startIdx && idx - startIdx < endIdx) {
+
+            return;
+
+        } else {
+
+            newObj[key] = value;
+
+        }
+
+    })
+
+    return newObj;
 
 }
