@@ -5,8 +5,7 @@ import { updateSidebarListDisplay } from "./updateSidebar";
 
 export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
-    // Get all to-do objects (allObjs is an object)
-    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : null;
+    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
 
     // Get class list of taskDiv and taskDetailsContainer
     const taskDivClassList = Array.from(taskDiv.classList);
@@ -16,6 +15,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     const getInputs = Array.from(taskDetailsContainer.getElementsByTagName('input'));
     const getButtons = Array.from(taskDetailsContainer.getElementsByTagName('button'));
 
+    // Flagging variable to indicate task completion status.
     let isComplete;
 
     // If currentObj and taskDetailsContainer are not referring to the same object, taskDetailsContainer remains unchanged.
@@ -63,6 +63,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
         })
 
+        // Task incomplete, checkbox un-ticked.
         isComplete = false;
 
         // Remove clickable delete button.
@@ -82,7 +83,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     
         })
 
-        // Flagging variable to indicate task completion status.
+        // Task complete, checkbox ticked.
         isComplete = true;
 
         // Append clickable delete button.
@@ -107,10 +108,12 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
                 if(currentObj.taskId === key) {
 
                     // Splices allObjs, returns an object that only includes tasks that were not deleted.
-                    const revisedObj = objectSplice(allObjs, idx);
+                    const updatedObj = objectSplice(allObjs, idx);
+
+                    console.log(updatedObj);
 
                     // Overwrite allObjs in localStorage.
-                    saveToLocal(revisedObj, "allObjs");
+                    saveToLocal(updatedObj, "allObjs");
 
                     // Updates display in sidebar.
                     updateSidebarListDisplay();
@@ -168,6 +171,43 @@ function objectSplice(obj, startIdx, endIdx=1) {
         }
 
     })
+
+    // Update taskIDs and object keys.
+    newObj = updateTaskId(newObj);
+
+    return newObj;
+
+}
+
+
+function updateTaskId(allObjs) {
+
+    const getAllTaskDivs = Array.from(document.getElementsByClassName('toDoDiv')).reverse();
+
+    // Update taskDiv and input IDs.
+    getAllTaskDivs.forEach((div, idx) => {
+
+        console.log(div, idx);
+        div.id = `taskDiv-${idx+1}`;
+
+        div.querySelector('input').id = `task-${idx+1}`;
+
+    })
+
+    // Update taskId property for each object.
+    let num = 1;
+
+    allObjs = Object.keys(allObjs).map((key, idx) => {
+
+        allObjs[key].taskId = `taskDiv-${num + idx}`;
+
+        const newKey = allObjs[key].taskId;
+
+        return { [newKey] : allObjs[key] };
+
+    })
+
+    const newObj = Object.assign({}, ...allObjs);
 
     return newObj;
 
