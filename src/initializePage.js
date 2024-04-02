@@ -4,6 +4,7 @@ import { changeChecklistInputElem } from './checklistFeat';
 import { updateSidebarListDisplay } from './updateSidebar';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { taskCompletion } from './taskCompletion';
+import CreateToDoObj from './createToDoObj';
 
 // Load DOM.
 
@@ -104,7 +105,7 @@ export default function initializePage() {
     })
 
     // Store newly created To-Do objects.
-    const objForObjs = {};
+    let objForObjs = {};
 
     // Initialize currentObj
     let currentObj;
@@ -112,8 +113,20 @@ export default function initializePage() {
     // Adds new task to overview div.
     taskInputForm.addEventListener('submit', (event) => {
 
+        // Storing functions/methods in JSON format does not work (i.e methods/functions will be lost when retrieving tasks).
+        // Solution here was to use Object.assign method to assign object from LS to a new CreateToDoObj object, overwriting properties and adding the methods back.
+        objForObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
+
+        Object.keys(objForObjs).forEach((key) => {
+
+            objForObjs[key] = Object.assign(new CreateToDoObj, objForObjs[key]);
+
+        })
+
+        console.log(objForObjs);
+
         // Creates new to-do object.
-        const currentObj = addMyTask(addNewTask, fieldsetToday);
+        currentObj = addMyTask(addNewTask, fieldsetToday);
         
         // Stores inside objForObjs.
         objForObjs[currentObj.taskId] = currentObj;
