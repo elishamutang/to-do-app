@@ -784,9 +784,16 @@ div.selectedTags {
 }
 
 .complete {
-    text-decoration: line-through;
     background-color: var(--secondary);
     filter: brightness(0.8);
+}
+
+.complete > p {
+    text-decoration: line-through;
+}
+
+.taskTitle {
+    margin-bottom: 4px;
 }
 
 div.disable {
@@ -798,4 +805,9 @@ div.disable {
 div.disable > #additionalElems > div > button,
 div.disable > #checkListSect > div > button {
     background-color: var(--secondary);
+}
+
+.deleteTask {
+    display: flex;
+    font-size: 20px;
 }
