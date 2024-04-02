@@ -46,7 +46,7 @@ function createTaskWrapper(taskValue) {
 
 function assignToDoNumbers(newCheckBox, newTaskDiv) {
 
-    // Check for number of to do's inside Today fieldset.
+    // Check for number of to do's present.
     const existingDivs = document.getElementsByClassName('toDoDiv');
 
     let divNum = 1;
