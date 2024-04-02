@@ -34,7 +34,7 @@ function createTaskWrapper(taskValue) {
 
 
     // Check number of To Do's.
-    assignToDoNumbers(newCheckBox, newTaskDiv);
+    setToDoIds(newCheckBox, newTaskDiv);
 
     newTaskDiv.append(newCheckBox);
     newTaskDiv.append(newTaskText);
@@ -44,7 +44,7 @@ function createTaskWrapper(taskValue) {
 }
 
 
-function assignToDoNumbers(newCheckBox, newTaskDiv) {
+function setToDoIds(newCheckBox, newTaskDiv) {
 
     // Check for number of to do's present.
     const existingDivs = document.getElementsByClassName('toDoDiv');
