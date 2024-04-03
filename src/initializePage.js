@@ -5,6 +5,7 @@ import { updateSidebarListDisplay } from './updateSidebarCount';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { taskCompletion } from './taskCompletion';
 import CreateToDoObj from './createToDoObj';
+import switchView from './switchView';
 
 // Load DOM.
 
@@ -83,6 +84,9 @@ export default function initializePage() {
                 }
 
             }
+
+            // Switch view based on selected page.
+            switchView(selection, allListItems);
 
         }
 
