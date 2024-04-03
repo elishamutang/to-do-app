@@ -7,9 +7,9 @@ Priority (Low, High)
     - Currently named as 'All My Tasks', user able to get an overview of all current and upcoming tasks.
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
-- **Based on username, store user data.**
-- **Figure out how to remove to do tasks and also setup tasks in home page based on localStorage**
-- **Figure out how to switch between lists, tags and all my tasks page.**
+- **Based on username, store user data.** (Not started)
+- **Figure out how to remove to do tasks and also setup tasks in home page based on localStorage** (Doing)
+- **Figure out how to switch between lists, tags and all my tasks page.** (Not started)
 
 ### To-Do List Basic Functionality (Low)
 - Revise radio buttons for Tasks Overview container (On-hold for now)
