@@ -7,12 +7,14 @@
 
 ## Screenshots
 
-![Groceries List](<to-do app overview.png>)
+![Homepage](homePage.png)
 
-![Working Out List](working-out-view.png)
+![Groceries](groceries.png)
+
+![Workout](workout.png)
 
 ## Disclaimer
-- This project is currently a WIP, currently at 75% completion.
+- This project is currently a WIP, currently at 80% completion.
 - To test out this To-Do App, refer to the sections below.
 
 ### Fork repo, install dependencies.
