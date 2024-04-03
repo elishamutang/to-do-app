@@ -5,18 +5,15 @@ import { updateSidebarListDisplay } from './updateSidebar';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { taskCompletion } from './taskCompletion';
 import CreateToDoObj from './createToDoObj';
-import { addMilliseconds } from 'date-fns';
 
 // Load DOM.
 
-export default function initializePage() {
+export default function initializePage(taskDetailsContainer) {
 
     // Check for localStorage support in user's browser.
     const checkLS = checkForLocalStorageSupport() ? console.log("You have localStorage") : console.log("You don't have localStorage");
 
-    // Set divTwoContainer as display:none initially, until user clicks on a to-do task to view details.
-    const taskDetailsContainer = document.getElementById('divTwoContainer');
-    taskDetailsContainer.style.display = 'none';
+    // Remove divTwoContainer initially.
     taskDetailsContainer.remove();
 
 
