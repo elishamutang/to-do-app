@@ -5,6 +5,7 @@ import { updateSidebarListDisplay } from './updateSidebar';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { taskCompletion } from './taskCompletion';
 import CreateToDoObj from './createToDoObj';
+import { addMilliseconds } from 'date-fns';
 
 // Load DOM.
 
@@ -123,13 +124,13 @@ export default function initializePage() {
 
         })
 
-        console.log(objForObjs);
-
         // Creates new to-do object.
         currentObj = addMyTask(addNewTask, fieldsetToday);
-        
+
         // Stores inside objForObjs.
         objForObjs[currentObj.taskId] = currentObj;
+
+        console.log(objForObjs);
 
         // Resets input and disables button.
         addNewTask.value = '';
@@ -172,7 +173,7 @@ export default function initializePage() {
 
         }
 
-        // Checkbox logic
+        // Checkbox logic for ticking off tasks.
         if(event.target.tagName === 'INPUT') {
 
             const taskDiv = event.target.parentNode;
