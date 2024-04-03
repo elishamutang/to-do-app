@@ -11,6 +11,7 @@ Priority (Low, High)
 - **Figure out how to remove to do tasks and also setup tasks in home page based on localStorage** (Doing)
     - Remove task, update total in localStorage as well (Done).
     - Set up tasks based on remaining objets in localStorage (Doing).
+- **Remove checklist items and also setup these items based on localStorage.** (Not started)
 - **Figure out how to switch between lists, tags and all my tasks page.** (Not started)
 
 ### To-Do List Basic Functionality (Low)
