@@ -1,7 +1,7 @@
 import changeTask from "./changeTask";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
-import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebar";
+import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebarCount";
 import { saveUserData } from "./saveToLocalStorage";
 import { createNewChecklistItem } from "./checklistFeat";
 

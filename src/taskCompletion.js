@@ -1,7 +1,7 @@
 // Disables (or enables) inputs for task details, when checkbox is checked or not.
 
 import saveToLocal, { saveUserData } from "./saveToLocalStorage";
-import { updateSidebarListDisplay } from "./updateSidebar";
+import { updateSidebarListDisplay } from "./updateSidebarCount";
 
 export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 

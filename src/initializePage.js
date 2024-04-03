@@ -1,19 +1,21 @@
 import { checkFormInput, createNew } from './createNewList';
 import addMyTask from './addMyTask';
 import { changeChecklistInputElem } from './checklistFeat';
-import { updateSidebarListDisplay } from './updateSidebar';
+import { updateSidebarListDisplay } from './updateSidebarCount';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { taskCompletion } from './taskCompletion';
 import CreateToDoObj from './createToDoObj';
 
 // Load DOM.
 
-export default function initializePage(taskDetailsContainer) {
+export default function initializePage() {
 
     // Check for localStorage support in user's browser.
     const checkLS = checkForLocalStorageSupport() ? console.log("You have localStorage") : console.log("You don't have localStorage");
 
     // Remove divTwoContainer initially.
+    const taskDetailsContainer = document.getElementById('divTwoContainer');
+    taskDetailsContainer.style.display = 'none';
     taskDetailsContainer.remove();
 
 

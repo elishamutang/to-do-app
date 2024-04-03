@@ -9,8 +9,8 @@ const goldenRatio = 0.618;
 export default function startUp() {
 
     // Set divTwoContainer as display:none initially, until user clicks on a to-do task to view details.
-    const taskDetailsContainer = document.getElementById('divTwoContainer');
-    taskDetailsContainer.style.display = 'none';
+    // const taskDetailsContainer = document.getElementById('divTwoContainer');
+    // taskDetailsContainer.style.display = 'none';
 
     // Dialog elem
     const startUpDialog = document.createElement('dialog');
