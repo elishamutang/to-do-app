@@ -37,6 +37,11 @@ export default function initializePage() {
         createNew(event.currentTarget);
     })
 
+
+    // Get overviewDiv.
+    const overviewDiv = document.querySelector('.overview');
+    overviewDiv.className += ' home';
+
     
     // Sidebar event listener
     const sidebarElem = document.querySelector('aside');
@@ -86,7 +91,7 @@ export default function initializePage() {
             }
 
             // Switch view based on selected page.
-            switchView(selection, allListItems);
+            switchView(selection, overviewDiv);
 
         }
 
@@ -150,8 +155,6 @@ export default function initializePage() {
 
 
     // View any To-Do task in greater detail.
-    const overviewDiv = document.querySelector('.overview');
-
     overviewDiv.addEventListener('click', (event) => {
 
         // Set currentObj to To-Do task that was clicked.
