@@ -7,10 +7,13 @@
 
 ## Screenshots
 
+### Homepage
 ![Homepage](homePage.png)
 
+### Groceries task
 ![Groceries](groceries.png)
 
+### Workout task
 ![Workout](workout.png)
 
 ## Disclaimer
