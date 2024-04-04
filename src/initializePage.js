@@ -31,8 +31,8 @@ export default function initializePage() {
 
     // Get overviewDiv.
     const overviewDiv = document.querySelector('.overview');
-    overviewDiv.className += ' home';
-    
+
+    // Prepare home page fieldsets to pass to switchView function below.
     const homePageFieldsets = Array.from(overviewDiv.children).map((child) => {
 
         if(child.tagName === 'FIELDSET') {
@@ -101,7 +101,7 @@ export default function initializePage() {
             }
 
             // Switch view based on selected page.
-            switchView(selection, overviewDiv, homePageFieldsets);
+            switchView(selection, homePageFieldsets);
 
         }
 
