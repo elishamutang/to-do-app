@@ -343,10 +343,6 @@ form, dialog {
     grid-area: overview;
 }
 
-.overview > div {
-    margin-bottom: 20px;
-}
-
 #allTasksDivTwo {
     grid-area: taskTwo;
 }
