@@ -37,11 +37,6 @@ export default function initializePage() {
         createNew(event.currentTarget);
     })
 
-
-    // Get overviewDiv.
-    const overviewDiv = document.querySelector('.overview');
-    overviewDiv.className += ' home';
-
     
     // Sidebar event listener
     const sidebarElem = document.querySelector('aside');
@@ -102,7 +97,6 @@ export default function initializePage() {
     // Target input area to add new task.
     const addNewTask = document.getElementById('addNewTask');
     const taskInputForm = document.getElementById('addTask');
-    const fieldsetToday = document.getElementById('today');
 
     // Initial state of adding new task button will be disabled.
     const addNewTaskBtn = document.querySelector('button.addTask');
@@ -112,6 +106,10 @@ export default function initializePage() {
     addNewTask.addEventListener('focus', () => {
         checkFormInput(addNewTask, taskInputForm.className);
     })
+
+    // Get overviewDiv.
+    const overviewDiv = document.querySelector('.overview');
+    overviewDiv.className += ' home';
 
     // Store newly created To-Do objects.
     let objForObjs = {};
@@ -133,7 +131,7 @@ export default function initializePage() {
         })
 
         // Creates new to-do object.
-        currentObj = addMyTask(addNewTask, fieldsetToday);
+        currentObj = addMyTask(addNewTask);
 
         // Stores inside objForObjs.
         objForObjs[currentObj.taskId] = currentObj;
