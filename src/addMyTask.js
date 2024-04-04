@@ -4,12 +4,16 @@ import { isToday, isTomorrow, isFuture } from "date-fns";
 import CreateToDoObj from "./createToDoObj";
 
 // Add new task and displays them.
-export default function addMyTask(task, fieldset) {
+export default function addMyTask(task) {
 
     // Creates new task
     const newTask = createTaskWrapper(task.value);
+    const overviewDiv = document.querySelector('.overview');
+    const fieldsetToday = document.getElementById('today');
 
-    fieldset.insertAdjacentElement('afterbegin', newTask); // Always insert tasks at the top.
+    // Always insert tasks at the top.
+    const relevantDiv = Array.from(overviewDiv.children).includes(fieldsetToday) ? fieldsetToday : overviewDiv;
+    relevantDiv.insertAdjacentElement('afterbegin', newTask);
 
     // Create new object
     return new CreateToDoObj(task.value, newTask.id);
