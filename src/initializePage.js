@@ -27,6 +27,11 @@ export default function initializePage() {
     mainHeaderHeading.textContent = 'All My Tasks';
 
     mainHeader.append(mainHeaderHeading);
+    
+
+    // Get overviewDiv.
+    const overviewDiv = document.querySelector('.overview');
+    overviewDiv.className += ' home';
 
 
     // Create new lists
@@ -107,10 +112,6 @@ export default function initializePage() {
         checkFormInput(addNewTask, taskInputForm.className);
     })
 
-    // Get overviewDiv.
-    const overviewDiv = document.querySelector('.overview');
-    overviewDiv.className += ' home';
-
     // Store newly created To-Do objects.
     let objForObjs = {};
 
@@ -131,7 +132,7 @@ export default function initializePage() {
         })
 
         // Creates new to-do object.
-        currentObj = addMyTask(addNewTask);
+        currentObj = addMyTask(addNewTask.value);
 
         // Stores inside objForObjs.
         objForObjs[currentObj.taskId] = currentObj;
