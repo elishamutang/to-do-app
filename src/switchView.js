@@ -1,31 +1,60 @@
 // Switch between different lists and tags.
 
-export default function switchView(selection, homePage) {
+import addMyTask from "./addMyTask";
 
-    // Container holding div.overview and addTask form.
-    const allTasksDivOne = document.getElementById('allTasksDivOne');
+export default function switchView(selection, homePageFieldsets) {
+
+    // Get all to-do task objects.
+    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
+
+    // By default, overviewDiv will have a class of overview.
+    const overviewDiv = document.querySelector('.overview');
+    overviewDiv.className = 'overview';
+    console.log(overviewDiv);
 
     if(selection.textContent === "All My Tasks") {
 
-        if(Array.from(allTasksDivOne.children).includes(homePage)) {
+        overviewDiv.className+= ' home';
 
-            console.log(`div.overview included`);
+        Array.from(overviewDiv.children).forEach((child) => {
 
-        } else {
+            if(child.tagName === 'DIV') {
 
-            document.querySelector('.overview').replaceWith(homePage);
+                child.remove();
 
-        }
+            }
+
+        });
+        
+        // Append fieldset to homepage or All My Tasks page.
+        homePageFieldsets.forEach((fieldset) => {
+
+            overviewDiv.append(fieldset);
+
+        });
 
     } else {
 
-        // Create a blank page for other pages other than All My Tasks.
-        const otherPage = document.createElement('div');
-        otherPage.className = 'overview';
-        otherPage.className += selection.textContent.includes('#') ? ' ' + selection.textContent.toLowerCase().replace('#', '') : ' ' + selection.textContent.toLowerCase();
+        // Overwrite overviewDiv class name with the relevant list/tag.
+        overviewDiv.className += selection.textContent.includes('#') ? ' ' + selection.textContent.toLowerCase().replace('#', '') : ' ' + selection.textContent.toLowerCase();
 
-        // Replace All My Tasks page with other pages when selected.
-        homePage.replaceWith(otherPage);
+        // Reset content
+        Array.from(overviewDiv.children).forEach((child) => {
+
+            child.remove();
+
+        });
+
+        // Get tasks that are for that particular list.
+        Object.keys(allObjs).forEach((key) => {
+
+            if(allObjs[key].list === selection.textContent) {
+
+                addMyTask(allObjs[key].title);
+
+            }
+
+        })
 
     }
 
