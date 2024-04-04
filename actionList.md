@@ -12,8 +12,9 @@ Priority (Low, High)
     - Remove task, update total in localStorage as well (Done).
     - Set up tasks based on remaining objets in localStorage (Doing).
 - **Remove checklist items and also setup these items based on localStorage.** (Not started)
-- **Figure out how to switch between lists, tags and all my tasks page.** (Not started)
+- **Figure out how to switch between lists, tags and all my tasks page.** (Done)
 - **Detect user IP address and get an approximate location of where he/she is from, provide a greeting in their country's language in sidebar.**
+    - Replacing onStartup module.
 
 ### To-Do List Basic Functionality (Low)
 - Revise radio buttons for Tasks Overview container (On-hold for now)
