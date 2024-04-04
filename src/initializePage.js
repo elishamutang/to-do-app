@@ -27,11 +27,21 @@ export default function initializePage() {
     mainHeaderHeading.textContent = 'All My Tasks';
 
     mainHeader.append(mainHeaderHeading);
-    
+
 
     // Get overviewDiv.
     const overviewDiv = document.querySelector('.overview');
     overviewDiv.className += ' home';
+    
+    const homePageFieldsets = Array.from(overviewDiv.children).map((child) => {
+
+        if(child.tagName === 'FIELDSET') {
+
+            return child;
+
+        }
+
+    });
 
 
     // Create new lists
@@ -91,7 +101,7 @@ export default function initializePage() {
             }
 
             // Switch view based on selected page.
-            switchView(selection, overviewDiv);
+            switchView(selection, overviewDiv, homePageFieldsets);
 
         }
 
