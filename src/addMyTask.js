@@ -7,16 +7,17 @@ import CreateToDoObj from "./createToDoObj";
 export default function addMyTask(task) {
 
     // Creates new task
-    const newTask = createTaskWrapper(task.value);
+    const newTask = createTaskWrapper(task);
     const overviewDiv = document.querySelector('.overview');
     const fieldsetToday = document.getElementById('today');
 
     // Always insert tasks at the top.
+    // If at homepage (All My Tasks), insert in Today section.
     const relevantDiv = Array.from(overviewDiv.children).includes(fieldsetToday) ? fieldsetToday : overviewDiv;
     relevantDiv.insertAdjacentElement('afterbegin', newTask);
 
     // Create new object
-    return new CreateToDoObj(task.value, newTask.id);
+    return new CreateToDoObj(task, newTask.id);
 
 }
 
