@@ -13,15 +13,12 @@ Priority (Low, High)
     - Set up tasks based on remaining objets in localStorage (Doing).
 - **Remove checklist items and also setup these items based on localStorage.** (Not started)
 - **Figure out how to switch between lists, tags and all my tasks page.** (Done)
+    - Re-think a better way to keep track of the to-do objects, a better ID should be used for each task.
 - **Detect user IP address and get an approximate location of where he/she is from, provide a greeting in their country's language in sidebar.**
     - Replacing onStartup module.
 
 ### To-Do List Basic Functionality (Low)
 - Revise radio buttons for Tasks Overview container (On-hold for now)
-
-
-## Create welcome screen (Low) (On-Hold)
-- Prompt user to enter name.
 
 ## Re-factoring (Low)
 - Use inheritance for features in additionalElems div.
