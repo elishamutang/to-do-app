@@ -1,4 +1,4 @@
-// Switch task view based on currentObj from taskDetails.js and overwrite the details.
+// Switch detail task view based on currentObj from taskDetails.js and overwrite the details.
 
 import { prepareInputListItem, switchElem } from "./checklistFeat";
 
