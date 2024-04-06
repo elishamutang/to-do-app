@@ -188,7 +188,7 @@ export default function changeTask(currentObj) {
 
         } else {
 
-            console.log('has seletedTagDivContainer');
+            console.log('has selectedTagDivContainer');
 
             const boxiconTag = tagsBtn.querySelector('i');
             tagsBtn.innerHTML = "";
