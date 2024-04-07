@@ -87,7 +87,7 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
             const checklistInputLabel = document.createElement('label');
             checklistInputLabel.className = 'taskInputs checklistItem';
 
-            checklistInputLabel.id = `checklistInput-${countOfItems}`;
+            checklistInputLabel.id = `checklistInput-${countOfItems}`; // Need to ammend this to allow removal of checklist items.
             checklistInputLabel.textContent = checklistInputElem.value;
 
             const checklistCheckbox = checklistWrapper.querySelector("input[type='checkbox']");
