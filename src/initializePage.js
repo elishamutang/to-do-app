@@ -123,7 +123,7 @@ export default function initializePage() {
     })
 
     // Store newly created To-Do objects.
-    let objForObjs = {};
+    let objForObjs;
 
     // Initialize currentObj
     let currentObj;
@@ -133,13 +133,7 @@ export default function initializePage() {
 
         // Storing functions/methods in JSON format does not work (i.e methods/functions will be lost when retrieving tasks).
         // Solution here was to use Object.assign method to assign object from LS to a new CreateToDoObj object, overwriting properties and adding the methods back.
-        objForObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
-
-        Object.keys(objForObjs).forEach((key) => {
-
-            objForObjs[key] = Object.assign(new CreateToDoObj, objForObjs[key]);
-
-        })
+        objForObjs = updatedObjs();
 
         // Creates new to-do object.
         currentObj = addMyTask(addNewTask.value);
@@ -165,6 +159,8 @@ export default function initializePage() {
 
     // View any To-Do task in greater detail.
     overviewDiv.addEventListener('click', (event) => {
+
+        objForObjs = updatedObjs();
 
         // Set currentObj to To-Do task that was clicked.
         if(Array.from(event.target.classList).includes('toDoDiv')) {
@@ -262,4 +258,19 @@ function taskDetailsEvent(event, currentObj) {
 
     }
     
+}
+
+
+function updatedObjs() {
+
+    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
+
+    Object.keys(allObjs).forEach((key) => {
+
+        allObjs[key] = Object.assign(new CreateToDoObj, allObjs[key]);
+
+    });
+
+    return allObjs;
+
 }
