@@ -9,7 +9,7 @@ Priority (Low, High)
 
 - **Figure out how to remove to do tasks and also setup tasks in home page based on localStorage** (Doing)
     - Remove task, update total in localStorage as well (Done).
-    - Set up tasks based on remaining objets in localStorage (Doing).
+    - Set up tasks based on remaining objets in localStorage (Done).
 - **Remove checklist items and also setup these items based on localStorage.** (Not started)
 - **Figure out how to switch between lists, tags and all my tasks page.** (Done)
 - **Detect user IP address and get an approximate location of where he/she is from, provide a greeting in their country's language in sidebar.**
