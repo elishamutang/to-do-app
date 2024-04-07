@@ -7,6 +7,8 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
     const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
 
+    console.log(allObjs);
+
     // Get class list of taskDiv and taskDetailsContainer
     const taskDivClassList = Array.from(taskDiv.classList);
     const taskDetailsContainerClassList = Array.from(taskDetailsContainer.classList);
@@ -187,7 +189,6 @@ function updateTaskId(allObjs) {
     // Update taskDiv and input IDs.
     getAllTaskDivs.forEach((div, idx) => {
 
-        console.log(div, idx);
         div.id = `taskDiv-${idx+1}`;
 
         div.querySelector('input').id = `task-${idx+1}`;
