@@ -45,7 +45,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'To Do App',
+            title: 'To Do List',
             filename: 'index.html',
             template: 'src/template.html',
         }),
