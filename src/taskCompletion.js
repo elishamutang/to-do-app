@@ -194,7 +194,7 @@ function updateTaskId(allObjs) {
 
     })
 
-    // Update taskId property for each object.
+    // Update taskId property and key for each object.
     let num = 1;
 
     allObjs = Object.keys(allObjs).map((key, idx) => {
