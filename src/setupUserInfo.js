@@ -1,6 +1,6 @@
 // Setup tasks from localStorage (if any).
 
-import addMyTask from "./addMyTask";
+import addMyTask, { moveMyTask } from "./addMyTask";
 import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebarCount";
 
 export default function setupUserInfo(allObjs) {
@@ -14,6 +14,12 @@ export default function setupUserInfo(allObjs) {
 
         addMyTask(allObjs[key].title);
 
-    })
+        if(allObjs[key].rawReminderDate !== "") {
+
+            moveMyTask(allObjs[key]);
+
+        }
+
+    });
 
 }
