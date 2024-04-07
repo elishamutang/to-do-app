@@ -6,6 +6,7 @@ import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { taskCompletion } from './taskCompletion';
 import CreateToDoObj from './createToDoObj';
 import switchView from './switchView';
+import setupUserInfo from './setupUserInfo';
 
 // Load DOM.
 
@@ -124,7 +125,17 @@ export default function initializePage() {
     })
 
     // Store newly created To-Do objects.
-    let objForObjs;
+    let objForObjs = updatedObjs();
+
+    if(Object.keys(objForObjs).length === 0) {
+
+        console.log("No tasks.");
+
+    } else {
+
+        setupUserInfo(objForObjs);
+
+    }
 
     // Initialize currentObj
     let currentObj;
