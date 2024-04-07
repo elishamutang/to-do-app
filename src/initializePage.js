@@ -141,8 +141,6 @@ export default function initializePage() {
         // Stores inside objForObjs.
         objForObjs[currentObj.taskId] = currentObj;
 
-        console.log(objForObjs);
-
         // Resets input and disables button.
         addNewTask.value = '';
         addNewTaskBtn.disabled = true;
