@@ -39,6 +39,7 @@ export default class CreateToDoObj {
 
         const currentObj = this;
 
+        // Replaces div with input to edit task title in taskDetailsContainer.
         if(elem.tagName === 'DIV') {
 
             const headerInput = document.createElement('input');
@@ -61,6 +62,7 @@ export default class CreateToDoObj {
                 currentObj.title = headerDiv.textContent;
                 saveUserData(currentObj, "title");
 
+                // Updates task title in overview div.
                 const taskDivElem = document.getElementById(currentObj.taskId);
                 taskDivElem.childNodes[1].textContent = currentObj.title;
 
