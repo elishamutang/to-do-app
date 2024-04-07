@@ -92,8 +92,9 @@ export default function initializePage() {
                 const lastSelectedElem = lastSelection[lastSelection.length-2];
 
                 if(currentSelectedElem.textContent !== lastSelectedElem.textContent) {
-                    
-                    lastSelectedElem.className = 'list currentTags'; // Remove styling if switching to a different list.
+
+                    // Remove styling if switching to a different list.
+                    lastSelectedElem.className = lastSelectedElem.className.includes('currentTags') ? 'list currentTags' : 'list';
                     lastSelectedElem.innerHTML = lastSelectedElem.textContent;
 
                 }
