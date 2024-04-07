@@ -174,8 +174,6 @@ export default function initializePage() {
 
                     currentObj = objForObjs[key];
 
-                    event.preventDefault();
-
                     document.querySelector('main').append(taskDetailsContainer);
                     taskDetailsContainer.style.display = 'flex';
 
