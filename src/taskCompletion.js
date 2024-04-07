@@ -13,80 +13,23 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     const taskDivClassList = Array.from(taskDiv.classList);
     const taskDetailsContainerClassList = Array.from(taskDetailsContainer.classList);
 
-    // Get all taskDetailsContainer inputs/buttons to disable them.
+    // Get all taskDetailsContainer inputs/buttons to disable them upon checking checkbox.
     const getInputs = Array.from(taskDetailsContainer.getElementsByTagName('input'));
     const getButtons = Array.from(taskDetailsContainer.getElementsByTagName('button'));
 
+    getInputs.forEach((input) => input.disabled = true);
+    getButtons.forEach((button) => button.disabled = true);
+
     // Flagging variable to indicate task completion status.
-    let isComplete;
+    let isComplete = true;
 
-    // If currentObj and taskDetailsContainer are not referring to the same object, taskDetailsContainer remains unchanged.
-    // For example, task1 and task2, if user is viewing task1 and accidentally checks task2, it won't disable taskDetailsContainer for task1 (current view).
-    if(currentObj.taskId !== taskDetailsContainer.dataset.task) {
+    // Checking the checkbox.
+    if(!taskDivClassList.includes('complete')) {
 
-        if(taskDivClassList.includes('complete')) {
+        console.log('complete');
 
-            taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
-
-        } else {
-
-            taskDiv.className += ' complete';
-
-        }
-
-    } else {
-
-        // If checkbox is checked, task is considered complete and taskDetailsContainer will be disabled.
-        if(taskDivClassList.includes('complete') && taskDetailsContainerClassList.includes('disable')) {
-
-            taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
-            taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
-
-        } else {
-
-            taskDiv.className += ' complete';
-            taskDetailsContainer.className += ' disable';
-
-        }
-
-    }
-
-    if(taskDivClassList.includes('complete')) {
-
-        getInputs.forEach((input) => {
-
-            input.disabled = false;
-
-        })
-
-        getButtons.forEach((button) => {
-
-            button.disabled = false;
-
-        })
-
-        // Task incomplete, checkbox un-ticked.
-        isComplete = false;
-
-        // Remove clickable delete button.
-        taskDiv.querySelector('button').remove();
-
-    } else {
-
-        getInputs.forEach((input) => {
-
-            input.disabled = true;
-    
-        })
-    
-        getButtons.forEach((button) => {
-    
-            button.disabled = true;
-    
-        })
-
-        // Task complete, checkbox ticked.
-        isComplete = true;
+        taskDiv.className += ' complete';
+        taskDetailsContainer.className += ' disable';
 
         // Append clickable delete button.
         const deleteTaskBtn = document.createElement('button');
@@ -94,9 +37,6 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
         deleteTaskBtn.type = 'button';
         deleteTaskBtn.innerHTML = "<i class='bx bxs-x-circle bx-rotate-90'></i>";
         taskDiv.append(deleteTaskBtn);
-
-        // Save in localStorage.
-        updateCurrentObj(isComplete, currentObj, allObjs);
 
         // Option to delete completed tasks.
         deleteTaskBtn.addEventListener('click', () => {
@@ -126,7 +66,29 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
         })
 
+
+    } else {
+
+        console.log('not complete');
+
+        isComplete = false;
+
+        taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
+        taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
+
+        getInputs.forEach((input) => input.disabled = false);
+        getButtons.forEach((button) => button.disabled = false);
+
     }
+
+    if(!(currentObj.taskId === taskDetailsContainer.dataset.task)) {
+
+        taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
+        
+    }
+
+    // Save in localStorage.
+    updateCurrentObj(isComplete, currentObj, allObjs);
     
 }
 
