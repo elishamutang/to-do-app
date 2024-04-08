@@ -244,6 +244,7 @@ function taskDetailsEvent(event, currentObj) {
     } else if(elem.id === 'addChecklistItem') {
 
         currentObj.addToChecklist();
+        event.preventDefault();
         
     } else if(elem.id === 'notes') {
 
@@ -267,8 +268,6 @@ function taskDetailsEvent(event, currentObj) {
         changeChecklistInputElem(event, currentObj);
 
     }
-
-    event.preventDefault();
     
 }
 
