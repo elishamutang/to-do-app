@@ -7,6 +7,7 @@ import { taskCompletion } from './taskCompletion';
 import CreateToDoObj from './createToDoObj';
 import switchView from './switchView';
 import setupUserInfo from './setupUserInfo';
+import checklistCompletion from './checklistCompletion';
 
 // Load DOM.
 
@@ -222,9 +223,13 @@ export default function initializePage() {
     taskDetailsContainer.addEventListener('click', function(event) {
 
         if(Object.keys(objForObjs).length !== 0) {
+
             taskDetailsEvent(event, currentObj);
+
         } else {
+
             return;
+
         }
         
     })
@@ -266,6 +271,11 @@ function taskDetailsEvent(event, currentObj) {
 
         // Target checklist items. Replaces label element to input element to change checklistItem content. 
         changeChecklistInputElem(event, currentObj);
+
+    } else if(elem.className === 'toDoObj') {
+
+        // Checking checklist checkbox.
+        checklistCompletion(elem, currentObj);
 
     }
     
