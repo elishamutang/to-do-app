@@ -244,7 +244,7 @@ function taskDetailsEvent(event, currentObj) {
     } else if(elem.id === 'addChecklistItem') {
 
         currentObj.addToChecklist();
-        event.preventDefault();
+        event.preventDefault(); // Used only for this statement.
         
     } else if(elem.id === 'notes') {
 
