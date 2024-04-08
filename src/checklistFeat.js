@@ -8,9 +8,14 @@ export function changeChecklistInputElem(event, toDoObj) {
     const checklistLabelForAttr = checklistItemElem.parentElement.querySelector('input[type="checkbox"]').id;
 
     // Switch LABEL elem to INPUT elem.
-    const checklistItemElemSub = switchElem(checklistItemElem);
-    checklistItemElem.replaceWith(checklistItemElemSub);
+    const checklistItemElemSub = checklistItemElem.tagName === 'LABEL' ? switchElem(checklistItemElem) : null;
 
+    // In cases where additional clicks after the first one is logged, return statement is run.
+    if(checklistItemElemSub === null) {
+        return;
+    }
+
+    checklistItemElem.replaceWith(checklistItemElemSub);
     checklistItemElemSub.focus();
  
     // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
