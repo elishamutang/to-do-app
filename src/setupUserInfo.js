@@ -1,6 +1,7 @@
 // Setup tasks from localStorage (if any).
 
 import addMyTask, { moveMyTask } from "./addMyTask";
+import { prepareTaskDeleteBtn } from "./taskCompletion";
 import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebarCount";
 
 export default function setupUserInfo(allObjs) {
@@ -14,9 +15,25 @@ export default function setupUserInfo(allObjs) {
 
         addMyTask(allObjs[key].title);
 
+        // Move task to appropriate sections in All My Tasks.
         if(allObjs[key].rawReminderDate !== "") {
 
             moveMyTask(allObjs[key]);
+
+        }
+
+        // For completed tasks.
+        if(allObjs[key].completed === true) {
+
+            const taskDiv = document.getElementById(allObjs[key].taskId);
+            taskDiv.className += ' complete';
+
+            const taskCheckbox = taskDiv.querySelector('input');
+            taskCheckbox.checked = true;
+
+            const deleteTaskBtn = prepareTaskDeleteBtn();
+
+            taskDiv.append(deleteTaskBtn);
 
         }
 
