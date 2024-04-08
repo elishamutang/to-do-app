@@ -20,6 +20,12 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     getInputs.forEach((input) => input.disabled = true);
     getButtons.forEach((button) => button.disabled = true);
 
+    // Prepare delete task button for completed items.
+    const deleteTaskBtn = document.createElement('button');
+    deleteTaskBtn.className = 'deleteTask';
+    deleteTaskBtn.type = 'button';
+    deleteTaskBtn.innerHTML = "<i class='bx bxs-x-circle bx-rotate-90'></i>";
+
     // Flagging variable to indicate task completion status.
     let isComplete = true;
 
@@ -32,10 +38,6 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
         taskDetailsContainer.className += ' disable';
 
         // Append clickable delete button.
-        const deleteTaskBtn = document.createElement('button');
-        deleteTaskBtn.className = 'deleteTask';
-        deleteTaskBtn.type = 'button';
-        deleteTaskBtn.innerHTML = "<i class='bx bxs-x-circle bx-rotate-90'></i>";
         taskDiv.append(deleteTaskBtn);
 
         // Option to delete completed tasks.
@@ -69,6 +71,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
     } else {
 
+        // Un-checking the checkbox.
         console.log('not complete');
 
         isComplete = false;
@@ -78,6 +81,8 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
         getInputs.forEach((input) => input.disabled = false);
         getButtons.forEach((button) => button.disabled = false);
+
+        taskDiv.querySelector('button').remove(); // Remove delete task button.
 
     }
 
