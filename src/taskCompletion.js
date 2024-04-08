@@ -4,10 +4,9 @@ import saveToLocal, { saveUserData } from "./saveToLocalStorage";
 import { updateSidebarListDisplay } from "./updateSidebarCount";
 
 export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
-
+    
+    // Fetch latest allObjs object.
     const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
-
-    console.log(allObjs);
 
     // Get class list of taskDiv and taskDetailsContainer
     const taskDivClassList = Array.from(taskDiv.classList);
@@ -21,10 +20,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     getButtons.forEach((button) => button.disabled = true);
 
     // Prepare delete task button for completed items.
-    const deleteTaskBtn = document.createElement('button');
-    deleteTaskBtn.className = 'deleteTask';
-    deleteTaskBtn.type = 'button';
-    deleteTaskBtn.innerHTML = "<i class='bx bxs-x-circle bx-rotate-90'></i>";
+    const deleteTaskBtn = prepareTaskDeleteBtn();
 
     // Flagging variable to indicate task completion status.
     let isComplete = true;
@@ -96,6 +92,20 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     updateCurrentObj(isComplete, currentObj, allObjs);
     
 }
+
+
+export function prepareTaskDeleteBtn() {
+
+    // Prepare delete task button for completed items.
+    const deleteTaskBtn = document.createElement('button');
+    deleteTaskBtn.className = 'deleteTask';
+    deleteTaskBtn.type = 'button';
+    deleteTaskBtn.innerHTML = "<i class='bx bxs-x-circle bx-rotate-90'></i>";
+
+    return deleteTaskBtn;
+
+}
+
 
 
 function updateCurrentObj(isComplete, currentObj, allObjs) {
