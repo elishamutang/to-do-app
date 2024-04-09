@@ -60,7 +60,7 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
     // Checklist fieldset
     const checklistFieldset = document.getElementById('checkList');
 
-    const countOfItems = checklistItems.length;
+    let countOfItems = checklistItems.length;
 
     // Generate checklistDiv that contains checkbox and text input elem for user input.
     const checklistWrapper = prepareInputListItem(countOfItems);
@@ -100,7 +100,7 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
 
             checklistInputElem.replaceWith(checklistInputLabel);
 
-            checklistItem.lableElemId = checklistInputLabel.id;
+            checklistItem.labelElemId = checklistInputLabel.id;
 
             currentObj.checklist.push(checklistItem);
 
