@@ -6,7 +6,7 @@ import { updateSidebarListDisplay } from "./updateSidebarCount";
 export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     
     // Fetch latest allObjs object.
-    const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
+    let allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
 
     // Get class list of taskDiv and taskDetailsContainer
     const taskDivClassList = Array.from(taskDiv.classList);
@@ -31,7 +31,12 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
         console.log('complete');
 
         taskDiv.className += ' complete';
-        taskDetailsContainer.className += ' disable';
+
+        if(taskDiv.id === taskDetailsContainer.dataset.task) {
+
+            taskDetailsContainer.className += ' disable';
+
+        }
 
         // Append clickable delete button.
         taskDiv.append(deleteTaskBtn);
@@ -39,13 +44,16 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
         // Option to delete completed tasks.
         deleteTaskBtn.addEventListener('click', () => {
 
+            // Fetch latest saved object.
+            allObjs = JSON.parse(localStorage.getItem("allObjs"));
+
             // Removes taskDiv and taskDetailsContainer upon clicking delete button.
             taskDiv.remove();
             taskDetailsContainer.remove();
 
             Object.entries(allObjs).forEach(([key], idx) => {
 
-                if(currentObj.taskId === key) {
+                if(taskDiv.id === key) {
 
                     // Splices allObjs, returns an object that only includes tasks that were not deleted.
                     const updatedObj = objectSplice(allObjs, idx);
@@ -73,19 +81,18 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
         isComplete = false;
 
         taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
-        taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
+
+        if(taskDiv.id === taskDetailsContainer.dataset.task) {
+
+            taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
+
+        }
 
         getInputs.forEach((input) => input.disabled = false);
         getButtons.forEach((button) => button.disabled = false);
 
         taskDiv.querySelector('button').remove(); // Remove delete task button.
 
-    }
-
-    if(!(currentObj.taskId === taskDetailsContainer.dataset.task)) {
-
-        taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
-        
     }
 
     // Save in localStorage.
