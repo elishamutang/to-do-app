@@ -7,10 +7,11 @@ Priority (Low, High)
     - Currently named as 'All My Tasks', user able to get an overview of all current and upcoming tasks.
     - This will require 'To-Do' objects to be created dynamically, ~~try~~ using classes to create the objects.
 
+- **Task completion bug, checking two task at the same time and removing them produces a bug.**
 - **Figure out how to remove to do tasks and also setup tasks in home page based on localStorage** (Doing)
     - Remove task, update total in localStorage as well (Done).
     - Set up tasks based on remaining objets in localStorage (Done).
-- **Remove checklist items and also setup these items based on localStorage.** (Not started)
+- **Remove checklist items and also setup these items based on localStorage.** (Doing)
 - **Figure out how to switch between lists, tags and all my tasks page.** (Done)
 - **Detect user IP address and get an approximate location of where he/she is from, provide a greeting in their country's language in sidebar.**
     - Potentially replacing onStartup module.
