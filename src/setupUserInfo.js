@@ -1,7 +1,7 @@
 // Setup tasks from localStorage (if any).
 
 import addMyTask, { moveMyTask } from "./addMyTask";
-import { prepareTaskDeleteBtn } from "./taskCompletion";
+import { deleteCompletedTask, prepareTaskDeleteBtn } from "./taskCompletion";
 import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebarCount";
 
 export default function setupUserInfo(allObjs) {
@@ -32,8 +32,13 @@ export default function setupUserInfo(allObjs) {
             taskCheckbox.checked = true;
 
             const deleteTaskBtn = prepareTaskDeleteBtn();
-
             taskDiv.append(deleteTaskBtn);
+
+            deleteTaskBtn.addEventListener('click', () => {
+
+                deleteCompletedTask(taskDiv);
+
+            })
 
         }
 
