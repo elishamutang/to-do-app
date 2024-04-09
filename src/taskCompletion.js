@@ -36,6 +36,13 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
             taskDetailsContainer.className += ' disable';
 
+            // Remove corresponding taskDetailsContainer when viewing task details for a particular task.
+            deleteTaskBtn.addEventListener('click', () => {
+
+                taskDetailsContainer.remove();
+
+            });
+
         }
 
         // Append clickable delete button.
@@ -44,33 +51,9 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
         // Option to delete completed tasks.
         deleteTaskBtn.addEventListener('click', () => {
 
-            // Fetch latest saved object.
-            allObjs = JSON.parse(localStorage.getItem("allObjs"));
+            deleteCompletedTask(taskDiv);
 
-            // Removes taskDiv and taskDetailsContainer upon clicking delete button.
-            taskDiv.remove();
-            taskDetailsContainer.remove();
-
-            Object.entries(allObjs).forEach(([key], idx) => {
-
-                if(taskDiv.id === key) {
-
-                    // Splices allObjs, returns an object that only includes tasks that were not deleted.
-                    const updatedObj = objectSplice(allObjs, idx);
-
-                    console.log(updatedObj);
-
-                    // Overwrite allObjs in localStorage.
-                    saveToLocal(updatedObj, "allObjs");
-
-                    // Updates display in sidebar.
-                    updateSidebarListDisplay();
-
-                }
-
-            })
-
-        })
+        });
 
 
     } else {
@@ -98,6 +81,36 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     // Save in localStorage.
     updateCurrentObj(isComplete, currentObj, allObjs);
     
+}
+
+
+export function deleteCompletedTask(taskDiv) {
+
+    // Fetch latest saved object.
+    const allObjs = JSON.parse(localStorage.getItem("allObjs"));
+
+    // Removes taskDiv and taskDetailsContainer upon clicking delete button.
+    taskDiv.remove();
+
+    Object.entries(allObjs).forEach(([key], idx) => {
+
+        if(taskDiv.id === key) {
+
+            // Splices allObjs, returns an object that only includes tasks that were not deleted.
+            const updatedObj = objectSplice(allObjs, idx);
+
+            console.log(updatedObj);
+
+            // Overwrite allObjs in localStorage.
+            saveToLocal(updatedObj, "allObjs");
+
+            // Updates display in sidebar.
+            updateSidebarListDisplay();
+
+        }
+
+    })
+
 }
 
 
