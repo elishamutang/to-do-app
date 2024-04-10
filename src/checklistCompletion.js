@@ -1,9 +1,13 @@
 // Checking the checklist checkbox.
 
+import { prepareTaskDeleteBtn } from "./taskCompletion";
+
 export default function checklistCompletion(inputElem, currentObj) {
 
     // Fetch latest allObjs object.
     const allObjs = localStorage.getItem("allObjs") ? JSON.parse(localStorage.getItem("allObjs")) : {};
+
+    const checklistItemDeleteBtn = prepareTaskDeleteBtn();
 
     Object.keys(allObjs).forEach((key) => {
 
@@ -29,11 +33,15 @@ export default function checklistCompletion(inputElem, currentObj) {
                         checklistItemDiv.className += ' complete';
                         taskChecklist[key].completed = true;
 
+                        checklistItemDiv.append(checklistItemDeleteBtn);
+
                     } else {
 
                         // Un-checked checkbox indicating checklist item is not completed.
                         checklistItemDiv.className = Array.from(checklistItemDiv.classList).filter(value => value !== 'complete').join(' ');
                         taskChecklist[key].completed = false;
+
+                        checklistItemDiv.querySelector('button').remove();
 
                     }
 
