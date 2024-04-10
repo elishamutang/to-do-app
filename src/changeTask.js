@@ -26,7 +26,7 @@ export default function changeTask(currentObj) {
         return child.tagName === 'DIV';
     })
 
-    if(currentObj.checklist.length === 0) {
+    if(Object.keys(currentObj.checklist).length === 0) {
 
         console.log(`${currentObj.title} has no checklist items`);
 
@@ -48,8 +48,10 @@ export default function changeTask(currentObj) {
 
             const checklistCurrentItems = Array.from(checklistFieldset.getElementsByClassName('checklistItem'));
 
-            result = currentObj.checklist.every((elem, idx) => {
-                return elem.value === checklistCurrentItems[idx].textContent;
+            result = Object.keys(currentObj.checklist).every((key, idx) => {
+
+                return currentObj.checklist[key].value === checklistCurrentItems[idx].textContent;
+
             })
 
         }
@@ -71,13 +73,13 @@ export default function changeTask(currentObj) {
 
             }
 
-            for(let i = 0; i < currentObj.checklist.length; i++) {
+            Object.keys(currentObj.checklist).forEach((key, idx) => {
 
-                const checklistDivWrapper = prepareInputListItem(i);
-                const currentObjChecklistItem = currentObj.checklist[i];
+                const checklistDivWrapper = prepareInputListItem(idx);
+                const currentObjChecklistItem = currentObj.checklist[key];
 
                 // Gets INPUT elem inside checklistDivWrapper to be sub to LABEL elem.
-                const checklistItemInput = checklistDivWrapper.querySelector("input[type='text']"); 
+                const checklistItemInput = checklistDivWrapper.querySelector("input[type='text']");
 
                 const checklistLabelElem = switchElem(checklistItemInput);
                 checklistLabelElem.textContent = currentObjChecklistItem.value;
@@ -86,7 +88,25 @@ export default function changeTask(currentObj) {
 
                 checklistFieldset.append(checklistDivWrapper);
 
-            }
+            })
+
+
+            // for(let i = 0; i < Object.keys(currentObj.checklist).length; i++) {
+
+            //     const checklistDivWrapper = prepareInputListItem(i);
+            //     const currentObjChecklistItem = currentObj.checklist[i];
+
+            //     // Gets INPUT elem inside checklistDivWrapper to be sub to LABEL elem.
+            //     const checklistItemInput = checklistDivWrapper.querySelector("input[type='text']"); 
+
+            //     const checklistLabelElem = switchElem(checklistItemInput);
+            //     checklistLabelElem.textContent = currentObjChecklistItem.value;
+
+            //     checklistItemInput.replaceWith(checklistLabelElem);
+
+            //     checklistFieldset.append(checklistDivWrapper);
+
+            // }
 
         }
 

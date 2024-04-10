@@ -15,7 +15,7 @@ export default class CreateToDoObj {
     // Initialize each instance of a To-Do object with a title and checklist array.
     constructor(title, taskId) {
         this.title = title;
-        this.checklist = [];
+        this.checklist = {};
         this.notes = "";
         this.rawReminderDate = "";
         this.tags = [];

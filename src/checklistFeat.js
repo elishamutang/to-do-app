@@ -21,26 +21,21 @@ export function changeChecklistInputElem(event, toDoObj) {
     // Allows user to edit existing checklist items, which will then be reflected in the corresponding toDoObj.
     checklistItemElemSub.addEventListener('focusout', function editChecklistItem() {
 
-        for(const [key, value] of Object.entries(toDoObj)) {
+        Object.keys(toDoObj.checklist).forEach((key) => {
 
-            if(key === 'checklist') {
+            if(toDoObj.checklist[key].labelElemId === checklistItemElemSub.id && checklistItemElemSub.value !== "") {
 
-                for(const item of value) {
+                console.log('Valid input');
+                toDoObj.checklist[key].value = checklistItemElemSub.value;
 
-                    if(item.lableElemId === checklistItemElemSub.id && checklistItemElemSub.value !== "") {
+            } else if(toDoObj.checklist[key].labelElemId === checklistItemElemSub.id && checklistItemElemSub.value === "") {
 
-                        console.log('Not empty');
-                        item.value = checklistItemElemSub.value;
+                console.log('Invalid input');
+                checklistItemElemSub.value = toDoObj.checklist[key].value;
 
-                    } else if(item.lableElemId === checklistItemElemSub.id && checklistItemElemSub.value === "") {
-
-                        console.log('Empty');
-                        checklistItemElemSub.value = item.value;
-
-                    }
-                }
             }
-        }
+
+        })
 
         // Switch INPUT elem back to LABEL and keep INPUT attributes and data.
         const checklistLabelElem = switchElem(checklistItemElemSub);
@@ -102,7 +97,8 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
 
             checklistItem.labelElemId = checklistInputLabel.id;
 
-            currentObj.checklist.push(checklistItem);
+            // currentObj.checklist.push(checklistItem);
+            currentObj.checklist[checklistInputLabel.id] = checklistItem;
 
         }
 
