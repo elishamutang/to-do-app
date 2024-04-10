@@ -173,11 +173,11 @@ export default function initializePage() {
 
         objForObjs = updatedObjs();
 
-        // Set currentObj to To-Do task that was clicked.
-        if(Array.from(event.target.classList).includes('toDoDiv')) {
+        // Set selected to do task as currentObj.
+        if(Array.from(event.target.parentNode.classList).includes('toDoDiv')) {
 
             // Get task title.
-            const [taskTitle] = Array.from(event.target.children).filter(elem => elem.tagName === 'P').map(elem => elem.textContent);
+            const taskTitle = event.target.textContent;
 
             Object.keys(objForObjs).forEach((key) => {
 
