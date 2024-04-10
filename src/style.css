@@ -357,7 +357,7 @@ div.allTasks {
 .taskInputs {
     background: var(--secondary);
     border-radius: 10px;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     font-weight: bold;
     transition: 0.3s;
 }
@@ -396,7 +396,7 @@ div.allTasks {
 
 #notes:hover {
     border-color: var(--secondary);
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 #addTask {
@@ -545,11 +545,12 @@ fieldset legend {
 
 #checkList > div {
     transition: 0.3s;
+    border: 2px solid transparent;
 }
 
 #checkList > div:hover {
     background-color: var(--secondary);
-    border: 1px solid white;
+    border: 2px solid white;
 }
 
 .reminderBtns {
@@ -788,6 +789,10 @@ div.selectedTags {
 
 .complete > p {
     text-decoration: line-through;
+}
+
+.complete > input[type="checkbox"] {
+    accent-color: var(--secondary);
 }
 
 .taskTitle {
