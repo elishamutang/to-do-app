@@ -9,6 +9,7 @@ export default function checklistCompletion(inputElem, currentObj) {
 
         if(key === currentObj.taskId) {
 
+            // Compare DOM elements to task object.
             const checklistItemDiv = inputElem.parentElement;
             const checklistItemCheckbox = checklistItemDiv.querySelector('input');
             const checklistItemLabelElem = checklistItemDiv.querySelector('label');
@@ -22,6 +23,7 @@ export default function checklistCompletion(inputElem, currentObj) {
 
                     console.log(`${checklistItemLabelElem.id} checked: ${checklistItemCheckbox.checked}`);
 
+                    // Checked checkbox indicating checklist item is completed.
                     if(checklistItemCheckbox.checked) {
 
                         checklistItemDiv.className += ' complete';
@@ -29,6 +31,7 @@ export default function checklistCompletion(inputElem, currentObj) {
 
                     } else {
 
+                        // Un-checked checkbox indicating checklist item is not completed.
                         checklistItemDiv.className = Array.from(checklistItemDiv.classList).filter(value => value !== 'complete').join(' ');
                         taskChecklist[key].completed = false;
 
