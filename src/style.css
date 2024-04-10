@@ -364,6 +364,7 @@ div.allTasks {
 
 .taskInputs.checklistItem {
     background: transparent;
+    margin-bottom: 4px;
 }
 
 #notes, #addNewChecklistItem, #detailHeader {
