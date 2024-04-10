@@ -358,7 +358,6 @@ div.allTasks {
     background: var(--secondary);
     border-radius: 10px;
     border: 2px solid transparent;
-    font-weight: bold;
     transition: 0.3s;
 }
 
@@ -391,7 +390,6 @@ div.allTasks {
 
 .taskInputs:not(:focus) {
     color: white;
-    font-weight: bold;
 }
 
 #notes:hover {
@@ -787,7 +785,8 @@ div.selectedTags {
     filter: brightness(0.8);
 }
 
-.complete > p {
+.complete > p,
+.complete > label {
     text-decoration: line-through;
 }
 
