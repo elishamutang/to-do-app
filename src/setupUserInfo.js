@@ -13,19 +13,21 @@ export default function setupUserInfo(allObjs) {
     // Setup tasks.
     Object.keys(allObjs).forEach((key) => {
 
-        addMyTask(allObjs[key].title);
+        const task = allObjs[key];
+
+        addMyTask(task.title);
 
         // Move task to appropriate sections in All My Tasks.
-        if(allObjs[key].rawReminderDate !== "") {
+        if(task.rawReminderDate !== "") {
 
-            moveMyTask(allObjs[key]);
+            moveMyTask(task);
 
         }
 
         // For completed tasks.
-        if(allObjs[key].completed === true) {
+        if(task.completed === true) {
 
-            const taskDiv = document.getElementById(allObjs[key].taskId);
+            const taskDiv = document.getElementById(task.taskId);
             taskDiv.className += ' complete';
 
             const taskCheckbox = taskDiv.querySelector('input');
