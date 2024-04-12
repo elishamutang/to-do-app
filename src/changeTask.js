@@ -1,5 +1,6 @@
 // Switch detail task view based on currentObj from taskDetails.js and overwrite the details.
 
+import { deleteChecklistItem } from "./checklistCompletion";
 import { prepareInputListItem, switchElem } from "./checklistFeat";
 import { prepareTaskDeleteBtn } from "./taskCompletion";
 
@@ -318,6 +319,13 @@ function checklistItemStatus(currentObj) {
                 if(!Array.from(itemDiv.children).includes(itemDiv.querySelector('button'))) {
 
                     itemDiv.append(deleteItemBtn);
+
+                    // Add delete functionality.
+                    deleteItemBtn.addEventListener('click', () => {
+
+                        deleteChecklistItem(itemDiv);
+
+                    });
 
                 }
 
