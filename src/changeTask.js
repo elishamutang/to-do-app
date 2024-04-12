@@ -1,6 +1,7 @@
 // Switch detail task view based on currentObj from taskDetails.js and overwrite the details.
 
 import { prepareInputListItem, switchElem } from "./checklistFeat";
+import { prepareTaskDeleteBtn } from "./taskCompletion";
 
 export default function changeTask(currentObj) {
 
@@ -89,24 +90,6 @@ export default function changeTask(currentObj) {
                 checklistFieldset.append(checklistDivWrapper);
 
             })
-
-
-            // for(let i = 0; i < Object.keys(currentObj.checklist).length; i++) {
-
-            //     const checklistDivWrapper = prepareInputListItem(i);
-            //     const currentObjChecklistItem = currentObj.checklist[i];
-
-            //     // Gets INPUT elem inside checklistDivWrapper to be sub to LABEL elem.
-            //     const checklistItemInput = checklistDivWrapper.querySelector("input[type='text']"); 
-
-            //     const checklistLabelElem = switchElem(checklistItemInput);
-            //     checklistLabelElem.textContent = currentObjChecklistItem.value;
-
-            //     checklistItemInput.replaceWith(checklistLabelElem);
-
-            //     checklistFieldset.append(checklistDivWrapper);
-
-            // }
 
         }
 
@@ -256,6 +239,7 @@ export default function changeTask(currentObj) {
 
 function checkCompletion(currentObj, divTwoContainer) {
 
+    // Task completion.
     const toDoStatus = currentObj.completed;
 
     const divTwoContainerClassList = Array.from(divTwoContainer.classList);
@@ -306,5 +290,41 @@ function checkCompletion(currentObj, divTwoContainer) {
         }
 
     }
+
+    // Check checklist item status.
+    checklistItemStatus(currentObj);
+
+}
+
+// Style checklist items based on completed value.
+function checklistItemStatus(currentObj) {
+
+    Object.keys(currentObj.checklist).forEach((key) => {
+
+        if(currentObj.checklist[key].completed) {
+
+            // Instantly run code after DOM finishes loading.
+            setTimeout(() => {
+
+                const itemDiv = document.getElementById(key).parentElement;
+                itemDiv.className += ' complete';
+
+                const itemCheckbox = itemDiv.querySelector('input[type="checkbox"]');
+                itemCheckbox.checked = true;
+
+                const deleteItemBtn = prepareTaskDeleteBtn();
+
+                // Prevents appending of delete checklist item button more than once.
+                if(!Array.from(itemDiv.children).includes(itemDiv.querySelector('button'))) {
+
+                    itemDiv.append(deleteItemBtn);
+
+                }
+
+            }, 0);
+
+        }
+
+    })
 
 }
