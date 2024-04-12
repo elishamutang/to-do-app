@@ -97,7 +97,7 @@ export function deleteCompletedTask(taskDiv) {
         if(taskDiv.id === key) {
 
             // Splices deleted task from allObjs, renames each remaining item and returns an object that only includes tasks that were not deleted.
-            const updatedObj = updateTaskId(objectSplice(allObjs, idx));
+            const updatedObj = updateTaskId(removeTaskFromObj(allObjs, idx));
 
             console.log(updatedObj);
 
@@ -153,7 +153,7 @@ function updateCurrentObj(isComplete, currentObj, allObjs) {
 }
 
 
-export function objectSplice(obj, startIdx, endIdx=1) {
+export function removeTaskFromObj(obj, startIdx, endIdx=1) {
 
     let newObj = {};
 
