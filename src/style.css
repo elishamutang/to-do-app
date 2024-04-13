@@ -524,6 +524,12 @@ fieldset legend {
     width: 100%;
     height: inherit;
     border-radius: inherit;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+#addChecklistItem:hover {
+    border: 2px solid var(--secondary);
 }
 
 #checkList > div > input[type=text] {
