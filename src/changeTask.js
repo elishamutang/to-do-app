@@ -248,8 +248,10 @@ function checkCompletion(currentObj, divTwoContainer) {
     const getAllInputs = Array.from(divTwoContainer.getElementsByTagName('input'));
     const getAllButtons = Array.from(divTwoContainer.getElementsByTagName('button'));
 
+    // taskDetailsContainer will show the task that was clicked.
     if(currentObj.taskId === divTwoContainer.dataset.task) {
 
+        // If task is not complete and taskDetailsContainer is disabled, remove the disable class.
         if(!toDoStatus && divTwoContainerClassList.includes('disable')) {
 
             const newClassList = divTwoContainerClassList.filter((className) => {
@@ -257,7 +259,8 @@ function checkCompletion(currentObj, divTwoContainer) {
                 return className !== 'disable';
     
             })
-    
+            
+            // Enables all inputs/buttons.
             divTwoContainer.className = newClassList.join(' ');
     
             getAllInputs.forEach((input) => {
@@ -287,6 +290,15 @@ function checkCompletion(currentObj, divTwoContainer) {
                 button.disabled = true;
     
             })
+
+            // Add delete functionality to remove taskDetailsContainer.
+            const deleteBtn = document.getElementById(currentObj.taskId).querySelector('button');
+
+            deleteBtn.addEventListener('click', () => {
+
+                divTwoContainer.remove();
+
+            })
     
         }
 
@@ -307,7 +319,7 @@ function checklistItemStatus(currentObj) {
             // Instantly run code after DOM finishes loading.
             setTimeout(() => {
 
-                const itemDiv = document.getElementById(key).parentElement;
+                const itemDiv = document.getElementById(key);
                 itemDiv.className += ' complete';
 
                 const itemCheckbox = itemDiv.querySelector('input[type="checkbox"]');
@@ -323,7 +335,7 @@ function checklistItemStatus(currentObj) {
                     // Add delete functionality.
                     deleteItemBtn.addEventListener('click', () => {
 
-                        deleteChecklistItem(itemDiv);
+                        deleteChecklistItem(itemDiv, currentObj);
 
                     });
 
