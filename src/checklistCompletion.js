@@ -1,6 +1,7 @@
 // Checking the checklist checkbox.
 
-import { prepareTaskDeleteBtn } from "./taskCompletion";
+import { saveUserData } from "./saveToLocalStorage";
+import { removeTaskFromObj, prepareTaskDeleteBtn } from "./taskCompletion";
 
 export default function checklistCompletion(inputElem, currentObj) {
 
@@ -19,7 +20,7 @@ export default function checklistCompletion(inputElem, currentObj) {
             const checklistItemLabelElem = checklistItemDiv.querySelector('label');
 
             // Store reference of task checklist object to taskChecklist.
-            const taskChecklist = allObjs[key].checklist;
+            const taskChecklist = currentObj.checklist;
 
             Object.keys(taskChecklist).forEach((key) => {
 
@@ -35,6 +36,12 @@ export default function checklistCompletion(inputElem, currentObj) {
 
                         checklistItemDiv.append(checklistItemDeleteBtn);
 
+                        checklistItemDeleteBtn.addEventListener('click', () => {
+
+                            deleteChecklistItem(checklistItemDiv, currentObj);
+
+                        });
+
                     } else {
 
                         // Un-checked checkbox indicating checklist item is not completed.
@@ -45,15 +52,82 @@ export default function checklistCompletion(inputElem, currentObj) {
 
                     }
 
-                    console.log(taskChecklist[key]);
-
                 }
 
+
+            })
+
+            saveUserData(currentObj, "checklist");
+
+        }
+
+    })
+
+}
+
+
+export function deleteChecklistItem(checklistItemDiv, currentObj) {
+
+    // Fetch latest data.
+    const allObjs = JSON.parse(localStorage.getItem('allObjs'));
+
+    // Remove checklist item div.
+    checklistItemDiv.remove();
+
+    Object.keys(allObjs).forEach((key) => {
+
+        if(key === currentObj.taskId) {
+
+            const checklistItems = currentObj.checklist;
+            
+            Object.keys(checklistItems).forEach((key, idx) => {
+
+                if(key === checklistItemDiv.querySelector('label').id) {
+
+                    const getAllDivs = Array.from(document.getElementById('checkList').getElementsByClassName('checklistItem')).map(elem => elem.parentElement);
+
+                    // Splice here, and rename.
+                    const updatedChecklistObj = updateChecklistId(removeTaskFromObj(checklistItems, idx), getAllDivs);
+
+                    currentObj.checklist = updatedChecklistObj;
+
+                    saveUserData(currentObj, "checklist");
+
+                }
 
             })
 
         }
 
     })
+
+}
+
+
+function updateChecklistId(updatedChecklistObj, getAllDivs) {
+
+    // Update label elem IDs.
+    getAllDivs.forEach((div, idx) => {
+
+        div.querySelector('label').id = `checklistInput-${++idx}`;
+        div.querySelector('label').htmlFor = div.querySelector('input').id;
+
+    });
+
+    // Update in checklist object.
+
+    updatedChecklistObj = Object.keys(updatedChecklistObj).map((key, idx) => {
+
+        updatedChecklistObj[key].labelElemId = `checklistInput-${++idx}`;
+
+        const newKey = updatedChecklistObj[key].labelElemId;
+
+        return { [newKey] : updatedChecklistObj[key] };
+
+    })
+
+    const newObj = Object.assign({}, ...updatedChecklistObj);
+
+    return newObj
 
 }
