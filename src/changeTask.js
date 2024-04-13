@@ -275,21 +275,25 @@ function checkCompletion(currentObj, divTwoContainer) {
     
             })
     
-        } else if(toDoStatus && !divTwoContainerClassList.includes('disable')) {
+        } else if(toDoStatus) {
+            
+            if(!divTwoContainerClassList.includes('disable')) {
+
+                divTwoContainer.className += ' disable';
     
-            divTwoContainer.className += ' disable';
-    
-            getAllInputs.forEach((input) => {
-    
-                input.disabled = true;
-    
-            })
-    
-            getAllButtons.forEach((button) => {
-    
-                button.disabled = true;
-    
-            })
+                getAllInputs.forEach((input) => {
+        
+                    input.disabled = true;
+        
+                })
+        
+                getAllButtons.forEach((button) => {
+        
+                    button.disabled = true;
+        
+                })
+
+            }
 
             // Add delete functionality to remove taskDetailsContainer.
             const deleteBtn = document.getElementById(currentObj.taskId).querySelector('button');
