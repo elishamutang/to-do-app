@@ -97,7 +97,6 @@ export function createNewChecklistItem(currentObj, checklistItems, multipleSpace
 
             checklistItem.labelElemId = checklistInputLabel.id;
 
-            // currentObj.checklist.push(checklistItem);
             currentObj.checklist[checklistInputLabel.id] = checklistItem;
 
         }
