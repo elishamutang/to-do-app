@@ -28,7 +28,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     // Checking the checkbox.
     if(!taskDivClassList.includes('complete')) {
 
-        console.log('complete');
+        // console.log('complete');
 
         taskDiv.className += ' complete';
 
@@ -59,7 +59,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
     } else {
 
         // Un-checking the checkbox.
-        console.log('not complete');
+        // console.log('not complete');
 
         isComplete = false;
 
@@ -96,10 +96,10 @@ export function deleteCompletedTask(taskDiv) {
 
         if(taskDiv.id === key) {
 
-            // Splices deleted task from allObjs, renames each remaining item and returns an object that only includes tasks that were not deleted.
-            const updatedObj = updateTaskId(removeTaskFromObj(allObjs, idx));
+            const getAllDivs = Array.from(document.getElementsByClassName('toDoDiv')).reverse();
 
-            console.log(updatedObj);
+            // Splices deleted task from allObjs, renames each remaining item and returns an object that only includes tasks that were not deleted.
+            const updatedObj = updateTaskId(removeTaskFromObj(allObjs, idx), getAllDivs);
 
             // Overwrite allObjs in localStorage.
             saveToLocal(updatedObj, "allObjs");
@@ -176,25 +176,25 @@ export function removeTaskFromObj(obj, startIdx, endIdx=1) {
 }
 
 
-function updateTaskId(allObjs) {
+export function updateTaskId(allObjs, getAllDivs) {
 
-    const getAllTaskDivs = Array.from(document.getElementsByClassName('toDoDiv')).reverse();
+    // Identify context of div.
+    const divId = getAllDivs.length !== 0 ? getAllDivs[0].id.split("-") : null;
 
     // Update taskDiv and input IDs.
-    getAllTaskDivs.forEach((div, idx) => {
+    getAllDivs.forEach((div, idx) => {
 
-        div.id = `taskDiv-${idx+1}`;
+        div.id = `${divId[0]}-${++idx}`;
 
-        div.querySelector('input').id = `task-${idx+1}`;
+        const checkboxId = div.querySelector('input').id.split("-");
+        div.querySelector('input').id = `${checkboxId[0]}-${idx}`;
 
     })
 
     // Update taskId property and key for each object.
-    let num = 1;
-
     allObjs = Object.keys(allObjs).map((key, idx) => {
 
-        allObjs[key].taskId = `taskDiv-${num + idx}`;
+        allObjs[key].taskId = `${divId[0]}-${++idx}`;
 
         const newKey = allObjs[key].taskId;
 
