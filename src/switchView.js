@@ -11,6 +11,13 @@ export default function switchView(selection, homePageFieldsets) {
     const overviewDiv = document.querySelector('.overview');
     overviewDiv.className = 'overview';
 
+    // Remove divTwoContainer if it is currently in DOM.
+    if(document.getElementById('divTwoContainer')) {
+
+        document.getElementById('divTwoContainer').remove();
+
+    }
+
     // Switching to All My Tasks page will show all the tasks.
     if(selection.textContent === "All My Tasks") {
 
