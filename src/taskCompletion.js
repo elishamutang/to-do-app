@@ -89,7 +89,7 @@ export function deleteCompletedTask(taskDiv) {
     // Fetch latest saved object.
     const allObjs = JSON.parse(localStorage.getItem("allObjs"));
 
-    // Removes taskDiv and taskDetailsContainer upon clicking delete button.
+    // Removes taskDiv upon clicking delete button.
     taskDiv.remove();
 
     Object.entries(allObjs).forEach(([key], idx) => {
