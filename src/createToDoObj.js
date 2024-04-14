@@ -430,8 +430,6 @@ export default class CreateToDoObj {
 
                             if(tempTagsList[i] === selectedTag.textContent) {
 
-                                console.log(tempTagsList); // tempTagsList before tag removal.
-
                                 console.log(`${tempTagsList[i]} at ${i} in currentObj.tags array will be removed.`);
                                 
                                 tagsToRemove.push(i) // Indicates that they are potential tags to be removed.

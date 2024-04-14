@@ -147,7 +147,6 @@ export default function changeTask(currentObj) {
 
         if(divTwoContainerChildren.includes(targetTagsDivContainer)) {
 
-            console.log('remove');
             targetTagsDivContainer.remove();
 
             tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;;
