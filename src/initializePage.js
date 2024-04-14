@@ -8,6 +8,8 @@ import CreateToDoObj from './createToDoObj';
 import switchView from './switchView';
 import setupUserInfo from './setupUserInfo';
 import checklistCompletion from './checklistCompletion';
+import greetings from './greetUser';
+import randomProfColor from './randomProfColor';
 
 // Load DOM.
 
@@ -15,6 +17,16 @@ export default function initializePage() {
 
     // Check for localStorage support in user's browser.
     const checkLS = checkForLocalStorageSupport() ? console.log("You have localStorage") : console.log("You don't have localStorage");
+
+    // Random color for userProfile.
+    randomProfColor();
+
+    // Greet users.
+    greetings().then((response) => {
+
+        document.getElementById('userName').textContent = `${response.hello}!`;
+
+    });
 
     // Remove divTwoContainer initially.
     const taskDetailsContainer = document.getElementById('divTwoContainer');
