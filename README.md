@@ -16,11 +16,7 @@
 ### Workout task
 ![Workout](workout.png)
 
-## Disclaimer
-- This project is currently a WIP, currently at 80% completion.
-- To test out this To-Do App, refer to the sections below.
-
-### Fork repo, install dependencies.
+### Instructions
 
 - Fork repo and run the following commands in the terminal:
 
