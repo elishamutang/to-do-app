@@ -12,7 +12,7 @@ Priority (Low, High)
     - Set up tasks based on remaining objets in localStorage (Done).
 - **Remove checklist items and also setup these items based on localStorage.** (Done)
     - Setup items based on LS (Done).
-    - Remove checklist items (Doing).
+    - Remove checklist items (Done).
 - **Figure out how to switch between lists, tags and all my tasks page.** (Done)
 - **Detect user IP address and get an approximate location of where he/she is from, provide a greeting in their country's language in sidebar.**
     - Potentially replacing onStartup module.
