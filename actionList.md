@@ -15,9 +15,3 @@ Priority (Low, High)
     - Remove checklist items (Done).
 - **Figure out how to switch between lists, tags and all my tasks page.** (Done)
 - **Detect user IP address and get an approximate location of where he/she is from, provide a greeting in their country's language in sidebar.** (Done)
-
-### To-Do List Basic Functionality (Low)
-- Revise radio buttons for Tasks Overview container (On-hold for now)
-
-## Re-factoring (Low)
-- Use inheritance for features in additionalElems div.
