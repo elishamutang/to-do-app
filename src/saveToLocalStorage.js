@@ -14,7 +14,7 @@ export function saveUserData(currentObj, userProp) {
 
     Object.keys(objForObjs).forEach((key) => {
 
-        if(currentObj.taskId === key) {
+        if(currentObj.taskId === objForObjs[key].taskId) {
 
             const relevantObj = objForObjs[key];
 
