@@ -90,16 +90,17 @@ export function deleteCompletedTask(taskDiv) {
     const allObjs = JSON.parse(localStorage.getItem("allObjs"));
 
     // Removes taskDiv upon clicking delete button.
+    const taskDivText = taskDiv.querySelector('p').textContent;
     taskDiv.remove();
 
-    Object.entries(allObjs).forEach(([key], idx) => {
+    Object.keys(allObjs).forEach((key, idx) => {
 
-        if(taskDiv.id === key) {
+        if(taskDivText === key) {
 
             const getAllDivs = Array.from(document.getElementsByClassName('toDoDiv')).reverse();
 
             // Splices deleted task from allObjs, renames each remaining item and returns an object that only includes tasks that were not deleted.
-            const updatedObj = updateTaskId(removeTaskFromObj(allObjs, idx), getAllDivs);
+            const updatedObj = updateTaskId((removeTaskFromObj(allObjs, idx)), getAllDivs);
 
             // Overwrite allObjs in localStorage.
             saveToLocal(updatedObj, "allObjs");
@@ -108,7 +109,10 @@ export function deleteCompletedTask(taskDiv) {
             updateSidebarListDisplay();
             updateSidebarTagsDisplay();
 
+            console.log(updatedObj);
+
         }
+
 
     })
 
@@ -133,7 +137,7 @@ function updateCurrentObj(isComplete, currentObj, allObjs) {
 
     Object.keys(allObjs).forEach((key) => {
 
-        if(key === currentObj.taskId) {
+        if(allObjs[key].taskId === currentObj.taskId) {
 
             if(!isComplete) {
 
@@ -180,31 +184,48 @@ export function removeTaskFromObj(obj, startIdx, endIdx=1) {
 export function updateTaskId(allObjs, getAllDivs) {
 
     // Identify context of div.
-    const divId = getAllDivs.length !== 0 ? getAllDivs[0].id.split("-") : null;
+    const getDivId = () => {
 
-    // Update taskDiv and input IDs.
-    getAllDivs.forEach((div, idx) => {
+        if(getAllDivs.length !== 0) {
 
-        div.id = `${divId[0]}-${++idx}`;
+            return getAllDivs[0].id.split("-");
 
-        const checkboxId = div.querySelector('input').id.split("-");
-        div.querySelector('input').id = `${checkboxId[0]}-${idx}`;
+        }
 
-    })
+    }
 
-    // Update taskId property and key for each object.
-    allObjs = Object.keys(allObjs).map((key, idx) => {
+    if(getDivId) {
 
-        allObjs[key].taskId = `${divId[0]}-${++idx}`;
+        const divId = getDivId();
 
-        const newKey = allObjs[key].taskId;
+        // Update taskDiv and input IDs.
+        getAllDivs.forEach((div, idx) => {
 
-        return { [newKey] : allObjs[key] };
+            div.id = `${divId[0]}-${++idx}`;
 
-    })
+            const checkboxId = div.querySelector('input').id.split("-");
+            div.querySelector('input').id = `${checkboxId[0]}-${idx}`;
 
-    const newObj = Object.assign({}, ...allObjs);
+        })
 
-    return newObj;
+        // Update taskId property and key for each object.
+        allObjs = Object.keys(allObjs).map((key, idx) => {
+
+            console.log(key);
+            allObjs[key].taskId = `${divId[0]}-${++idx}`;
+
+            const newKey = allObjs[key].title;
+
+            return { [newKey] : allObjs[key] };
+
+        });
+
+        console.log(allObjs);
+
+        const newObj = Object.assign({}, ...allObjs);
+
+        return newObj;
+
+    }
 
 }
