@@ -164,7 +164,7 @@ export default function initializePage() {
         currentObj = addMyTask(addNewTask.value);
 
         // Stores inside objForObjs.
-        objForObjs[currentObj.taskId] = currentObj;
+        objForObjs[currentObj.title] = currentObj;
 
         // Resets input and disables button.
         addNewTask.value = '';
@@ -218,7 +218,7 @@ export default function initializePage() {
 
             for(let key of Object.keys(objForObjs)) {
 
-                if(key === taskDiv.id) {
+                if(objForObjs[key].taskId === taskDiv.id) {
 
                     currentObj = objForObjs[key];
 
