@@ -109,8 +109,6 @@ export function deleteCompletedTask(taskDiv) {
             updateSidebarListDisplay();
             updateSidebarTagsDisplay();
 
-            console.log(updatedObj);
-
         }
 
 
@@ -211,7 +209,6 @@ export function updateTaskId(allObjs, getAllDivs) {
         // Update taskId property and key for each object.
         allObjs = Object.keys(allObjs).map((key, idx) => {
 
-            console.log(key);
             allObjs[key].taskId = `${divId[0]}-${++idx}`;
 
             const newKey = allObjs[key].title;
@@ -219,8 +216,6 @@ export function updateTaskId(allObjs, getAllDivs) {
             return { [newKey] : allObjs[key] };
 
         });
-
-        console.log(allObjs);
 
         const newObj = Object.assign({}, ...allObjs);
 
