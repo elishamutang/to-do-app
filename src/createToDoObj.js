@@ -13,13 +13,13 @@ const multipleSpacesRegex = /[ ]{2,}/;
 export default class CreateToDoObj {
 
     // Initialize each instance of a To-Do object with a title and checklist array.
-    constructor(title, taskId) {
+    constructor(title, taskId, list = "Personal") {
         this.title = title;
         this.checklist = {};
         this.notes = "";
         this.rawReminderDate = "";
         this.tags = [];
-        this.list = "Personal"; // by default
+        this.list = list;
         this.taskId = taskId;
         this.completed = false; // task completion.
     };
