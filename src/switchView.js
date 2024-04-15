@@ -1,6 +1,6 @@
 // Switch between different lists and tags page.
 
-import addMyTask from "./addMyTask";
+import addMyTask, { moveMyTask } from "./addMyTask";
 
 export default function switchView(selection, homePageFieldsets) {
 

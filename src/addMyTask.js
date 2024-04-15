@@ -16,8 +16,36 @@ export default function addMyTask(task) {
     const relevantDiv = Array.from(overviewDiv.children).includes(fieldsetToday) ? fieldsetToday : overviewDiv;
     relevantDiv.insertAdjacentElement('afterbegin', newTask);
 
+    // Determine what page is task added to.
+    const [list] = Array.from(relevantDiv.classList).filter((value) => value !== 'overview');
+
+    // If user enters task in Personal, Work, Study etc lists.
+    const getList = () => {
+
+        if(list) {
+
+            const toArr = list.split('');
+
+            return toArr.map((char, idx) => {
+
+                if(idx === 0) {
+
+                    return toArr[0].toUpperCase();
+
+                } else {
+
+                    return toArr[idx];
+
+                }
+
+            }).join('');
+
+        }
+
+    }
+
     // Create new object
-    return new CreateToDoObj(task, newTask.id);
+    return new CreateToDoObj(task, newTask.id, getList());
 
 }
 

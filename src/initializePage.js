@@ -177,6 +177,9 @@ export default function initializePage() {
         updateSidebarListDisplay();
 
         event.preventDefault();
+
+        console.log(objForObjs);
+
     })
 
 
