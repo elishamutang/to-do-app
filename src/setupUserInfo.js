@@ -27,18 +27,34 @@ export default function setupUserInfo(allObjs) {
         // For completed tasks.
         if(task.completed === true) {
 
-            const taskDiv = document.getElementById(task.taskId);
-            taskDiv.className += ' complete';
+            // Get all tasks in homepage.
+            const getAllTasks = () => {
 
-            const taskCheckbox = taskDiv.querySelector('input');
-            taskCheckbox.checked = true;
+                return Array.from(document.getElementsByClassName('toDoDiv')).reverse();
 
-            const deleteTaskBtn = prepareTaskDeleteBtn();
-            taskDiv.append(deleteTaskBtn);
+            }
 
-            deleteTaskBtn.addEventListener('click', () => {
+            // Match task title and task object title.
+            getAllTasks().forEach((div) => {
 
-                deleteCompletedTask(taskDiv);
+                if(div.querySelector('p').textContent === task.title) {
+
+                    const taskDiv = div;
+                    taskDiv.className += ' complete';
+
+                    const taskCheckbox = taskDiv.querySelector('input');
+                    taskCheckbox.checked = true;
+
+                    const deleteTaskBtn = prepareTaskDeleteBtn();
+                    taskDiv.append(deleteTaskBtn);
+
+                    deleteTaskBtn.addEventListener('click', () => {
+
+                        deleteCompletedTask(taskDiv);
+
+                    })
+
+                }
 
             })
 
