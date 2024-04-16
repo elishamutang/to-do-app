@@ -1,6 +1,8 @@
 // Switch between different lists and tags page.
 
-import addMyTask, { moveMyTask } from "./addMyTask";
+import addMyTask from "./addMyTask";
+import saveToLocal from "./saveToLocalStorage";
+import { setupCompletedTasks } from "./setupUserInfo";
 
 export default function switchView(selection, homePageFieldsets) {
 
@@ -40,6 +42,62 @@ export default function switchView(selection, homePageFieldsets) {
 
         });
 
+
+        // Determine if all tasks are accounted for in homepage.
+        const getAllTasks = () => {
+            return Array.from(document.getElementsByClassName('toDoDiv')).reverse();
+        }
+
+        const getDivTexts = (allTasks) => {
+            return allTasks.map((div) => div.querySelector('p').textContent);
+        }
+
+        let allTasks = getAllTasks();
+        let taskDivTexts = getDivTexts(allTasks);
+
+        // Create new obj to be saved to LS.
+        let updatedObjArr = allObjs;
+
+        Object.keys(allObjs).forEach((key, idx) => {
+
+            if(!key === taskDivTexts[idx]) {
+
+                addMyTask(key);
+
+            }
+
+            // Update from previous declaration.
+            allTasks = getAllTasks();
+            taskDivTexts = getDivTexts(allTasks);
+
+            // Update object taskId property.
+            if(taskDivTexts[idx] === allObjs[key].title) {
+
+                // Get div task ID.
+                const divTaskId = allTasks[idx].id;
+
+                updatedObjArr[key].taskId = divTaskId;
+
+                // Check task status.
+                if(allObjs[key].completed && !Array.from(allTasks[idx].classList).includes('complete')) {
+
+                    setupCompletedTasks(allObjs[key]);
+    
+                } else if(!allObjs[key].completed && Array.from(allTasks[idx].classList).includes('complete')) {
+
+                    allTasks[idx].className = 'toDoDiv';
+                    allTasks[idx].querySelector('input').checked = false;
+                    allTasks[idx].querySelector('button').remove();
+
+                }
+
+            }
+
+        })
+
+        // // Save to LS.
+        saveToLocal(updatedObjArr, "allObjs");
+
     } else {
 
         // If tags are selected, remove the #.
@@ -65,6 +123,12 @@ export default function switchView(selection, homePageFieldsets) {
             if(objList === modifiedSelectionTxt || objTags.includes(modifiedSelectionTxt)) {
 
                 addMyTask(allObjs[key].title);
+
+                if(allObjs[key].completed) {
+
+                    setupCompletedTasks(allObjs[key]);
+
+                }
 
             }
 
