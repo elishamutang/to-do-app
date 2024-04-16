@@ -27,39 +27,46 @@ export default function setupUserInfo(allObjs) {
         // For completed tasks.
         if(task.completed === true) {
 
-            // Get all tasks in homepage.
-            const getAllTasks = () => {
+            setupCompletedTasks(task);
 
-                return Array.from(document.getElementsByClassName('toDoDiv')).reverse();
+        }
 
-            }
+    });
 
-            // Match task title and task object title.
-            getAllTasks().forEach((div) => {
+}
 
-                if(div.querySelector('p').textContent === task.title) {
 
-                    const taskDiv = div;
-                    taskDiv.className += ' complete';
+export function setupCompletedTasks(task) {
 
-                    const taskCheckbox = taskDiv.querySelector('input');
-                    taskCheckbox.checked = true;
+    // Get all tasks in homepage.
+    const getAllTasks = () => {
 
-                    const deleteTaskBtn = prepareTaskDeleteBtn();
-                    taskDiv.append(deleteTaskBtn);
+        return Array.from(document.getElementsByClassName('toDoDiv')).reverse();
 
-                    deleteTaskBtn.addEventListener('click', () => {
+    }
 
-                        deleteCompletedTask(taskDiv);
+    // Match task title and task object title.
+    getAllTasks().forEach((div) => {
 
-                    })
+        if(div.querySelector('p').textContent === task.title) {
 
-                }
+            const taskDiv = div;
+            taskDiv.className += ' complete';
+
+            const taskCheckbox = taskDiv.querySelector('input');
+            taskCheckbox.checked = true;
+
+            const deleteTaskBtn = prepareTaskDeleteBtn();
+            taskDiv.append(deleteTaskBtn);
+
+            deleteTaskBtn.addEventListener('click', () => {
+
+                deleteCompletedTask(taskDiv);
 
             })
 
         }
 
-    });
+    })
 
 }
