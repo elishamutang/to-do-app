@@ -15,3 +15,8 @@ Priority (Low, High)
     - Remove checklist items (Done).
 - **Figure out how to switch between lists, tags and all my tasks page.** (Done)
 - **Detect user IP address and get an approximate location of where he/she is from, provide a greeting in their country's language in sidebar.** (Done)
+
+
+## Bugs
+- Test out reminder functionality.
+- Creating a task inside list/tag page should automatically add that task to the list/tag. Investigate.
