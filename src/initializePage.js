@@ -215,10 +215,11 @@ export default function initializePage() {
         if(event.target.tagName === 'INPUT') {
 
             const taskDiv = event.target.parentNode;
+            const taskText = taskDiv.querySelector('p').textContent;
 
             for(let key of Object.keys(objForObjs)) {
 
-                if(objForObjs[key].taskId === taskDiv.id) {
+                if(key === taskText) {
 
                     currentObj = objForObjs[key];
 
