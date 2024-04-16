@@ -19,9 +19,10 @@ export default function addMyTask(task) {
     // Determine what page is task added to.
     const [list] = Array.from(relevantDiv.classList).filter((value) => value !== 'overview');
 
-    // If user enters task in Personal, Work, Study etc lists.
+    // If user enters task in Personal, Work, Study etc list page.
     const getList = () => {
 
+        // If list is not undefined, enters code block below.
         if(list) {
 
             const toArr = list.split('');
@@ -39,6 +40,10 @@ export default function addMyTask(task) {
                 }
 
             }).join('');
+
+        } else {
+
+            return 'Personal'
 
         }
 
