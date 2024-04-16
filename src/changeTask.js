@@ -295,7 +295,24 @@ function checkCompletion(currentObj, divTwoContainer) {
             }
 
             // Add delete functionality to remove taskDetailsContainer.
-            const deleteBtn = document.getElementById(currentObj.taskId).querySelector('button');
+            const getDiv = () => {
+
+                let result; // Store div.
+                const getAllTasks = Array.from(document.getElementsByClassName('toDoDiv')).reverse();
+
+                getAllTasks.forEach((div) => {
+
+                    if(div.querySelector('p').textContent === currentObj.title) {
+                        result = div;
+                    }
+
+                })
+
+                return result;
+
+            }
+
+            const deleteBtn = getDiv().querySelector('button');
 
             deleteBtn.addEventListener('click', () => {
 
