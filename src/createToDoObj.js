@@ -13,7 +13,7 @@ const multipleSpacesRegex = /[ ]{2,}/;
 export default class CreateToDoObj {
 
     // Initialize each instance of a To-Do object with a title and checklist array.
-    constructor(title, taskId, list = "Personal") {
+    constructor(title, taskId, list) {
         this.title = title;
         this.checklist = {};
         this.notes = "";
@@ -139,7 +139,7 @@ export default class CreateToDoObj {
     reminder(reminderBtn) {
 
         const currentObj = this;
-
+        console.log(currentObj);
         // Remind Me
         const reminderDialog = document.getElementById('reminder');
         const reminderForm = document.getElementById('setReminder');
@@ -174,9 +174,7 @@ export default class CreateToDoObj {
 
             event.preventDefault();
 
-            console.log(dateInput.value);
             const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, hh:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
-            console.log(formattedResultingDate);
 
             reminderBtn.textContent = `${formattedResultingDate}`; // Display date on the button.
             
@@ -187,7 +185,14 @@ export default class CreateToDoObj {
             saveUserData(currentObj, "formattedReminderDate"); // Save user property data to localStorage.
 
             // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
-            moveMyTask(currentObj);
+            // Only move task when at Homepage.
+            const overviewDiv = document.querySelector('.overview');
+
+            if(Array.from(overviewDiv.classList).length === 1 && Array.from(overviewDiv.classList).includes('overview')) {
+
+                moveMyTask(currentObj);
+
+            }
 
             reminderDialog.close();
 
