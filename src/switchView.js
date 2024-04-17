@@ -119,6 +119,26 @@ export default function switchView(selection, homePageFieldsets) {
 
         })
 
+
+        // Remove any deleted objects from homepage.
+        const objKeys = Object.keys(allObjs);
+
+        if(objKeys.length !== taskDivTexts.length) {
+
+            const [getOutlier] = taskDivTexts.filter((text) => {
+
+                if(!objKeys.includes(text)) {
+                    return text;
+                }
+
+            })
+
+            const getOutlierDiv = getDiv(allTasks, getOutlier);
+            getOutlierDiv.remove();
+
+        }
+
+
         // // Save to LS.
         saveToLocal(updatedObjArr, "allObjs");
 
