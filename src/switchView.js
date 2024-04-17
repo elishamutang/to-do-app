@@ -1,6 +1,6 @@
 // Switch between different lists and tags page.
 
-import addMyTask from "./addMyTask";
+import addMyTask, { moveMyTask } from "./addMyTask";
 import saveToLocal from "./saveToLocalStorage";
 import { setupCompletedTasks } from "./setupUserInfo";
 
@@ -23,23 +23,21 @@ export default function switchView(selection, homePageFieldsets) {
     // Switching to All My Tasks page will show all the tasks.
     if(selection.textContent === "All My Tasks") {
 
+        // Add home class to overview div.
         overviewDiv.className+= ' home';
 
+        // Reset overviewDiv by removing all divs.
         Array.from(overviewDiv.children).forEach((child) => {
-
             if(child.tagName === 'DIV') {
 
                 child.remove();
 
             }
-
         });
         
-        // Append fieldset to homepage or All My Tasks page.
+        // Append each fieldset to All My Tasks page.
         homePageFieldsets.forEach((fieldset) => {
-
             overviewDiv.append(fieldset);
-
         });
 
 
@@ -58,10 +56,13 @@ export default function switchView(selection, homePageFieldsets) {
         // Create new obj to be saved to LS.
         let updatedObjArr = allObjs;
 
+        // Loop through latest saved to-do objects.
         Object.keys(allObjs).forEach((key, idx) => {
 
+            // Add a div task inside overview div if not present in overview div but saved in allObjs from LS.
             if(!key === taskDivTexts[idx]) {
 
+                console.log(`${taskDivTexts[idx]} missing from overview.`);
                 addMyTask(key);
 
             }
@@ -76,20 +77,43 @@ export default function switchView(selection, homePageFieldsets) {
                 // Get div task ID.
                 const divTaskId = allTasks[idx].id;
 
+                // Update in new obj.
                 updatedObjArr[key].taskId = divTaskId;
 
-                // Check task status.
-                if(allObjs[key].completed && !Array.from(allTasks[idx].classList).includes('complete')) {
+            }
+
+            // Check object completion.
+            if(allObjs[key].completed) {
+
+                // Get relevant div.
+                const taskDiv = getDiv(allTasks, key);
+
+                // If task is complete but does not include complete class, add it.
+                if(!Array.from(taskDiv.classList).includes('complete')) {
 
                     setupCompletedTasks(allObjs[key]);
-    
-                } else if(!allObjs[key].completed && Array.from(allTasks[idx].classList).includes('complete')) {
-
-                    allTasks[idx].className = 'toDoDiv';
-                    allTasks[idx].querySelector('input').checked = false;
-                    allTasks[idx].querySelector('button').remove();
 
                 }
+
+            } else {
+
+                const taskDiv = getDiv(allTasks, key);
+                
+                // If task is not complete but still contains the complete class, remove it.
+                if(Array.from(taskDiv.classList).includes('complete')) {
+
+                    taskDiv.className = 'toDoDiv';
+                    taskDiv.querySelector('input').checked = false;
+                    taskDiv.querySelector('button').remove();
+
+                }
+
+            }
+
+            // Check for tasks with date.
+            if(allObjs[key].rawReminderDate !== "") {
+
+                moveMyTask(allObjs[key]);
 
             }
 
@@ -135,5 +159,24 @@ export default function switchView(selection, homePageFieldsets) {
         })
 
     }
+
+}
+
+
+function getDiv(allTasks, key) {
+
+    let relevantDiv;
+
+    allTasks.forEach((taskDiv) => {
+
+        if(taskDiv.querySelector('p').textContent === key) {
+
+            relevantDiv = taskDiv;
+
+        }
+
+    })
+
+    return relevantDiv;
 
 }
