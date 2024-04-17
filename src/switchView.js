@@ -60,9 +60,9 @@ export default function switchView(selection, homePageFieldsets) {
         Object.keys(allObjs).forEach((key, idx) => {
 
             // Add a div task inside overview div if not present in overview div but saved in allObjs from LS.
-            if(!key === taskDivTexts[idx]) {
+            if(!taskDivTexts.includes(key)) {
 
-                console.log(`${taskDivTexts[idx]} missing from overview.`);
+                console.log(`${key} not included`);
                 addMyTask(key);
 
             }
