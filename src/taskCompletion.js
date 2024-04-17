@@ -100,7 +100,7 @@ export function deleteCompletedTask(taskDiv) {
             const getAllDivs = Array.from(document.getElementsByClassName('toDoDiv')).reverse();
 
             // Splices deleted task from allObjs, renames each remaining item and returns an object that only includes tasks that were not deleted.
-            const updatedObj = updateTaskId((removeTaskFromObj(allObjs, idx)), getAllDivs);
+            const updatedObj = updateTaskId((removeTaskFromObj(allObjs, idx)), getAllDivs, key);
 
             // Overwrite allObjs in localStorage.
             saveToLocal(updatedObj, "allObjs");
@@ -179,7 +179,7 @@ export function removeTaskFromObj(obj, startIdx, endIdx=1) {
 }
 
 
-export function updateTaskId(allObjs, getAllDivs) {
+function updateTaskId(allObjs, getAllDivs, key) {
 
     // Identify context of div.
     const getDivId = () => {
@@ -192,7 +192,7 @@ export function updateTaskId(allObjs, getAllDivs) {
 
     }
 
-    if(getDivId) {
+    if(!(getDivId() == null)) {
 
         const divId = getDivId();
 
@@ -218,6 +218,18 @@ export function updateTaskId(allObjs, getAllDivs) {
         });
 
         const newObj = Object.assign({}, ...allObjs);
+
+        return newObj;
+
+    } else {
+
+        // When switching between pages and deleting the last task.
+        const newObj = Object.keys(allObjs).filter((objKey) => objKey !== key).reduce((obj, objKey) => {
+
+            obj[objKey] = allObjs[objKey];
+            return obj;
+
+        }, {});
 
         return newObj;
 
