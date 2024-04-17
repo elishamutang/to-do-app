@@ -318,7 +318,35 @@ export default class CreateToDoObj {
 
                     console.log(`Object moved to ${currentObj.list}`);
 
-                    saveUserData(currentObj, "list"); // Save user property data to localStorage.
+                    // Save user property data to localStorage.
+                    saveUserData(currentObj, "list");
+                    
+                    // Remove to-do div if moved to a different list.
+                    const allObjs = getSavedObjs();
+                    const existingDivs = Array.from(document.getElementsByClassName('toDoDiv'));
+
+                    Object.keys(allObjs).forEach((key) => {
+
+                        // Match currentObj title with saved to-do object key.
+                        if(key === currentObj.title) {
+
+                            // Match relevant div with curentObj title and return div.
+                            const [relevantDiv] = existingDivs.filter((div) => {
+
+                                if(div.querySelector('p').textContent === currentObj.title) {
+
+                                    return div;
+
+                                }
+
+                            })
+
+                            // Finally, remove the div that was moved from current list.
+                            relevantDiv.remove();
+
+                        }
+
+                    })
 
                 }
 
@@ -589,5 +617,14 @@ function updateTagsDisplay(currentObj) {
         }
 
     }
+
+}
+
+
+function getSavedObjs() {
+
+    const allObjs = localStorage.getItem('allObjs') ? JSON.parse(localStorage.getItem('allObjs')) : null;
+
+    return allObjs;
 
 }
