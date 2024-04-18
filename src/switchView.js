@@ -62,9 +62,17 @@ export default function switchView(selection, homePageFieldsets) {
             // Add a div task inside overview div if not present in overview div but saved in allObjs from LS.
             if(!taskDivTexts.includes(key)) {
 
-                console.log(`${key} not included`);
-                addMyTask(key);
+                if(allTasks.length !== Object.keys(allObjs).length) {
 
+                    console.log(`${key} not included`);
+                    addMyTask(key);
+
+                } else {
+
+                    allTasks[idx].querySelector('p').textContent = key;
+
+                }
+                
             }
 
             // Update from previous declaration.
@@ -83,10 +91,10 @@ export default function switchView(selection, homePageFieldsets) {
             }
 
             // Check object completion.
-            if(allObjs[key].completed) {
+            // Get relevant div.
+            const taskDiv = getDiv(allTasks, key);
 
-                // Get relevant div.
-                const taskDiv = getDiv(allTasks, key);
+            if(allObjs[key].completed) {
 
                 // If task is complete but does not include complete class, add it.
                 if(!Array.from(taskDiv.classList).includes('complete')) {
@@ -95,9 +103,7 @@ export default function switchView(selection, homePageFieldsets) {
 
                 }
 
-            } else {
-
-                const taskDiv = getDiv(allTasks, key);
+            } else if(!allObjs[key].completed && Array.from(taskDiv.classList).includes('complete')) {
                 
                 // If task is not complete but still contains the complete class, remove it.
                 if(Array.from(taskDiv.classList).includes('complete')) {
