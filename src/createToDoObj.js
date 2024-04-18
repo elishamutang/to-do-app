@@ -2,7 +2,7 @@ import changeTask from "./changeTask";
 import { format } from "date-fns";
 import { moveMyTask } from "./addMyTask";
 import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebarCount";
-import { saveUserData } from "./saveToLocalStorage";
+import saveToLocal, { saveUserData } from "./saveToLocalStorage";
 import { createNewChecklistItem } from "./checklistFeat";
 
 // Regex to identify more than 1 space entered.
@@ -59,14 +59,42 @@ export default class CreateToDoObj {
                 headerDiv.id = headerInput.id;
                 headerDiv.textContent = headerInput.value;
 
-                currentObj.title = headerDiv.textContent;
-                saveUserData(currentObj, "title");
-
                 // Updates task title in overview div.
-                const taskDivElem = document.getElementById(currentObj.taskId);
-                taskDivElem.childNodes[1].textContent = currentObj.title;
+                const [taskDivElem] = Array.from(document.getElementsByClassName('toDoDiv'))
+                                    .filter((task) => {
+
+                                        return task.querySelector('p').textContent === currentObj.title;
+
+                                    });
+                
+                taskDivElem.querySelector('p').textContent = headerDiv.textContent;
+                currentObj.title = headerDiv.textContent;
 
                 headerInput.replaceWith(headerDiv);
+                saveUserData(currentObj, "title");
+
+                // Save as new allObjs
+                const allObjs = getSavedObjs();
+
+                const updatedObjs = Object.keys(allObjs).map((key) => {
+
+                    if(allObjs[key].taskId === currentObj.taskId) {
+
+                        const newKey = headerInput.value;
+
+                        return { [newKey] : allObjs[key] }
+
+                    } else {
+
+                        return { [key] : allObjs[key] };
+
+                    }
+
+                });
+
+                const saveThisObj = Object.assign({}, ...updatedObjs);
+
+                saveToLocal(saveThisObj, "allObjs");
 
             }, {once: true});
 
