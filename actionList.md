@@ -18,5 +18,5 @@ Priority (Low, High)
 
 
 ## Bugs
-- Creating a task inside list/tag page should automatically add that task to the list/tag. Investigate.
-- Try re-naming the tasks and see what happens. Expecting a bug here as we are using task titles as keys, which can potentially be changed.
+- Creating a task inside tag page should automatically add that task to the tag. **Investigate**.
+    - Works for list. When adding task inside any list, it automatically assigns that task to the list.
