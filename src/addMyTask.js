@@ -1,6 +1,6 @@
 // Home (or All Lists page)
 // Default page users get directed to. An overview of all Lists/Projects.
-import { isToday, isTomorrow, isFuture } from "date-fns";
+import { isToday, isTomorrow, isFuture, getTime } from "date-fns";
 import CreateToDoObj from "./createToDoObj";
 
 // Add new task and displays them.
@@ -17,40 +17,68 @@ export default function addMyTask(task) {
     relevantDiv.insertAdjacentElement('afterbegin', newTask);
 
     // Determine what page is task added to.
-    const [list] = Array.from(relevantDiv.classList).filter((value) => value !== 'overview');
+    const [category] = Array.from(relevantDiv.classList).filter((value) => value !== 'overview');
 
-    // If user enters task in Personal, Work, Study etc list page.
-    const getList = () => {
+    if(category) {
 
-        // If list is not undefined, enters code block below.
-        if(list) {
+        // If user enters task in Personal, Work, Study etc list page.
+        const getList = () => {
 
-            const toArr = list.split('');
+            if(category.includes('#')) {
 
-            return toArr.map((char, idx) => {
+                console.log(`${category} belongs to Tags.`);
 
-                if(idx === 0) {
+                return 'Personal';
 
-                    return toArr[0].toUpperCase();
+            } else {
 
-                } else {
+                const toArr = category.split('');
 
-                    return toArr[idx];
+                return toArr.map((char, idx) => {
 
-                }
+                    if(idx === 0) {
 
-            }).join('');
+                        return toArr[0].toUpperCase();
 
-        } else {
+                    } else {
 
-            return 'Personal'
+                        return toArr[idx];
+
+                    }
+
+                }).join('');
+
+            }
 
         }
 
-    }
+        // If users enter in one of the tags under Tags.
+        const getTag = () => {
 
-    // Create new object
-    return new CreateToDoObj(task, newTask.id, getList());
+            if(category.includes('#')) {
+    
+                const objTag = Array.from(category.replace('#', '')).map((char, idx) => {
+    
+                    if(idx === 0) {
+    
+                        return char.toUpperCase();
+    
+                    }
+    
+                    return char.toLowerCase();
+    
+                }).join('');
+    
+                return [objTag];
+    
+            }
+    
+        }
+
+        // Create new object
+        return new CreateToDoObj(task, newTask.id, getList(), getTag());
+
+    }
 
 }
 
