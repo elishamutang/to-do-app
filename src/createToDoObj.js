@@ -13,12 +13,12 @@ const multipleSpacesRegex = /[ ]{2,}/;
 export default class CreateToDoObj {
 
     // Initialize each instance of a To-Do object with a title and checklist array.
-    constructor(title, taskId, list) {
+    constructor(title, taskId, list, tags = []) {
         this.title = title;
         this.checklist = {};
         this.notes = "";
         this.rawReminderDate = "";
-        this.tags = [];
+        this.tags = tags;
         this.list = list;
         this.taskId = taskId;
         this.completed = false; // task completion.
@@ -369,8 +369,14 @@ export default class CreateToDoObj {
 
                             })
 
-                            // Finally, remove the div that was moved from current list.
-                            relevantDiv.remove();
+                            // Finally, remove the div that was moved from current list (other than All My Tasks page).
+                            const overviewDiv = document.querySelector('.overview');
+                            
+                            if(Array.from(overviewDiv.classList).length > 1) {
+
+                                relevantDiv.remove();
+                                
+                            }
 
                         }
 
