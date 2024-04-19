@@ -1,7 +1,7 @@
 import { checkFormInput, createNew } from './createNewList';
 import addMyTask from './addMyTask';
 import { changeChecklistInputElem } from './checklistFeat';
-import { updateSidebarListDisplay } from './updateSidebarCount';
+import { updateSidebarListDisplay, updateSidebarTagsDisplay } from './updateSidebarCount';
 import saveToLocal, { checkForLocalStorageSupport } from './saveToLocalStorage';
 import { taskCompletion } from './taskCompletion';
 import CreateToDoObj from './createToDoObj';
@@ -175,6 +175,7 @@ export default function initializePage() {
 
         // Updates sidebar (by default each newly created To-Do task will belong to personal)
         updateSidebarListDisplay();
+        updateSidebarTagsDisplay();
 
         event.preventDefault();
 
