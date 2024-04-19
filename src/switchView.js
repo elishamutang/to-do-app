@@ -23,9 +23,6 @@ export default function switchView(selection, homePageFieldsets) {
     // Switching to All My Tasks page will show all the tasks.
     if(selection.textContent === "All My Tasks") {
 
-        // Add home class to overview div.
-        overviewDiv.className+= ' home';
-
         // Reset overviewDiv by removing all divs.
         Array.from(overviewDiv.children).forEach((child) => {
             if(child.tagName === 'DIV') {
@@ -150,11 +147,27 @@ export default function switchView(selection, homePageFieldsets) {
 
     } else {
 
-        // If tags are selected, remove the #.
-        const modifiedSelectionTxt = selection.textContent.includes('#') ? selection.textContent.toLowerCase().replace('#', '') : selection.textContent.toLowerCase();
+        // Convert text to lowercase.
+        const selectionText = selection.textContent.toLowerCase();
+
+        // Modify text for tags.
+        let selectionTag;
+        if(selectionText.includes('#')) {
+
+            selectionTag = Array.from(selection.textContent.toLowerCase().replace('#', '')).map((char, idx) => {
+
+                if(idx === 0) {
+                    return char.toUpperCase();
+                }
+
+                return char;
+
+            }).join('');
+
+        }
 
         // Overwrite overviewDiv class name with the relevant list/tag.
-        overviewDiv.className += ` ${modifiedSelectionTxt}`;
+        overviewDiv.className += ` ${selectionText}`;
 
         // Reset content
         Array.from(overviewDiv.children).forEach((child) => {
@@ -167,10 +180,10 @@ export default function switchView(selection, homePageFieldsets) {
         Object.keys(allObjs).forEach((key) => {
 
             // Case insensitive for object tags and list.
-            const objTags = allObjs[key].tags.map((tag) => tag.toLowerCase());
+            const objTags = allObjs[key].tags;
             const objList = allObjs[key].list.toLowerCase();
 
-            if(objList === modifiedSelectionTxt || objTags.includes(modifiedSelectionTxt)) {
+            if(objList === selectionText || objTags.includes(selectionTag)) {
 
                 addMyTask(allObjs[key].title);
 
