@@ -459,7 +459,7 @@ export default class CreateToDoObj {
         }
         
 
-        // Event listener for tagDialog dialog.
+        // Event listener for tagDialog dialog (i.e when user clicks Tags button).
         tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
 
             const saveBtn = document.getElementById('saveTagSelection');
@@ -527,30 +527,76 @@ export default class CreateToDoObj {
 
                     if(tempTagsList.length !== 0) {
 
-                        tempTagsList.forEach((tempTag) => {
-    
-                            // Adding new tags.
-                            if(!currentObj.tags.includes(tempTag)) {
-    
-                                currentObj.tags.push(tempTag);
-    
-                            } else {
-                                
-                                // Remove existing tags.
-                                if(tagsToRemove.length !== 0) {
+                        console.log(currentObj);
+                        // !* FIX BUG HERE
+                        const getDiv = () => {
 
-                                    currentObj.tags = tempTagsList;
+                            const getAllTasks = Array.from(document.getElementsByClassName('toDoDiv'));
 
+                            const [resultingDiv] = getAllTasks.filter((div) => {
+
+                                if(div.querySelector('p').textContent === currentObj.title) {
+                                    return div;
                                 }
-    
+
+                            })
+
+                            return resultingDiv
+
+                        }
+
+                        // Determine if a new tag is being added to currentObj.
+                        const [missingTag] = tempTagsList.filter((tag) => {
+
+                            if(!currentObj.tags.includes(tag)) {
+                                return tag;
                             }
-    
-                        })
+
+                        });
+
+                        // Adds new tag for the particular To-Do object.
+                        if(missingTag) {
+
+                            currentObj.tags.push(missingTag);
+
+                        } else {
+                            
+                            // Entering this block indicates tag removal.
+                            // Gets tag that is being removed.
+                            const [removedTag] = currentObj.tags.filter((tag) => {
+
+                                if(!tempTagsList.includes(tag)) {
+                                    return tag;
+                                }
+
+                            });
+
+                            // Get overview div class list to determine which tag page are we currently on.
+                            const overviewDiv = document.querySelector('.overview');
+                            let [overviewDivTagClass] = Array.from(overviewDiv.classList).filter((tagClass) => {
+
+                                return tagClass !== 'overview';
+
+                            });
+
+                            overviewDivTagClass = overviewDivTagClass.replace('#', '');
+
+                            // If task is on a particular tag page for which is being removed, remove the task div as well.
+                            if(overviewDivTagClass === removedTag.toLowerCase()) {
+
+                                getDiv().remove();
+
+                            }
+
+                            // New tags saved to currentObj after removal.
+                            currentObj.tags = tempTagsList;
+
+                        }
 
                     } else {
 
                         // Resets currentObj.tags to tempTagsList = [];
-            
+                        console.log('tempTagsList empty');
                         currentObj.tags = tempTagsList;
 
                     }
