@@ -1,4 +1,4 @@
-# To-Do App (WIP)
+# To-Do App
 
 ## About
 - A minimal To-Do List application written in HTML/CSS and Vanilla JavaScript.
@@ -31,3 +31,5 @@
     npm run dev
     ```
 
+### Disclaimer
+- For the purposes of this project, this project was designed for desktop and is not responsive to different window sizes. For the best experience, please open this using Google Chrome on desktop.
