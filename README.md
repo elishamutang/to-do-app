@@ -8,13 +8,13 @@
 ## Screenshots
 
 ### Homepage
-![Homepage](homePage.png)
+![Homepage](src/assets/homePage.png)
 
 ### Groceries task
-![Groceries](groceries.png)
+![Groceries](src/assets/groceries.png)
 
 ### Workout task
-![Workout](workout.png)
+![Workout](src/assets/workout.png)
 
 ### Instructions
 
