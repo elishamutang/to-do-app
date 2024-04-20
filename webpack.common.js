@@ -46,6 +46,7 @@ module.exports = {
             title: 'To Do List',
             filename: 'index.html',
             template: 'src/template.html',
+            favicon : 'src/assets/favicon/favicon.ico'
         }),
     ],
 };
