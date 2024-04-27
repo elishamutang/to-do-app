@@ -32,7 +32,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
         taskDiv.className += ' complete';
 
-        if(taskDiv.id === taskDetailsContainer.dataset.task) {
+        if(currentObj.taskId === taskDetailsContainer.dataset.task) {
 
             taskDetailsContainer.className += ' disable';
 
@@ -65,7 +65,7 @@ export function taskCompletion(taskDiv, taskDetailsContainer, currentObj) {
 
         taskDiv.className = taskDivClassList.filter(value => value !== 'complete').join(' ');
 
-        if(taskDiv.id === taskDetailsContainer.dataset.task) {
+        if(currentObj.taskId === taskDetailsContainer.dataset.task) {
 
             taskDetailsContainer.className = taskDetailsContainerClassList.filter(value => value !== 'disable').join(' ');
 
