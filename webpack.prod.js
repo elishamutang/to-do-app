@@ -6,6 +6,7 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'production',
+  plugins: [new MiniCssExtractPlugin({ filename: 'styles.css' })],
   module: {
     rules: [
       {
