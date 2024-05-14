@@ -1,710 +1,555 @@
-import changeTask from "./changeTask";
-import { format } from "date-fns";
-import { moveMyTask } from "./addMyTask";
-import { updateSidebarListDisplay, updateSidebarTagsDisplay } from "./updateSidebarCount";
-import saveToLocal, { saveUserData } from "./saveToLocalStorage";
-import { createNewChecklistItem } from "./checklistFeat";
+import changeTask from './changeTask';
+import { format } from 'date-fns';
+import { moveMyTask } from './addMyTask';
+import { updateSidebarListDisplay, updateSidebarTagsDisplay } from './updateSidebarCount';
+import saveToLocal, { saveUserData } from './saveToLocalStorage';
+import { createNewChecklistItem } from './checklistFeat';
 
 // Regex to identify more than 1 space entered.
 // This regex can be improved but in the meantime it's good enough.
 const multipleSpacesRegex = /[ ]{2,}/;
 
-
 export default class CreateToDoObj {
+  // Initialize each instance of a To-Do object with a title and checklist array.
+  constructor(title, taskId, list, tags = []) {
+    this.title = title;
+    this.checklist = {};
+    this.notes = '';
+    this.rawReminderDate = '';
+    this.tags = tags;
+    this.list = list;
+    this.taskId = taskId;
+    this.completed = false; // task completion.
+  }
 
-    // Initialize each instance of a To-Do object with a title and checklist array.
-    constructor(title, taskId, list, tags = []) {
-        this.title = title;
-        this.checklist = {};
-        this.notes = "";
-        this.rawReminderDate = "";
-        this.tags = tags;
-        this.list = list;
-        this.taskId = taskId;
-        this.completed = false; // task completion.
-    };
+  // Display task details.
+  viewTask() {
+    console.log(this);
 
+    changeTask(this);
+  }
 
-    // Display task details.
-    viewTask() {
-        
-        console.log(this);
+  // Change task title for a To-Do object.
+  changeTaskTitle(elem) {
+    const currentObj = this;
 
-        changeTask(this);
+    // Replaces div with input to edit task title in taskDetailsContainer.
+    if (elem.tagName === 'DIV') {
+      const headerInput = document.createElement('input');
+      headerInput.type = 'text';
+      headerInput.className = 'taskInputs';
+      headerInput.id = elem.id;
+      headerInput.value = elem.textContent;
 
-    }
+      elem.replaceWith(headerInput);
 
-    // Change task title for a To-Do object.
-    changeTaskTitle(elem) {
+      headerInput.focus();
 
-        const currentObj = this;
+      headerInput.addEventListener(
+        'focusout',
+        function changeBackToDiv() {
+          const headerDiv = document.createElement('div');
+          headerDiv.className = 'taskDetails';
+          headerDiv.id = headerInput.id;
+          headerDiv.textContent = headerInput.value;
 
-        // Replaces div with input to edit task title in taskDetailsContainer.
-        if(elem.tagName === 'DIV') {
+          // Updates task title in overview div.
+          const [taskDivElem] = Array.from(document.getElementsByClassName('toDoDiv')).filter((task) => {
+            return task.querySelector('p').textContent === currentObj.title;
+          });
 
-            const headerInput = document.createElement('input');
-            headerInput.type = 'text';
-            headerInput.className = 'taskInputs';
-            headerInput.id = elem.id;
-            headerInput.value = elem.textContent;
+          taskDivElem.querySelector('p').textContent = headerDiv.textContent;
+          currentObj.title = headerDiv.textContent;
 
-            elem.replaceWith(headerInput);
+          headerInput.replaceWith(headerDiv);
+          saveUserData(currentObj, 'title');
 
-            headerInput.focus();
+          // Save as new allObjs
+          const allObjs = getSavedObjs();
 
-            headerInput.addEventListener('focusout', function changeBackToDiv() {
+          const updatedObjs = Object.keys(allObjs).map((key) => {
+            if (allObjs[key].taskId === currentObj.taskId) {
+              const newKey = headerInput.value;
 
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'taskDetails';
-                headerDiv.id = headerInput.id;
-                headerDiv.textContent = headerInput.value;
-
-                // Updates task title in overview div.
-                const [taskDivElem] = Array.from(document.getElementsByClassName('toDoDiv'))
-                                    .filter((task) => {
-
-                                        return task.querySelector('p').textContent === currentObj.title;
-
-                                    });
-                
-                taskDivElem.querySelector('p').textContent = headerDiv.textContent;
-                currentObj.title = headerDiv.textContent;
-
-                headerInput.replaceWith(headerDiv);
-                saveUserData(currentObj, "title");
-
-                // Save as new allObjs
-                const allObjs = getSavedObjs();
-
-                const updatedObjs = Object.keys(allObjs).map((key) => {
-
-                    if(allObjs[key].taskId === currentObj.taskId) {
-
-                        const newKey = headerInput.value;
-
-                        return { [newKey] : allObjs[key] }
-
-                    } else {
-
-                        return { [key] : allObjs[key] };
-
-                    }
-
-                });
-
-                const saveThisObj = Object.assign({}, ...updatedObjs);
-
-                saveToLocal(saveThisObj, "allObjs");
-
-            }, {once: true});
-
-        }
-
-    }
-
-
-    addToChecklist() {
-
-        // Target all checklist items
-        const checklistItems = document.getElementsByClassName('checklistItem');
-        const lastChecklistItem = checklistItems[checklistItems.length-1];
-
-        if(checklistItems.length !== 0) {
-
-            // If last checklist item does not have any input, prevent user from adding another one.
-            if(lastChecklistItem.value === "" || multipleSpacesRegex.test(lastChecklistItem.value) === true) {
-
-                console.log('Invalid input');
-                lastChecklistItem.value = "";
-                lastChecklistItem.focus();
-
+              return { [newKey]: allObjs[key] };
             } else {
-
-                createNewChecklistItem(this, checklistItems, multipleSpacesRegex);
-
+              return { [key]: allObjs[key] };
             }
+          });
 
-        } else {
+          const saveThisObj = Object.assign({}, ...updatedObjs);
 
-            createNewChecklistItem(this, checklistItems, multipleSpacesRegex); // Add new checklist item entry if there is none currently.
-        }
+          saveToLocal(saveThisObj, 'allObjs');
+        },
+        { once: true }
+      );
+    }
+  }
 
-        saveUserData(this, "checklist"); // Save checklist items to localStorage.
+  addToChecklist() {
+    // Target all checklist items
+    const checklistItems = document.getElementsByClassName('checklistItem');
+    const lastChecklistItem = checklistItems[checklistItems.length - 1];
 
-        console.log(this.checklist);
-
+    if (checklistItems.length !== 0) {
+      // If last checklist item does not have any input, prevent user from adding another one.
+      if (lastChecklistItem.value === '' || multipleSpacesRegex.test(lastChecklistItem.value) === true) {
+        console.log('Invalid input');
+        lastChecklistItem.value = '';
+        lastChecklistItem.focus();
+      } else {
+        createNewChecklistItem(this, checklistItems, multipleSpacesRegex);
+      }
+    } else {
+      createNewChecklistItem(this, checklistItems, multipleSpacesRegex); // Add new checklist item entry if there is none currently.
     }
 
+    saveUserData(this, 'checklist'); // Save checklist items to localStorage.
 
-    createNote() {
+    console.log(this.checklist);
+  }
 
-        const currentObj = this;
+  createNote() {
+    const currentObj = this;
 
-        // Target notes input
-        const notesInput = document.getElementById('notes');
+    // Target notes input
+    const notesInput = document.getElementById('notes');
 
-        // Saves user input when focused out.
-        notesInput.addEventListener('focusout', () => {
+    // Saves user input when focused out.
+    notesInput.addEventListener(
+      'focusout',
+      () => {
+        // Resets input for more than 1 whitespace entered.
+        if (multipleSpacesRegex.test(notesInput.value) === true) {
+          console.log('whitespaces');
+          notesInput.value = '';
+        } else {
+          currentObj.notes = notesInput.value; // Set notes for To-Do object.
+          saveUserData(currentObj, 'notes');
+        }
+      },
+      { once: true }
+    );
+  }
 
-            // Resets input for more than 1 whitespace entered.
-            if(multipleSpacesRegex.test(notesInput.value) === true) {
+  reminder(reminderBtn) {
+    const currentObj = this;
+    console.log(currentObj);
+    // Remind Me
+    const reminderDialog = document.getElementById('reminder');
+    const reminderForm = document.getElementById('setReminder');
 
-                console.log('whitespaces');
-                notesInput.value = "";
+    const dateInput = document.getElementById('dateInput');
 
+    // Minimum date value set to current date (format: YYYY-MM-ddThh:mm, e.g 2017-06-01T08:30)
+    dateInput.min = `${format(new Date(), 'yyyy')}-${format(new Date(), 'MM')}-${format(new Date(), 'dd')}T${format(new Date(), 'HH')}:${format(new Date(), 'mm')}`;
+
+    reminderDialog.showModal();
+    dateInput.focus();
+
+    // When Remind Me button is clicked, if the date is set, show that date on datetime-local input.
+    if (this.rawReminderDate !== '') {
+      dateInput.value = this.rawReminderDate;
+    } else {
+      dateInput.value = dateInput.min;
+    }
+
+    // Closes reminder dialog if user clicks outside dialog.
+    reminderDialog.addEventListener('click', function closeDialog(event) {
+      if (event.target === reminderDialog) {
+        reminderDialog.close();
+        this.removeEventListener('click', closeDialog);
+      }
+    });
+
+    // Submit or save reminder date.
+    reminderForm.addEventListener(
+      'submit',
+      function detectSubmit(event) {
+        event.preventDefault();
+
+        const formattedResultingDate = format(dateInput.value, 'MMM do, yyyy, hh:mma'); // Date format example: "Mon 26th, 2024, 10:59PM"
+
+        reminderBtn.textContent = `${formattedResultingDate}`; // Display date on the button.
+
+        currentObj.rawReminderDate = dateInput.value;
+        currentObj.formattedReminderDate = formattedResultingDate;
+
+        saveUserData(currentObj, 'rawReminderDate'); // Save user property data to localStorage.
+        saveUserData(currentObj, 'formattedReminderDate'); // Save user property data to localStorage.
+
+        // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
+        // Only move task when at Homepage.
+        const overviewDiv = document.querySelector('.overview');
+
+        if (Array.from(overviewDiv.classList).length === 1 && Array.from(overviewDiv.classList).includes('overview')) {
+          moveMyTask(currentObj);
+        }
+
+        reminderDialog.close();
+      },
+      { once: true }
+    );
+
+    // Reset reminder date.
+    reminderForm.addEventListener(
+      'reset',
+      function deleteReminder() {
+        reminderBtn.textContent = 'Remind Me';
+
+        currentObj.rawReminderDate = '';
+        currentObj.formattedReminderDate = '';
+
+        saveUserData(currentObj, 'rawReminderDate'); // Save user property data to localStorage.
+        saveUserData(currentObj, 'formattedReminderDate');
+
+        moveMyTask(currentObj); // Move task to Today (default)
+
+        reminderDialog.close();
+      },
+      { once: true }
+    );
+  }
+
+  editList(listBtn) {
+    const currentObj = this;
+
+    // Prepare all user lists.
+    const currentLists = Array.from(document.querySelectorAll('ul.lists > li > a.list'));
+    const currentListsClone = currentLists.map((list) => list.cloneNode(true)); // To be appended in linksContainer
+
+    const linksContainer = document.getElementById('linksContainer');
+
+    const listsInsideListContainer = Array.from(linksContainer.children);
+
+    const listsInsideListContainerText = listsInsideListContainer.map((list) => {
+      return list.textContent;
+    });
+
+    // Updates based on newly created lists.
+    currentListsClone.forEach((clone) => {
+      clone.className = 'list'; // Reset cloned sidebar lists class names.
+      clone.innerHTML = clone.textContent; // Prevents boxicon icon to appear in listDialog elem.
+
+      if (!listsInsideListContainerText.includes(clone.textContent)) {
+        linksContainer.append(clone);
+
+        if (this.list === clone.textContent) {
+          // Added class of current for current list that To-Do object is in.
+          clone.className += ' current';
+          listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${this.list}`;
+        }
+      }
+    });
+
+    const listDialog = document.getElementById('list');
+    listDialog.showModal();
+
+    listDialog.addEventListener('click', function listDialogFunc(event) {
+      // Closes dialog if clicked outside.
+      if (event.target === listDialog) {
+        listDialog.close();
+        this.removeEventListener('click', listDialogFunc);
+
+        // Style current list that the selected To-Do object is in.
+      } else if (event.target.tagName === 'A') {
+        let selectionMovement = [currentObj.list]; // By default, all newly created lists are added to Personal.
+        let selectedList = event.target;
+
+        if (selectedList.textContent === currentObj.list) {
+          console.log(`Object currently in ${selectedList.textContent}`);
+          return;
+        } else {
+          currentObj.list = selectedList.textContent;
+          listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
+
+          selectionMovement.push(currentObj.list); // Update movement.
+
+          const listLinks = [];
+          const linksContainerChildren = Array.from(linksContainer.children);
+
+          linksContainerChildren.forEach((child) => {
+            selectionMovement.forEach((text) => {
+              if (child.textContent === text) {
+                listLinks.push(child);
+              }
+            });
+          });
+
+          // Updates styling of class current based on where the selected To-Do obj is currently sitting in.
+          listLinks.forEach((list) => {
+            if (currentObj.list === list.textContent) {
+              list.className += ' current';
             } else {
-
-                currentObj.notes = notesInput.value; // Set notes for To-Do object.
-                saveUserData(currentObj, "notes");
-
+              list.className = 'list';
             }
+          });
 
-        }, {once: true});
-        
+          console.log(`Object moved to ${currentObj.list}`);
+
+          // Save user property data to localStorage.
+          saveUserData(currentObj, 'list');
+
+          // Remove to-do div if moved to a different list.
+          const allObjs = getSavedObjs();
+          const existingDivs = Array.from(document.getElementsByClassName('toDoDiv'));
+
+          Object.keys(allObjs).forEach((key) => {
+            // Match currentObj title with saved to-do object key.
+            if (key === currentObj.title) {
+              // Match relevant div with curentObj title and return div.
+              const [relevantDiv] = existingDivs.filter((div) => {
+                if (div.querySelector('p').textContent === currentObj.title) {
+                  return div;
+                }
+              });
+
+              // Finally, remove the div that was moved from current list (other than All My Tasks page).
+              const overviewDiv = document.querySelector('.overview');
+
+              if (Array.from(overviewDiv.classList).length > 1) {
+                relevantDiv.remove();
+              }
+            }
+          });
+        }
+
+        updateSidebarListDisplay(); // Count number of to-do task belonging to a particular list and update it on the sidebar.
+      }
+    });
+  }
+
+  setTag() {
+    const currentObj = this;
+
+    // Prepare list in dialog.
+    // One-liner to get tag text only without # infront.
+    const allTagsList = Array.from(document.getElementsByClassName('currentTags'));
+    const allTagsListText = allTagsList.map((tag) => tag.textContent).map((text) => text.replace('#', ''));
+
+    const allTagsDiv = document.getElementById('allTags');
+
+    if (allTagsDiv.children.length === 0) {
+      allTagsListText.forEach((text) => {
+        const textToTag = document.createElement('a');
+        textToTag.textContent = text;
+
+        allTagsDiv.append(textToTag);
+      });
     }
 
+    // Open dialog
+    const tagDialogElem = document.getElementById('tagDialog');
 
-    reminder(reminderBtn) {
+    tagDialogElem.showModal();
 
-        const currentObj = this;
-        console.log(currentObj);
-        // Remind Me
-        const reminderDialog = document.getElementById('reminder');
-        const reminderForm = document.getElementById('setReminder');
+    const allTags = Array.from(allTagsDiv.children); // Array of all anchor tags under allTags div.
 
-        const dateInput = document.getElementById('dateInput');
+    const tempTagsList = []; // Empty array to contain selected tags.
+    const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
 
-        // Minimum date value set to current date (format: YYYY-MM-ddThh:mm, e.g 2017-06-01T08:30) 
-        dateInput.min = `${format(new Date(), "yyyy")}-${format(new Date(), "MM")}-${format(new Date(), "dd")}T${format(new Date(), "HH")}:${format(new Date(), "mm")}`; 
-        
-        reminderDialog.showModal();
-        dateInput.focus();
+    // Styling tagDialogElem with current tags.
+    if (this.tags.length !== 0) {
+      this.tags.forEach((tag) => {
+        // Any tag currently associated with currentObj will be pushed into tempTagsList.
+        tempTagsList.push(tag);
 
-        // When Remind Me button is clicked, if the date is set, show that date on datetime-local input.
-        if(this.rawReminderDate !== "") {
-            dateInput.value = this.rawReminderDate;
+        // Style relevant tags associated with currentObj.tags array when tagDialogElem modal is open.
+        allTags.forEach((existingTag) => {
+          if (tag === existingTag.textContent) {
+            existingTag.innerHTML = `${tag}<i class='bx bxs-check-circle'></i>`;
+          }
+        });
+      });
+    } else {
+      allTags.forEach((existingTag) => {
+        existingTag.innerHTML = existingTag.textContent; // Resets tagDialogElem styling when switching between different objects.
+      });
+    }
+
+    // Event listener for tagDialog dialog (i.e when user clicks Tags button).
+    tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
+      const saveBtn = document.getElementById('saveTagSelection');
+      const cancelBtn = document.getElementById('cancelBtn');
+
+      // Close dialog
+      if (event.target === tagDialogElem || event.target === cancelBtn) {
+        tagDialogElem.close();
+        this.removeEventListener('click', tagDialogFunc);
+
+        // Resets tag selection if not saved.
+        allTags.forEach((tag) => {
+          tag.innerHTML = tag.textContent;
+        });
+      } else if (event.target.tagName === 'A') {
+        const selectedTag = event.target;
+
+        // Goes thru each tag under allTags div.
+        allTags.forEach((tag) => {
+          if (selectedTag === tag && !tempTagsList.includes(selectedTag.textContent)) {
+            tempTagsList.push(selectedTag.textContent); // Pushes into temporary tags list in preparation for saving.
+
+            selectedTag.innerHTML += "<i class='bx bxs-check-circle'></i>";
+          } else if (selectedTag === tag && tempTagsList.includes(selectedTag.textContent)) {
+            for (let i = 0; i < tempTagsList.length; i++) {
+              if (tempTagsList[i] === selectedTag.textContent) {
+                console.log(`${tempTagsList[i]} at ${i} in currentObj.tags array will be removed.`);
+
+                tagsToRemove.push(i); // Indicates that they are potential tags to be removed.
+                tempTagsList.splice(i, 1); // Removes tags from tempTagsList that will potentially be saved in currentObj.tags array.
+
+                console.log(tempTagsList); // tempTagsList after tag removal.
+
+                selectedTag.innerHTML = selectedTag.textContent;
+              }
+            }
+          }
+        });
+      } else if (event.target === saveBtn) {
+        // Save selected tag(s).
+
+        if (currentObj.tags.length === 0) {
+          // If currentObj.tags is empty, push all saved tags in tempTagsList into currentObj.tags.
+          currentObj.tags = tempTagsList;
         } else {
-            dateInput.value = dateInput.min;
+          if (tempTagsList.length !== 0) {
+            console.log(currentObj);
+            // !* FIX BUG HERE
+            const getDiv = () => {
+              const getAllTasks = Array.from(document.getElementsByClassName('toDoDiv'));
+
+              const [resultingDiv] = getAllTasks.filter((div) => {
+                if (div.querySelector('p').textContent === currentObj.title) {
+                  return div;
+                }
+              });
+
+              return resultingDiv;
+            };
+
+            // Determine if a new tag is being added to currentObj.
+            const [missingTag] = tempTagsList.filter((tag) => {
+              if (!currentObj.tags.includes(tag)) {
+                return tag;
+              }
+            });
+
+            // Adds new tag for the particular To-Do object.
+            if (missingTag) {
+              currentObj.tags.push(missingTag);
+            } else {
+              // Entering this block indicates tag removal.
+              // Gets tag that is being removed.
+              const [removedTag] = currentObj.tags.filter((tag) => {
+                if (!tempTagsList.includes(tag)) {
+                  return tag;
+                }
+              });
+
+              // Get overview div class list to determine which tag page are we currently on.
+              const overviewDiv = document.querySelector('.overview');
+              let [overviewDivTagClass] = Array.from(overviewDiv.classList).filter((tagClass) => {
+                return tagClass !== 'overview';
+              });
+
+              overviewDivTagClass = overviewDivTagClass.replace('#', '');
+
+              // If task is on a particular tag page for which is being removed, remove the task div as well.
+              if (overviewDivTagClass === removedTag.toLowerCase()) {
+                getDiv().remove();
+              }
+
+              // New tags saved to currentObj after removal.
+              currentObj.tags = tempTagsList;
+            }
+          } else {
+            // Resets currentObj.tags to tempTagsList = [];
+            console.log('tempTagsList empty');
+            currentObj.tags = tempTagsList;
+          }
         }
 
-        // Closes reminder dialog if user clicks outside dialog.
-        reminderDialog.addEventListener('click', function closeDialog(event) {
+        saveUserData(currentObj, 'tags'); // Save user property data to localStorage.
 
-            if(event.target === reminderDialog) {
-                reminderDialog.close();
-                this.removeEventListener('click', closeDialog);
-            }
+        updateSidebarTagsDisplay(); // Counts number of to-do tasks belonging to a certain tag and display on sidebar.
 
-        })
+        updateTagsDisplay(currentObj); // Inserts a div just below the additionalElem div where it displays the selected tags.
 
-        // Submit or save reminder date.
-        reminderForm.addEventListener('submit', function detectSubmit(event) {
+        this.removeEventListener('click', tagDialogFunc);
 
-            event.preventDefault();
-
-            const formattedResultingDate = format(dateInput.value, "MMM do, yyyy, hh:mma"); // Date format example: "Mon 26th, 2024, 10:59PM"
-
-            reminderBtn.textContent = `${formattedResultingDate}`; // Display date on the button.
-            
-            currentObj.rawReminderDate = dateInput.value;
-            currentObj.formattedReminderDate = formattedResultingDate;
-
-            saveUserData(currentObj, "rawReminderDate"); // Save user property data to localStorage.
-            saveUserData(currentObj, "formattedReminderDate"); // Save user property data to localStorage.
-
-            // Determine whether submitted date fits into either Today, Tomorrow, Upcoming or Someday.
-            // Only move task when at Homepage.
-            const overviewDiv = document.querySelector('.overview');
-
-            if(Array.from(overviewDiv.classList).length === 1 && Array.from(overviewDiv.classList).includes('overview')) {
-
-                moveMyTask(currentObj);
-
-            }
-
-            reminderDialog.close();
-
-        }, {once: true})
-
-
-        // Reset reminder date.
-        reminderForm.addEventListener('reset', function deleteReminder() {
-
-            reminderBtn.textContent = "Remind Me";
-
-            currentObj.rawReminderDate = "";
-            currentObj.formattedReminderDate = "";
-
-            saveUserData(currentObj, "rawReminderDate"); // Save user property data to localStorage.
-            saveUserData(currentObj, "formattedReminderDate");
-
-            moveMyTask(currentObj); // Move task to Today (default)
-
-            reminderDialog.close();
-
-        }, {once: true})
-
-    }
-
-
-    editList(listBtn) {
-
-        const currentObj = this;
-
-        // Prepare all user lists.
-        const currentLists = Array.from(document.querySelectorAll('ul.lists > li > a.list'));
-        const currentListsClone = currentLists.map((list) => list.cloneNode(true)); // To be appended in linksContainer
-
-        const linksContainer = document.getElementById('linksContainer');
-        
-        const listsInsideListContainer = Array.from(linksContainer.children);
-
-        const listsInsideListContainerText = listsInsideListContainer.map((list) => { return list.textContent })
-
-        // Updates based on newly created lists.
-        currentListsClone.forEach((clone) => {
-
-            clone.className = 'list'; // Reset cloned sidebar lists class names.
-            clone.innerHTML = clone.textContent; // Prevents boxicon icon to appear in listDialog elem.
-
-            if(!listsInsideListContainerText.includes(clone.textContent)) {
-
-                linksContainer.append(clone);
-
-                if(this.list === clone.textContent) {
-
-                    // Added class of current for current list that To-Do object is in.
-                    clone.className += ' current';
-                    listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${this.list}`;
-
-                }
-            }
-
-        })
-
-
-        const listDialog = document.getElementById('list');
-        listDialog.showModal();
-
-        listDialog.addEventListener('click', function listDialogFunc(event) {
-
-            // Closes dialog if clicked outside.
-            if(event.target === listDialog) {
-                
-                listDialog.close();
-                this.removeEventListener('click', listDialogFunc);
-
-            // Style current list that the selected To-Do object is in.
-            } else if(event.target.tagName === 'A') {
-
-                let selectionMovement = [currentObj.list]; // By default, all newly created lists are added to Personal.               
-                let selectedList = event.target;
-
-                if(selectedList.textContent === currentObj.list) {
-
-                    console.log(`Object currently in ${selectedList.textContent}`);
-                    return;
-
-                } else {
-
-                    currentObj.list = selectedList.textContent;
-                    listBtn.innerHTML = `<i class='bx bx-list-ul'></i>${currentObj.list}`;
-
-                    selectionMovement.push(currentObj.list); // Update movement.
-
-                    const listLinks = [];
-                    const linksContainerChildren = Array.from(linksContainer.children);
-
-                    linksContainerChildren.forEach((child) => {
-
-                        selectionMovement.forEach((text) => {
-
-                            if(child.textContent === text) {
-
-                                listLinks.push(child);
-
-                            }
-
-                        })
-
-                    })
-                    
-                    // Updates styling of class current based on where the selected To-Do obj is currently sitting in.
-                    listLinks.forEach((list) => {
-
-                        if(currentObj.list === list.textContent) {
-
-                            list.className += ' current';
-
-                        } else {
-
-                            list.className = 'list';
-
-                        }
-
-                    })
-
-                    console.log(`Object moved to ${currentObj.list}`);
-
-                    // Save user property data to localStorage.
-                    saveUserData(currentObj, "list");
-                    
-                    // Remove to-do div if moved to a different list.
-                    const allObjs = getSavedObjs();
-                    const existingDivs = Array.from(document.getElementsByClassName('toDoDiv'));
-
-                    Object.keys(allObjs).forEach((key) => {
-
-                        // Match currentObj title with saved to-do object key.
-                        if(key === currentObj.title) {
-
-                            // Match relevant div with curentObj title and return div.
-                            const [relevantDiv] = existingDivs.filter((div) => {
-
-                                if(div.querySelector('p').textContent === currentObj.title) {
-
-                                    return div;
-
-                                }
-
-                            })
-
-                            // Finally, remove the div that was moved from current list (other than All My Tasks page).
-                            const overviewDiv = document.querySelector('.overview');
-                            
-                            if(Array.from(overviewDiv.classList).length > 1) {
-
-                                relevantDiv.remove();
-                                
-                            }
-
-                        }
-
-                    })
-
-                }
-
-                updateSidebarListDisplay(); // Count number of to-do task belonging to a particular list and update it on the sidebar.
-
-            }
-
-        })
-
-    }
-
-
-    setTag() {
-
-        const currentObj = this;
-
-        // Prepare list in dialog.
-        // One-liner to get tag text only without # infront.
-        const allTagsList = Array.from(document.getElementsByClassName('currentTags'));
-        const allTagsListText = allTagsList.map(tag => tag.textContent).map(text => text.replace('#', ''));
-
-        const allTagsDiv = document.getElementById('allTags');
-
-        if(allTagsDiv.children.length === 0) {
-
-            allTagsListText.forEach((text) => {
-
-                const textToTag = document.createElement('a');
-                textToTag.textContent = text;
-    
-                allTagsDiv.append(textToTag);
-    
-            })
-            
-        }
-
-        // Open dialog
-        const tagDialogElem = document.getElementById('tagDialog');
-
-        tagDialogElem.showModal();
-
-        const allTags = Array.from(allTagsDiv.children); // Array of all anchor tags under allTags div.
-
-        const tempTagsList = []; // Empty array to contain selected tags.
-        const tagsToRemove = []; // Insert tag index from currentObj.tags for removal.
-
-        // Styling tagDialogElem with current tags.
-        if(this.tags.length !== 0) {
-
-            this.tags.forEach((tag) => {
-
-                // Any tag currently associated with currentObj will be pushed into tempTagsList.
-                tempTagsList.push(tag);
-
-                // Style relevant tags associated with currentObj.tags array when tagDialogElem modal is open.
-                allTags.forEach((existingTag) => {
-
-                    if(tag === existingTag.textContent) {
-
-                        existingTag.innerHTML = `${tag}<i class='bx bxs-check-circle'></i>`;
-
-                    }
-
-                })
-
-            })
-
-        } else {
-
-            allTags.forEach((existingTag) => {
-
-                existingTag.innerHTML = existingTag.textContent; // Resets tagDialogElem styling when switching between different objects.
-
-            })
-
-        }
-        
-
-        // Event listener for tagDialog dialog (i.e when user clicks Tags button).
-        tagDialogElem.addEventListener('click', function tagDialogFunc(event) {
-
-            const saveBtn = document.getElementById('saveTagSelection');
-            const cancelBtn = document.getElementById('cancelBtn');
-
-            // Close dialog
-            if(event.target === tagDialogElem || event.target === cancelBtn) {
-
-                tagDialogElem.close();
-                this.removeEventListener('click', tagDialogFunc);
-
-                // Resets tag selection if not saved.
-                allTags.forEach((tag) => {
-
-                    tag.innerHTML = tag.textContent;
-
-                })
-
-            } else if(event.target.tagName === 'A') {
-
-                const selectedTag = event.target;
-
-                // Goes thru each tag under allTags div.
-                allTags.forEach((tag) => {
-
-                    if(selectedTag === tag && !tempTagsList.includes(selectedTag.textContent)) {
-
-                        tempTagsList.push(selectedTag.textContent); // Pushes into temporary tags list in preparation for saving.
-
-                        selectedTag.innerHTML += "<i class='bx bxs-check-circle'></i>";
-
-                    } else if(selectedTag === tag && tempTagsList.includes(selectedTag.textContent)) {
-
-                        for(let i = 0; i < tempTagsList.length; i++) {
-
-                            if(tempTagsList[i] === selectedTag.textContent) {
-
-                                console.log(`${tempTagsList[i]} at ${i} in currentObj.tags array will be removed.`);
-                                
-                                tagsToRemove.push(i) // Indicates that they are potential tags to be removed.
-                                tempTagsList.splice(i, 1); // Removes tags from tempTagsList that will potentially be saved in currentObj.tags array.
-
-                                console.log(tempTagsList); // tempTagsList after tag removal.
-
-                                selectedTag.innerHTML = selectedTag.textContent;
-
-                            }
-
-                        }
-
-                    }
-                    
-                })
-
-            } else if(event.target === saveBtn) {
-
-                // Save selected tag(s).
-
-                if(currentObj.tags.length === 0) {
-
-                    // If currentObj.tags is empty, push all saved tags in tempTagsList into currentObj.tags.
-                    currentObj.tags = tempTagsList;
-
-                } else {
-
-                    if(tempTagsList.length !== 0) {
-
-                        console.log(currentObj);
-                        // !* FIX BUG HERE
-                        const getDiv = () => {
-
-                            const getAllTasks = Array.from(document.getElementsByClassName('toDoDiv'));
-
-                            const [resultingDiv] = getAllTasks.filter((div) => {
-
-                                if(div.querySelector('p').textContent === currentObj.title) {
-                                    return div;
-                                }
-
-                            })
-
-                            return resultingDiv
-
-                        }
-
-                        // Determine if a new tag is being added to currentObj.
-                        const [missingTag] = tempTagsList.filter((tag) => {
-
-                            if(!currentObj.tags.includes(tag)) {
-                                return tag;
-                            }
-
-                        });
-
-                        // Adds new tag for the particular To-Do object.
-                        if(missingTag) {
-
-                            currentObj.tags.push(missingTag);
-
-                        } else {
-                            
-                            // Entering this block indicates tag removal.
-                            // Gets tag that is being removed.
-                            const [removedTag] = currentObj.tags.filter((tag) => {
-
-                                if(!tempTagsList.includes(tag)) {
-                                    return tag;
-                                }
-
-                            });
-
-                            // Get overview div class list to determine which tag page are we currently on.
-                            const overviewDiv = document.querySelector('.overview');
-                            let [overviewDivTagClass] = Array.from(overviewDiv.classList).filter((tagClass) => {
-
-                                return tagClass !== 'overview';
-
-                            });
-
-                            overviewDivTagClass = overviewDivTagClass.replace('#', '');
-
-                            // If task is on a particular tag page for which is being removed, remove the task div as well.
-                            if(overviewDivTagClass === removedTag.toLowerCase()) {
-
-                                getDiv().remove();
-
-                            }
-
-                            // New tags saved to currentObj after removal.
-                            currentObj.tags = tempTagsList;
-
-                        }
-
-                    } else {
-
-                        // Resets currentObj.tags to tempTagsList = [];
-                        console.log('tempTagsList empty');
-                        currentObj.tags = tempTagsList;
-
-                    }
-
-                }
-
-                saveUserData(currentObj, "tags"); // Save user property data to localStorage.
-
-                updateSidebarTagsDisplay(); // Counts number of to-do tasks belonging to a certain tag and display on sidebar. 
-
-                updateTagsDisplay(currentObj); // Inserts a div just below the additionalElem div where it displays the selected tags.
-
-                this.removeEventListener('click', tagDialogFunc);
-
-                tagDialogElem.close();
-
-            }
-
-        })
-
-    }
-
+        tagDialogElem.close();
+      }
+    });
+  }
 }
 
 // Update tags display after saving.
 function updateTagsDisplay(currentObj) {
+  const tagsBtn = document.getElementById('tags');
+  const tagsDiv = document.getElementById('tagsDiv');
 
-    const tagsBtn = document.getElementById('tags');
-    const tagsDiv = document.getElementById('tagsDiv');
+  const divTwoContainer = document.getElementById('divTwoContainer');
+  const divTwoContainerChildren = Array.from(divTwoContainer.children);
 
-    const divTwoContainer = document.getElementById('divTwoContainer');
-    const divTwoContainerChildren = Array.from(divTwoContainer.children);
+  const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
+  const additionalElemsSect = document.getElementById('additionalElems');
 
-    const targetTagsDivContainer = document.getElementById('selectedTagsDivContainer');
-    const additionalElemsSect = document.getElementById('additionalElems');
+  // First time save (e.g no tags associated with the particular to-do task).
+  if (!divTwoContainerChildren.includes(targetTagsDivContainer) && currentObj.tags.length !== 0) {
+    const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
+    selectedTagsDivContainer.id = 'selectedTagsDivContainer';
 
-    // First time save (e.g no tags associated with the particular to-do task).
-    if(!divTwoContainerChildren.includes(targetTagsDivContainer) && currentObj.tags.length !== 0) {
+    tagsBtn.innerHTML = '';
 
-        const selectedTagsDivContainer = document.createElement('div'); // Prepare extra div to insert after additionalElems div.
-        selectedTagsDivContainer.id = 'selectedTagsDivContainer';
+    // Insert each tag in its own div.
+    currentObj.tags.forEach((tag) => {
+      const individualTagDiv = document.createElement('div');
 
-        tagsBtn.innerHTML = "";
+      individualTagDiv.className = 'selectedTags';
+      individualTagDiv.id = tag.toLowerCase();
+      individualTagDiv.textContent = tag;
 
-        // Insert each tag in its own div.
-        currentObj.tags.forEach((tag) => {
+      tagsBtn.append(individualTagDiv);
+    });
 
-            const individualTagDiv = document.createElement('div');
+    tagsBtn.innerHTML += ` <i class='bx bx-message-square-add selectedTags'></i>`;
+    tagsBtn.className = 'selectedTagsDivContainer';
 
-            individualTagDiv.className = 'selectedTags';
-            individualTagDiv.id = tag.toLowerCase();
-            individualTagDiv.textContent = tag;
+    selectedTagsDivContainer.appendChild(tagsDiv);
 
-            tagsBtn.append(individualTagDiv);
+    additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
+  } else {
+    // Update selectedTagsDivContainer display (not first time save).
+    const boxiconTag = tagsBtn.querySelector('i');
 
-        })
+    // Addition or removal of tags for a To-Do task.
+    if (currentObj.tags.length === 0) {
+      tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;
+      tagsBtn.className = 'additionalFeatBtns';
 
-        tagsBtn.innerHTML += ` <i class='bx bx-message-square-add selectedTags'></i>`;
-        tagsBtn.className = 'selectedTagsDivContainer';
+      targetTagsDivContainer.remove();
 
-        selectedTagsDivContainer.appendChild(tagsDiv);
-
-        additionalElemsSect.insertAdjacentElement('afterend', selectedTagsDivContainer); // Using flex for #divTwoContainer appends this where I want it.
-
+      additionalElemsSect.insertAdjacentElement('beforeend', tagsDiv);
     } else {
+      tagsBtn.innerHTML = '';
 
-        // Update selectedTagsDivContainer display (not first time save).
-        const boxiconTag = tagsBtn.querySelector('i');
+      currentObj.tags.forEach((tag) => {
+        const createNewTagDiv = document.createElement('div');
 
-        // Addition or removal of tags for a To-Do task.
-        if(currentObj.tags.length === 0) {
+        createNewTagDiv.className = 'selectedTags';
+        createNewTagDiv.id = tag.toLowerCase();
+        createNewTagDiv.textContent = tag;
 
-            tagsBtn.innerHTML = `<i class='bx bx-hash' style='color:#fdfdfd'></i>Tags`;
-            tagsBtn.className = 'additionalFeatBtns';
+        tagsBtn.append(createNewTagDiv);
+      });
 
-            targetTagsDivContainer.remove();
-
-            additionalElemsSect.insertAdjacentElement('beforeend', tagsDiv);
-
-        } else {
-
-            tagsBtn.innerHTML = "";
-
-            currentObj.tags.forEach((tag) => {
-
-                const createNewTagDiv = document.createElement('div');
-
-                createNewTagDiv.className = 'selectedTags';
-                createNewTagDiv.id = tag.toLowerCase();
-                createNewTagDiv.textContent = tag;
-
-                tagsBtn.append(createNewTagDiv);
-
-            })
-
-            tagsBtn.insertAdjacentElement('beforeend', boxiconTag);
-
-        }
-
+      tagsBtn.insertAdjacentElement('beforeend', boxiconTag);
     }
-
+  }
 }
 
-
 function getSavedObjs() {
+  const allObjs = localStorage.getItem('allObjs') ? JSON.parse(localStorage.getItem('allObjs')) : null;
 
-    const allObjs = localStorage.getItem('allObjs') ? JSON.parse(localStorage.getItem('allObjs')) : null;
-
-    return allObjs;
-
+  return allObjs;
 }

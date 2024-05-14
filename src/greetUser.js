@@ -2,13 +2,10 @@
 // https://stefanbohacek.com/project/hellosalut-api/
 
 export default async function greetings() {
+  // Say hello in different languages
+  const response = await fetch('https://hellosalut.stefanbohacek.dev/?mode=auto');
+  const data = await response.json();
 
-    // Say hello in different languages
-    const response = await fetch ('https://hellosalut.stefanbohacek.dev/?mode=auto');
-    const data = await response.json();
-    
-    // Returns a Promise.
-    return data;
-
+  // Returns a Promise.
+  return data;
 }
-

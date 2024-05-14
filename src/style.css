@@ -2,822 +2,832 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Lora, Arial, Helvetica;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Lora, Arial, Helvetica;
 }
 
 :root {
-    --sidebar: #1D5D9B;
-    --toDoTask: #7ca7eb7d;
-    --secondary: rgba(255, 255, 255, 0.529);
-    --content: #91C8E4;
-    --tenPercent: #59c1bed8;
-    --priority: rgb(194, 31, 31);
-    --important: orangered;
-    --urgent: darkred;
-    --deadline: orange;
-    --family: mediumseagreen;
+  --sidebar: #1d5d9b;
+  --toDoTask: #7ca7eb7d;
+  --secondary: rgba(255, 255, 255, 0.529);
+  --content: #91c8e4;
+  --tenPercent: #59c1bed8;
+  --priority: rgb(194, 31, 31);
+  --important: orangered;
+  --urgent: darkred;
+  --deadline: orange;
+  --family: mediumseagreen;
 }
 
-html, body {
-    width: 100%;
-    min-height: 100vh;
-    background: var(--content);
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--content);
 }
 
 body {
-    position: relative;
+  position: relative;
 }
 
 #container {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 13% 87%;
-    grid-template-areas: 
-        "sidebar main"
-    ;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 13% 87%;
+  grid-template-areas: 'sidebar main';
 }
 
 .sidebar {
-    grid-area: sidebar;
-    background: var(--sidebar);
-    width: 100%;
-    overflow-x: hidden;
-    
-    display: flex;
-    flex-direction: column;
+  grid-area: sidebar;
+  background: var(--sidebar);
+  width: 100%;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
 
-#userProfile, .userInfo {
-    display: flex;
-    justify-content: flex-start;
-    margin: 1.5rem;
-    margin-right: 0.5rem;
-    align-items: center;
-    color: white;
+#userProfile,
+.userInfo {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1.5rem;
+  margin-right: 0.5rem;
+  align-items: center;
+  color: white;
 }
 
 .userInfo h1 {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .userTasks {
-    gap: 10px;
+  gap: 10px;
 }
 
-.userTasks:hover > i, .userTasks:hover > a {
-    color: white;
+.userTasks:hover > i,
+.userTasks:hover > a {
+  color: white;
 }
 
 #userProfile div {
-    margin: 20px 15px;
-    font-size: 23px;
-    font-weight: bold;
+  margin: 20px 15px;
+  font-size: 23px;
+  font-weight: bold;
 }
 
 #userProfile button {
-    text-decoration: none;
-    margin: 0;
-    color: white;
-    border-radius: 50%;
-    border: 3px solid var(--secondary);
-    height: 45px;
-    width: 45px;
-    font-weight: bold;
-    font-size: 25px;
-    cursor: pointer;
-    text-align: center;
-    background: var(--tenPercent);
+  text-decoration: none;
+  margin: 0;
+  color: white;
+  border-radius: 50%;
+  border: 3px solid var(--secondary);
+  height: 45px;
+  width: 45px;
+  font-weight: bold;
+  font-size: 25px;
+  cursor: pointer;
+  text-align: center;
+  background: var(--tenPercent);
 }
 
 ul {
-    list-style: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 li {
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .counter {
-    border: 2px solid var(--tenPercent);
-    background-color: var(--tenPercent);
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 11px;
-    font-weight: bold;
+  border: 2px solid var(--tenPercent);
+  background-color: var(--tenPercent);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: bold;
 }
 
 .bxs-circle {
-    color: var(--tenPercent);
-    font-size: 18px;
+  color: var(--tenPercent);
+  font-size: 18px;
 }
 
 li i {
-    font-size: 23px;
-    transition: 0.3s;
+  font-size: 23px;
+  transition: 0.3s;
 }
 
 li i::before {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 a {
-    cursor: pointer;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-li:hover > i, li:hover > i > a {
-    color: white;
+li:hover > i,
+li:hover > i > a {
+  color: white;
 }
 
-.userLists, .onStartup {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+.userLists,
+.onStartup {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .list {
-    color: var(--secondary);
-    font-size: 20px;
+  color: var(--secondary);
+  font-size: 20px;
 }
 
 .list:hover {
-    color: white;
+  color: white;
 }
 
 .header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 button {
-    text-decoration: none;
-    border: none;
-    background: none;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
+  text-decoration: none;
+  border: none;
+  background: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 .header > button {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .bx-task {
-    color: var(--secondary);
-    font-size: 20px;
-    transition: 0.3s;
+  color: var(--secondary);
+  font-size: 20px;
+  transition: 0.3s;
 }
 
 .bx-rotate-90 {
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 .bx-rotate-90:hover {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 dialog {
-    margin: 0 auto;
-    top: 30%;
-    border: none;
-    width: 600px;
-    height: 250px;
-    border-radius: 20px;
+  margin: 0 auto;
+  top: 30%;
+  border: none;
+  width: 600px;
+  height: 250px;
+  border-radius: 20px;
 }
 
 dialog[open]::backdrop {
-    background: rgb(84, 84, 84);
-    opacity: 0.8;
-    animation: backdrop-fade 0.3s ease-out;
+  background: rgb(84, 84, 84);
+  opacity: 0.8;
+  animation: backdrop-fade 0.3s ease-out;
 }
 
 @keyframes backdrop-fade {
-    from {
-        background: transparent;
-    }
-    to {
-        background: rgb(84, 84, 84);
-    }
+  from {
+    background: transparent;
+  }
+  to {
+    background: rgb(84, 84, 84);
+  }
 }
 
-form.tags, form.userLists, form.additional, form.onStartup {
-    width: 100%;
-    height: inherit;
-    padding: 25px;
-    padding-top: 15px;
-    border-radius: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+form.tags,
+form.userLists,
+form.additional,
+form.onStartup {
+  width: 100%;
+  height: inherit;
+  padding: 25px;
+  padding-top: 15px;
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #reminder {
-    width: 400px;
+  width: 400px;
 }
 
 .additionalsHeader {
-    color: white;
-    font-weight: bold;
-    font-size: 35px;
+  color: white;
+  font-weight: bold;
+  font-size: 35px;
 }
 
 #setReminder > input {
-    outline: none;
-    padding: 1rem;
-    font-size: 16px;
-    border-radius: 5px;
-    border: white;
+  outline: none;
+  padding: 1rem;
+  font-size: 16px;
+  border-radius: 5px;
+  border: white;
 }
 
 .bx-x {
-    font-size: 40px;
-    color: white;
-    opacity: 0.5;
-    cursor: pointer;
-    transition: 0.3s;
+  font-size: 40px;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .exit {
-    align-self: flex-end;
+  align-self: flex-end;
 }
 
 .bx-x:hover {
-    transform: scale(1.1);
-    opacity: 1;
+  transform: scale(1.1);
+  opacity: 1;
 }
 
-form, dialog {
-    background: var(--sidebar);
+form,
+dialog {
+  background: var(--sidebar);
 }
 
 .dialogInput {
-    font-size: 35px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    background: transparent;
+  font-size: 35px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  background: transparent;
 }
 
 .dialogInput::placeholder {
-    color: white;
-    opacity: 0.7;
+  color: white;
+  opacity: 0.7;
 }
 
 .dialogInput:focus,
 .taskInputs:focus {
-    outline: none;
+  outline: none;
 }
 
 .continue {
-    font-weight: bold;
-    margin: 0;
-    padding: 12px 30px;
-    border-radius: 10px;
-    background: #129cff7c;
-    align-self: flex-end;
-    transition: 0.3s;
+  font-weight: bold;
+  margin: 0;
+  padding: 12px 30px;
+  border-radius: 10px;
+  background: #129cff7c;
+  align-self: flex-end;
+  transition: 0.3s;
 }
 
 .continue:disabled {
-    opacity: 0.5;
-    cursor: auto;
-    background-color: var(--secondary);
+  opacity: 0.5;
+  cursor: auto;
+  background-color: var(--secondary);
 }
 
 .continue:not(:disabled):hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .main {
-    grid-area: main;
+  grid-area: main;
 
-    display: grid;
-    grid-template-columns: repeat(2, 1fr) 0.5fr;
-    grid-template-rows: 0.07fr 1fr;
-    grid-template-areas: 
-        "header header header"
-        "taskOne taskTwo ."
-    ;
-    margin: 1.5%;
-    column-gap: 2%;
-    row-gap: 3%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 0.5fr;
+  grid-template-rows: 0.07fr 1fr;
+  grid-template-areas:
+    'header header header'
+    'taskOne taskTwo .';
+  margin: 1.5%;
+  column-gap: 2%;
+  row-gap: 3%;
 }
 
 #mainHeader {
-    grid-area: header;
-    width: fit-content;
+  grid-area: header;
+  width: fit-content;
 }
 
 #mainHeader h1 {
-    font-size: 25px;
-    margin: 10px;
+  font-size: 25px;
+  margin: 10px;
 }
 
 #allTasksDivOne {
-    grid-area: taskOne;
+  grid-area: taskOne;
 
-    display: grid;
-    grid-template-rows: 90% auto;
-    grid-template-areas: 
-        "overview"
-        "addTask"
-    ;
+  display: grid;
+  grid-template-rows: 90% auto;
+  grid-template-areas:
+    'overview'
+    'addTask';
 }
 
 .overview {
-    margin: 20px;
-    grid-area: overview;
+  margin: 20px;
+  grid-area: overview;
 }
 
 #allTasksDivTwo {
-    grid-area: taskTwo;
+  grid-area: taskTwo;
 }
 
 div.allTasks {
-    background: var(--sidebar);
-    height: 100%;
-    border-radius: 15px;
-    color: white;
+  background: var(--sidebar);
+  height: 100%;
+  border-radius: 15px;
+  color: white;
 }
 
 .taskInputs {
-    background: var(--secondary);
-    border-radius: 10px;
-    border: 2px solid transparent;
-    transition: 0.3s;
+  background: var(--secondary);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  transition: 0.3s;
 }
 
 .taskInputs.checklistItem {
-    background: transparent;
-    margin-bottom: 4px;
+  background: transparent;
+  margin-bottom: 4px;
 }
 
-#notes, #addNewChecklistItem, #detailHeader {
-    padding: 5px 10px;
-    font-size: 16px;
+#notes,
+#addNewChecklistItem,
+#detailHeader {
+  padding: 5px 10px;
+  font-size: 16px;
 }
 
 #addNewTask {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    padding: 15px;
-    font-size: 18px;
-    width: 100%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 15px;
+  font-size: 18px;
+  width: 100%;
 }
 
 .taskInputs::placeholder {
-    font-weight: bold;
-    color: var(--secondary);
+  font-weight: bold;
+  color: var(--secondary);
 }
 
 .taskInputs:focus {
-    background: white;
+  background: white;
 }
 
 .taskInputs:not(:focus) {
-    color: white;
+  color: white;
 }
 
 #notes:hover {
-    border-color: var(--secondary);
-    border: 2px solid white;
+  border-color: var(--secondary);
+  border: 2px solid white;
 }
 
 #addTask {
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
-    grid-area: addTask;
-    padding: 10px;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  grid-area: addTask;
+  padding: 10px;
 
-    display: flex;
+  display: flex;
 }
 
 #addTask > button {
-    background: white;
-    color: var(--tenPercent);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px;
-    transition: 0.2s;
-    font-weight: bold;
+  background: white;
+  color: var(--tenPercent);
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 10px;
+  transition: 0.2s;
+  font-weight: bold;
 }
 
 #addTask > button:hover {
-    color: white;
-    background: var(--tenPercent);
+  color: white;
+  background: var(--tenPercent);
 }
 
 #addTask > button:disabled {
-    color: var(--secondary);
-    background: var(--secondary);
-    cursor: auto;
+  color: var(--secondary);
+  background: var(--secondary);
+  cursor: auto;
 }
 
 fieldset {
-    border: none;
+  border: none;
 }
 
 .toDoDiv,
 fieldset + div,
 fieldset > div {
-    margin-bottom: 10px;
-    background: var(--toDoTask);
-    border-radius: 5px;
-    font-size: 20px;
-    cursor: pointer;
-    height: 2.5rem;
+  margin-bottom: 10px;
+  background: var(--toDoTask);
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: pointer;
+  height: 2.5rem;
 
-    display: flex;
-    gap: 5px;
-    align-items: center;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 fieldset label {
-    cursor: pointer;
-    width: 100%;
-    padding: 5px;
+  cursor: pointer;
+  width: 100%;
+  padding: 5px;
 }
 
 fieldset legend {
-    font-size: 32px;
-    margin-bottom: 10px;
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
 .toDoObj {
-    cursor: pointer;
-    margin-left: 1rem;
-    margin-right: 0.5rem;
+  cursor: pointer;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
 }
 
 #allTasksDivTwo {
-    display: grid;
-    grid-template-rows: 1fr;
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 #divTwoContainer {
-    padding: 20px;
+  padding: 20px;
 
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    grid-area: taskTwo;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  grid-area: taskTwo;
 }
 
 #detailHeader {
-    font-size: 35px;
-    font-weight: bold;
-    transition: 0.3s;
-    border-radius: 10px;
-    border: 1px solid transparent;
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.3s;
+  border-radius: 10px;
+  border: 1px solid transparent;
 }
 
 #detailHeader:hover {
-    background-color: var(--secondary);
-    cursor: auto;
+  background-color: var(--secondary);
+  cursor: auto;
 }
 
 #detailNotes {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .detailSubHead {
-    font-size: 17px;
-    font-weight: bold;
+  font-size: 17px;
+  font-weight: bold;
 }
 
 #additionalElems {
-    display: flex;
-    gap: 15px;
-    align-items: center;
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
 .additionalFeatBtns {
-    background: var(--tenPercent);
-    padding: 10px 15px;
-    border-radius: 15px;
-    font-size: 14px;
-    transition: 0.3s;
-    font-weight: bold;
+  background: var(--tenPercent);
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 14px;
+  transition: 0.3s;
+  font-weight: bold;
 }
 
 .additionalFeatBtns:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 #addChecklistItem {
-    width: 100%;
-    height: inherit;
-    border-radius: inherit;
-    border: 2px solid transparent;
-    transition: 0.3s;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  border: 2px solid transparent;
+  transition: 0.3s;
 }
 
 #addChecklistItem:hover {
-    border: 2px solid var(--secondary);
+  border: 2px solid var(--secondary);
 }
 
-#checkList > div > input[type=text] {
-    width: 100%;
+#checkList > div > input[type='text'] {
+  width: 100%;
 }
 
 #checkList > div > input {
-    background-color: transparent;
-    color: white;
-    height: inherit;
-    border-radius: inherit;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    font-size: inherit;
-    padding: 5px;
+  background-color: transparent;
+  color: white;
+  height: inherit;
+  border-radius: inherit;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: inherit;
+  padding: 5px;
 }
 
 #checkList > div {
-    transition: 0.3s;
-    border: 2px solid transparent;
+  transition: 0.3s;
+  border: 2px solid transparent;
 }
 
 #checkList > div:hover {
-    background-color: var(--secondary);
-    border: 2px solid white;
+  background-color: var(--secondary);
+  border: 2px solid white;
 }
 
 .reminderBtns {
-    display: flex;
-    gap: 1em;
+  display: flex;
+  gap: 1em;
 }
 
-#deleteReminder:hover, #cancelBtn:hover {
-    background-color: lightcoral;
+#deleteReminder:hover,
+#cancelBtn:hover {
+  background-color: lightcoral;
 }
 
-#setReminderBtn:hover, #saveTagSelection:hover {
-    background-color: rgb(105, 201, 105);
+#setReminderBtn:hover,
+#saveTagSelection:hover {
+  background-color: rgb(105, 201, 105);
 }
 
 #listContainer {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 #listHeader {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    font-size: 1.3rem;
-    width: 100%;
-    text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  width: 100%;
+  text-align: center;
 }
 
 #list {
-    top: 20%;
-    width: 300px;
-    max-height: 300px;
-    height: min-content;
+  top: 20%;
+  width: 300px;
+  max-height: 300px;
+  height: min-content;
 }
 
 #linksContainer {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    gap: 0.5rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-    margin-bottom: 1.5rem;
-    scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 1.5rem;
+  scrollbar-width: thin;
 }
 
 div#linksContainer .list {
-    font-size: 1.5rem;
-    padding: 1px 7px;
-    border-radius: 8px;
-    border: 2px solid transparent;
+  font-size: 1.5rem;
+  padding: 1px 7px;
+  border-radius: 8px;
+  border: 2px solid transparent;
 }
 
 #linksContainer > a.list.current {
-    color: white;
-    border: 2px solid white;
+  color: white;
+  border: 2px solid white;
 }
 
 a.viewing {
-    color: var(--tenPercent);
-    filter: brightness(1.5);
-    text-shadow: var(--tenPercent) 1px 0px 10px;
+  color: var(--tenPercent);
+  filter: brightness(1.5);
+  text-shadow: var(--tenPercent) 1px 0px 10px;
 
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .additionalFeatBtns {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
 .bxs-bell-ring {
-    font-size: 20px;
+  font-size: 20px;
 }
 
-.bx-list-ul, .bx-hash {
-    font-size: 20px;
+.bx-list-ul,
+.bx-hash {
+  font-size: 20px;
 }
 
 #tagDialog {
-    width: 300px;
-    max-height: 500px;
-    height: min-content;
-    top: 20%;
+  width: 300px;
+  max-height: 500px;
+  height: min-content;
+  top: 20%;
 }
 
 #tagContainer {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    padding: 10px 20px;
+  padding: 10px 20px;
 }
 
 #tagHeader {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+  font-size: 2.5rem;
+  margin-bottom: 15px;
 }
 
 #allTags {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 #allTags a {
-    margin-bottom: 5px;
-    font-size: 1.3rem;
-    padding: 8px;
-    transition: 0.2s;
-    border-radius: 5px;
-    width: 100%;
-    text-align: center;
-    color: var(--secondary);
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+  padding: 8px;
+  transition: 0.2s;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  color: var(--secondary);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 #allTags a:hover {
-    color: white;
-    border-radius: 5px;
-    background-color: var(--secondary);
+  color: white;
+  border-radius: 5px;
+  background-color: var(--secondary);
 }
 
 .tagBtns {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    gap: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .bxs-check-circle {
-    color: white;
+  color: white;
 }
 
 .bx-message-square-add {
-    color: var(--secondary);
-    font-size: 23px;
-    transition: 0.2s;
+  color: var(--secondary);
+  font-size: 23px;
+  transition: 0.2s;
 }
 
 .selectedTagsDivContainer {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
 }
 
 .selectedTagsDivContainer:hover > .bx-message-square-add {
-    color: white;
+  color: white;
 }
 
 div.selectedTags {
-    background: var(--tenPercent);
-    padding: 3px 8px;
-    border-radius: 8px;
-    font-size: 15px;
+  background: var(--tenPercent);
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 15px;
 }
 
 #priority {
-    background: var(--priority);
+  background: var(--priority);
 }
 
 #important {
-    background: var(--important);
+  background: var(--important);
 }
 
 #urgent {
-    background: var(--urgent);
+  background: var(--urgent);
 }
 
 #deadline {
-    background: var(--deadline);
+  background: var(--deadline);
 }
 
 #family {
-    background: var(--family);
+  background: var(--family);
 }
 
 #startUpDialog {
-    position: absolute;
-    text-align: center;
-    background: transparent;
-    top: 30%;
+  position: absolute;
+  text-align: center;
+  background: transparent;
+  top: 30%;
 }
 
 #startUpDialog[open]::backdrop {
-    background: rgb(67 101 151);
-    opacity: 0.98;
+  background: rgb(67 101 151);
+  opacity: 0.98;
 }
 
 #startUpForm {
-    border: 3px solid var(--secondary);
-    height: 100%;
-    justify-content: space-between;
+  border: 3px solid var(--secondary);
+  height: 100%;
+  justify-content: space-between;
 }
 
 #userNameInput {
-    margin-top: 15%;
-    font-family: Lora;
-    font-weight: 600;
+  margin-top: 15%;
+  font-family: Lora;
+  font-weight: 600;
 }
 
 .toDoDiv {
-    transition: 0.3s;
-    border: 2px solid transparent;
+  transition: 0.3s;
+  border: 2px solid transparent;
 }
 
 .toDoDiv:hover {
-    border: 2px solid var(--secondary);
+  border: 2px solid var(--secondary);
 }
 
 .complete {
-    background-color: var(--secondary);
-    filter: brightness(0.8);
+  background-color: var(--secondary);
+  filter: brightness(0.8);
 }
 
 .complete > p,
 .complete > label {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 
-.complete > input[type="checkbox"] {
-    accent-color: var(--secondary);
+.complete > input[type='checkbox'] {
+  accent-color: var(--secondary);
 }
 
 .taskTitle {
-    margin-bottom: 4px;
-    width: 100%;
+  margin-bottom: 4px;
+  width: 100%;
 }
 
 div.disable {
-    pointer-events: none;
-    filter: contrast(0.4);
-    transition: 0.3s;
+  pointer-events: none;
+  filter: contrast(0.4);
+  transition: 0.3s;
 }
 
 div.disable > #additionalElems > div > button,
 div.disable > #checkListSect > div > button {
-    background-color: var(--secondary);
+  background-color: var(--secondary);
 }
 
 .deleteTask {
-    display: flex;
-    font-size: 20px;
-    margin-right: 0.5rem;
+  display: flex;
+  font-size: 20px;
+  margin-right: 0.5rem;
 }
