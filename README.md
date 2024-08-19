@@ -8,17 +8,9 @@
 
 ## Screenshots
 
-### Homepage
+### Live Demo
 
-![Homepage](src/assets/homePage.png)
-
-### Groceries task
-
-![Groceries](src/assets/groceries.png)
-
-### Workout task
-
-![Workout](src/assets/workout.png)
+![demo](src/assets/todo-demo.gif)
 
 ### Instructions
 
